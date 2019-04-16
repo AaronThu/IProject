@@ -18,7 +18,7 @@ ADD foreign key (VoorwerpNummer) references Voorwerp(VoorwerpNummer);
 alter table Gebruiker
 add foreign key  (Vraagnummer) references Vraag(vraagnummer);
 
---alter table Gebruiker
+--alter table Gebruiker --geeft error
 --add foreign key  (Gebruikersnaam) references Gebruikerstelefoon(Gebruikersnaam);
 
 Alter table Gebruikerstelefoon
