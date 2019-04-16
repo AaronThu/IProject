@@ -18,7 +18,7 @@ alter table Gebruiker
 add foreign key  (Vraagnummer) references Vraag(vraagnummer);
 
 alter table gebruiker
-add foreign key  (Gebruikersnaam) references Gebruikerstelefoon(gebruikersnaam);
+add foreign key  (Gebruikersnaam) references Gebruikerstelefoon(Gebruikersnaam);
 
 Alter table Gebruikerstelefoon
 add foreign key (Gebruikersnaam) references Gebruiker(Gebruikersnaam);
@@ -39,7 +39,7 @@ add foreign key (verkoper) references verkoper(gebruikersnaam);
 alter table Voorwerp
 add foreign key (koper) references gebruiker(gebruikersnaam);
 alter table Voorwerp
-add foreign key (voorwerpnummer) references VoorwerpInRubriek(voorwerp);
+add foreign key (voorwerpnummer) references VoorwerpInRubriek(voorwerpnummer);
 
 
 Alter table voorwerpinRubriek
