@@ -1,5 +1,6 @@
 use EenmaalAndermaal
 
+
 alter table Bestand
 add foreign key (VoorwerpNummer) references Voorwerp(VoorwerpNummer);
 
@@ -17,8 +18,8 @@ ADD foreign key (VoorwerpNummer) references Voorwerp(VoorwerpNummer);
 alter table Gebruiker
 add foreign key  (Vraagnummer) references Vraag(vraagnummer);
 
-alter table gebruiker
-add foreign key  (Gebruikersnaam) references Gebruikerstelefoon(Gebruikersnaam);
+--alter table Gebruiker
+--add foreign key  (Gebruikersnaam) references Gebruikerstelefoon(Gebruikersnaam);
 
 Alter table Gebruikerstelefoon
 add foreign key (Gebruikersnaam) references Gebruiker(Gebruikersnaam);
@@ -30,16 +31,16 @@ add foreign key (Rubriek) references Rubriek(rubrieknummer);
 
 alter table verkoper
 add foreign key (gebruikersnaam) references gebruiker(gebruikersnaam);
-alter table verkoper
-add foreign key (gebruikersnaam)	references Voorwerp(verkoper);
+--alter table verkoper -- geeft error
+--add foreign key (gebruikersnaam)	references Voorwerp(verkoper);
 
 
 alter table Voorwerp
 add foreign key (verkoper) references verkoper(gebruikersnaam);
 alter table Voorwerp
 add foreign key (koper) references gebruiker(gebruikersnaam);
-alter table Voorwerp
-add foreign key (voorwerpnummer) references VoorwerpInRubriek(voorwerpnummer);
+--alter table Voorwerp -- geeft error
+-- add foreign key (voorwerpnummer) references VoorwerpInRubriek(voorwerpnummer);
 
 
 Alter table voorwerpinRubriek
