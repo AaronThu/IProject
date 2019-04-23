@@ -1,100 +1,139 @@
--- use master database
+/*==============================================================*/
+/* Database name:  EenmaalAndermaal                             */
+/* Script:		   DDL                                          */
+/* Created on:     23-04-2019		                            */
+/*==============================================================*/
+
+
 use master
 go
 
--- drop database if exist
-drop database if exists EenmaalAndermaal;
+drop database if exists EenmaalAndermaal
 go
 
--- create database EenmaalAndermaal
+/*==============================================================*/
+/* Database: EenmaalAndermaal                                   */
+/*==============================================================*/
 create database EenmaalAndermaal
 go
 
--- gebruik datanase EenmaalAndermaal
 use EenmaalAndermaal
+go
 
--- creare tables
+
+/*==============================================================*/
+/* Bestand                                                      */
+/*==============================================================*/
 create table Bestand			(
-File_Name			varchar(13)		not null,	 --naam van de afbeelding
-VoorwerpNummer		numeric(10)		not null,		 -- het voorwerpnummer
+    FileNaam			varchar(255)	not null,               -- naam van de afbeelding
+    VoorwerpNummer		numeric(10)		not null,               -- het voorwerpnummer
+    constraint PK_BESTAND primary key (FileNaam)                -- primary key
+)
+go
 
-primary key (File_Name)
-) 
 
+/*==============================================================*/
+/* Bod                                                          */
+/*==============================================================*/
 create table Bod		(
-VoorwerpNummer		numeric(10)		not null,		-- het voorwerpnummer
-Gebruikersnaam		varchar(255)	not null,		--de gebruikersnaam van de bieder
-Bod_Bedrag			varchar(5)		not null,		-- het bedrag van het bod
-Bod_Datum			date			not null,		-- de datum dat het bod geplaatst is
-Bod_Tijdstip		time			not null,		-- het tijdstip dat het bod geplaatst is
-
-Primary key (VoorwerpNummer,Bod_Bedrag)
-
+    VoorwerpNummer		numeric(10)		not null,               -- het voorwerpnummer
+    Gebruikersnaam		varchar(255)	not null,               -- de gebruikersnaam van de bieder
+    Bod_Bedrag			numeric(7,2)	not null,               -- het bedrag van het bod
+    Bod_Datum			date			not null,               -- de datum dat het bod geplaatst is
+    Bod_Tijdstip		time			not null,               -- het tijdstip dat het bod geplaatst is
+    constraint PK_BOD primary key (VoorwerpNummer, Bod_Bedrag)  -- primary key
 )
+go
 
+
+/*==============================================================*/
+/* Feedback                                                     */
+/*==============================================================*/
 create table Feedback			(
-VoorwerpNummer		numeric(10)		not null,		-- het voorwerpnummer
-Soort_Gebruiker		varchar(8)		not null,		-- Het type gebruiker dat feedback heeft geplaatst
-Feedback_Soort		varchar(8)		not null,		-- De soort feedback
-Feedback_Datum		date			not null,		-- De datum dat de feedback is geplaatst
-Feedback_Tijdstip	varchar(8)		not null,		-- Het tijdstip dat de feedback is geplaatst
-Commentaar			varchar(max)		null,		-- Het geplaatste commentaar
-
-primary key (Voorwerpnummer,Soort_Gebruiker)
-
-
+    VoorwerpNummer		numeric(10)		not null,		        -- het voorwerpnummer
+    Soort_Gebruiker		varchar(2)		not null,		        -- Het type gebruiker dat feedback heeft geplaatst
+    Feedback_Soort		varchar(2)		not null,		        -- De soort feedback
+    Feedback_Datum		date			not null,		        -- De datum dat de feedback is geplaatst
+    Feedback_Tijdstip	time    		not null,		        -- Het tijdstip dat de feedback is geplaatst
+    Commentaar			varchar(max)		null,		        -- Het geplaatste commentaar
+    constraint PK_FEEDBACK primary key (Voorwerpnummer,Soort_Gebruiker) -- primary key
 )
+go
 
 
-
+/*==============================================================*/
+/* Gebruiker                                                    */
+/*==============================================================*/
 create table Gebruiker			(
-Gebruikersnaam		varchar(255)		not null,	-- De gebruikersnaam van koper/verkoper
-Voornaam			varchar(10)			not null,	-- De voornaam van de gebruiker
-Achternaam			varchar(10)			not null,	-- De achternaam van de gebruiker
-Adres_1				varchar(10)			not null,	-- Het eerste adres
-Adres_2				varchar(15)				null,	-- het tweede adres
-Postcode			varchar(15)			not null,	-- De postcode van de gebruiker
-Plaatsnaam			varchar(15)			not null,	-- De plaats waar de gebruiker woont
-Land				varchar(10)			not null,	-- Het land waar de gebruiker woont
-GeboorteDatum		date				not null,	-- De geboortedatum van de gebruiker
-Emailadres			varchar(255)		not null,	-- Het e-mailadres van de gebruiker
-Wachtwoord			varchar(255)		not null,	-- Het wachtwoord van de gebruiker
-Vraagnummer			numeric(3)			not null,	-- De geheime vraag als dubbele authenticatie
-Antwoord_tekst		varchar(max)		not null,	-- Het antwoord op de geheime vraag 
-Verkoper			char(3)				not null,	-- Is een gebruiker koper/verkoper
-
-primary key (Gebruikersnaam),
+    Gebruikersnaam		varchar(255)    not null,	            -- De gebruikersnaam van koper/verkoper
+    Voornaam			varchar(255)	not null,	            -- De voornaam van de gebruiker
+    Achternaam			varchar(255)	not null,	            -- De achternaam van de gebruiker
+    Adres_1				varchar(255)	not null,	            -- Het eerste adres
+    Adres_2				varchar(255)	null,	                -- het tweede adres
+    Postcode			varchar(7)      not null,	            -- De postcode van de gebruiker
+    Plaatsnaam			varchar(255)	not null,	            -- De plaats waar de gebruiker woont
+    Land				varchar(255)	not null,   	        -- Het land waar de gebruiker woont
+    GeboorteDatum		date			not null,               -- De geboortedatum van de gebruiker
+    Emailadres			varchar(255)	not null,               -- Het e-mailadres van de gebruiker
+    Wachtwoord			varchar(255)	not null,	            -- Het wachtwoord van de gebruiker
+    Vraagnummer			numeric(3)		not null,	            -- De geheime vraag als dubbele authenticatie
+    Antwoord_tekst		varchar(max)	not null,	            -- Het antwoord op de geheime vraag 
+    Verkoper			varchar(5)		not null,	            -- Is een gebruiker koper/verkoper
+    constraint PK_GEBRUIKER primary key (Gebruikersnaam)
 )
+go
 
-
+/*==============================================================*/
+/* Gebruikerstelefoon                                           */
+/*==============================================================*/
 create table Gebruikerstelefoon	(
-Volgnr				numeric(2)			not null,	-- Het volgnr van telefoonnummer van gebruikers
-Gebruikersnaam		varchar(255)		not null,	-- De koppeling aan gebruiker
-Telefoonnummer		char(11)			not null,	-- Het telefoonnummer van een gebruiker
-
-primary key (volgnr,gebruikersnaam)
-
+    Volgnr				numeric(2)		not null,	            -- Het volgnr van telefoonnummer van gebruikers
+    Gebruikersnaam		varchar(255)	not null,	            -- De koppeling aan gebruiker
+    Telefoonnummer		varchar(255)	not null,	            -- Het telefoonnummer van een gebruiker
+    constraint PK_GEBRUIKERSTELEFOON primary key (Volgnr,Gebruikersnaam)
 )
+go
 
-
+/*==============================================================*/
+/* Rubriek                                                      */
+/*==============================================================*/
 create table Rubriek			(
-Rubrieknummer		numeric(3)			not null,	-- Het rubrieknummer voor voorwerpen
-Rubrieknaam			varchar(24)			not null,	-- De naam van het rubrieknummer
-Rubriek				numeric(3)				null,	-- De rubriek waarin dit valt
-Volgnr				numeric(2)			not null,	-- Het volgnr van het rubriek
-
-primary key (Rubrieknummer),
+    Rubrieknummer		numeric(10)			not null,	        -- Het rubrieknummer voor voorwerpen
+    Rubrieknaam			varchar(255)		not null,	        -- De naam van het rubrieknummer
+    Rubriek				numeric(10)			    null,	        -- De rubriek waarin dit valt
+    Volgnr				numeric(2)			not null,	        -- Het volgnr van het rubriek
+    primary key (Rubrieknummer)
 )
+go
 
+/*==============================================================*/
+/* Verkoper                                                     */
+/*==============================================================*/
 create table Verkoper			(
-Gebruikersnaam		varchar(255)		not null,	-- De gebruikersnaam van de verkoper
-Bank				varchar(255)			null,	-- De bank van de verkoper
-Rekeningnummer		varchar(255)			null,	-- Het rekeningnummer van de verkoper
-Controleoptienaam	varchar(255)		not null,	-- De verschillende opties om de verkoper te controleren
-Creditcardnummer	varchar(255)			null,	-- Het creditcardnummer van de verkoper
-
-primary key (gebruikersnaam),
+    Gebruikersnaam		varchar(255)		not null,	        -- De gebruikersnaam van de verkoper
+    Bank				varchar(255)		    null,	        -- De bank van de verkoper
+    Rekeningnummer		varchar(255)			null,	        -- Het rekeningnummer van de verkoper
+    Controleoptienaam	varchar(255)		not null,	        -- De verschillende opties om de verkoper te controleren
+    Creditcardnummer	varchar(255)			null,	        -- Het creditcardnummer van de verkoper
+    constraint PK_VERKOPER primary key (Gebruikersnaam)
 )
+go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 create table Voorwerp			(
