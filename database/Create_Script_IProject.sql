@@ -1,10 +1,19 @@
--- create database EenmaalAndermaal
+-- use master database
+use master
+go
 
+-- drop database if exist
+drop database if exists EenmaalAndermaal;
+go
+
+-- create database EenmaalAndermaal
+create database EenmaalAndermaal
+go
+
+-- gebruik datanase EenmaalAndermaal
 use EenmaalAndermaal
 
---drop database EenmaalAndermaal
-
-
+-- creare tables
 create table Bestand			(
 File_Name			varchar(13)		not null,	 --naam van de afbeelding
 VoorwerpNummer		numeric(10)		not null,		 -- het voorwerpnummer
