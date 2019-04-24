@@ -73,12 +73,12 @@ create table Gebruiker (
     Postcode			    varchar(7)          not null,	    -- De postcode van de gebruiker
     Plaatsnaam			    varchar(255)	    not null,	    -- De plaats waar de gebruiker woont
     Land				    varchar(255)	    not null,   	-- Het land waar de gebruiker woont
-    GeboorteDatum		    date			    not null,       -- De geboortedatum van de gebruiker
+    Geboortedatum		    date			    not null,       -- De geboortedatum van de gebruiker
     Emailadres			    varchar(255)	    not null,       -- Het e-mailadres van de gebruiker
     Wachtwoord			    varchar(255)	    not null,	    -- Het wachtwoord van de gebruiker
     Vraagnummer			    numeric(2)		    not null,	    -- De geheime vraag als dubbele authenticatie
-    Antwoord_tekst		    varchar(max)	    not null,	    -- Het antwoord op de geheime vraag 
-    Verkoper			    varchar(5)		    not null,	    -- Is een gebruiker koper/verkoper
+    Antwoord_Tekst		    varchar(max)	    not null,	    -- Het antwoord op de geheime vraag 
+    Verkoper			    bit     		    not null,	    -- Is een gebruiker koper/verkoper
     constraint PK_GEBRUIKER primary key (Gebruikersnaam)
 )
 go
@@ -101,7 +101,7 @@ create table Rubriek (
     Rubrieknummer		    numeric(10)         not null,       -- Het rubrieknummer voor voorwerpen
     Rubrieknaam			    varchar(255)        not null,	    -- De naam van het rubrieknummer
     Rubriek				    numeric(10)             null,       -- De rubriek waarin dit valt
-    Volgnr				    numeric(2)          not null,	            -- Het volgnr van het rubriek
+    Volgnr				    numeric(2)          not null,	    -- Het volgnr van het rubriek
     primary key (Rubrieknummer)
 )
 go
@@ -111,11 +111,11 @@ go
 /* Verkoper                                                     */
 /*==============================================================*/
 create table Verkoper (
-    Gebruikersnaam		    varchar(255)        not null,	            -- De gebruikersnaam van de verkoper
-    Bank				    varchar(255)            null,	            -- De bank van de verkoper
-    Rekeningnummer		    varchar(255)		    null,	            -- Het rekeningnummer van de verkoper
-    Controleoptienaam	    varchar(255)        not null,	            -- De verschillende opties om de verkoper te controleren
-    Creditcardnummer	    varchar(255)            null,	            -- Het creditcardnummer van de verkoper
+    Gebruikersnaam		    varchar(255)        not null,       -- De gebruikersnaam van de verkoper
+    Bank				    varchar(255)            null,	    -- De bank van de verkoper
+    Rekeningnummer		    varchar(255)		    null,	    -- Het rekeningnummer van de verkoper
+    Controleoptienaam	    varchar(255)        not null,	    -- De verschillende opties om de verkoper te controleren
+    Creditcardnummer	    varchar(255)            null,	    -- Het creditcardnummer van de verkoper
     constraint PK_VERKOPER primary key (Gebruikersnaam)
 )
 go
@@ -142,8 +142,8 @@ create table Voorwerp (
     Koper				    varchar(255)	        null,	    -- Gebruikersnaam	
     LooptijdeindeDag	    date			    not null,	    -- De datum van het einde van de looptijd van een voorwerp
     LooptijdeindeTijdstip   time			    not null,	    -- Het tijdstip van het einde van de looptijd van een voorwerp
-    VeilingGesloten		    boolean			    not null,	    -- Een ja/nee vraag of de veiling gesloten is
-    Verkoopprijs		    char(7,2)		        null,       -- De prijs waarvoor een voorwerp verkocht is, in euros.
+    VeilingGesloten		    bit			        not null,	    -- Een ja/nee vraag of de veiling gesloten is
+    Verkoopprijs		    numeric(7,2)		    null,       -- De prijs waarvoor een voorwerp verkocht is, in euros.
     constraint PK_VOORWERP primary key (Voorwerpnummer),
 )
 
