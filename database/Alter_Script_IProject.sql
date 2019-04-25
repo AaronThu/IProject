@@ -1,74 +1,80 @@
-    use EenmaalAndermaal
+USE EenmaalAndermaal
+GO
 
+ALTER TABLE Bestand
+    ADD CONSTRAINT FK_BESTAND_REF_VOORWERP FOREIGN KEY (VoorwerpNummer)
+        REFERENCES Voorwerp (VoorwerpNummer)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table Bestand
-        add constraint FK_BESTAND_REF_VOORWERP foreign key (VoorwerpNummer)
-            references Voorwerp (VoorwerpNummer)
-            on update cascade on delete no action
-    go
+ALTER TABLE Bod
+    ADD CONSTRAINT FK_BOD_REF_VOORWERP FOREIGN KEY (VoorwerpNummer)
+        REFERENCES Voorwerp (VoorwerpNummer)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table Bod
-        add constraint FK_BOD_REF_VOORWERP foreign key (VoorwerpNummer)
-            references Voorwerp (VoorwerpNummer)
-            on update cascade on delete no action
-    go
+ALTER TABLE Bod
+    ADD CONSTRAINT FK_BOD_REF_GEBRUIKER FOREIGN KEY (Gebruikersnaam)
+        REFERENCES Gebruiker (Gebruikersnaam)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    -- alter table Bod
-    --     add constraint FK_BOD_REF_GEBRUIKER foreign key (Gebruikersnaam)
-    --         references Gebruiker (Gebruikersnaam)
-    --         on update cascade on delete no action
-    -- go
+ALTER TABLE Feedback
+    ADD CONSTRAINT FK_FEEDBACK_REF_VOORWERP FOREIGN KEY (VoorwerpNummer)
+        REFERENCES Voorwerp (VoorwerpNummer)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table Feedback 
-        add constraint FK_FEEDBACK_REF_VOORWERP foreign key (VoorwerpNummer)
-            references Voorwerp (VoorwerpNummer)
-            on update cascade on delete no action
-    go
+ALTER TABLE Gebruiker
+    ADD CONSTRAINT FK_GEBRUIKER_REF_VRAAG FOREIGN KEY (Vraagnummer)
+        REFERENCES Vraag (Vraagnummer)
+        ON UPDATE CASCADE ON DELETE NO ACTION
+GO
 
-    alter table Gebruiker
-        add constraint FK_GEBRUIKER_REF_VRAAG foreign key (Vraagnummer)
-            references Vraag (Vraagnummer)
-            on update cascade on delete no action
-    go
-            
-    alter table Gebruikerstelefoon
-        add constraint FK_GEBRUIKERSTELEFOON_REF_GEBRUIKER foreign key (Gebruikersnaam)
-            references Gebruiker (Gebruikersnaam)
-            on update cascade on delete no action
-    go
+ALTER TABLE Gebruikerstelefoon
+    ADD CONSTRAINT FK_GEBRUIKERSTELEFOON_REF_GEBRUIKER FOREIGN KEY (Gebruikersnaam)
+        REFERENCES Gebruiker (Gebruikersnaam)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table Rubriek
-        add constraint FK_RUBRIEK_REF_RUBRIEK foreign key (Rubriek) 
-            references Rubriek (rubrieknummer)
-            on update no action on delete no action
-    go
+ALTER TABLE Rubriek
+    ADD CONSTRAINT FK_RUBRIEK_REF_RUBRIEK FOREIGN KEY (Rubriek)
+        REFERENCES Rubriek (Rubrieknummer)
+        ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
 
-    alter table Verkoper
-        add constraint FK_VERKOPER_REF_GEBRUIKER foreign key (Gebruikersnaam)
-            references Gebruiker (Gebruikersnaam)
-            on update cascade on delete no action
-    go
-    
-    -- alter table Voorwerp
-    --     add constraint FK_VOORWERP_REF_VERKOPER foreign key (Verkoper) 
-    --     references Verkoper (Gebruikersnaam)
-    --     on update cascade on delete no action
-    -- go    
+ALTER TABLE Verkoper
+    ADD CONSTRAINT FK_VERKOPER_REF_GEBRUIKER FOREIGN KEY (Gebruikersnaam)
+        REFERENCES Gebruiker (Gebruikersnaam)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table Voorwerp
-        add constraint FK_VOORWERP_REF_GEBRUIKER foreign key (Koper)
-        references Gebruiker (Gebruikersnaam)
-        on update cascade on delete no action
-    go
-   
-    alter table VoorwerpInRubriek
-        add constraint FK_VOORWERPINRUBRIEK_REF_VOORWERP foreign key (Voorwerpnummer)
-        references Voorwerp (Voorwerpnummer)
-        on update cascade on delete no action
-    go
+ALTER TABLE Voorwerp
+    ADD CONSTRAINT FK_VOORWERP_REF_BETALINGSWIJZEN FOREIGN KEY (Betalingswijze)
+        REFERENCES Betalingswijzen (BTW_Wijze)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
 
-    alter table VoorwerpInRubriek
-        add constraint FK_VOORWERKINRUBRIEK_REF_RUBRIEK foreign key (RubriekNummer)
-        references Rubriek (Rubrieknummer)
-        on update cascade on delete no action
-    go
+ALTER TABLE Voorwerp
+    ADD CONSTRAINT FK_VOORWERP_REF_VERKOPER FOREIGN KEY (Verkoper)
+        REFERENCES VERKOPER (Gebruikersnaam)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
+
+ALTER TABLE Voorwerp
+    ADD CONSTRAINT FK_VOORWERP_REF_GEBRUIKER FOREIGN KEY (Koper)
+        REFERENCES Gebruiker (Gebruikersnaam)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
+
+ALTER TABLE VoorwerpInRubriek
+    ADD CONSTRAINT FK_VOORWERPINRUBRIEK_REF_VOORWERP FOREIGN KEY (VoorwerpNummer)
+        REFERENCES Voorwerp (VoorwerpNummer)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
+
+ALTER TABLE VoorwerpInRubriek
+    ADD CONSTRAINT FK_VOORWERPINRUBRIEK_REF_RUBRIEK FOREIGN KEY (Rubrieknummer)
+        REFERENCES Rubriek (Rubrieknummer)
+        ON UPDATE CASCADE ON DELETE CASCADE
+GO
