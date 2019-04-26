@@ -1,139 +1,178 @@
--- use master database
-use master
-go
+/*==============================================================*/
+/* Database name:  EenmaalAndermaal                             */
+/* Script:		   DDL                                          */
+/* Created on:     23-04-2019		                            */
+/*==============================================================*/
 
--- drop database if exist
-drop database if exists EenmaalAndermaal;
-go
 
--- create database EenmaalAndermaal
-create database EenmaalAndermaal
-go
+USE MASTER
+GO
 
--- gebruik datanase EenmaalAndermaal
-use EenmaalAndermaal
+DROP DATABASE IF exists EenmaalAndermaal
+GO
 
--- creare tables
-create table Bestand			(
-File_Name			varchar(13)		not null,	 --naam van de afbeelding
-VoorwerpNummer		numeric(10)		not null,		 -- het voorwerpnummer
+/*==============================================================*/
+/* Database: EenmaalAndermaal                                   */
+/*==============================================================*/
+CREATE DATABASE EenmaalAndermaal
+GO
 
-primary key (File_Name)
-) 
+USE EenmaalAndermaal
+GO
 
-create table Bod		(
-VoorwerpNummer		numeric(10)		not null,		-- het voorwerpnummer
-Gebruikersnaam		varchar(255)	not null,		--de gebruikersnaam van de bieder
-Bod_Bedrag			varchar(5)		not null,		-- het bedrag van het bod
-Bod_Datum			date			not null,		-- de datum dat het bod geplaatst is
-Bod_Tijdstip		time			not null,		-- het tijdstip dat het bod geplaatst is
 
-Primary key (VoorwerpNummer,Bod_Bedrag)
+/*==============================================================*/
+/* Bestand                                                      */
+/*==============================================================*/
+CREATE TABLE Bestand (
+    FileNaam                VARCHAR(255)        NOT NULL,       -- naam van de afbeelding
+    VoorwerpNummer		    INT     		    NOT NULL,       -- het voorwerpnummer
+    CONSTRAINT PK_BESTAND PRIMARY KEY (FileNaam)
+)
+GO
 
+/*==============================================================*/
+/* Bod                                                          */
+/*==============================================================*/
+CREATE TABLE Bod (
+    VoorwerpNummer          INT                 NOT NULL,
+    Bodbedrag               NUMERIC(11,2)       NOT NULL,
+    Gebruikersnaam          VARCHAR(50)         NOT NULL,
+    BodTijd                 DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PK_BOD PRIMARY KEY (VoorwerpNummer, Bodbedrag)
+)
+GO
+
+/*==============================================================*/
+/* Feedback                                                     */
+/*==============================================================*/
+CREATE TABLE FeedBack (
+    VoorwerpNummer          INT                 NOT NULL,
+    SoortGebruiker          CHAR(3)             NOT NULL,
+    FeedbackSoort           CHAR(8)             NOT NULL DEFAULT 'neutraal',
+    FeedbackTijd            DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Commentaar              VARCHAR(255)            NULL,
+    CONSTRAINT PK_FEEDBACK PRIMARY KEY (VoorwerpNummer, SoortGebruiker),
+    CONSTRAINT CK_FEEDBACKSOORT CHECK (FeedbackSoort IN ('positief, negatief, neutraal'))
+)
+GO
+
+/*==============================================================*/
+/* Gebruiker                                                    */
+/*==============================================================*/
+CREATE TABLE Gebruiker (
+    Gebruikersnaam          VARCHAR(50)         NOT NULL,
+    Voornaam                VARCHAR(50)         NOT NULL,
+    Achternaam              VARCHAR(50)         NOT NULL,
+    Adres1                  VARCHAR(50)         NOT NULL,
+    Adres2                  VARCHAR(50)             NULL,
+    Postcode                VARCHAR(7)          NOT NULL,
+    Plaatsnaam              VARCHAR(50)         NOT NULL,
+    Land                    VARCHAR(50)         NOT NULL,
+    Geboortedatum           DATE                NOT NULL,
+    Emailadres              VARCHAR(50)         NOT NULL,
+    Wachtwoord              VARCHAR(50)         NOT NULL,
+    Vraagnummer             TINYINT             NOT NULL,
+    AntwoordTekst           VARCHAR(50)         NOT NULL,
+    SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
+    CONSTRAINT PK_GEBRUIKER PRIMARY KEY (Gebruikersnaam),
+    CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
+)
+GO
+
+/*==============================================================*/
+/* Gebruikerstelefoon                                           */
+/*==============================================================*/
+CREATE TABLE Gebruikerstelefoon (
+    Volgnr              TINYINT             NOT NULL,
+    Gebruikersnaam      VARCHAR(50)         NOT NULL,
+    Telefoonnummer      VARCHAR(10)         NOT NULL,
+    CONSTRAINT PK_GEBRUIKERSTELEFOON PRIMARY KEY (Volgnr, Gebruikersnaam),
+    CONSTRAINT CK_TELEFOONNUMMER CHECK (Telefoonnummer LIKE '[0-9]')
+)
+GO
+
+/*==============================================================*/
+/* Rubriek                                                      */
+/*==============================================================*/
+CREATE TABLE Rubriek (
+    Rubrieknummer       INT                 NOT NULL,
+    Rubrieknaam         VARCHAR(50)         NOT NULL,
+    Rubriek             INT                     NULL,
+    -- Volgnr              TINYINT             NOT NULL,
+    CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer)
 )
 
-create table Feedback			(
-VoorwerpNummer		numeric(10)		not null,		-- het voorwerpnummer
-Soort_Gebruiker		varchar(8)		not null,		-- Het type gebruiker dat feedback heeft geplaatst
-Feedback_Soort		varchar(8)		not null,		-- De soort feedback
-Feedback_Datum		date			not null,		-- De datum dat de feedback is geplaatst
-Feedback_Tijdstip	varchar(8)		not null,		-- Het tijdstip dat de feedback is geplaatst
-Commentaar			varchar(max)		null,		-- Het geplaatste commentaar
-
-primary key (Voorwerpnummer,Soort_Gebruiker)
-
-
+/*==============================================================*/
+/* Verkoper                                                     */
+/*==============================================================*/
+CREATE TABLE Verkoper (
+    Gebruikersnaam      VARCHAR(50)         NOT NULL,
+    Bank                VARCHAR(50)             NULL,
+    Rekeningnummer      VARCHAR(20)             NULL,
+    ControleOptieNaam   VARCHAR(12)         NOT NULL,
+    Creditcard          VARCHAR(20)             NULL,
+    CONSTRAINT PK_VERKOPER PRIMARY KEY (Gebruikersnaam),
+    CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post'))
 )
 
+/*==============================================================*/
+/* Betalingswijzen                                              */
+/*==============================================================*/
+CREATE TABLE Betalingswijzen (
+    BTW_Wijze           VARCHAR(25)         NOT NULL,
+    CONSTRAINT PK_BETALINGSWIJZEN PRIMARY KEY (BTW_Wijze)
+)
+GO
 
+/*==============================================================*/
+/* Voorwerp                                                     */
+/*==============================================================*/
+CREATE TABLE Voorwerp (
+    Voorwerpnummer      INT IDENTITY        NOT NULL,
+    Titel               VARCHAR(50)         NOT NULL,
+    Beschrijving        VARCHAR(1000)       NOT NULL,
+    Startprijs          NUMERIC(10,2)       NOT NULL,
+    Betalingswijze      VARCHAR(25)         NOT NULL DEFAULT 'iDeal',
+    Betalingsinstructie VARCHAR(200)            NULL,
+    Plaatsnaam          VARCHAR(50)         NOT NULL,
+    Land                VARCHAR(50)         NOT NULL,
+    Looptijd            TINYINT NOT NULL    DEFAULT 7,
+    BeginMoment         DATETIME NOT NULL   DEFAULT CURRENT_TIMESTAMP,
+    Verzendkosten       numeric(4,2)            NULL,
+    Verzendinstructies  VARCHAR(200)            NULL,
+    Verkoper            VARCHAR(50)         NOT NULL,
+    Koper               VARCHAR(50)         NOT NULL,
+    Eindmoment AS DATEADD(DAY, Looptijd, BeginMoment),
+    VeilingGesloten AS 
+            CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, Looptijd, BeginMoment)
+                THEN 1
+                ELSE 0
+                END,
+    Verkoopprijs        NUMERIC(11,2)
+    CONSTRAINT PK_VOORWERP PRIMARY KEY (Voorwerpnummer),
+    CONSTRAINT CK_TITEL CHECK (LEN(TRIM(Titel)) > 1  ),
+    CONSTRAINT CK_STARTPRIJS CHECK (Startprijs >= 1.00),
+    CONSTRAINT CK_LOOPTIJD CHECK (Looptijd IN (1, 3, 5, 7, 10))
+)
+GO
 
-create table Gebruiker			(
-Gebruikersnaam		varchar(255)		not null,	-- De gebruikersnaam van koper/verkoper
-Voornaam			varchar(10)			not null,	-- De voornaam van de gebruiker
-Achternaam			varchar(10)			not null,	-- De achternaam van de gebruiker
-Adres_1				varchar(10)			not null,	-- Het eerste adres
-Adres_2				varchar(15)				null,	-- het tweede adres
-Postcode			varchar(15)			not null,	-- De postcode van de gebruiker
-Plaatsnaam			varchar(15)			not null,	-- De plaats waar de gebruiker woont
-Land				varchar(10)			not null,	-- Het land waar de gebruiker woont
-GeboorteDatum		date				not null,	-- De geboortedatum van de gebruiker
-Emailadres			varchar(255)		not null,	-- Het e-mailadres van de gebruiker
-Wachtwoord			varchar(255)		not null,	-- Het wachtwoord van de gebruiker
-Vraagnummer			numeric(3)			not null,	-- De geheime vraag als dubbele authenticatie
-Antwoord_tekst		varchar(max)		not null,	-- Het antwoord op de geheime vraag 
-Verkoper			char(3)				not null,	-- Is een gebruiker koper/verkoper
-
-primary key (Gebruikersnaam),
+/*==============================================================*/
+/* VoorwerpInRubriek                                            */
+/*==============================================================*/
+CREATE TABLE VoorwerpInRubriek (
+    Voorwerpnummer      INT                 NOT NULL,
+    Rubrieknummer       INT                 NOT NULL,
+    CONSTRAINT PK_VOORWERPINRUBRIEK PRIMARY KEY (VoorwerpNummer, Rubrieknummer)
 )
 
-
-create table Gebruikerstelefoon	(
-Volgnr				numeric(2)			not null,	-- Het volgnr van telefoonnummer van gebruikers
-Gebruikersnaam		varchar(255)		not null,	-- De koppeling aan gebruiker
-Telefoonnummer		char(11)			not null,	-- Het telefoonnummer van een gebruiker
-
-primary key (volgnr,gebruikersnaam)
-
-)
-
-
-create table Rubriek			(
-Rubrieknummer		numeric(3)			not null,	-- Het rubrieknummer voor voorwerpen
-Rubrieknaam			varchar(24)			not null,	-- De naam van het rubrieknummer
-Rubriek				numeric(3)				null,	-- De rubriek waarin dit valt
-Volgnr				numeric(2)			not null,	-- Het volgnr van het rubriek
-
-primary key (Rubrieknummer),
-)
-
-create table Verkoper			(
-Gebruikersnaam		varchar(255)		not null,	-- De gebruikersnaam van de verkoper
-Bank				varchar(255)			null,	-- De bank van de verkoper
-Rekeningnummer		varchar(255)			null,	-- Het rekeningnummer van de verkoper
-Controleoptienaam	varchar(255)		not null,	-- De verschillende opties om de verkoper te controleren
-Creditcardnummer	varchar(255)			null,	-- Het creditcardnummer van de verkoper
-
-primary key (gebruikersnaam),
-)
-
-
-create table Voorwerp			(
-Voorwerpnummer		numeric(10)		not null,		-- Het voorwerpnummer 
-Titel				varchar(255)	not null,		-- De titel van een voorwerpnummer
-Beschrijving		varchar(max)	not null,		-- De beschrijving van een product
-Startprijs			numeric(10)		not null,		-- De startprijs waarmee het voorwerp is begonnen
-Betalingswijze		varchar(9)		not null,		-- De betalingswijze waarop een voorwerp gekocht kan worden
-Betalingsinstructie	varchar(max)	not null,		-- Instructie over de manier hoe een klant kan betaling
-Plaatsnaam			varchar(20)		not null,		-- De plaats van het voorwerp
-Landnaam			varchar(20)		not null,		-- Het land waar het voorwerp zich bevindt
-Looptijd			numeric(3)		not null,		-- De looptijd in dagen
-LooptijdBeginDag	date			not null,		-- De datum dat de looptijd is begonnen
-LooptijdBeginTijdstip time			not null,		-- Het tijdstip dat de looptijd is begonnen
-Verzendkosten		numeric(10)			null,		-- De verzendkosten die aan het voorwerp verbonden zijn
-Verzendinstructies	varchar(max)		null,		-- De instructie voor het verzenden van een voorwerp
-Verkoper			varchar(255)	not null,		-- Gebruikersnaam
-Koper				varchar(255)		null,		-- Gebruikersnaam	
-LooptijdeindeDag	date			not null,		-- De datum van het einde van de looptijd van een voorwerp
-LooptijdeindeTijdstip time			not null,		-- Het tijdstip van het einde van de looptijd van een voorwerp
-VeilingGesloten		char(3)			not null,		-- Een ja/nee vraag of de veiling gesloten is
-Verkoopprijs		char(5)				null,		-- De prijs waarvoor een voorwerp verkocht is, in euros.
-
-primary key (voorwerpnummer),
-)
-
-
-create table VoorwerpInRubriek	(
-Voorwerpnummer		numeric(10)			not null,	-- Het voorwerpnummer.
-Rubrieknummer		numeric(3)			not null,	-- Het rubrieknummer van het voorwerp.
-
-primary key (Voorwerpnummer,rubrieknummer)
+/*==============================================================*/
+/* Vraag                                                        */
+/*==============================================================*/
+CREATE TABLE Vraag (
+    Vraagnummer         TINYINT IDENTITY    NOT NULL,
+    Vraag               VARCHAR(50)	        NOT NULL,
+    CONSTRAINT PK_VRAAG primary key (Vraagnummer),
+    CONSTRAINT AK_VRAAG unique (Vraag)
 
 )
-
-create table Vraag				(
-Vraagnummer			numeric(3)		not null,		-- Het nummer van de vraag die aan de verkoper is gevraagd
-Vraag				varchar(255)	not null,		-- De vraag die een koper heeft gesteld
-
-primary key (vraagnummer)
-)
-
