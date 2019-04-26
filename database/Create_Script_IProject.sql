@@ -26,7 +26,7 @@ GO
 /*==============================================================*/
 CREATE TABLE Bestand (
     FileNaam                VARCHAR(255)        NOT NULL,       -- naam van de afbeelding
-    VoorwerpNummer		    NUMERIC(10)		    NOT NULL,       -- het voorwerpnummer
+    VoorwerpNummer		    INT     		    NOT NULL,       -- het voorwerpnummer
     CONSTRAINT PK_BESTAND PRIMARY KEY (FileNaam)
 )
 GO
@@ -170,7 +170,7 @@ CREATE TABLE VoorwerpInRubriek (
 /* Vraag                                                        */
 /*==============================================================*/
 CREATE TABLE Vraag (
-    Vraagnummer             TINYINT		    NOT NULL,
-    Vraag                   varchar(50  )	NOT NULL,
+    Vraagnummer         TINYINT IDENTITY    NOT NULL,
+    Vraag               VARCHAR(50)	        NOT NULL,
     constraint PK_VRAAG primary key (Vraagnummer)
 )
