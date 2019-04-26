@@ -71,7 +71,7 @@ CREATE TABLE Gebruiker (
     Land                    VARCHAR(50)         NOT NULL,
     Geboortedatum           DATE                NOT NULL,
     Emailadres              VARCHAR(50)         NOT NULL,
-    Wachtwoord              VARCHAR(50)         NOT NULL,
+    Wachtwoord              VARCHAR(255)         NOT NULL,
     Vraagnummer             TINYINT             NOT NULL,
     AntwoordTekst           VARCHAR(50)         NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
