@@ -172,5 +172,7 @@ CREATE TABLE VoorwerpInRubriek (
 CREATE TABLE Vraag (
     Vraagnummer         TINYINT IDENTITY    NOT NULL,
     Vraag               VARCHAR(50)	        NOT NULL,
-    constraint PK_VRAAG primary key (Vraagnummer)
+    CONSTRAINT PK_VRAAG primary key (Vraagnummer),
+    CONSTRAINT AK_VRAAG unique (Vraag)
+
 )
