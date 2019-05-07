@@ -142,7 +142,7 @@ CREATE TABLE Voorwerp (
     Verzendkosten       numeric(4,2)            NULL,
     Verzendinstructies  VARCHAR(200)            NULL,
     Verkoper            VARCHAR(50)         NOT NULL,
-    Koper               VARCHAR(50)         NOT NULL,
+    Koper               VARCHAR(50)         NULL,
     Eindmoment AS DATEADD(DAY, Looptijd, BeginMoment),
     VeilingGesloten AS 
             CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, Looptijd, BeginMoment)
