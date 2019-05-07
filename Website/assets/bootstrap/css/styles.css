@@ -1,0 +1,58 @@
+.background{
+    background-color: #3a3a3a;
+}
+
+
+.registratieformulier {
+    color: rgb(255, 255, 255);
+    margin: 0em 1em;
+    width: 25%;
+}
+
+.registratieformulierLayout {
+    text-align: center;
+}
+
+.inputforms{
+    width: 75%;
+    background-color: #c5ae91;
+}
+
+h5{
+    color: #ffffff;
+    text-align: center;
+}
+
+.foutmeldingTekst{
+    text-align: center;
+   color: red;
+}
+
+.foutmelding{
+    width: 100%;
+    border-width: 5px 0px;
+    border-style: solid;
+    border-color: darkred;
+}
+
+.navbar-light .navbar-brand {
+    color: #a9976a;
+    text-decoration: none;
+}
+
+.navbar.navbar-light.navbar-expand-md.sticky-top.d-md-flex.d-xl-flex.justify-content-center.align-items-center.align-items-md-center.justify-content-xl-center.align-items-xl-center.navigation-clean-search {
+    background-color: #4b4c4d;
+}
+
+.form-inline.mr-auto {
+    background-color: rgba(197,174,145,0.42);
+    margin: 0px;
+}
+
+.form-inline .form-group {
+    background-color: rgba(197,174,145,0.42);
+    color: #ffffff;
+    border: none;
+    width: 100%;
+}
+
