@@ -66,7 +66,7 @@ CREATE TABLE Gebruiker (
     Achternaam              VARCHAR(50)         NOT NULL,
     Adres1                  VARCHAR(50)         NOT NULL,
     Adres2                  VARCHAR(50)             NULL,
-    Postcode                VARCHAR(7)          NOT NULL,
+    Postcode                VARCHAR(10)          NOT NULL,
     Plaatsnaam              VARCHAR(50)         NOT NULL,
     Land                    VARCHAR(50)         NOT NULL,
     Geboortedatum           DATE                NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE Gebruikerstelefoon (
     Gebruikersnaam      VARCHAR(50)         NOT NULL,
     Telefoonnummer      VARCHAR(10)         NOT NULL,
     CONSTRAINT PK_GEBRUIKERSTELEFOON PRIMARY KEY (Volgnr, Gebruikersnaam),
-    CONSTRAINT CK_TELEFOONNUMMER CHECK (Telefoonnummer LIKE '[0-9]')
+    CONSTRAINT CK_TELEFOONNUMMER CHECK (Telefoonnummer LIKE '%[0-9]%')
 )
 GO
 
@@ -98,8 +98,8 @@ GO
 CREATE TABLE Rubriek (
     Rubrieknummer       INT                 NOT NULL,
     Rubrieknaam         VARCHAR(50)         NOT NULL,
-    Rubriek             INT                     NULL,
-    -- Volgnr              TINYINT             NOT NULL,
+    Parent-rubriek             INT                     NULL,
+    Volgnr              TINYINT             NOT NULL,
     CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer)
 )
 
