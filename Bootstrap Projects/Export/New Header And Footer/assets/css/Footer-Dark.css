@@ -88,3 +88,17 @@
   margin-bottom: 0;
 }
 
+.dropdown.show.nav-item {
+  text-align: center;
+}
+
+.dropdown-header {
+  color: #a9976a;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav > div > span {
+  color: #ffffff;
+}
+

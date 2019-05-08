@@ -1,5 +1,5 @@
 .navigation-clean-button {
-  background: #fff;
+  /*background: #fff;*/
   padding-top: .75rem;
   padding-bottom: .75rem;
   color: #333;
@@ -23,7 +23,7 @@
 }
 
 .navigation-clean-button .navbar-brand:hover {
-  color: #222;
+  color: #a9976a;
 }
 
 .navigation-clean-button .navbar-toggler {
@@ -40,6 +40,7 @@
 
 .navigation-clean-button .navbar-collapse, .navigation-clean-button .form-inline {
   border-top-color: #ddd;
+  color: #ffffff;
 }
 
 .navigation-clean-button .navbar-nav a.active, .navigation-clean-button .navbar-nav > .show > a {
@@ -69,25 +70,26 @@
 }
 
 .navigation-clean-button .navbar-nav > li > .dropdown-menu {
-  margin-top: -5px;
   box-shadow: 0 4px 8px rgba(0,0,0,.1);
-  background-color: #fff;
+  background-color: #696969;
   border-radius: 2px;
+  color: rgb(255,255,255);
 }
 
 .navigation-clean-button .dropdown-menu .dropdown-item:focus, .navigation-clean-button .dropdown-menu .dropdown-item {
   line-height: 2;
   font-size: 14px;
-  color: #37434d;
+  color: #ffffff;
 }
 
 .navigation-clean-button .dropdown-menu .dropdown-item:focus, .navigation-clean-button .dropdown-menu .dropdown-item:hover {
   background: #eee;
-  color: inherit;
+  color: #ffffff;
+  background-color: #a9976a;
 }
 
 .navigation-clean-button .actions .login {
-  margin-right: 1rem;
+  margin-right: 1em;
   text-decoration: none;
   color: #a9976a;
 }
@@ -109,5 +111,10 @@
 .navigation-clean-button .navbar-text .action-button:hover {
   /*background: #66d7d7;*/
   background-color: #ffb357;
+}
+
+div span {
+  color: #c5ae91;
+  white-space: nowrap;
 }
 

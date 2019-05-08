@@ -21,10 +21,6 @@
   color: inherit;
 }
 
-.navigation-clean-button .navbar-brand:hover {
-  color: #222;
-}
-
 .navigation-clean-button .navbar-toggler {
   border-color: #ddd;
 }

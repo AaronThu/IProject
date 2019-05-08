@@ -8,14 +8,57 @@
 }
 
 .form-inline.mr-auto {
-  background-color: rgba(197,174,145,0.42);
+  background-color: #c5ae91;
   margin: 0px;
 }
 
 .form-inline .form-group {
-  background-color: rgba(197,174,145,0.42);
   color: #ffffff;
   border: none;
   width: 100%;
+  margin: 0px;
+}
+
+.dropdown.show.nav-item {
+}
+
+#dropdown-item {
+  text-align: center;
+  margin: 1em;
+  max-width: 25em;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  width: 90vw;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu.show {
+    display: flex;
+    width: inherit;
+    min-width: 17.5em;
+  }
+}
+
+#Main {
+  width: 100vw;
+  min-height: 50vh;
+}
+
+@media (min-width: 768px) {
+  #Main {
+    width: 75vw;
+  }
+}
+
+body {
+  background-color: #3a3a3a;
+}
+
+.navbar-light .navbar-text {
+  color: #ffffff;
+  margin: 1em;
+  padding: 1em;
 }
 
