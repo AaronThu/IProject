@@ -98,8 +98,8 @@ GO
 CREATE TABLE Rubriek (
     Rubrieknummer       INT                 NOT NULL,
     Rubrieknaam         VARCHAR(50)         NOT NULL,
-    Parent-rubriek             INT                     NULL,
-    Volgnr              TINYINT             NOT NULL,
+    Parent_rubriek             INT              NULL,
+    Volgnr              TINYINT                 NULL,
     CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer)
 )
 
@@ -176,3 +176,4 @@ CREATE TABLE Vraag (
     CONSTRAINT AK_VRAAG unique (Vraag)
 
 )
+
