@@ -4,7 +4,7 @@ session_Start();
 include_once('database.php');
 include_once('functies.php');
 
-$locatieNaRegistratie = "http://localhost/EenmaalAndermaal/login_pagina.php";
+$locatieNaRegistratie = "Location: http://iproject2.icasites.nl/login_pagina.php";
 //Vult gegevens in de database
                $query = $dbh->prepare("INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, Wachtwoord, Vraagnummer, AntwoordTekst, SoortGebruiker) VALUES (:Gebruikersnaam, :Voornaam, :Achternaam, :Adres1, :Adres2, :Postcode, :Plaatsnaam, :Land, :Geboortedatum, :Emailadres, :Wachtwoord, :Vraagnummer, :AntwoordTekst, :SoortGebruiker)");
 
@@ -19,7 +19,7 @@ $locatieNaRegistratie = "http://localhost/EenmaalAndermaal/login_pagina.php";
                        ':Plaatsnaam' => $_SESSION['registratieGegevens']['Plaatsnaam'],
                        ':Land' => $_SESSION['registratieGegevens']['Land'],
                        ':Geboortedatum' => $_SESSION['registratieGegevens']['Geboortedatum'],
-                       ':Emailadres' => 'hiyhkt@hotmail.com',
+                       ':Emailadres' => $_SESSION['Emailadres'],
                        ':Wachtwoord' => password_hash($_SESSION['registratieGegevens']['Wachtwoord'], PASSWORD_DEFAULT),
                        ':Vraagnummer' => $_SESSION['registratieGegevens']['vraagNummer'],
                        ':AntwoordTekst' => $_SESSION['registratieGegevens']['AntwoordOpVraag'],

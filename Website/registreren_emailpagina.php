@@ -2,7 +2,7 @@
 session_Start();
 include_once('functies.php');
 include_once('database.php');
-$headerEmailPagina = "Location: http://localhost/EenmaalAndermaal/verstuurmail.php";
+$headerEmailPagina = "Location: http://iproject2.icasites.nl/verstuurmail.php";
 $_SESSION['Emailadres'] = "";
 $_SESSION['emailErr'] = "";
 
@@ -12,7 +12,7 @@ if (isset($_POST['verstuurmail'])) {
 
     if (empty($_SESSION['Emailadres'])) {
         $_SESSION['foutmelding'] = "Email is verplicht";
-    } elseif (!$tellingemailadres == 0) {
+    } elseif ($tellingemailadres != 0) {
         $_SESSION['foutmelding'] = "Dit email-adres is al in gebruik";
     } elseif (filter_var($_SESSION['Emailadres'], FILTER_VALIDATE_EMAIL) == false) {
         $_SESSION['foutmelding'] = "Vul een correct geformuleerd email-adres in";

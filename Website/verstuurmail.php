@@ -17,7 +17,7 @@ Klik hieronder op de link om jouw mailadres te verifieren en om de registratie t
 
  --------------------------------------------------------------
  
-http://iproject2.icasites.nl/checkmail.php?email='. $mailadres .'&hash='.$hash. '&tijd='. time();
+http://iproject2.icasites.nl/checkemail.php?email='. $mailadres .'&hash='.$hash. '&tijd='. time();
 
 $headers = 'From:noreply@EenmaalAndermaal.com' . "\r\n";
 mail($to, $subject, $message, $headers);
