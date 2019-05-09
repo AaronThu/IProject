@@ -6,43 +6,41 @@ $categorieArtikel = '<div class="container" >';
 
 
 $hoofdcategorieData = $dbh->query("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 ORDER BY Volgnr, Rubrieknaam");
+
+$categorieArtikel = ' <div class="container" style="background-color: #4b4c4d;">';
 while ($rij = $hoofdcategorieData->fetch()) {
-$hoofdcategorie = $rij['Rubrieknaam'];
-$categorieArtikel.= '<div class="row text-capitalize text-left" style="height: 275px;">
-        <div class="col-4 col-lg-3 ">
-            <a href="#" style="color: #ffffff;">
-                <h1 style="color: #ffffff;">' . $rij["Rubrieknaam"] . '</h1>
-            </a>
-        </div>
-        <div class="col-2 col-lg-3 d-table-cell">
-            <div class="row" style="background-image: url("assets/img/band.jpg");height: 80%;background-position: center;background-size: cover;background-repeat: no-repeat;">
-                <div class="col">
-                </div>
-            </div>
-            <div class="row" style="height: 20%;">
-                <div class="col" style="background-color: #3a3a3a;">
-                    <header></header>
-                </div>
-            </div>
-        </div>';
+    $hoofdcategorie = $rij['Rubrieknaam'];
 
-    $subcategorie = $dbh->query('SELECT Rubrieknaam FROM Rubriek WHERE Parent_Rubriek =' . $rij["Rubrieknummer"] . 'ORDER BY Volgnr, Rubrieknaam ');
-    $categorieArtikel .= ' <div class="row">
-                <div class="col" style="color: #ffffff;">';
+    $categorieArtikel .= '<div class="row text-capitalize text-left" style="height: 275px;">';
+$categorieArtikel.= '<div class="col-4 col-lg-3" style="color: rgb(255,255,255);background-color: #3a3a3a;">
+                <a href="#" style="color: #ffffff;">
+                    <h1 style="color: #ffffff;">' . $rij['Rubrieknaam'] . '</h1>
+                </a>
+            </div>
+            <div class="col-2 col-lg-3 d-table-cell row">
+                <div class="row" style="background-image: url(&quot;assets/img/band.jpg&quot;);height: 80%;background-position: center;background-size: cover;background-repeat: no-repeat;">
+                    <div class="col">
+                        <header></header>
+                    </div>
+                </div>
+            </div> <div class="col" style="background-color: #3a3a3a;">';
+
+    $subcategorie = $dbh->prepare('SELECT Rubrieknaam FROM Rubriek WHERE Parent_Rubriek = :Rubrieknummer ORDER BY Volgnr, Rubrieknaam ');
+    $subcategorie->execute(['Rubrieknummer' => $rij["Rubrieknummer"]]);
+
     while($rij = $subcategorie->fetch()){
-    $subcategorenaam = $rij['Rubrieknaam'];
-    $categorieArtikel .= '<a href="#" style="color: #ffffff;">
-                        <h6>' . $subcategorenaam . '</h6>
-                    </a>';
+    $subcategorienaam = $rij['Rubrieknaam'];
 
+    $categorieArtikel .= '<div class="row col" style="margin-bottom: 5px;"> <a href="#" style="color: #ffffff;">
+                        <h6>' . $subcategorienaam . '</h6>
+                    </a> </div>';
     }
    $categorieArtikel .= ' </div>';
     $categorieArtikel .= ' </div>';
+
 }
 
 $categorieArtikel .='</div>';
-
-
 
 
 ?>
@@ -55,5 +53,6 @@ $categorieArtikel .='</div>';
 </html>
 
 <?php include_once("footer.php"); ?>
+
 
 
