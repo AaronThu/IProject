@@ -151,7 +151,7 @@ CREATE TABLE Voorwerp (
                 END,
     Verkoopprijs        NUMERIC(11,2)
     CONSTRAINT PK_VOORWERP PRIMARY KEY (Voorwerpnummer),
-    CONSTRAINT CK_TITEL CHECK (LEN(TRIM(Titel)) > 1  ),
+    CONSTRAINT CK_TITEL CHECK (LEN((Titel)) > 1  ),
     CONSTRAINT CK_STARTPRIJS CHECK (Startprijs >= 1.00),
     CONSTRAINT CK_LOOPTIJD CHECK (Looptijd IN (1, 3, 5, 7, 10))
 )
