@@ -1,6 +1,6 @@
 <?php
 session_Start();
-
+include_once("database.php");
 include_once("header.php");
 ?>
 
@@ -21,8 +21,7 @@ include_once("header.php");
                  style="margin: 1em 0em;"><input
                         class="form-control inputforms" type="password"
                         name="Wachtwoord" placeholder="Wachtwoord" minlength="3"></div>
-            <button class="btn btn-primary text-center" data-bs-hover-animate="pulse" type="submit" name="inloggen"
-                    style="width: 100%;margin-top: 1em;background-color: #ffb357;margin-bottom: 1em;">Login
+            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="inloggen">Login
             </button>
         </form>
     </div>

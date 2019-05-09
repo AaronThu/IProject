@@ -36,8 +36,7 @@ include_once("header.php");
             <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center flex-wrap flex-sm-wrap flex-md-nowrap flex-lg-nowrap justify-content-xl-center align-items-xl-center flex-xl-nowrap"
                  style="margin: 1em 0em;"><input
                         class="form-control inputforms" type="text" name="Emailadres" id="Emailadres" placeholder="Email"></div>
-            <button class="btn btn-primary text-center" data-bs-hover-animate="pulse" type="submit" name="verstuurmail"
-                    style="width: 100%;margin-top: 1em;background-color: #ffb357;">Registreer
+            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="verstuurmail">Registreer
             </button>
         </form>
     </div>

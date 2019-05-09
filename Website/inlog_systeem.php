@@ -2,9 +2,8 @@
 session_Start();
 include_once ('database.php');
 include_once ('functies.php');
-$locatie = "Location: http://localhost/EenmaalAndermaal/login_pagina.php";
+$locatie = "Location: http://iproject2.icasites.nl/login_pagina.php";
 if(isset($_POST['inloggen'])){
-    if(!isset($_SESSION['Gebruikersnaam'])){
         $Gebruikersnaam = test_invoer($_POST['Gebruikersnaam']);
         $wachtwoord = test_invoer($_POST['Wachtwoord']);
         $wachtwoordofgebruikersnaamfout = "Het wachtwoord of de gebruikersnaam is fout, probeer het opnieuw";
@@ -20,7 +19,6 @@ if(isset($_POST['inloggen'])){
         try {
             if ($rijtelling == 0) {
                 throw new Exception($wachtwoordofgebruikersnaamfout);
-                header("$locatie");
             } elseif ($rijtelling == 1) {
                 if (password_verify($wachtwoord, $hash[0])) {
                     $_SESSION['Gebruikersnaam'] = $Gebruikersnaam;
@@ -34,18 +32,15 @@ if(isset($_POST['inloggen'])){
                     $_SESSION['GeboorteDatum'] = $hash[8];
                     $_SESSION['Emailadres'] = $hash[9];
                     throw new Exception("U bent ingelogd");
-                    header("$locatie");
                 } else {
                     throw new Exception($wachtwoordofgebruikersnaamfout);
-                    header("$locatie");
                 }
             }
         } catch (Exception $e) {
             $_SESSION['foutmelding'] = $e->getMessage();
-            header("$locatie");
+            header($locatie);
         }
-    }
 } else {
     $_SESSION['foutmelding'] = "Er is iets fout gegaan bij het inloggen, probeer het opnieuw";
-    header("$locatie");
+    header($locatie);
 }

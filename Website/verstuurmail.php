@@ -1,9 +1,9 @@
 <?php
 include_once ('functies.php');
 session_start();
+$locatieNaVersturen = "Location: http://iproject2.icasites.nl/homepage.php";
 
 $mailadres = $_SESSION['Emailadres'];
-//$mailadres = "jossenobel@hotmail.com";
 $masterPW = "test";
 $hash = hash('sha256', $mailadres . $masterPW);
 
@@ -21,3 +21,7 @@ http://iproject2.icasites.nl/checkemail.php?email='. $mailadres .'&hash='.$hash.
 
 $headers = 'From:noreply@EenmaalAndermaal.com' . "\r\n";
 mail($to, $subject, $message, $headers);
+
+
+header($locatieNaVersturen);
+?>

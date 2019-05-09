@@ -10,7 +10,7 @@ $locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpag
 if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])) {
     $masterPW = "test";
     $meegevenHash = $_GET['hash'];
-    $email = $_GET['email'];
+    $email = test_invoer($_GET['email']);
     $gegevenTijd = $_GET['tijd'];
     $hash = hash('sha256', $email . $masterPW);
     if($hash == $meegevenHash && time() - $gegevenTijd < $tijdLinkGeldig){
@@ -19,7 +19,10 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
     } elseif(time() - $gegevenTijd > $tijdLinkGeldig){
         $_SESSION['foutmelding'] = "Deze link is niet meer geldig, laat een nieuwe mail naar je versturen";
         header($locatieFouteLink);
-    }else{
+    } elseif(vergelijkloginwaarde("Emailadres", $_GET['email'], $dbh) != 0){
+        $_SESSION['foutmelding'] = "Dit mailadres is al geregistreerd, vul een ander mailadres in";
+        header($locatieFouteLink);
+    }   else{
         $_SESSION['foutmelding'] = "De opgegeven link is invalide, gebruik de link die is opgestuurd";
         header($locatieFouteLink);
     }
