@@ -95,10 +95,10 @@ if (isset($_POST['registreer'])) {
 include_once("header.php");
 ?>
     <body class="background">
-    <main class="registratieformulierLayout">
-        <div class="container text-center">
-            <h2 style="margin: 1ex; color: rgb(255,255,255);">Registreren</h2>
-            <form class="text-left" style="width: 100%;" method="post" action="registreren_pagina.php">
+    <main >
+        <div class="container text-left registratieformulierLayout">
+            <h2 class="text-left" style="margin: 1ex; color: rgb(255,255,255);">Registreren</h2>
+            <form  style="width: 100%;" method="post" action="registreren_pagina.php">
                 <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
 
                 echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
@@ -126,12 +126,12 @@ include_once("header.php");
 
                 echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
 
-        </div>
-                <button class="btn btn-primary text-center" data-bs-hover-animate="pulse" type="submit"
-                        name="registreer"
-                        style="width: 100%;margin: 1em 0em;margin-top: 2em;background-color: #ffb357;">Registreer
+
+                <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit"
+                        name="registreer">Registreer
                 </button>
             </form>
+        </div>
     </main>
 
     <script src="assets/js/jquery.min.js"></script>
