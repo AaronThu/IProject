@@ -139,7 +139,7 @@ CREATE TABLE Voorwerp (
     Land                VARCHAR(50)         NOT NULL,
     Looptijd            TINYINT NOT NULL    DEFAULT 7,
     BeginMoment         DATETIME NOT NULL   DEFAULT CURRENT_TIMESTAMP,
-    Verzendkosten       numeric(4,2)            NULL,
+    Verzendkosten       numeric(7,2)            NULL,
     Verzendinstructies  VARCHAR(200)            NULL,
     Verkoper            VARCHAR(50)         NOT NULL,
     Koper               VARCHAR(50)         NULL,
