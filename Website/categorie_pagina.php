@@ -1,14 +1,13 @@
 <?php
-include_once ("database.php");
+include_once("database.php");
 include_once("header.php");
 $categorieArtikel = '<div class="container" >';
 
 
-
 $hoofdcategorieData = $dbh->query("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 ORDER BY Volgnr, Rubrieknaam");
 while ($rij = $hoofdcategorieData->fetch()) {
-$hoofdcategorie = $rij['Rubrieknaam'];
-$categorieArtikel.= '<div class="row text-capitalize text-left" style="height: 275px;">
+    $hoofdcategorie = $rij['Rubrieknaam'];
+    $categorieArtikel .= '<div class="row text-capitalize text-left" style="height: 275px;">
         <div class="col-4 col-lg-3 ">
             <a href="#" style="color: #ffffff;">
                 <h1 style="color: #ffffff;">' . $rij["Rubrieknaam"] . '</h1>
@@ -29,25 +28,24 @@ $categorieArtikel.= '<div class="row text-capitalize text-left" style="height: 2
     $subcategorie = $dbh->query('SELECT Rubrieknaam FROM Rubriek WHERE Parent_Rubriek =' . $rij["Rubrieknummer"] . 'ORDER BY Volgnr, Rubrieknaam ');
     $categorieArtikel .= ' <div class="row">
                 <div class="col" style="color: #ffffff;">';
-    while($rij = $subcategorie->fetch()){
-    $subcategorenaam = $rij['Rubrieknaam'];
-    $categorieArtikel .= '<a href="#" style="color: #ffffff;">
+    while ($rij = $subcategorie->fetch()) {
+        $subcategorenaam = $rij['Rubrieknaam'];
+        $categorieArtikel .= '<a href="#" style="color: #ffffff;">
                         <h6>' . $subcategorenaam . '</h6>
                     </a>';
 
     }
-   $categorieArtikel .= ' </div>';
+    $categorieArtikel .= ' </div>';
     $categorieArtikel .= ' </div>';
 }
 
-$categorieArtikel .='</div>';
-
-
+$categorieArtikel .= '</div>';
 
 
 ?>
 <html>
-<body class="background"">
+<body class="background"
+">
 <?php echo $categorieArtikel ?>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
