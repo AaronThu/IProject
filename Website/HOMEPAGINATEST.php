@@ -31,14 +31,15 @@ $query = $dbh->query("SELECT *  FROM voorwerp");
 while($row = $query->fetch()){
     $titel = $row['Titel'];
     $tijd = $row['Eindmoment'];
+    $StartPrijs = $row ['Startprijs'];
+    $Verkoopprijs = $row ['Verkoopprijs'];
 }
 
 $query = $dbh->query("SELECT * from bestand where voorwerpnummer like 2");
 while($row = $query->fetch()){
     $afbeelding = $row ['FileNaam'];
 }
-
-    ?>
+ ?>
 
 <body style="background-color: #4b4c4d;">
     <div style="margin: 30px;">
@@ -49,12 +50,11 @@ while($row = $query->fetch()){
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/BMW-TA.jpg);">
-                        <p class="d-flex align-items-start align-content-start align-self-start" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"><?php echo $tijd ?></p>
-                        <p class="text-left"  >
-                        <?php echo $titel ?>
-                    </p>
+                <div class="col-md-3" data-hover= "'. $Verkoopprijs . '">
+<div class="d-flex flex-column justify-content-between align-content-start"  style="height: 149px;background-image: url(assets/img/BMW-TA.jpg);" >
+                        <p class="d-f-self-start" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"><?php echo $tijd ?></p>
+                        <p class="text-left"><?php echo $titel ?></p>   
+                                                
                     </div>
                 </div>
                 <div class="col-md-3">
