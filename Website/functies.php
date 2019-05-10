@@ -77,3 +77,34 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde){
     }
 }
 
+function genereerArtikelen($dbh, $gegevenQuery){
+    $artikelen = '';
+
+    $queryvoorwerpen = $dbh->query("$gegevenQuery");
+    while($row = $queryvoorwerpen->fetch()){
+        $titel = $row['Titel'];
+        $tijd = $row['Eindmoment'];
+        $StartPrijs = $row ['Startprijs'];
+        $Verkoopprijs = $row ['Verkoopprijs'];
+        $voorwerpNummer = $row['Voorwerpnummer'];
+
+        $queryFoto = $dbh->prepare("SELECT * FROM Bestand WHERE Voorwerpnummer = :Voorwerpnummer");
+        $queryFoto->execute([
+            ":Voorwerpnummer" => $voorwerpNummer
+        ]);
+        $foto = $queryFoto->fetchColumn();
+
+
+
+        $artikelen .= '<div class="col-md-3" data-hover=' . $Verkoopprijs.' >
+                <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto .')">
+                    <p class="d-flex align-items-start align-content-start align-self-start" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">05:00:00</p>
+                    <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
+                </div>
+            </div>';
+
+    }
+
+    return $artikelen;
+}
+
