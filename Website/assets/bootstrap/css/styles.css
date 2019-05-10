@@ -10,17 +10,34 @@
 }
 
 .registratieformulierLayout {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 52.5vh;
+    margin-left: 30%;
+}
+
+.registratieKnop{
+    width: 60%;
+    margin-top: 1em;
+    background-color: #ffb357;
+    margin-bottom: 1em;
+    color: black;
 }
 
 .inputforms{
-    width: 75%;
+    width: 60%;
     background-color: #c5ae91;
 }
 
 h5{
     color: #ffffff;
-    text-align: center;
+    text-align: left;
+}
+
+.hoofdcategorie{
+    color: #ffffff;
+    background-color: #3a3a3a;
 }
 
 .foutmeldingTekst{
@@ -38,6 +55,10 @@ h5{
 .navbar-light .navbar-brand {
     color: #a9976a;
     text-decoration: none;
+}
+
+.titel{
+   color: #a9976a;
 }
 
 .navbar.navbar-light.navbar-expand-md.sticky-top.d-md-flex.d-xl-flex.justify-content-center.align-items-center.align-items-md-center.justify-content-xl-center.align-items-xl-center.navigation-clean-search {
