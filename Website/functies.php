@@ -47,18 +47,22 @@ function genereerVraag($dbh, $vraagnummer)
     return $vraagWeergave;
 }
 
-
-// mee bezig
 function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type, $naamPOST){
     $waardeInForm = isset($_POST[$naamPOST]) ? $_POST[$naamPOST] : '';
+    if(empty($errorNaam)){
+        $error = "";
+    } else{
+        $error = $_SESSION['registratieFoutmeldingen'][$errorNaam];
+    }
     $registratieItem ="";
-$registratieItem .= '<h5 class="text-center text-sm-cewnter text-md-center text-lg-left text-xl-center">' . $naamFormulier . '</h5>
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center foutmeldingTekst">' . $_SESSION['registratieFoutmeldingen'][$errorNaam] . '</h5>
-<div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center flex-wrap flex-sm-wrap flex-md-nowrap flex-lg-nowrap justify-content-xl-center align-items-xl-center flex-xl-nowrap"
-     style="margin: 1em 0em;"><input
+$registratieItem .= '
+
+<h5>' . $naamFormulier . '</h5>
+<h5 class="text-left foutmeldingTekst">' . $error . '</h5>
+<input
         class="form-control inputforms" type=' . $type.'
         placeholder="' . $naamFormulier . '"name="' . $naamPOST.'"autofocus="" maxlength="' . $maxLength.'
-        "value="' . $waardeInForm . '"</div>   </div>';
+        "value="' . $waardeInForm . '"</div> ';
     return $registratieItem;
 }
 
