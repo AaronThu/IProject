@@ -77,7 +77,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde){
     }
 }
 
-function genereerArtikelen($dbh, $gegevenQuery){
+function genereerArtikelen($dbh, $gegevenQuery, $columntype){
     $artikelen = '';
 
     $queryvoorwerpen = $dbh->query("$gegevenQuery");
@@ -96,8 +96,8 @@ function genereerArtikelen($dbh, $gegevenQuery){
 
 
 
-        $artikelen .= '<div class="col-md-3" data-hover=' . $Verkoopprijs.' >
-                <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto .')">
+        $artikelen .= '<div class=" ' . $columntype . '" data-hover=' . $Verkoopprijs.' >
+                <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto .'); background-size: cover">
                     <p class="d-flex align-items-start align-content-start align-self-start" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">05:00:00</p>
                     <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
                 </div>
@@ -108,3 +108,24 @@ function genereerArtikelen($dbh, $gegevenQuery){
     return $artikelen;
 }
 
+/*
+function genereerArtikelRij($dbh, $gegevenQuery, $columntype, $titel){
+    $artikelRij =' <div style="margin: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="color: #a9976a;">' . $titel . '</h1>
+                </div>
+            </div>
+            <div class="row">' .
+        $artikelen = genereerArtikelen($dbh, $gegevenQuery, $columntype);
+    echo $artikelen
+            . '
+        </div>
+    </div>
+        
+        ';
+
+        return $artikelRij;
+
+}*/
