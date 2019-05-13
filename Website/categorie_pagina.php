@@ -7,9 +7,17 @@ $categorieArtikel = '<div class="container" >';
 
 $hoofdcategorieData = $dbh->query("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 ORDER BY Volgnr, Rubrieknaam");
 
+
 $categorieArtikel = ' <div class="container" style="background-color: #4b4c4d;">';
 while ($rij = $hoofdcategorieData->fetch()) {
     $hoofdcategorie = $rij['Rubrieknaam'];
+    $Rubrieknummer = $rij['Rubrieknummer'];
+
+    $hoofdcategorieFoto = $dbh->prepare("SELECT RubriekFoto FROM RubriekFotos WHERE Rubrieknummer = :Rubrieknummer");
+    $hoofdcategorieFoto->execute([
+        ':Rubrieknummer' => $Rubrieknummer
+    ]);
+    $foto = $hoofdcategorieFoto->fetchColumn();
 
     $categorieArtikel .= '<div class="row text-capitalize text-left" style="">';
     $categorieArtikel .= '<div class="col-4 col-lg-3" style="color: rgb(255,255,255);background-color: #3a3a3a;">
@@ -17,8 +25,8 @@ while ($rij = $hoofdcategorieData->fetch()) {
                     <h1 style="color: #ffffff; word-wrap:break-word;">' . $rij['Rubrieknaam'] . '</h1>
                 </a>
             </div>
-            <div class="col-2 col-lg-3 d-table-cell row" ">
-                <img src="assets/img/band.jpg" alt="Smiley face" height="150" width="150">
+            <div class="col-2 col-lg-3 d-table-cell row">
+                <img src="assets/img/Rubrieken/' . $foto .'" alt="' . $foto . '" height="300" width="300">
             </div> <div class="col" style="background-color: #3a3a3a;">';
 
     $subcategorie = $dbh->prepare('SELECT Rubrieknaam FROM Rubriek WHERE Parent_Rubriek = :Rubrieknummer ORDER BY Volgnr, Rubrieknaam ');
@@ -39,15 +47,15 @@ $categorieArtikel .= '</div>';
 
 
 ?>
-<html>
+    <html>
 
-<body class="background">
+    <body class="background">
     <?php echo $categorieArtikel ?>
     <script src=" assets/js/jquery.min.js"> </script>
     <script src="assets/bootstrap/js/bootstrap.min.js">
     </script>
-</body>
+    </body>
 
-</html>
+    </html>
 
 <?php include_once("footer.php"); ?>

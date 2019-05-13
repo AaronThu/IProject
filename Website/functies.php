@@ -1,5 +1,6 @@
 <?php
 
+//FORMULIEREN FUNCTIES
 function test_invoer($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -77,6 +78,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde){
     }
 }
 
+//HOMEPAGE FUNCTIES
 function genereerArtikelen($dbh, $gegevenQuery, $columntype){
     $artikelen = '';
 
@@ -85,7 +87,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype){
         $titel = $row['Titel'];
         $tijd = $row['Eindmoment'];
         $StartPrijs = $row ['Startprijs'];
-        $Verkoopprijs = $row ['Verkoopprijs'];
+        $Verkoopprijs = $row ['Startprijs'];
         $voorwerpNummer = $row['Voorwerpnummer'];
 
         $queryFoto = $dbh->prepare("SELECT * FROM Bestand WHERE Voorwerpnummer = :Voorwerpnummer");
@@ -93,8 +95,6 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype){
             ":Voorwerpnummer" => $voorwerpNummer
         ]);
         $foto = $queryFoto->fetchColumn();
-
-
 
         $artikelen .= '<div class=" ' . $columntype . '" data-hover=' . $Verkoopprijs.' >
                 <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto .'); background-size: cover">
@@ -108,24 +108,20 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype){
     return $artikelen;
 }
 
-/*
-function genereerArtikelRij($dbh, $gegevenQuery, $columntype, $titel){
-    $artikelRij =' <div style="margin: 30px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 style="color: #a9976a;">' . $titel . '</h1>
-                </div>
-            </div>
-            <div class="row">' .
-        $artikelen = genereerArtikelen($dbh, $gegevenQuery, $columntype);
-    echo $artikelen
-            . '
-        </div>
-    </div>
-        
-        ';
-
-        return $artikelRij;
-
-}*/
+//HEADER FUNCTIES
+function GetRubrieken($parent)
+{
+    global $dbh;
+    $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = ? ORDER BY Volgnr, Rubrieknaam");
+    $mainCategoriesQuery->execute([$parent]);
+    $mainCategories = $mainCategoriesQuery->fetchAll();
+    return $mainCategories;
+}
+function GetRubriekenPopulair($max)
+{
+    global $dbh;
+    $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 ORDER BY Volgnr, Rubrieknaam");
+    $mainCategoriesQuery->execute();
+    $mainCategories = $mainCategoriesQuery->fetchAll();
+    return array_chunk($mainCategories, $max)[0];
+}
