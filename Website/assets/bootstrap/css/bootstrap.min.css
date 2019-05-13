@@ -511,7 +511,6 @@ pre code {
 }
 
 .container {
-    width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -988,15 +987,15 @@ pre code {
         flex: 0 0 25%;
         max-width: 25%;
         font-size:10px;
-        
+
     }
     .col-md-3:hover{
         transform:scale3d(1.5,2,2.5);
-        z-index:1;    
+        z-index:1;
     }
-    
+
     .col-md-3:hover:before{
-        
+
         display: block;
         color: white;
         background: rgba(75,76,77,0.75);
@@ -1026,8 +1025,8 @@ pre code {
         background-size: cover;
     }
     .col-md-6:hover{
-    transform:scale3d(1.5,2,2.5);
-    z-index:1;   
+        transform:scale3d(1.5,2,2.5);
+        z-index:1;
     }
 
     .col-md-6:hover:before{
@@ -2349,8 +2348,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc
+    background-color: #a9976a;
+    border-color: #a9976a;
 }
 
 .btn-primary.focus, .btn-primary:focus {
@@ -6507,8 +6506,8 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 .d-flex {
     display: -ms-flexbox!important;
     display: flex!important;
-     background-size: cover;
-     
+    background-size: cover;
+
 }
 
 .d-inline-flex {
@@ -9143,7 +9142,8 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 
 .text-left {
     text-align: left!important;
-    background-color: rgba(75,76,77,0.75);color: #ffffff;
+    text-transform: capitalize;
+   color: #ffffff;
 }
 
 .text-right {

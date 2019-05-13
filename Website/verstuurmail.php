@@ -1,7 +1,7 @@
 <?php
 include_once ('functies.php');
 session_start();
-$locatieNaVersturen = "Location: http://iproject2.icasites.nl/homepage.php";
+$locatieNaVersturen = "Location: http://iproject2.icasites.nl/index.php";
 
 $mailadres = $_SESSION['Emailadres'];
 $masterPW = "test";
@@ -23,5 +23,7 @@ $headers = 'From:noreply@EenmaalAndermaal.com' . "\r\n";
 mail($to, $subject, $message, $headers);
 
 
+
+$_SESSION['foutmelding'] = "Mail is succesvol verstuurd, kijk in je inbox voor de link!";
 header($locatieNaVersturen);
 ?>

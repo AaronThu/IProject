@@ -2,19 +2,6 @@
   background-color: #3a3a3a;
 }
 
-.Main {
-  width: 100vw;
-  margin: auto;
-  background-color: #4b4c4d;
-  min-height: 50vh;
-}
-
-@media (min-width: 768px) {
-  .Main {
-    width: 65vw;
-  }
-}
-
 .registratieformulier {
   color: rgb(255, 255, 255);
   margin: 0em 1em;
@@ -22,32 +9,23 @@
 }
 
 .registratieformulierLayout {
-  width: 50%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-@media (max-width: 767px) {
-  .registratieformulierLayout {
-    width: 100%;
-  }
-}
-
-.registratieformulierLayout h2 {
-  margin: 1em 0em;
+  min-height: 52.5vh;
+  margin-left: 30%;
 }
 
 .registratieKnop {
-  margin: 2em 0em;
-  width: 100%;
+  width: 60%;
+  margin-top: 1em;
   background-color: #ffb357;
+  margin-bottom: 1em;
   color: black;
 }
 
 .inputforms {
-  width: 100%;
-  margin: auto;
+  width: 60%;
   background-color: #c5ae91;
 }
 
@@ -88,6 +66,8 @@ h5 {
 
 .form-inline.mr-auto {
   background-color: #c5ae91;
+  margin: 0px;
+  min-width: 20em;
 }
 
 .form-inline .form-group {
@@ -95,6 +75,17 @@ h5 {
   border: none;
   width: 100%;
   margin: 0px;
+}
+
+#Main {
+  width: 100vw;
+  min-height: 50vh;
+}
+
+@media (min-width: 768px) {
+  #Main {
+    width: 75vw;
+  }
 }
 
 body {

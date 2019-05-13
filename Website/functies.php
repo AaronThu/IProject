@@ -56,23 +56,21 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
         $error = $_SESSION['registratieFoutmeldingen'][$errorNaam];
     }
     $registratieItem ="";
-$registratieItem .= '
-
+    $registratieItem .= '
 <h5>' . $naamFormulier . '</h5>
 <h5 class="text-left foutmeldingTekst">' . $error . '</h5>
 <input
         class="form-control inputforms" type=' . $type.'
-        placeholder="' . $naamFormulier . '"name="' . $naamPOST.'"autofocus="" maxlength="' . $maxLength.'
+        placeholder=""name="' . $naamPOST.'"autofocus="" maxlength="' . $maxLength.'
         "value="' . $waardeInForm . '"</div> ';
     return $registratieItem;
 }
-
 
 function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde){
     if (empty($ingevuldeWaarde)){
         $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem is verplicht";
     } elseif(kijkVoorCorrecteTekens($ingevuldeWaarde) == false) {
-        $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem mag alleen letters en cijfers bevatten";
+        $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem mag geen speciale tekens of spaties bevatten";
     } else{
         $_SESSION['registratieGegevens'][$naamItem] = $ingevuldeWaarde;
     }
@@ -107,4 +105,21 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype){
 
     return $artikelen;
 }
-?>
+
+//HEADER FUNCTIES
+function GetRubrieken($parent)
+{
+    global $dbh;
+    $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = ? ORDER BY Volgnr, Rubrieknaam");
+    $mainCategoriesQuery->execute([$parent]);
+    $mainCategories = $mainCategoriesQuery->fetchAll();
+    return $mainCategories;
+}
+function GetRubriekenPopulair($max)
+{
+    global $dbh;
+    $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 ORDER BY Volgnr, Rubrieknaam");
+    $mainCategoriesQuery->execute();
+    $mainCategories = $mainCategoriesQuery->fetchAll();
+    return array_chunk($mainCategories, $max)[0];
+}

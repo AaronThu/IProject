@@ -39,6 +39,7 @@ include_once('functies.php');
             ':Telefoonnummer' => $_SESSION['registratieGegevens']['Telefoonnummer']
         ]
     );
+    $_SESSION['foutmelding'] = "U bent geregistreerd, u kunt nu inloggen";
     header($locatieNaRegistratie);
 
 ?>

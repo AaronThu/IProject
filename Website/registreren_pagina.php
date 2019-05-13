@@ -13,12 +13,10 @@ $wachtwoordMinimaalAantalTekens = 3;
 $registratieGegevens = array("Emailadres" => "", "Voornaam" => "", "Achternaam" => "", "Adres_1" => "", "Adres_2" => "", "Postcode" => "", "Plaatsnaam" => "", "Land" => "", "Geboortedatum" => "", "Telefoonnummer" => "", "Gebruikersnaam" => "", "Wachtwoord" => "", "vraagNummer" => "", "AntwoordOpVraag" => "");
 $_SESSION['registratieGegevens'] = $registratieGegevens;
 
-/*
-if(empty($_SESSION['email'])){
+if (empty($_SESSION['Emailadres'])) {
     $_SESSION['foutmelding'] = "Deze link is niet geldig, laat een mailtje naar je sturen";
     header($locatieFouteLink);
 }
-*/
 
 if (isset($_POST['registreer'])) {
     $Voornaam = test_invoer($_POST['Voornaam']);
@@ -45,11 +43,15 @@ if (isset($_POST['registreer'])) {
     $Land = test_invoer($_POST['Land']);
     testInputVoorFouten("Land", "LandErr", $Land);
 
-
-    if (empty($_POST['Telefoonnummer'])) {
+    $telefoonNummer = test_invoer($_POST['Telefoonnummer']);
+    if (empty($telefoonNummer)) {
         $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer is verplicht";
-    } else {
-        $_SESSION['registratieGegevens']["Telefoonnummer"] = test_invoer($_POST['Telefoonnummer']);
+    } elseif(kijkVoorLetters($telefoonNummer) == true){
+        $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer mag geen letters, speciale tekens of spaties bevatten";
+    } elseif(kijkVoorCorrecteTekens($telefoonNummer) == false) {
+        $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer mag geen letters, speciale tekens of spaties bevatten";
+    } else{
+        $_SESSION['registratieGegevens']["Telefoonnummer"] = $telefoonNummer;
     }
 
     if (empty($_POST['GeboorteDatum'])) {
@@ -90,50 +92,36 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-
-
 include_once("header.php");
 ?>
 
-<body>
-        <div class="Main container registratieformulierLayout">
-            <h2 class="text-left">Registreren</h2>
-            <form method="post" action="registreren_pagina.php">
-                <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
-
-                echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
-
-                echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
-
-                echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "number", "Telefoonnummer");
-
-                echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
-
-                echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
-
-                echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
-
-                echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
-
-                echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land");
-
-                $vraag = genereerVraag($dbh, $vraagNummer);
-                echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag");
-
-                echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
-
-                echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
-
-                echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
+    <body>
+    <div class="Main container registratieformulierLayout">
+        <h2 style="color: white">Registreren</h2>
+        <form method="post" action="registreren_pagina.php">
+            <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
+            echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
+            echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
+            echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer");
+            echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
+            echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
+            echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
+            echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
+            echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land");
+            $vraag = genereerVraag($dbh, $vraagNummer);
+            echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag");
+            echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
+            echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
+            echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
 
 
-                <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="registreer">Registreer
-                </button>
-            </form>
+            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="registreer">Registreer
+            </button>
+        </form>
     </div>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
-</body>
+    </body>
 <?php include_once("footer.php"); ?>

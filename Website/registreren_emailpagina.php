@@ -26,7 +26,7 @@ include_once("header.php");
 ?>
 
 <body class="background">
-<
+
 <main style="min-height: 52.5vh;margin-right: 10vw;margin-left: 10vw;">
     <div class="container text-center" style="padding: 4em;">
         <h2 style="margin: 1ex;color: #ffffff;">Registreren</h2>

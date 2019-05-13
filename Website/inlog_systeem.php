@@ -31,7 +31,8 @@ if(isset($_POST['inloggen'])){
                     $_SESSION['Land'] = $hash[7];
                     $_SESSION['GeboorteDatum'] = $hash[8];
                     $_SESSION['Emailadres'] = $hash[9];
-                    throw new Exception("U bent ingelogd");
+                   $_SESSION['foutmelding'] = "U bent ingelogd";
+                header("Location: http://iproject2.icasites.nl/index.php ");
                 } else {
                     throw new Exception($wachtwoordofgebruikersnaamfout);
                 }
