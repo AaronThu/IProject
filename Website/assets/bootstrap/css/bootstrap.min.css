@@ -999,13 +999,13 @@ pre code {
         
         display: block;
         color: white;
-        background: black;
+        background: rgba(75,76,77,0.75);
         content: attr(data-hover);
-        position: absolute;
+        position: relative;
         top: 100%;
-        left: -7px;
-        right: -7px;
-        padding: 15px; 
+        left: auto;
+        right: 0%;
+        padding: 0px;
     }
 
 
@@ -1033,13 +1033,13 @@ pre code {
     .col-md-6:hover:before{
         display: block;
         color: white;
-        background: black;
+        background: rgba(75,76,77,0.75);
         content: attr(data-hover);
-        position: absolute;
+        position: relative;
         top: 100%;
-        left: -7px;
-        right: -7px;
-        padding: 15px;
+        left: auto;
+        right: 0%;
+        padding: 0px;
     }
 
 

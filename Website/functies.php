@@ -96,7 +96,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype){
         ]);
         $foto = $queryFoto->fetchColumn();
 
-        $artikelen .= '<div class=" ' . $columntype . '" data-hover=' . $Verkoopprijs.' >
+        $artikelen .= '<div class=" ' . $columntype . '" data-hover=' ."€". $Verkoopprijs.' >
                 <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto .'); background-size: cover">
                     <p class="d-flex align-items-start align-content-start align-self-start" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">05:00:00</p>
                     <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
