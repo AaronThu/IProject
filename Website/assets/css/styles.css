@@ -77,27 +77,6 @@ h5 {
   margin: 0px;
 }
 
-.dropdown.show.nav-item {}
-
-#dropdown-item {
-  text-align: center;
-  margin: 1em;
-  max-width: 25em;
-}
-
-.dropdown-menu.show {
-  display: flex;
-  width: 90vw;
-}
-
-@media (min-width: 768px) {
-  .dropdown-menu.show {
-      display: flex;
-      width: inherit;
-      min-width: 17.5em;
-  }
-}
-
 #Main {
   width: 100vw;
   min-height: 50vh;
@@ -105,7 +84,7 @@ h5 {
 
 @media (min-width: 768px) {
   #Main {
-      width: 75vw;
+    width: 75vw;
   }
 }
 

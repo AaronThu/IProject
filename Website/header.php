@@ -1,4 +1,6 @@
-<?
+<?php
+include_once("database.php");
+include_once("databaseFunctions.php");
 ?>
 
 <!DOCTYPE html>
@@ -32,12 +34,21 @@
                         <li class="nav-item" role="presentation"></li>
                         <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Rubrieken</a>
                             <div class="dropdown-menu flex-column" role="menu">
-                                <h6 class="dropdown-header" role="presentation">Populair</h6><a class="dropdown-item" role="presentation">Categorie 1</a><a class="dropdown-item" role="presentation">Categorie 2</a><a class="dropdown-item" role="presentation">Categorie 3</a>
+                                <h6 class="dropdown-header" role="presentation">Populair</h6>
+                                <?php
+                                foreach (GetRubriekenPopulair(3) as $key => $value) {
+                                    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+                                }
+                                ?>
                                 <div class="dropdown-divider" role="presentation"></div>
                                 <h6 class="dropdown-header" role="presentation">Categories</h6>
-                                <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap"><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie's</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a>
-                                    <a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a>
-                                    <a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a><a class="dropdown-item" href="#">Categorie</a></div>
+                                <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
+                                    <?php
+                                    foreach (GetRubrieken(-1) as $key => $value) {
+                                        print("<a class=\"dropdown-item\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+                                    }
+                                    ?>
+                                </div>
                                 <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="#">Alle Categories</a>
                             </div>
                         </li>
@@ -50,8 +61,6 @@
         </nav>
     </div>
     <!-- End: Navigation with Button -->
-
-
     <?php if (!empty($_SESSION['foutmelding'])) {
         echo '<div class="foutmelding inputforms">
     <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center"> We wijzen je graag op het
