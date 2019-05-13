@@ -16,3 +16,4 @@ function GetRubriekenPopulair($max)
     $mainCategories = $mainCategoriesQuery->fetchAll();
     return array_chunk($mainCategories, $max)[0];
 }
+?>

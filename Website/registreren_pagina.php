@@ -94,11 +94,11 @@ if (isset($_POST['registreer'])) {
 
 include_once("header.php");
 ?>
-    <body class="background">
-    <main >
-        <div class="container text-left registratieformulierLayout">
-            <h2 class="text-left" style="margin: 1ex; color: rgb(255,255,255);">Registreren</h2>
-            <form  style="width: 100%;" method="post" action="registreren_pagina.php">
+
+<body>
+        <div class="Main container registratieformulierLayout">
+            <h2 class="text-left">Registreren</h2>
+            <form method="post" action="registreren_pagina.php">
                 <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
 
                 echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
@@ -127,15 +127,13 @@ include_once("header.php");
                 echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
 
 
-                <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit"
-                        name="registreer">Registreer
+                <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="registreer">Registreer
                 </button>
             </form>
-        </div>
-    </main>
+    </div>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
-    </body>
+</body>
 <?php include_once("footer.php"); ?>
