@@ -3429,7 +3429,7 @@ INSERT INTO Rubriek
 		   Name AS title ,
 		   Parent AS Parent_rubriek,
 		   1 AS Volgnr
-FROM iproject2.Categorieen
+FROM Categorieen
 
 
 DROP TABLE Categorieen
