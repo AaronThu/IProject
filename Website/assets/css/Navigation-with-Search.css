@@ -41,7 +41,7 @@
   border-top-color: #ddd;
 }
 
-.navigation-clean-search .navbar-nav a.active, .navigation-clean-search .navbar-nav > .show > a {
+.navigation-clean-search .navbar-nav a.active, .navigation-clean-search .navbar-nav>.show>a {
   background: none;
   box-shadow: none;
 }
@@ -109,6 +109,4 @@
   border-bottom: 1px solid #ccc;
 }
 
-.dropdown.show.nav-item {
-}
-
+.dropdown.show.nav-item {}

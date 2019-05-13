@@ -1,7 +1,6 @@
-.background{
+.background {
     background-color: #3a3a3a;
 }
-
 
 .registratieformulier {
     color: rgb(255, 255, 255);
@@ -17,7 +16,7 @@
     margin-left: 30%;
 }
 
-.registratieKnop{
+.registratieKnop {
     width: 60%;
     margin-top: 1em;
     background-color: #ffb357;
@@ -25,27 +24,27 @@
     color: black;
 }
 
-.inputforms{
+.inputforms {
     width: 60%;
     background-color: #c5ae91;
 }
 
-h5{
+h5 {
     color: #ffffff;
     text-align: left;
 }
 
-.hoofdcategorie{
+.hoofdcategorie {
     color: #ffffff;
     background-color: #3a3a3a;
 }
 
-.foutmeldingTekst{
+.foutmeldingTekst {
     text-align: center;
-   color: red;
+    color: red;
 }
 
-.foutmelding{
+.foutmelding {
     width: 100%;
     border-width: 5px 0px;
     border-style: solid;
@@ -57,8 +56,8 @@ h5{
     text-decoration: none;
 }
 
-.titel{
-   color: #a9976a;
+.titel {
+    color: #a9976a;
 }
 
 .navbar.navbar-light.navbar-expand-md.sticky-top.d-md-flex.d-xl-flex.justify-content-center.align-items-center.align-items-md-center.justify-content-xl-center.align-items-xl-center.navigation-clean-search {
@@ -66,14 +65,50 @@ h5{
 }
 
 .form-inline.mr-auto {
-    background-color: rgba(197,174,145,0.42);
+    background-color: #c5ae91;
     margin: 0px;
+    min-width: 20em;
 }
 
 .form-inline .form-group {
-    background-color: rgba(197,174,145,0.42);
     color: #ffffff;
     border: none;
     width: 100%;
+    margin: 0px;
 }
 
+.dropdown.show.nav-item {}
+
+#dropdown-item {
+    text-align: center;
+    margin: 1em;
+    max-width: 25em;
+}
+
+.dropdown-menu.show {
+    display: flex;
+    width: 90vw;
+}
+
+@media (min-width: 768px) {
+    .dropdown-menu.show {
+        display: flex;
+        width: inherit;
+        min-width: 17.5em;
+    }
+}
+
+#Main {
+    width: 100vw;
+    min-height: 50vh;
+}
+
+@media (min-width: 768px) {
+    #Main {
+        width: 75vw;
+    }
+}
+
+body {
+    background-color: #3a3a3a;
+}
