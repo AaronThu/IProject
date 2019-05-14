@@ -4,9 +4,6 @@
 /* Created on:     13-05-2019		                            */
 /*==============================================================*/
 
-USE iproject2
-GO
-
 /*==============================================================*/
 /* RubriekFotos                                                 */
 /*==============================================================*/
@@ -85,7 +82,6 @@ VALUES
 ('koffiezetapparaat', 'Siemens EQ9-S900 WIfi editie, mooi apparaat niet te geloven!', 1399.99, 'iDeal', 'PostNL', 'Den Helder', 'Nederland',  1, 5.00, 'komt zonder aanhanger', 'testgebruiker'),
 ('Pan met vet', 'Mooie pan met gebruikt frituurvet, kan makkelijk nog een rondje of 20!', 50000.00, 'iDeal', 'PostNL', 'Arnhem', 'Nederland', 1, 5.00, null, 'testgebruiker')
 
-delete from Voorwerp
 /*==============================================================*/
 /* Bestand                                                      */
 /*==============================================================*/
