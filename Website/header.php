@@ -1,10 +1,9 @@
 <?php
 session_start();
-include_once("database.php");
-include_once("functies.php");
+include_once "database.php";
+include_once "databaseFuncties.php";
 
-
-if(empty($_SESSION['Gebruikersnaam'])) {
+if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';
 } else {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
@@ -45,18 +44,18 @@ if(empty($_SESSION['Gebruikersnaam'])) {
                         <div class="dropdown-menu flex-column" role="menu">
                             <h6 class="dropdown-header" role="presentation">Populair</h6>
                             <?php
-                            foreach (GetRubriekenPopulair(3) as $key => $value) {
-                                print("<a class=\"dropdown-item\" role=\"presentation\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
-                            }
-                            ?>
+foreach (GetRubriekenPopulair(3) as $key => $value) {
+    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+}
+?>
                             <div class="dropdown-divider" role="presentation"></div>
                             <h6 class="dropdown-header" role="presentation">Rubrieken</h6>
                             <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
                                 <?php
-                                foreach (GetRubrieken(-1) as $key => $value) {
-                                    print("<a class=\"dropdown-item\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
-                                }
-                                ?>
+foreach (GetRubrieken(-1) as $key => $value) {
+    print("<a class=\"dropdown-item\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+}
+?>
                             </div>
                             <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="rubrieken.php">Alle rubrieken</a>
                         </div>
@@ -78,4 +77,4 @@ if(empty($_SESSION['Gebruikersnaam'])) {
     echo $_SESSION['foutmelding'] . '</h5>
 </div>';
     $_SESSION['foutmelding'] = "";
-} ?>
+}?>
