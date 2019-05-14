@@ -3,18 +3,22 @@
 /* Script:		   DDL                                          */
 /* Created on:     13-05-2019		                            */
 /*==============================================================*/
-
-
-USE iproject2
+create database EenmaalAndermaal
 GO
 
+use EenmaalAndermaal
+GO
+/*
+USE iproject2
+GO*/
+
 /*==============================================================*/
-/* Bestand                                                      */
+/* VoorwerpFotoNaam                                             */
 /*==============================================================*/
 CREATE TABLE Bestand (
-    FileNaam                VARCHAR(255)        NOT NULL,       -- naam van de afbeelding
-    VoorwerpNummer		    INT     		    NOT NULL,       -- het voorwerpnummer
-    CONSTRAINT PK_BESTAND PRIMARY KEY (FileNaam)
+    FileNaam                VARCHAR(255)        NOT NULL,       
+    VoorwerpNummer		    INT     		    NOT NULL,       
+    CONSTRAINT PK_BESTAND PRIMARY KEY (FileNaam, VoorwerpNummer)
 )
 GO
 
@@ -53,17 +57,27 @@ CREATE TABLE Gebruiker (
     Achternaam              VARCHAR(50)         NOT NULL,
     Adres1                  VARCHAR(50)         NOT NULL,
     Adres2                  VARCHAR(50)             NULL,
-    Postcode                VARCHAR(10)          NOT NULL,
+    Postcode                VARCHAR(10)         NOT NULL,
     Plaatsnaam              VARCHAR(50)         NOT NULL,
     Land                    VARCHAR(50)         NOT NULL,
     Geboortedatum           DATE                NOT NULL,
     Emailadres              VARCHAR(50)         NOT NULL,
-    Wachtwoord              VARCHAR(255)         NOT NULL,
+    Wachtwoord              VARCHAR(255)        NOT NULL,
     Vraagnummer             TINYINT             NOT NULL,
     AntwoordTekst           VARCHAR(50)         NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
     CONSTRAINT PK_GEBRUIKER PRIMARY KEY (Gebruikersnaam),
     CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
+)
+GO
+
+/*==============================================================*/
+/* GebruikersId                                                 */
+/*==============================================================*/
+CREATE TABLE GebruikersId (
+GebruikersID                INT IDENTITY        NOT NULL,
+Gebruikersnaam              VARCHAR(50)         NOT NULL,
+CONSTRAINT PK_GEBRUIKERSID PRIMARY KEY (GebruikersID)
 )
 GO
 
@@ -85,7 +99,7 @@ GO
 CREATE TABLE Rubriek (
     Rubrieknummer       INT                 NOT NULL,
     Rubrieknaam         VARCHAR(50)         NOT NULL,
-    Parent_rubriek             INT              NULL,
+    Parent_rubriek      INT                     NULL,
     Volgnr              TINYINT                 NULL,
     CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer)
 )
@@ -118,27 +132,28 @@ GO
 CREATE TABLE Voorwerp (
     Voorwerpnummer      INT IDENTITY        NOT NULL,
     Titel               VARCHAR(50)         NOT NULL,
-    Beschrijving        VARCHAR(1000)       NOT NULL,
+    Beschrijving        VARCHAR(5000)       NOT NULL,
     Startprijs          NUMERIC(10,2)       NOT NULL,
     Betalingswijze      VARCHAR(25)         NOT NULL DEFAULT 'iDeal',
     Betalingsinstructie VARCHAR(200)            NULL,
     Plaatsnaam          VARCHAR(50)         NOT NULL,
     Land                VARCHAR(50)         NOT NULL,
-    Looptijd            TINYINT NOT NULL    DEFAULT 7,
-    BeginMoment         DATETIME NOT NULL   DEFAULT CURRENT_TIMESTAMP,
-    Verzendkosten       numeric(7,2)            NULL,
+    Looptijd            TINYINT             NOT NULL DEFAULT 7,
+    BeginMoment         DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Verzendkosten       NUMERIC(7,2)            NULL,
     Verzendinstructies  VARCHAR(200)            NULL,
     Verkoper            VARCHAR(50)         NOT NULL,
-    Koper               VARCHAR(50)         NULL,
+    Koper               VARCHAR(50)             NULL,
     Eindmoment AS DATEADD(DAY, Looptijd, BeginMoment),
     VeilingGesloten AS 
             CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, Looptijd, BeginMoment)
                 THEN 1
                 ELSE 0
                 END,
-    Verkoopprijs        NUMERIC(11,2)
+    Verkoopprijs       NUMERIC(11,2)            NULL,
     CONSTRAINT PK_VOORWERP PRIMARY KEY (Voorwerpnummer),
-    CONSTRAINT CK_TITEL CHECK (LEN((Titel)) > 1  ),
+    CONSTRAINT CK_TITEL CHECK (LEN(TRIM(Titel)) > 1  ),
+	CONSTRAINT CK_BESCHRIJVING CHECK (LEN(TRIM(Beschrijving)) > 10),
     CONSTRAINT CK_STARTPRIJS CHECK (Startprijs >= 1.00),
     CONSTRAINT CK_LOOPTIJD CHECK (Looptijd IN (1, 3, 5, 7, 10))
 )
