@@ -40,6 +40,14 @@ function ControleerTelefoonnummer($telefoonnummer){
     }
 }
 
+function ControleerPostcode($postcode) {
+    if(preg_match("/^[0-9]{4}[A-Z]{2}$/", $postcode)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function genereerVraagNummer($dbh){
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();

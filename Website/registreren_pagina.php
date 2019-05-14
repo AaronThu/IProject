@@ -35,7 +35,14 @@ if (isset($_POST['registreer'])) {
     }
 
     $Postcode = test_invoer($_POST['Postcode']);
-    testInputVoorFouten("Postcode", "PostcodeErr", $Postcode);
+    if (empty($Postcode)) {
+        $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is verplicht";
+    } 
+    elseif(ControleerPostcode($Postcode) == false) {
+        $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is niet geldig";
+    } else{
+        $_SESSION['registratieGegevens']["Postcode"] = $Postcode;
+    }
 
     $Plaatsnaam = test_invoer($_POST['Plaatsnaam']);
     testInputVoorFouten("Plaatsnaam", "PlaatsnaamErr", $Plaatsnaam);
