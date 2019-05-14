@@ -9,7 +9,7 @@ $maximumlengteGegevens = 50;
 $foutmeldingen = array("AchternaamErr" => "", "VoornaamErr" => "", "EmailErr" => "", "Adres1Err" => "", "PostcodeErr" => "", "PlaatsnaamErr" => "", "LandErr" => "", "GeboorteDatumErr" => "", "TelefoonErr" => "", "GebruikersNaamErr" => "", "wachtwoord1Err" => "", "wachtwoord2Err" => "", "AntwoordErr" => "");
 $_SESSION['registratieFoutmeldingen'] = $foutmeldingen;
 $GebruikersnaamTelling = 0;
-$wachtwoordMinimaalAantalTekens = 3;
+$wachtwoordMinimaalAantalTekens = 6;
 $registratieGegevens = array("Emailadres" => "", "Voornaam" => "", "Achternaam" => "", "Adres_1" => "", "Adres_2" => "", "Postcode" => "", "Plaatsnaam" => "", "Land" => "", "Geboortedatum" => "", "Telefoonnummer" => "", "Gebruikersnaam" => "", "Wachtwoord" => "", "vraagNummer" => "", "AntwoordOpVraag" => "");
 $_SESSION['registratieGegevens'] = $registratieGegevens;
 
