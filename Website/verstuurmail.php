@@ -7,19 +7,19 @@ $mailadres = $_SESSION['Emailadres'];
 $masterPW = "test";
 $hash = hash('sha256', $mailadres . $masterPW);
 
-
+$add =  $mailadres .'&hash='.$hash. '&tijd='. time();
 $to      = $mailadres;
 $subject = 'Registreren | Verificatie';
-$message = '
+$message = "
  
 hoi,
 Bedankt voor het registreren!
 Klik hieronder op de link om jouw mailadres te verifieren en om de registratie te kunnen voortzetten:
 
  --------------------------------------------------------------
-(deze link is maar 4 uur geldig)
  
-http://iproject2.icasites.nl/checkemail.php?email='. $mailadres .'&hash='.$hash. '&tijd='. time();
+ 
+http://iproject2.icasites.nl/checkemail.php?email=$add".
 
 'alvast bedankt
 EenmaalAndermaal team';
