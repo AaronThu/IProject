@@ -35,7 +35,14 @@ if (isset($_POST['registreer'])) {
     }
 
     $Postcode = test_invoer($_POST['Postcode']);
-    testInputVoorFouten("Postcode", "PostcodeErr", $Postcode);
+    if (empty($Postcode)) {
+        $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is verplicht";
+    } 
+    elseif(ControleerPostcode($Postcode) == false) {
+        $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is niet geldig";
+    } else{
+        $_SESSION['registratieGegevens']["Postcode"] = $Postcode;
+    }
 
     $Plaatsnaam = test_invoer($_POST['Plaatsnaam']);
     testInputVoorFouten("Plaatsnaam", "PlaatsnaamErr", $Plaatsnaam);
@@ -46,10 +53,8 @@ if (isset($_POST['registreer'])) {
     $telefoonNummer = test_invoer($_POST['Telefoonnummer']);
     if (empty($telefoonNummer)) {
         $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer is verplicht";
-    } elseif(kijkVoorLetters($telefoonNummer) == true){
-        $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer mag geen letters, speciale tekens of spaties bevatten";
-    } elseif(kijkVoorCorrecteTekens($telefoonNummer) == false) {
-        $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer mag geen letters, speciale tekens of spaties bevatten";
+    } elseif(ControleerTelefoonnummer($telefoonNummer) == false){
+        $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer is niet geldig";
     } else{
         $_SESSION['registratieGegevens']["Telefoonnummer"] = $telefoonNummer;
     }
