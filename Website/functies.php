@@ -31,24 +31,24 @@ function kijkVoorCorrecteTekens($string) {
     }
 }
 
-function ControleerTelefoonnummer($telefoonnummer){
+function ControleerTelefoonnummer($telefoonnummer) {
 
-    if(preg_match("/^[0-9]{10}$/", $telefoonnummer)) {
+    if (preg_match("/^[0-9]{10}$/", $telefoonnummer)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 function ControleerPostcode($postcode) {
-    if(preg_match("/^[0-9]{4}[A-Z]{2}$/", $postcode)) {
+    if (preg_match("/^[0-9]{4}[A-Z]{2}$/", $postcode)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-function genereerVraagNummer($dbh){
+function genereerVraagNummer($dbh) {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();
     $nummer = mt_rand(1, count($rijtelling) - 1);
@@ -112,7 +112,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
 
         $artikelen .= '<div class=" ' . $columntype . '" data-hover=' . "€" . $Verkoopprijs . ' >
                 <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(assets/img/' . $foto . '); background-size: cover">
-                    <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . formatTime($tijd) . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">05:00:00</p>
+                    <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
                     <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
                 </div>
             </div>';
@@ -120,8 +120,4 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
     }
 
     return $artikelen;
-}
-
-function formatTime($oldTime) {
-    return str_replace("\"", "", $oldTime);
 }

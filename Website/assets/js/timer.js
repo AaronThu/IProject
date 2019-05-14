@@ -12,7 +12,7 @@ function makeTimer(element) {
     } else {
         return
     }
-
+    element.innerHTML = "00:00:00";
     var countDownDate = sqlToJsDate(time);
     var timer = setInterval(() => {
         var now = new Date().getTime();
