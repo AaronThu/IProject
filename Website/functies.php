@@ -31,6 +31,15 @@ function kijkVoorCorrecteTekens($string){
     }
 }
 
+function ControleerTelefoonnummer($telefoonnummer){
+
+    if(preg_match("/^[0-9]{10}$/", $telefoonnummer)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function genereerVraagNummer($dbh){
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();
