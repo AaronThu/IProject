@@ -12,12 +12,17 @@ $to      = $mailadres;
 $subject = 'Registreren | Verificatie';
 $message = '
  
+hoi,
 Bedankt voor het registreren!
 Klik hieronder op de link om jouw mailadres te verifieren en om de registratie te kunnen voortzetten:
 
  --------------------------------------------------------------
+(deze link is maar 4 uur geldig)
  
 http://iproject2.icasites.nl/checkemail.php?email='. $mailadres .'&hash='.$hash. '&tijd='. time();
+
+'alvast bedankt
+EenmaalAndermaal team';
 
 $headers = 'From:noreply@EenmaalAndermaal.com' . "\r\n";
 mail($to, $subject, $message, $headers);
