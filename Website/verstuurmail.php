@@ -17,11 +17,11 @@ Bedankt voor het registreren!
 Klik hieronder op de link om jouw mailadres te verifieren en om de registratie te kunnen voortzetten:
 
  --------------------------------------------------------------
- 
+ (deze link is maar 4 uur geldig)
  
 http://iproject2.icasites.nl/checkemail.php?email=$add".
 
-'alvast bedankt
+'a alvast bedankt
 EenmaalAndermaal team';
 
 $headers = 'From:noreply@EenmaalAndermaal.com' . "\r\n";
