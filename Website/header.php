@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "database.php";
-include_once "databaseFuncties.php";
+include_once "databaseFunctions.php";
 
 if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';
