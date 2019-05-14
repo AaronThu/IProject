@@ -31,7 +31,24 @@ function kijkVoorCorrecteTekens($string) {
     }
 }
 
-function genereerVraagNummer($dbh) {
+function ControleerTelefoonnummer($telefoonnummer){
+
+    if(preg_match("/^[0-9]{10}$/", $telefoonnummer)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function ControleerPostcode($postcode) {
+    if(preg_match("/^[0-9]{4}[A-Z]{2}$/", $postcode)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function genereerVraagNummer($dbh){
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();
     $nummer = mt_rand(1, count($rijtelling) - 1);
