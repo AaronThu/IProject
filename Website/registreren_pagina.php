@@ -61,6 +61,8 @@ if (isset($_POST['registreer'])) {
 
     if (empty($_POST['GeboorteDatum'])) {
         $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is verplicht";
+    } else if(ControleerGeboortedatum($_POST['GeboorteDatum']) == false) {
+        $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is in de toekomst";
     } else {
         $_SESSION['registratieGegevens']["Geboortedatum"] = date("m-d-Y", strtotime($_POST['GeboorteDatum']));
     }

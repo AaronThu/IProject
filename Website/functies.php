@@ -48,6 +48,18 @@ function ControleerPostcode($postcode) {
     }
 }
 
+function ControleerGeboortedatum($geboortedatum) {
+    $huidigetijd = time();
+    $geboortedatumintijd = strtotime($geboortedatum);
+    if ($geboortedatumintijd < $huidigetijd) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+
 function genereerVraagNummer($dbh) {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();
