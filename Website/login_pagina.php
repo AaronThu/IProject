@@ -1,34 +1,33 @@
 <?php
-session_Start();
 include_once("database.php");
 include_once("header.php");
+include_once("functies.php");
 ?>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
 
-<body class="background">
-<main style="min-height: 60vh;margin-right: 10vw;margin-left: 10vw;">
-    <div class="container text-center" style="padding: 4em;">
-        <h2 style="margin: 1ex;color: rgb(255,255,255);">Inloggen</h2>
-        <form style="width: 100%;padding: 2em;" method="post" action="inlog_systeem.php">
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center">Gebruikersnaam</h5>
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center foutmeldingTekst"></h5>
-            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center flex-wrap flex-sm-wrap flex-md-nowrap flex-lg-nowrap justify-content-xl-center align-items-xl-center flex-xl-nowrap"
-                 style="margin: 1em 0em;"> <input
-                        class="form-control inputforms" type="text"
-                        placeholder="Gebruikersnaam" name="Gebruikersnaam" autofocus=""></div>
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center">Wachtwoord</h5>
-            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center flex-wrap flex-sm-wrap flex-md-nowrap flex-lg-nowrap justify-content-xl-center align-items-xl-center flex-xl-nowrap"
-                 style="margin: 1em 0em;"><input
-                        class="form-control inputforms" type="password"
-                        name="Wachtwoord" placeholder="Wachtwoord" minlength="3"></div>
-            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="inloggen">Login
-            </button>
-        </form>
+<body style="height: 600px;">
+    <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">
+        <form method="post" style="background-color: #4b4c4d;"action="inlog_systeem.php">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration">
+                <h1 style="color: rgb(255,255,255);">Inloggen</h1>
+            </div>
+            <div class="form-group"><p>Gebruikersnaam</p><input class="form-control" type="" name="Gebruikersnaam" placeholder="Gebruikersnaam"></div>
+            <div class="form-group"><p>Wachtwoord</p><input class="form-control" type="password" name="Wachtwoord" placeholder="Wachtwoord"minlength="3"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="inloggen"style="background-color: #ffb357;">Inloggen</button></div><a class="forgot" href="#" style="color: rgb(255,255,255);">Nog geen account?</a></form>
     </div>
-</main>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
-<?php include_once("footer.php")?>
+
+<?php
+include_once("footer.php");
