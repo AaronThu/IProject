@@ -27,7 +27,8 @@
   margin: 0em;
   display: flex;
   flex-wrap: wrap;
-  word-break: break-all;
+  word-break: normal;
+  padding: 0.25em;
 }
 
 @media (min-width: 300px) {
@@ -49,7 +50,6 @@
   color: white;
   text-decoration: none;
   margin: 0.25em;
-  padding: 0.5em;
 }
 
 .rubriek .item img {
