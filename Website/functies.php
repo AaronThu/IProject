@@ -41,9 +41,9 @@ function ControleerTelefoonnummer($telefoonnummer) {
 }
 
 function ControleerPostcode($postcode) {
-    if (preg_match("/^[0-9]{4}[A-Z]{2}$/", $postcode)) {
+    if(preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
         return true;
-    } else {
+    }else{
         return false;
     }
 }
@@ -51,7 +51,8 @@ function ControleerPostcode($postcode) {
 function ControleerGeboortedatum($geboortedatum) {
     $huidigetijd = time();
     $geboortedatumintijd = strtotime($geboortedatum);
-    if ($geboortedatumintijd < $huidigetijd) {
+    $minimalegeboortedatum = -2208988800;
+    if ($geboortedatumintijd < $huidigetijd && $geboortedatumintijd > $minimalegeboortedatum) {
         return true;
     }
     else {
@@ -59,6 +60,16 @@ function ControleerGeboortedatum($geboortedatum) {
     }
 
 }
+
+function ControleerAdres($adres)
+ {
+     if(preg_match("/^[a-zA-Z]+\ +[0-9]{1,3}+$/", $adres)) {
+         return true;
+     }
+     else {
+         return false;
+     }
+ }
 
 function genereerVraagNummer($dbh) {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
