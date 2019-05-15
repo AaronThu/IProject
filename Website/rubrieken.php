@@ -52,7 +52,7 @@ include_once "databaseFunctions.php";
     <?php
 foreach (GetRubrieken(-1) as $key => $value) {
     print("<div class=\"container rubriek\">");
-    print("<h1 class=\"item\" style=\"width: 10em;\">$value[Rubrieknaam]</h1>");
+    print("<h2 class=\"item\" style=\"width: 10em;\">$value[Rubrieknaam]</h2>");
     print("<div class=\"item background image\"><img src=\"" . GetRubriekenFoto($value["Rubrieknummer"]) . "\"></div>");
     print("<div class=\"item\">");
     foreach (GetRubrieken($value["Rubrieknummer"]) as $key => $value) {
