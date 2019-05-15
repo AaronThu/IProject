@@ -13,7 +13,7 @@ $subject = 'Registreren | Verificatie';
 
 $message ='<html lang="nl"><body>';
 $message .= '<p>Bedankt voor het registreren! <br> Klik hieronder op de link om jouw mailadres te verifiëren en de registratie voort te zetten:</p>';
-$message .='<p>  --------------------------------------------------------------<br>(deze link is maar 4 uur geldig)</p>';
+$message .='<p>  --------------------------------------------------------------<br>Deze link is maar 4 uur geldig)</p>';
 $message .='http://iproject2.icasites.nl/checkemail.php?email='. $mailadres .'&hash='.$hash. '&tijd='. time();
 $message .='<p>Bedankt!<br>Team EenmaalAndermaal</p>';
 $message .="<img src='http://iproject2.icasites.nl/assets/img/EenmaalAndermaal_Logo.png' alt='' width='200' heigth='200' />";
