@@ -27,7 +27,11 @@ if (isset($_POST['registreer'])) {
 
     if (empty($_POST['Adres_1'])) {
         $_SESSION['registratieFoutmeldingen']['Adres1Err'] = "Minimaal 1 adres moet worden opgegeven";
-    } else {
+    } 
+    elseif (ControleerAdres($_POST['Adres_1']) == false) {
+        $_SESSION['registratieFoutmeldingen']['Adres1Err'] = "De adres gegevens zijn onjuist";
+    }
+    else {
         $_SESSION['registratieGegevens']["Adres_1"] = test_invoer($_POST['Adres_1']);
         if (test_invoer($_POST['Adres_2'])) {
             $_SESSION['registratieGegevens']["Adres_2"] = test_invoer($_POST['Adres_2']);
