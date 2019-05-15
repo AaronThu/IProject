@@ -27,6 +27,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
         <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/Rubriek.css">
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
