@@ -24,7 +24,7 @@ function kijkVoorCijfers($string) {
 }
 
 function kijkVoorCorrecteTekens($string){
-    if (!preg_match('/[^A-Za-z0-9\s]$/', $string)) {
+    if (preg_match("/^[a-zA-Z'. -]{2,}+$/", $string)) {
         return true;
     }else{
         return false;
@@ -109,7 +109,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde) {
     if (empty($ingevuldeWaarde)) {
         $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem is verplicht";
     } elseif (kijkVoorCorrecteTekens($ingevuldeWaarde) == false) {
-        $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem mag geen speciale tekens of spaties bevatten";
+        $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem invoer is incorrect";
     } else {
         $_SESSION['registratieGegevens'][$naamItem] = $ingevuldeWaarde;
     }
