@@ -1,10 +1,10 @@
 <?php
 session_Start();
-include_once("functies.php");
-include_once("database.php");
+include_once "functies.php";
+include_once "database.php";
 $vraagNummer = genereerVraagNummer($dbh);
-$locatieRegistratiesysteem = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
-$locatieFouteLink = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
+$locatieRegistratiesysteem = "Location: registratie_systeem.php";
+$locatieFouteLink = "Location: registreren_emailpagina.php";
 $maximumlengteGegevens = 50;
 $foutmeldingen = array("AchternaamErr" => "", "VoornaamErr" => "", "EmailErr" => "", "Adres1Err" => "", "PostcodeErr" => "", "PlaatsnaamErr" => "", "LandErr" => "", "GeboorteDatumErr" => "", "TelefoonErr" => "", "GebruikersNaamErr" => "", "wachtwoord1Err" => "", "wachtwoord2Err" => "", "AntwoordErr" => "");
 $_SESSION['registratieFoutmeldingen'] = $foutmeldingen;
@@ -16,6 +16,7 @@ $_SESSION['registratieGegevens'] = $registratieGegevens;
 if (empty($_SESSION['Emailadres'])) {
     $_SESSION['foutmelding'] = "Deze link is niet geldig, laat een mailtje naar je sturen";
     header($locatieFouteLink);
+    return;
 }
 
 if (isset($_POST['registreer'])) {
@@ -27,11 +28,9 @@ if (isset($_POST['registreer'])) {
 
     if (empty($_POST['Adres_1'])) {
         $_SESSION['registratieFoutmeldingen']['Adres1Err'] = "Minimaal 1 adres moet worden opgegeven";
-    } 
-    elseif (ControleerAdres($_POST['Adres_1']) == false) {
+    } elseif (ControleerAdres($_POST['Adres_1']) == false) {
         $_SESSION['registratieFoutmeldingen']['Adres1Err'] = "De adres gegevens zijn onjuist";
-    }
-    else {
+    } else {
         $_SESSION['registratieGegevens']["Adres_1"] = test_invoer($_POST['Adres_1']);
         if (test_invoer($_POST['Adres_2'])) {
             $_SESSION['registratieGegevens']["Adres_2"] = test_invoer($_POST['Adres_2']);
@@ -41,10 +40,9 @@ if (isset($_POST['registreer'])) {
     $Postcode = test_invoer($_POST['Postcode']);
     if (empty($Postcode)) {
         $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is verplicht";
-    } 
-    elseif(ControleerPostcode($Postcode) == false) {
+    } elseif (ControleerPostcode($Postcode) == false) {
         $_SESSION['registratieFoutmeldingen']['PostcodeErr'] = "Postcode is niet geldig";
-    } else{
+    } else {
         $_SESSION['registratieGegevens']["Postcode"] = $Postcode;
     }
 
@@ -57,15 +55,15 @@ if (isset($_POST['registreer'])) {
     $telefoonNummer = test_invoer($_POST['Telefoonnummer']);
     if (empty($telefoonNummer)) {
         $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer is verplicht";
-    } elseif(ControleerTelefoonnummer($telefoonNummer) == false){
+    } elseif (ControleerTelefoonnummer($telefoonNummer) == false) {
         $_SESSION['registratieFoutmeldingen']['TelefoonErr'] = "Telefoonnummer is niet geldig";
-    } else{
+    } else {
         $_SESSION['registratieGegevens']["Telefoonnummer"] = $telefoonNummer;
     }
 
     if (empty($_POST['GeboorteDatum'])) {
         $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is verplicht";
-    } else if(ControleerGeboortedatum($_POST['GeboorteDatum']) == false) {
+    } else if (ControleerGeboortedatum($_POST['GeboorteDatum']) == false) {
         $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is incorrect";
     } else {
         $_SESSION['registratieGegevens']["Geboortedatum"] = date("m-d-Y", strtotime($_POST['GeboorteDatum']));
@@ -103,7 +101,8 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-include_once("header.php");
+var_dump($_SESSION);
+include_once "header.php";
 ?>
 
     <body>
@@ -111,19 +110,19 @@ include_once("header.php");
         <h2 style="color: white">Registreren</h2>
         <form method="post" action="registreren_pagina.php">
             <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
-            echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
-            echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
-            echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer");
-            echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
-            echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
-            echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
-            echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
-            echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land");
-            $vraag = genereerVraag($dbh, $vraagNummer);
-            echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag");
-            echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
-            echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
-            echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
+echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
+echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
+echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer");
+echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
+echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
+echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
+echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
+echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land");
+$vraag = genereerVraag($dbh, $vraagNummer);
+echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag");
+echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
+echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
+echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
 
 
             <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="registreer">Registreer
@@ -135,4 +134,4 @@ include_once("header.php");
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     </body>
-<?php include_once("footer.php"); ?>
+<?php include_once "footer.php";?>
