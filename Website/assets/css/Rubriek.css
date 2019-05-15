@@ -1,0 +1,76 @@
+.rubriek {
+  display: flex;
+  justify-content: left;
+  align-content: flex-start;
+  padding: 1em;
+}
+
+@media (min-width: 300px) {
+  .rubriek {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .rubriek {
+    flex-direction: row;
+    width: 90%;
+  }
+}
+
+.rubriek .item {
+  text-align: left;
+  color: white;
+  min-width: 10%;
+  display: flex;
+  margin: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+@media (min-width: 300px) {
+  .rubriek .item {
+    width: 100%;
+  }
+}
+
+.rubriek .background {
+  background-color: #4b4c4d;
+  width: 12em;
+}
+
+.rubriek .item a:hover {
+  background-color: #a9976a;
+}
+
+.rubriek .item a {
+  color: white;
+  text-decoration: none;
+  margin: 0.25em;
+  padding: 0.5em;
+}
+
+.rubriek .item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rubriek .image {
+  display: block;
+}
+
+@media (min-width: 300px) {
+  .rubriek .item a {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .rubriek .item a {
+    width: initial;
+    width: 45%;
+  }
+}
