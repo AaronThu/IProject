@@ -1,0 +1,52 @@
+.rubriek {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+@media (min-width: 768px) {
+  .rubriek {
+    flex-direction: row;
+    width: 80%;
+  }
+}
+
+@media (min-width: 300px) {
+  .rubriek {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.rubriek .item {
+  text-align: left;
+  color: white;
+  min-width: 10%;
+  display: flex;
+  margin: 0.25em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 300px) {
+  .rubriek .item {
+    width: 100%;
+  }
+}
+
+.rubriek .background {
+  background-color: #4b4c4d;
+  width: 12em;
+}
+
+.rubriek .item a:hover {
+  background-color: #c5ae91;
+}
+
+.rubriek .item a {
+  color: white;
+  text-decoration: none;
+  margin: 0.25em;
+  padding: 0.5em;
+}
+
