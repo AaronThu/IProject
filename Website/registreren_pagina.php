@@ -101,7 +101,6 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-var_dump($_SESSION);
 include_once "header.php";
 ?>
 
