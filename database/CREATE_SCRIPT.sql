@@ -67,6 +67,7 @@ CREATE TABLE Gebruiker (
     AntwoordTekst           VARCHAR(50)         NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
     CONSTRAINT PK_GEBRUIKER PRIMARY KEY (Gebruikersnaam),
+    CONSTRAINT AK_EMAILADRES UNIQUE (Emailadres),
     CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
 )
 GO
