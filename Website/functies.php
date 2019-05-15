@@ -23,10 +23,10 @@ function kijkVoorCijfers($string) {
     return preg_match('/\d/', $string);
 }
 
-function kijkVoorCorrecteTekens($string) {
-    if (!preg_match('/[^A-Za-z0-9]+/', $string)) {
+function kijkVoorCorrecteTekens($string){
+    if (!preg_match('/[^A-Za-z0-9\s]$/', $string)) {
         return true;
-    } else {
+    }else{
         return false;
     }
 }
