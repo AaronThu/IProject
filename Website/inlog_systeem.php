@@ -1,7 +1,7 @@
 <?php
 session_Start();
-include_once ('database.php');
-include_once ('functies.php');
+include_once ('includes/database.php');
+include_once ('includes/functies.php');
 $locatie = "Location: http://iproject2.icasites.nl/login_pagina.php";
 if(isset($_POST['inloggen'])){
         $Gebruikersnaam = test_invoer($_POST['Gebruikersnaam']);

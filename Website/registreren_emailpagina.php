@@ -1,7 +1,7 @@
 <?php
 session_Start();
-include_once 'functies.php';
-include_once 'database.php';
+include_once 'includes/functies.php';
+include_once 'includes/database.php';
 
 $headerEmailPagina = "Location: http://iproject2.icasites.nl/verstuurmail.php";
 $_SESSION['Emailadres'] = "";
@@ -22,7 +22,7 @@ if (isset($_POST['verstuurmail'])) {
     }
 }
 
-include_once "header.php";
+include_once "includes/header.php";
 ?>
 
 <body class="background">
@@ -45,4 +45,4 @@ include_once "header.php";
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bs-animation.js"></script>
 </body>
-<?php include_once "footer.php";?>
+<?php include_once "includes/footer.php";?>

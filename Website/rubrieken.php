@@ -1,7 +1,7 @@
 <?php
-include_once "database.php";
-include_once "header.php";
-include_once "databaseFunctions.php";
+include_once "includes/database.php";
+include_once "includes/header.php";
+include_once "includes/databaseFunctions.php";
 
 // $categorieArtikel = '<div class="container" >';
 
@@ -70,4 +70,4 @@ foreach (GetRubrieken(-1) as $key => $value) {
 
     </html>
 
-<?php include_once "footer.php";?>
+<?php include_once "includes/footer.php";?>

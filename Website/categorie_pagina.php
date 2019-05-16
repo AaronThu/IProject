@@ -1,6 +1,6 @@
 <?php
-include_once("database.php");
-include_once("header.php");
+include_once("includes/database.php");
+include_once("includes/header.php");
 $categorieArtikel = '<div class="container" >';
 
 
@@ -58,4 +58,4 @@ $categorieArtikel .= '</div>';
 
     </html>
 
-<?php include_once("footer.php"); ?>
+<?php include_once("includes/footer.php"); ?>

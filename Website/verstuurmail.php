@@ -1,5 +1,5 @@
 <?php
-include_once('functies.php');
+include_once('includes/functies.php');
 session_start();
 $locatieNaVersturen = "Location: http://iproject2.icasites.nl/index.php";
 

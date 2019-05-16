@@ -1,7 +1,7 @@
 <?php
 session_Start();
-include_once "functies.php";
-include_once "database.php";
+include_once "includes/functies.php";
+include_once "includes/database.php";
 $vraagNummer = genereerVraagNummer($dbh);
 $locatieRegistratiesysteem = "Location: registratie_systeem.php";
 $locatieFouteLink = "Location: registreren_emailpagina.php";
@@ -101,7 +101,7 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-include_once "header.php";
+include_once "includes/header.php";
 ?>
 
     <body>
@@ -133,4 +133,4 @@ echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "passw
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     </body>
-<?php include_once "footer.php";?>
+<?php include_once "includes/footer.php";?>

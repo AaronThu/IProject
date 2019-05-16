@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once('database.php');
-include_once('functies.php');
+include_once('includes/database.php');
+include_once('includes/functies.php');
 
 $tijdLinkGeldig = 14400;
 $locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpagina.php";
@@ -31,5 +31,4 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
     $_SESSION['foutmelding'] = "Dit is geen valide adres, gebruik de link die is opgestuurd";
     header($locatieFouteLink);
 }
-
 ?>
