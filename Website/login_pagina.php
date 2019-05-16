@@ -22,7 +22,7 @@ include_once("includes/functies.php");
             </div>
             <div class="form-group"><p>Gebruikersnaam</p><input class="form-control" type="" name="Gebruikersnaam" placeholder="Gebruikersnaam"></div>
             <div class="form-group"><p>Wachtwoord</p><input class="form-control" type="password" name="Wachtwoord" placeholder="Wachtwoord"minlength="3"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="inloggen"style="background-color: #ffb357;">Inloggen</button></div><a class="forgot" href="#" style="color: rgb(255,255,255);">Nog geen account?</a></form>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="inloggen"style="background-color: #ffb357;">Inloggen</button></div><a class="forgot" href="#" style="color: rgb(255,255,255);">Nog geen account?</a><a class = "forgot" href= "#"> Wachtwoord vergeten? </a></form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
