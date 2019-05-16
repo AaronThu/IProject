@@ -28,7 +28,7 @@ GO
 CREATE TABLE Bod (
     VoorwerpNummer          INT                 NOT NULL,
     Bodbedrag               NUMERIC(11,2)       NOT NULL,
-    Gebruikersnaam          VARCHAR(50)         NOT NULL,
+    GebruikersID            INT                 NOT NULL,
     BodTijd                 DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PK_BOD PRIMARY KEY (VoorwerpNummer, Bodbedrag)
 )
@@ -52,7 +52,8 @@ GO
 /* Gebruiker                                                    */
 /*==============================================================*/
 CREATE TABLE Gebruiker (
-    Gebruikersnaam          VARCHAR(50)         NOT NULL,
+    GebruikersID            INT IDENTITY        NOT NULL,
+	Gebruikersnaam          VARCHAR(50)         NOT NULL,
     Voornaam                VARCHAR(50)         NOT NULL,
     Achternaam              VARCHAR(50)         NOT NULL,
     Adres1                  VARCHAR(50)         NOT NULL,
@@ -66,30 +67,21 @@ CREATE TABLE Gebruiker (
     Vraagnummer             TINYINT             NOT NULL,
     AntwoordTekst           VARCHAR(50)         NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
-    CONSTRAINT PK_GEBRUIKER PRIMARY KEY (Gebruikersnaam),
+    CONSTRAINT PK_GEBRUIKER PRIMARY KEY (GebruikersID),
     CONSTRAINT AK_EMAILADRES UNIQUE (Emailadres),
     CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
 )
 GO
 
-/*==============================================================*/
-/* GebruikersId                                                 */
-/*==============================================================*/
-CREATE TABLE GebruikersId (
-GebruikersID                INT IDENTITY        NOT NULL,
-Gebruikersnaam              VARCHAR(50)         NOT NULL,
-CONSTRAINT PK_GEBRUIKERSID PRIMARY KEY (GebruikersID)
-)
-GO
 
 /*==============================================================*/
 /* Gebruikerstelefoon                                           */
 /*==============================================================*/
 CREATE TABLE Gebruikerstelefoon (
     Volgnr              TINYINT             NOT NULL,
-    Gebruikersnaam      VARCHAR(50)         NOT NULL,
+    GebruikersID        INT                 NOT NULL,
     Telefoonnummer      VARCHAR(10)         NOT NULL,
-    CONSTRAINT PK_GEBRUIKERSTELEFOON PRIMARY KEY (Volgnr, Gebruikersnaam),
+    CONSTRAINT PK_GEBRUIKERSTELEFOON PRIMARY KEY (Volgnr, GebruikersID),
     CONSTRAINT CK_TELEFOONNUMMER CHECK (Telefoonnummer LIKE '%[0-9]%')
 )
 GO
@@ -109,12 +101,12 @@ CREATE TABLE Rubriek (
 /* Verkoper                                                     */
 /*==============================================================*/
 CREATE TABLE Verkoper (
-    Gebruikersnaam      VARCHAR(50)         NOT NULL,
+    GebruikersID        INT                 NOT NULL,
     Bank                VARCHAR(50)             NULL,
     Rekeningnummer      VARCHAR(20)             NULL,
     ControleOptieNaam   VARCHAR(12)         NOT NULL,
     Creditcard          VARCHAR(20)             NULL,
-    CONSTRAINT PK_VERKOPER PRIMARY KEY (Gebruikersnaam),
+    CONSTRAINT PK_VERKOPER PRIMARY KEY (GebruikersID),
     CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post'))
 )
 
@@ -143,8 +135,8 @@ CREATE TABLE Voorwerp (
     BeginMoment         DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Verzendkosten       NUMERIC(7,2)            NULL,
     Verzendinstructies  VARCHAR(200)            NULL,
-    Verkoper            VARCHAR(50)         NOT NULL,
-    Koper               VARCHAR(50)             NULL,
+    VerkopersID         INT			        NOT NULL,
+    KopersID            INT			            NULL,
     Eindmoment AS DATEADD(DAY, Looptijd, BeginMoment),
     VeilingGesloten AS 
             CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, Looptijd, BeginMoment)
