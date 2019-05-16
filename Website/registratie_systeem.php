@@ -1,8 +1,8 @@
 <?php
 session_Start();
 
-include_once('database.php');
-include_once('functies.php');
+include_once('includes/database.php');
+include_once('includes/functies.php');
 
 
 
