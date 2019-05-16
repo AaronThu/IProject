@@ -5,6 +5,19 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+.banner{
+    display: flex;
+    flex-direction: row;
+    border-color: #e4e0e0;
+    background-color: #e4e0e0;
+}
+
+.bannerfotos{
+    vertical-align: text-bottom;
+}
+
+
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -185,7 +198,8 @@ figure {
 
 img {
     vertical-align: middle;
-    border-style: none
+    border-style: none;
+
 }
 
 svg {
@@ -998,7 +1012,7 @@ pre code {
 
         display: block;
         color: white;
-        background: rgba(75,76,77,0.75);
+        background: rgba(169,151,106,0.75);
         content: attr(data-hover);
         position: relative;
         top: 100%;
@@ -1032,7 +1046,7 @@ pre code {
     .col-md-6:hover:before{
         display: block;
         color: white;
-        background: rgba(75,76,77,0.75);
+        background: rgba(169,151,106,0.75);
         content: attr(data-hover);
         position: relative;
         top: 100%;
