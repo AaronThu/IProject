@@ -1,5 +1,6 @@
 .subrubriekenlijst {
   background-color: #4b4c4d;
+  padding: 1em;
 }
 
 .voorwerplijst {}
@@ -48,5 +49,5 @@
 }
 
 .dropper {
-  display: none;
+  display: block;
 }

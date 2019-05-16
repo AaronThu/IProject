@@ -12,6 +12,7 @@
 
 .breadcrum li {
   display: inline-block;
+  margin: 0em;
 }
 
 .breadcrum li::before {
@@ -25,7 +26,7 @@
 }
 
 .breadcrum a:hover {
-  background-color: #a9976a;
+  color: #a9976a;
 }
 
 .breadcrum a {
@@ -34,6 +35,8 @@
   padding: 0.5em;
 }
 
-.highlight:hover {
-  color: white;
+.highlight {
+  border: 1px solid #a9976a;
+  border-radius: 1.5em;
+  background-color: #a9976a;
 }

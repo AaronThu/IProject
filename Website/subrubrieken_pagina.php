@@ -28,21 +28,27 @@ while ($ID > 0) {
  <li><a href="index.php">Home</a></li>
     </ul>
 
-    <!-- <div style="display:flex;">
+    <div style="display:flex;">
         <div class="container subrubriekenlijst">
-            <div class="categorieDropdown"><a href="#">Link</a>
-                <div class="dropper">
-                    <div><a href="#">Link</a></div>
-                    <div><a href="#">Link</a></div>
-                    <div><a href="#">Link</a></div>
-                    <div><a href="#">Link</a></div>
-                    <div><a href="#">Link</a></div>
-                    <div><a href="#">Link</a></div>
-                </div>
-            </div>
+<?php
+
+foreach (GetRubrieken($rubiekID) as $key => $value) {
+
+    print("<div class=\"categorieDropdown\">");
+    print(" <a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>
+        <div class=\"dropper\">");
+    foreach (GetRubrieken($value["Rubrieknummer"]) as $key => $value) {
+        print("<div><a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a></div>");
+    }
+
+    print("</div>");
+    print("</div>");
+}
+?>
         </div>
         <div class="container voorwerplijst"></div>
-    </div> -->
+    </div>
+
 
     </div>
     <script src="assets/js/jquery.min.js"></script>

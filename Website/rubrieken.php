@@ -56,7 +56,7 @@ foreach (GetRubrieken(-1) as $key => $value) {
     print("<div class=\"item background image\"><img src=\"" . GetRubriekenFoto($value["Rubrieknummer"]) . "\"></div>");
     print("<div class=\"item\">");
     foreach (GetRubrieken($value["Rubrieknummer"]) as $key => $value) {
-        print("<a href=\"#\">$value[Rubrieknaam]</a>");
+        print("<a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
     }
     print("</div>");
     print("</div>");
