@@ -77,14 +77,16 @@ h5 {
   margin: 0px;
 }
 
-#Main {
+.Main {
   width: 100vw;
   min-height: 50vh;
+  padding: 1em;
 }
 
 @media (min-width: 768px) {
-  #Main {
+  .Main {
     width: 75vw;
+    margin: auto;
   }
 }
 
