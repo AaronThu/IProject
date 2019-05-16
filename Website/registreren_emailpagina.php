@@ -1,7 +1,7 @@
 <?php
 session_Start();
 include_once('includes/functies.php');
-include_once('includes/database.php');
+include_once('database.php');
 $headerEmailPagina = "Location: http://iproject2.icasites.nl/verstuurmail.php";
 $_SESSION['Emailadres'] = "";
 $_SESSION['emailErr'] = "";
@@ -24,7 +24,7 @@ if (isset($_POST['verstuurmail'])) {
 
 include_once("includes/header.php");
 ?>
-
+<link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
 <body style="height: 600px;">
     <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">
         <form method="post" style="background-color: #4b4c4d;"action="verstuurmail.php">
