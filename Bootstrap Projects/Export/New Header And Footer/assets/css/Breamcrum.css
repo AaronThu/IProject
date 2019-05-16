@@ -1,0 +1,35 @@
+.breadcrum {
+  list-style: none;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  flex-direction: row;
+  width: 100%;
+  padding: 1em;
+  background-color: #4b4c4d;
+}
+
+.breadcrum li {
+  display: inline-block;
+}
+
+.breadcrum li:after {
+  content: ">";
+  color: #c5ae91;
+}
+
+.breadcrum li:last-child:after {
+  content: "";
+  color: #c5ae91;
+}
+
+.breadcrum a:hover {
+  background-color: #a9976a;
+}
+
+.breadcrum a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5em;
+}
+
