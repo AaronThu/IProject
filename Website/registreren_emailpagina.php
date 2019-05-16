@@ -1,15 +1,14 @@
 <?php
 session_Start();
-include_once 'includes/functies.php';
-include_once 'includes/database.php';
-
+include_once('functies.php');
+include_once('database.php');
 $headerEmailPagina = "Location: http://iproject2.icasites.nl/verstuurmail.php";
 $_SESSION['Emailadres'] = "";
 $_SESSION['emailErr'] = "";
 
 if (isset($_POST['verstuurmail'])) {
-    $_SESSION['Emailadres'] = test_invoer($_POST['Emailadres']);
-    $tellingemailadres = vergelijkloginwaarde("Emailadres", $_SESSION['Emailadres'], $dbh);
+   $_SESSION['Emailadres'] = test_invoer($_POST['Emailadres']);
+   $tellingemailadres = vergelijkloginwaarde("Emailadres", $_SESSION['Emailadres'], $dbh);
 
     if (empty($_SESSION['Emailadres'])) {
         $_SESSION['foutmelding'] = "Email is verplicht";
@@ -22,27 +21,26 @@ if (isset($_POST['verstuurmail'])) {
     }
 }
 
-include_once "includes/header.php";
+
+include_once("header.php");
 ?>
 
-<body class="background">
-
-<main style="min-height: 52.5vh;margin-right: 10vw;margin-left: 10vw;">
-    <div class="container text-center" style="padding: 4em;">
-        <h2 style="margin: 1ex;color: #ffffff;">Registreren</h2>
-        <form style="width: 100%;padding: 2em;" method="post" action="registreren_emailpagina.php">
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center" >Vul jouw email-adres in*</h5>
-            <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center foutmeldingTekst"></h5>
-            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center flex-wrap flex-sm-wrap flex-md-nowrap flex-lg-nowrap justify-content-xl-center align-items-xl-center flex-xl-nowrap"
-                 style="margin: 1em 0em;"><input
-                        class="form-control inputforms" type="text" name="Emailadres" id="Emailadres" placeholder="Email"></div>
-            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="verstuurmail">Registreer
-            </button>
-        </form>
+<body style="height: 600px;">
+    <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">
+        <form method="post" style="background-color: #4b4c4d;"action="verstuurmail.php">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration">
+                <h2 style="color: rgb(255,255,255);">Registreren</h2>
+          
+            </div>
+            
+            <div class="form-group"><p>E-mailadres</p><input class="form-control" type="email" name="email" placeholder="E-mailadres"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="registreren"style="background-color: #ffb357;">Registreren</button></div>
+            <p> U ontvangt een verificatielink </p>
+            <p class = "disclaimer"> Uw e-mailadres wordt niet opgeslagen in onze database</p>
+            
     </div>
-</main>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-<?php include_once "includes/footer.php";?>
+<?php include_once("footer.php");?>
