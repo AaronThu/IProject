@@ -26,4 +26,13 @@ function GetRubriekenFoto($id) {
         return null;
     }
 }
+
+function GetParentRubrieken($id) {
+    global $dbh;
+    $parentQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer,Parent_Rubriek FROM Rubriek where Rubrieknummer = ?  ORDER BY Volgnr, Rubrieknaam");
+    $parentQuery->execute([$id]);
+    $parent = $parentQuery->fetch();
+    return $parent;
+}
+
 ?>

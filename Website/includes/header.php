@@ -20,15 +20,17 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>EenmaalAndermaal</title>
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/Footer-Dark.css">
-        <link rel="stylesheet" href="assets/css/Navigation-with-Button-1.css">
-        <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
-        <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/Rubriek.css">
-        <link rel="icon"       href="assets/img/EenmaalAndermaal_Logo.png">
+        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
+        <link rel="stylesheet" href="../assets/css/Navigation-with-Button-1.css">
+        <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
+        <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+        <link rel="stylesheet" href="../assets/css/styles.css">
+        <link rel="stylesheet" href="../assets/css/Rubriek.css">
+        <link rel="stylesheet" href="../assets/css/Breadcrum.css">
+        <link rel="stylesheet" href="../assets/css/Subrubrieken.css">
+        <link rel="icon"       href="../assets/img/EenmaalAndermaal_Logo.png">
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -49,7 +51,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                             <h6 class="dropdown-header" role="presentation">Populair</h6>
                             <?php
 foreach (GetRubriekenPopulair(3) as $key => $value) {
-    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
 }
 ?>
                             <div class="dropdown-divider" role="presentation"></div>
@@ -57,7 +59,7 @@ foreach (GetRubriekenPopulair(3) as $key => $value) {
                             <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
                                 <?php
 foreach (GetRubrieken(-1) as $key => $value) {
-    print("<a class=\"dropdown-item\" href=\"#$value[Rubrieknaam]\">$value[Rubrieknaam]</a>");
+    print("<a class=\"dropdown-item\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
 }
 ?>
                             </div>

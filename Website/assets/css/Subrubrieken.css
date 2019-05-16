@@ -1,0 +1,52 @@
+.subrubriekenlijst {
+  background-color: #4b4c4d;
+}
+
+.voorwerplijst {}
+
+@media (min-width: 768px) {
+  .subrubriekenlijst {
+    width: 30%;
+  }
+}
+
+@media (min-width: 768px) {
+  .voorwerplijst {
+    width: 70%;
+  }
+}
+
+.categorieDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorieDropdown div>div {
+  display: flex;
+  flex-direction: column;
+  padding: 0em 0em 0em 2em;
+}
+
+.subrubriekenlijst>div>div>div:before {
+  content: no-open-quote;
+}
+
+.categorieDropdown a {
+  text-decoration: none;
+  color: white;
+  padding: 0.1em;
+  width: 100%;
+  height: 100%;
+}
+
+.categorieDropdown a:hover {
+  background-color: #a9976a;
+}
+
+.dropper .show {
+  display: block;
+}
+
+.dropper {
+  display: none;
+}

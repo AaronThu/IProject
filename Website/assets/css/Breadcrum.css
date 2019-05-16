@@ -1,0 +1,39 @@
+.breadcrum {
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  color: white;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 1em;
+  background-color: #4b4c4d;
+}
+
+.breadcrum li {
+  display: inline-block;
+}
+
+.breadcrum li::before {
+  content: ">";
+  color: #c5ae91;
+}
+
+.breadcrum li:last-child::before {
+  content: "";
+  color: #c5ae91;
+}
+
+.breadcrum a:hover {
+  background-color: #a9976a;
+}
+
+.breadcrum a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5em;
+}
+
+.highlight:hover {
+  color: white;
+}

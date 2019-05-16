@@ -2,6 +2,7 @@
 
 //FORMULIEREN FUNCTIES
 function test_invoer($data) {
+    $data = Strip_tags($data);
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -23,10 +24,10 @@ function kijkVoorCijfers($string) {
     return preg_match('/\d/', $string);
 }
 
-function kijkVoorCorrecteTekens($string){
+function kijkVoorCorrecteTekens($string) {
     if (preg_match("/^[a-zA-Z'. -]{2,}+$/", $string)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -41,9 +42,9 @@ function ControleerTelefoonnummer($telefoonnummer) {
 }
 
 function ControleerPostcode($postcode) {
-    if(preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
+    if (preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -54,22 +55,19 @@ function ControleerGeboortedatum($geboortedatum) {
     $minimalegeboortedatum = -2208988800;
     if ($geboortedatumintijd < $huidigetijd && $geboortedatumintijd > $minimalegeboortedatum) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 
 }
 
-function ControleerAdres($adres)
- {
+function ControleerAdres($adres) {
     if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,3}+$/", $adres)) {
-         return true;
-     }
-     else {
-         return false;
-     }
- }
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function genereerVraagNummer($dbh) {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
