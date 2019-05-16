@@ -2,8 +2,8 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once "database.php";
-include_once "databaseFunctions.php";
+include_once "includes/database.php";
+include_once "includes/databaseFunctions.php";
 
 if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';

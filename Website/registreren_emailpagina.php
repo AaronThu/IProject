@@ -1,7 +1,7 @@
 <?php
 session_Start();
-include_once('functies.php');
-include_once('database.php');
+include_once('includes/functies.php');
+include_once('includes/database.php');
 $headerEmailPagina = "Location: http://iproject2.icasites.nl/verstuurmail.php";
 $_SESSION['Emailadres'] = "";
 $_SESSION['emailErr'] = "";
@@ -22,7 +22,7 @@ if (isset($_POST['verstuurmail'])) {
 }
 
 
-include_once("header.php");
+include_once("includes/header.php");
 ?>
 
 <body style="height: 600px;">
@@ -43,4 +43,4 @@ include_once("header.php");
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-<?php include_once("footer.php");?>
+<?php include_once("includes/footer.php");?>

@@ -1,7 +1,7 @@
 <?php
-include_once "database.php";
-include_once "functies.php";
-include_once "header.php";
+include_once "includes/database.php";
+include_once "includes/functies.php";
+include_once "includes/header.php";
 if (empty($_SESSION['Gebruikersnaam'])) {
    include_once("banner.html");
 }
@@ -84,4 +84,4 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 
 
 <?php
-include_once "footer.php";?>
+include_once "includes/footer.php";?>
