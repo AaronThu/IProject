@@ -13,10 +13,10 @@ $wachtwoordMinimaalAantalTekens = 6;
 $registratieGegevens = array("Emailadres" => "", "Voornaam" => "", "Achternaam" => "", "Adres_1" => "", "Adres_2" => "", "Postcode" => "", "Plaatsnaam" => "", "Land" => "", "Geboortedatum" => "", "Telefoonnummer" => "", "Gebruikersnaam" => "", "Wachtwoord" => "", "vraagNummer" => "", "AntwoordOpVraag" => "");
 $_SESSION['registratieGegevens'] = $registratieGegevens;
 
-// if (empty($_SESSION['Emailadres'])) {
-//     $_SESSION['foutmelding'] = "Deze link is niet geldig, laat een mailtje naar je sturen";
-//     header($locatieFouteLink);
-// }
+if (empty($_SESSION['Emailadres'])) {
+    $_SESSION['foutmelding'] = "Deze link is niet geldig, laat een mailtje naar je sturen";
+    header($locatieFouteLink);
+}
 
 if (isset($_POST['registreer'])) {
     $Voornaam = test_invoer($_POST['Voornaam']);
