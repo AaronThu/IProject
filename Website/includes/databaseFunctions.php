@@ -35,11 +35,11 @@ function GetParentRubrieken($id) {
     return $parent;
 }
 
-// function TelVoorwerpen {
-//     global $dbh;
-//     $TelQuery = $dbh->prepare("SELECT count(*) FROM Voorwerp");
-//     $Tel = $TelQuery->fetch();
-//     return $Tel;
-// }
-
+function CountVoorwerpen() {
+    global $dbh;
+    $CountQuery = $dbh->prepare("SELECT count(voorwerpnummer) FROM Voorwerp");
+    $CountQuery->execute();
+    $Count = $CountQuery->fetch()[0];
+    return $Count;
+}
 ?>
