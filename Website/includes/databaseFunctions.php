@@ -35,4 +35,11 @@ function GetParentRubrieken($id) {
     return $parent;
 }
 
+function TelVoorwerpen {
+    global $dbh;
+    $TelQuery = $dbh->prepare("SELECT count(*) FROM Voorwerp");
+    $Tel = $TelQuery->fetch();
+    return $Tel;
+}
+
 ?>
