@@ -6,7 +6,6 @@ for (let i = 0; i < allElements.length; i++) {
 
 function makeTimer(element) {
     var time = "";
-    console.log(element.dataset);
     if (element.dataset.time != undefined) {
         time = element.dataset.time;
     } else {
