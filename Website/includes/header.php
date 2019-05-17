@@ -14,7 +14,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 if (empty($_SESSION['Gebruikersnaam'])) {
     $registratieKnop = '<a class="btn btn-light action-button  href="registreren_emailpagina.php">Registeren</a>';
 } else {
-    $registratieKnop = '<a class="btn btn-light action-button" href="account.php">Mijn Account</a>';
+    $registratieKnop = '<a class="btn btn-light action-button" href="#">Mijn Account</a>';
 }
 ?>
 
