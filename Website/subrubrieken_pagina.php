@@ -34,8 +34,11 @@ while ($ID > 0) {
 foreach (GetRubrieken(GetParentRubrieken($rubiekID)["Parent_Rubriek"]) as $key => $value) {
     print("<div class=\"categorieDropdown\">");
 
-    print(" <a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
-
+    if ($value["Rubrieknummer"] == $rubiekID) {
+        print(" <a class=\"highlight\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+    } else {
+        print(" <a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+    }
     $subRubrieken = GetRubrieken($value["Rubrieknummer"]);
     if ($value["Rubrieknummer"] == $rubiekID && sizeof($subRubrieken) > 0) {
         print("<div class=\"dropper\">");
