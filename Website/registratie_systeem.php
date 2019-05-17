@@ -7,7 +7,7 @@ include_once('includes/functies.php');
 
 
 
-    $locatieNaRegistratie = "Location: http://iproject2.icasites.nl/login_pagina.php";
+    $locatieNaRegistratie = "Location: http://iproject2.icasites.nl/registreren_klaar.php";
 //Vult gegevens in de database
     $query = $dbh->prepare("INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, Wachtwoord, Vraagnummer, AntwoordTekst, SoortGebruiker) VALUES (:Gebruikersnaam, :Voornaam, :Achternaam, :Adres1, :Adres2, :Postcode, :Plaatsnaam, :Land, :Geboortedatum, :Emailadres, :Wachtwoord, :Vraagnummer, :AntwoordTekst, :SoortGebruiker)");
 
