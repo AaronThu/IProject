@@ -142,3 +142,28 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
 
     return $artikelen;
 }
+
+function genereerCatogorie($dbh, $gegevenQuery, $columntype) {
+    $catogorie = '';
+
+    $querycatogorie = $dbh->query("$gegevenQuery");
+    while ($row = $querycatogorie->fetch()) {
+        $rubriekNaam = $row['Rubrieknaam'];
+        $rubriekNummer = $row['Rubrieknummer'];
+
+        $queryFoto = $dbh->prepare("SELECT * FROM RubriekFotos WHERE Rubrieknummer = :Rubrieknummer");
+        $queryFoto->execute([
+            ":Rubrieknummer" => $rubriekNummer,
+        ]);
+        $foto = $queryFoto->fetchColumn(1);
+
+        $catogorie .= '<div class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
+                <div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
+                <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto .'" alt="' . $foto . '" height=250 width=250 > 
+                    </div>
+            </div>';
+
+    }
+
+    return $catogorie;
+}
