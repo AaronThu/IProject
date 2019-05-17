@@ -3,7 +3,7 @@ include_once "includes/database.php";
 include_once "includes/functies.php";
 include_once "includes/header.php";
 if (empty($_SESSION['Gebruikersnaam'])) {
-   include_once("banner.html");
+   include_once("includes/banner.html");
 }
 
 ?>
