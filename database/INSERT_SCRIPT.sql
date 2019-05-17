@@ -49,12 +49,6 @@ INSERT Betalingswijzen VALUES('iDeal')
 
 
 /*==============================================================*/
-/* GebruikersID                                                 */
-/*==============================================================*/
-INSERT GebruikersId VALUES('testgebruiker')
-
-
-/*==============================================================*/
 /* Gebruiker                                                    */
 /*==============================================================*/
 INSERT Gebruiker VALUES(1, 'Voornaam', 'Achternaam', 'Adres1', 'Adres2', 'Postcode', 'Plaatsnaam', 'Land', '14-may-2010', 'Emailadres', 'Wachtwoord', 1, 'AntwoordTekst', 'ver')

@@ -17,7 +17,7 @@ GO*/
 /*==============================================================*/
 CREATE TABLE Bestand (
     FileNaam                VARCHAR(255)        NOT NULL,       
-    VoorwerpNummer		    INT     		    NOT NULL,       
+    VoorwerpNummer		    BIGINT     		    NOT NULL,       
     CONSTRAINT PK_BESTAND PRIMARY KEY (FileNaam, VoorwerpNummer)
 )
 GO
@@ -26,7 +26,7 @@ GO
 /* Bod                                                          */
 /*==============================================================*/
 CREATE TABLE Bod (
-    VoorwerpNummer          INT                 NOT NULL,
+    VoorwerpNummer          BIGINT              NOT NULL,
     Bodbedrag               NUMERIC(11,2)       NOT NULL,
     GebruikersID            INT                 NOT NULL,
     BodTijd                 DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -38,7 +38,7 @@ GO
 /* Feedback                                                     */
 /*==============================================================*/
 CREATE TABLE FeedBack (
-    VoorwerpNummer          INT                 NOT NULL,
+    VoorwerpNummer          BIGINT              NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL,
     FeedbackSoort           CHAR(8)             NOT NULL DEFAULT 'neutraal',
     FeedbackTijd            DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -123,9 +123,9 @@ GO
 /* Voorwerp                                                     */
 /*==============================================================*/
 CREATE TABLE Voorwerp (
-    Voorwerpnummer      INT IDENTITY        NOT NULL,
-    Titel               VARCHAR(50)         NOT NULL,
-    Beschrijving        VARCHAR(5000)       NOT NULL,
+    Voorwerpnummer      BIGINT IDENTITY     NOT NULL,
+    Titel               VARCHAR(100)         NOT NULL,
+    Beschrijving        VARCHAR(MAX)        NOT NULL,
     Startprijs          NUMERIC(10,2)       NOT NULL,
     Betalingswijze      VARCHAR(25)         NOT NULL DEFAULT 'iDeal',
     Betalingsinstructie VARCHAR(200)            NULL,
@@ -146,17 +146,18 @@ CREATE TABLE Voorwerp (
     Verkoopprijs       NUMERIC(11,2)            NULL,
     CONSTRAINT PK_VOORWERP PRIMARY KEY (Voorwerpnummer),
     CONSTRAINT CK_TITEL CHECK (LEN(TRIM(Titel)) > 1  ),
-	CONSTRAINT CK_BESCHRIJVING CHECK (LEN(TRIM(Beschrijving)) > 10),
+	--CONSTRAINT CK_BESCHRIJVING CHECK (LEN(TRIM(Beschrijving)) > 10),
     CONSTRAINT CK_STARTPRIJS CHECK (Startprijs >= 1.00),
     CONSTRAINT CK_LOOPTIJD CHECK (Looptijd IN (1, 3, 5, 7, 10))
 )
 GO
 
+
 /*==============================================================*/
 /* VoorwerpInRubriek                                            */
 /*==============================================================*/
 CREATE TABLE VoorwerpInRubriek (
-    Voorwerpnummer      INT                 NOT NULL,
+    Voorwerpnummer      BIGINT              NOT NULL,
     Rubrieknummer       INT                 NOT NULL,
     CONSTRAINT PK_VOORWERPINRUBRIEK PRIMARY KEY (VoorwerpNummer, Rubrieknummer)
 )
@@ -176,7 +177,7 @@ CREATE TABLE Vraag (
 /*RubriekFotos                                                  */
 /*==============================================================*/
 CREATE TABLE RubriekFotos(
-Rubrieknummer      INT         NOT NULL,
+Rubrieknummer      INT          NOT NULL,
 RubriekFoto        VARCHAR(100) NOT NULL
 CONSTRAINT PK_RUBRIEKFOTOS PRIMARY KEY (Rubrieknummer)
 )

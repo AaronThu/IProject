@@ -1,24 +1,41 @@
-UPDATE Items
-SET Verkoper = 
-WHERE Verkoper = Gebruikersnaam
+--Insert de voorwerpen
+SET IDENTITY_INSERT dbo.Voorwerp ON;  
+GO  
 
 
-INSERT INTO Voorwerp
+
+--IF NOT EXISTS(SELECT * FROM Voorwerp, Items WHERE Voorwerpnummer = ID)
+BEGIN
+INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, VerkopersID)
 	SELECT ID AS VoorwerpNummer,
 		   Titel AS Titel,
 		   Beschrijving AS beschrijving,
 		   Prijs AS Startprijs,
-		   Locatie AS Plaatsnaam,
-		   Land AS Land,
-		   VerkopersID AS SELECT GebruikersId FROM Gebruiker WHERE Gebruikersnaam = Verkoper 
+		   'iDeal' AS Betalingswijze,
+		   Postcode AS Plaatsnaam,
+		   Locatie AS Land,
+		   4 AS VerkopersID
 FROM Items
-GO
+END
 
-
-
-
+--Insert de fotolocaties van de voorwerpen
+--IF NOT EXISTS(SELECT * FROM Bestand, Illustraties WHERE IllustratieFile = Filenaam AND ItemId = VoorwerpNummer)
+BEGIN
 INSERT INTO Bestand
 	SELECT IllustratieFile AS FileNaam,
 		   ItemId AS VoorwerpNummer
 FROM Illustraties
+END
+
+
+
+--Insert Rubrieknummers van de voorwerpen
+INSERT INTO VoorwerpInRubriek
+	SELECT ID AS Voorwerpnummer,
+	Categorie AS Rubrieknummer
+FROM Items
 GO
+
+
+DELETE FROM Illustraties
+DELETE FROM Items
