@@ -4,7 +4,7 @@ session_Start();
 include_once 'includes/database.php';
 include_once 'includes/functies.php';
 
-$locatieNaRegistratie = "Location: login_pagina.php";
+$locatieNaRegistratie = "Location: registreren_klaar.php";
 //Vult gegevens in de database
 $query = $dbh->prepare("INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, Wachtwoord, Vraagnummer, AntwoordTekst, SoortGebruiker) VALUES (:Gebruikersnaam, :Voornaam, :Achternaam, :Adres1, :Adres2, :Postcode, :Plaatsnaam, :Land, :Geboortedatum, :Emailadres, :Wachtwoord, :Vraagnummer, :AntwoordTekst, :SoortGebruiker)");
 
@@ -23,7 +23,7 @@ $query->execute(
         ':Wachtwoord' => password_hash($_SESSION['registratieGegevens']['Wachtwoord'], PASSWORD_DEFAULT),
         ':Vraagnummer' => $_SESSION['registratieGegevens']['vraagNummer'],
         ':AntwoordTekst' => $_SESSION['registratieGegevens']['AntwoordOpVraag'],
-        ':SoortGebruiker' => 'ver',
+        ':SoortGebruiker' => 'kop',
     ]
 );
 
