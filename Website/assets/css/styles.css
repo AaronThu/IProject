@@ -83,7 +83,7 @@ h5 {
   min-height: 50vh;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .Main {
     width: 75vw;
   }

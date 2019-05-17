@@ -28,14 +28,14 @@ while ($ID > 0) {
  <li><a href="index.php">Home</a></li>
     </ul>
 
-    <div style="display:flex;">
-        <div class="container subrubriekenlijst">
+    <div class="lijst">
+        <div class=" subrubriekenlijst">
 <?php
 $alleRubrieken = GetRubrieken(GetParentRubrieken($rubiekID)["Parent_Rubriek"]);
 foreach ($alleRubrieken as $key => $value) {
     print("<div class=\"categorieDropdown\">");
     if ($value["Rubrieknummer"] == $rubiekID) {
-        print(" <a class=\"highlight\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+        print(" <a class=\"highlight\">$value[Rubrieknaam]</a>");
         $subRubrieken = GetRubrieken($value["Rubrieknummer"]);
         if ($value["Rubrieknummer"] == $rubiekID && sizeof($subRubrieken) > 0) {
             print("<div class=\"dropper\">");
@@ -56,7 +56,7 @@ foreach ($alleRubrieken as $key => $value) {
 }
 ?>
         </div>
-        <div class="container voorwerplijst">
+        <div class=" voorwerplijst">
 
         </div>
     </div>
