@@ -40,3 +40,7 @@
   color: #a9976a !important;
   /* background-color: #a9976a; */
 }
+
+.highlight:hover {
+  background-color: transparent !important;
+}
