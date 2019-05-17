@@ -11,6 +11,11 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
 }
 
+if (empty($_SESSION['Gebruikersnaam'])) {
+    $registratieKnop = '<a class="btn btn-light action-button  href="registreren_emailpagina.php">Registeren</a>';
+} else {
+    $registratieKnop = '<a class="btn btn-light action-button" href="account.php">Mijn Account</a>';
+}
 ?>
 
     <!DOCTYPE html>
@@ -69,7 +74,7 @@ foreach (GetRubrieken(-1) as $key => $value) {
                 </ul>
                 <form class="form-inline mr-auto" target="_self">
                     <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
-                </form><span class="d-flex justify-content-center align-items-center navbar-text actions"><?php echo $loginKnop; ?><a class="btn btn-light action-button" role="button" href="registreren_emailpagina.php">Registreer</a></span><span class="d-none justify-content-center align-items-center navbar-text" id="user"> <a class="btn btn-light action-button" role="button" href="#">Uitloggen</a></span>
+                    </form><span class="d-flex justify-content-center align-items-center navbar-text actions"><?php echo $loginKnop; echo $registratieKnop; ?>
             </div>
         </div>
     </nav>
