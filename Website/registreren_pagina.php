@@ -4,7 +4,7 @@ include_once("includes/functies.php");
 include_once("includes/database.php");
 $vraagNummer = genereerVraagNummer($dbh);
 $locatieRegistratiesysteem = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
-$locatieFouteLink = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
+$locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpagina.php";
 $maximumlengteGegevens = 50;
 $foutmeldingen = array("AchternaamErr" => "", "VoornaamErr" => "", "EmailErr" => "", "Adres1Err" => "", "PostcodeErr" => "", "PlaatsnaamErr" => "", "LandErr" => "", "GeboorteDatumErr" => "", "TelefoonErr" => "", "GebruikersNaamErr" => "", "wachtwoord1Err" => "", "wachtwoord2Err" => "", "AntwoordErr" => "");
 $_SESSION['registratieFoutmeldingen'] = $foutmeldingen;
