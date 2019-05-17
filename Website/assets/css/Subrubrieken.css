@@ -50,4 +50,6 @@
 
 .dropper {
   display: block;
+  padding: 0.5em;
+  background-color: #696969;
 }

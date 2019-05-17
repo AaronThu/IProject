@@ -16,7 +16,7 @@
 }
 
 .breadcrum li::before {
-  content: ">";
+  content: " > ";
   color: #c5ae91;
 }
 

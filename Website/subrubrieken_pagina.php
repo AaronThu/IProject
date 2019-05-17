@@ -31,17 +31,20 @@ while ($ID > 0) {
     <div style="display:flex;">
         <div class="container subrubriekenlijst">
 <?php
-
-foreach (GetRubrieken($rubiekID) as $key => $value) {
-
+foreach (GetRubrieken(GetParentRubrieken($rubiekID)["Parent_Rubriek"]) as $key => $value) {
     print("<div class=\"categorieDropdown\">");
-    print(" <a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>
-        <div class=\"dropper\">");
-    foreach (GetRubrieken($value["Rubrieknummer"]) as $key => $value) {
-        print("<div><a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a></div>");
+
+    print(" <a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+
+    $subRubrieken = GetRubrieken($value["Rubrieknummer"]);
+    if ($value["Rubrieknummer"] == $rubiekID && sizeof($subRubrieken) > 0) {
+        print("<div class=\"dropper\">");
+        foreach ($subRubrieken as $key => $value) {
+            print("<div><a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a></div>");
+        }
+        print("</div>");
     }
 
-    print("</div>");
     print("</div>");
 }
 ?>
