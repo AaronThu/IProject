@@ -36,7 +36,11 @@
 }
 
 .highlight {
-  border: 1px solid #a9976a;
-  border-radius: 1.5em;
-  background-color: #a9976a;
+  border-bottom: 2px solid #a9976a;
+  color: #a9976a !important;
+  /* background-color: #a9976a; */
+}
+
+.highlight:hover {
+  background-color: transparent !important;
 }

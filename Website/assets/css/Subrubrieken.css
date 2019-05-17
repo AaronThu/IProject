@@ -1,17 +1,20 @@
 .subrubriekenlijst {
   background-color: #4b4c4d;
   padding: 1em;
+  width: 100%;
 }
 
-.voorwerplijst {}
+.voorwerplijst {
+  width: 100%;
+}
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .subrubriekenlijst {
     width: 30%;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .voorwerplijst {
     width: 70%;
   }
@@ -35,7 +38,7 @@
 .categorieDropdown a {
   text-decoration: none;
   color: white;
-  padding: 0.1em;
+  padding: 0.2em;
   width: 100%;
   height: 100%;
 }
@@ -52,4 +55,15 @@
   display: block;
   padding: 0.5em;
   background-color: #696969;
+}
+
+.lijst {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 769px) {
+  .lijst {
+    flex-direction: row;
+  }
 }

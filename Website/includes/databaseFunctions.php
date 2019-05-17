@@ -35,4 +35,11 @@ function GetParentRubrieken($id) {
     return $parent;
 }
 
+function CountVoorwerpen() {
+    global $dbh;
+    $CountQuery = $dbh->prepare("SELECT count(voorwerpnummer) FROM Voorwerp");
+    $CountQuery->execute();
+    $Count = $CountQuery->fetch()[0];
+    return $Count;
+}
 ?>

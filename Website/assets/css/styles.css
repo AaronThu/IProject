@@ -25,7 +25,6 @@
 }
 
 .inputforms {
-  width: 60%;
   background-color: #c5ae91;
 }
 
@@ -78,18 +77,49 @@ h5 {
 }
 
 .Main {
+  margin: auto;
+  padding: 1em;
   width: 100vw;
   min-height: 50vh;
-  padding: 1em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .Main {
     width: 75vw;
-    margin: auto;
   }
 }
 
 body {
   background-color: #3a3a3a;
+}
+
+.registratiebutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.registratiepagina {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-around;
+  border-color: #e4e0e0;
+  background-color: #e4e0e0;
+}
+
+.bannerknop {
+  margin-left: 5%;
+  color: black;
+}
+
+h6 {
+  color: #a9976a;
+  word-break: break-all;
 }
