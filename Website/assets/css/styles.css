@@ -108,7 +108,7 @@ justify-content:start;
 
 .banner{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border-color: #e4e0e0;
   background-color: #e4e0e0;
 }
