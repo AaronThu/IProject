@@ -94,8 +94,8 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
     }
     $registratieItem = "";
     $registratieItem .= '
-<h5>' . $naamFormulier . '</h5>
-<h5 class="text-left foutmeldingTekst">' . $error . '</h5>
+<h6>' . $naamFormulier . '</h6>
+<h6 class="text-left foutmeldingTekst">' . $error . '</h6>
 <input
         class="form-control inputforms" type=' . $type . '
         placeholder=""name="' . $naamPOST . '"autofocus="" maxlength="' . $maxLength . '
