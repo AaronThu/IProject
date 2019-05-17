@@ -36,8 +36,8 @@ include_once("includes/header.php");
             
             <div class="form-group"><p>E-mailadres</p><input class="form-control" type="email" name="email" placeholder="E-mailadres"></div>
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="registreren"style="background-color: #ffb357;">Registreren</button></div>
-            <p> U ontvangt een verificatielink </p>
-            <p class = "disclaimer"> Uw e-mailadres wordt niet opgeslagen in onze database</p>
+            <p> U ontvangt een verificatielink.</p>
+            <p class = "disclaimer"> Uw e-mailadres wordt niet opgeslagen in onze database.</p>
             
     </div>
     <script src="assets/js/jquery.min.js"></script>
