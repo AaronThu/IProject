@@ -3,11 +3,10 @@ include_once "includes/database.php";
 include_once "includes/functies.php";
 include_once "includes/header.php";
 if (empty($_SESSION['Gebruikersnaam'])) {
-   include_once("banner.html");
+    include_once "banner.html";
 }
 
 ?>
-    <html>
     <body class="background">
 
     <div class="container">
@@ -80,7 +79,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     </body>
 
 
-    </html>
+
 
 
 <?php
