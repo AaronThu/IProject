@@ -1,10 +1,10 @@
 <?php
 session_Start();
-include_once("includes/functies.php");
-include_once("includes/database.php");
+include_once "includes/functies.php";
+include_once "includes/database.php";
 $vraagNummer = genereerVraagNummer($dbh);
-$locatieRegistratiesysteem = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
-$locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpagina.php";
+$locatieRegistratiesysteem = "Location: registratie_systeem.php";
+$locatieFouteLink = "Location: registreren_emailpagina.php";
 $maximumlengteGegevens = 50;
 $foutmeldingen = array("AchternaamErr" => "", "VoornaamErr" => "", "EmailErr" => "", "Adres1Err" => "", "PostcodeErr" => "", "PlaatsnaamErr" => "", "LandErr" => "", "GeboorteDatumErr" => "", "TelefoonErr" => "", "GebruikersNaamErr" => "", "wachtwoord1Err" => "", "wachtwoord2Err" => "", "AntwoordErr" => "");
 $_SESSION['registratieFoutmeldingen'] = $foutmeldingen;
@@ -101,7 +101,7 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-include_once("includes/header.php");
+include_once "includes/header.php";
 ?>
 
 <body class="d-xl-flex flex-column" style="background-color: #3a3a3a;">
@@ -119,25 +119,25 @@ include_once("includes/header.php");
         <div class="col registratiepagina" style="background-color: #3a3a3a;">
             <h1 style="color: rgb(255,255,255);font-size: 15px;" class = "text-center";>Vul hier je persoonlijke gegevens in</h1>
             <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
-            echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
-            echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
-            echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer"); ?>
+echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
+echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
+echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer"); ?>
         </div>
         <div class="col" style="background-color: #3a3a3a;">
             <h1 style="color: rgb(255,255,255);font-size: 15px;">Vul hier je adresgegevens in</h1>
             <?php echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
-            echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
-            echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
-            echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
-            echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land"); ?>
+echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
+echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
+echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
+echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land"); ?>
         </div>
         <div class="col" style="background-color: #3a3a3a;">
             <h1 style="color: rgb(255,255,255);font-size: 15px;">Vul hier je accountgegevens in</h1>
             <?php echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
-            echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
-            echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord");
-            $vraag = genereerVraag($dbh, $vraagNummer);
-            echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag"); ?>
+echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
+echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord");
+$vraag = genereerVraag($dbh, $vraagNummer);
+echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag"); ?>
         </div>
 </div>
         <div class ="registratiebutton">
@@ -150,4 +150,4 @@ include_once("includes/header.php");
 </body>
 
 <?php
-include_once("includes/footer.php");
+include_once "includes/footer.php";

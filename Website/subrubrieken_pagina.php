@@ -52,7 +52,9 @@ foreach (GetRubrieken(GetParentRubrieken($rubiekID)["Parent_Rubriek"]) as $key =
 }
 ?>
         </div>
-        <div class="container voorwerplijst"></div>
+        <div class="container voorwerplijst">
+
+        </div>
     </div>
 
 
