@@ -105,24 +105,3 @@ h5{
         width: 75vw;
     }
 }
-
-
-
-.banner{
-    display: flex;
-    flex-direction: row;
-    border-color: #e4e0e0;
-    background-color: #e4e0e0;
-}
-
-.bannerknop{
-    margin-left: 5%;
-    color: black;
-}
-
-h6{
-    color: #a9976a;
-    word-break: break-all;
-}
-
-

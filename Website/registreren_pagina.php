@@ -1,10 +1,10 @@
 <?php
 session_Start();
-include_once "includes/functies.php";
-include_once "includes/database.php";
+include_once("includes/functies.php");
+include_once("includes/database.php");
 $vraagNummer = genereerVraagNummer($dbh);
-$locatieRegistratiesysteem = "Location: registratie_systeem.php";
-$locatieFouteLink = "Location: registreren_emailpagina.php";
+$locatieRegistratiesysteem = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
+$locatieFouteLink = "Location: http://iproject2.icasites.nl/registratie_systeem.php";
 $maximumlengteGegevens = 50;
 $foutmeldingen = array("AchternaamErr" => "", "VoornaamErr" => "", "EmailErr" => "", "Adres1Err" => "", "PostcodeErr" => "", "PlaatsnaamErr" => "", "LandErr" => "", "GeboorteDatumErr" => "", "TelefoonErr" => "", "GebruikersNaamErr" => "", "wachtwoord1Err" => "", "wachtwoord2Err" => "", "AntwoordErr" => "");
 $_SESSION['registratieFoutmeldingen'] = $foutmeldingen;
@@ -64,7 +64,7 @@ if (isset($_POST['registreer'])) {
     if (empty($_POST['GeboorteDatum'])) {
         $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is verplicht";
     } else if (ControleerGeboortedatum($_POST['GeboorteDatum']) == false) {
-        $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is incorrect";
+        $_SESSION['registratieFoutmeldingen']['GeboorteDatumErr'] = "Geboortedatum is in de toekomst";
     } else {
         $_SESSION['registratieGegevens']["Geboortedatum"] = date("m-d-Y", strtotime($_POST['GeboorteDatum']));
     }
@@ -101,36 +101,53 @@ if (isset($_POST['registreer'])) {
         header("$locatieRegistratiesysteem");
     }
 }
-include_once "includes/header.php";
+include_once("includes/header.php");
 ?>
 
-    <body>
-    <div class="Main container registratieformulierLayout">
-        <h2 style="color: white">Registreren</h2>
-        <form method="post" action="registreren_pagina.php">
-            <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
-echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
-echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
-echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer");
-echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
-echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
-echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
-echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
-echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land");
-$vraag = genereerVraag($dbh, $vraagNummer);
-echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag");
-echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
-echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
-echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord") ?>
-
-
-            <button class="btn btn-primary text-center registratieKnop" data-bs-hover-animate="pulse" type="submit" name="registreer">Registreer
-            </button>
-        </form>
+<body class="d-xl-flex flex-column" style="background-color: #3a3a3a;">
+    <div>
+        <div class="container">
+            <div class="row>
+                <div class=" col-md-12">
+                <h1 class="text-center" style="color: rgb(255,255,255);margin-bottom:50px;">Registreren</h1>
+            </div>
+        </div>
     </div>
+    </div>
+    <form  method="post" action="registreren_pagina.php">
+        <div class="text-center d-flex d-xl-flex flex-row flex-wrap justify-content-xl-center">
+        <div class="col registratiepagina" style="background-color: #3a3a3a;">
+            <h1 style="color: rgb(255,255,255);font-size: 15px;" class = "text-center";>Vul hier je persoonlijke gegevens in</h1>
+            <?php echo registratieFormulierItem("Voornaam", "VoornaamErr", 50, "text", "Voornaam");
+            echo registratieFormulierItem("Achternaam", "AchternaamErr", 50, "text", "Achternaam");
+            echo registratieFormulierItem("Geboortedatum", "GeboorteDatumErr", 50, "date", "GeboorteDatum");
+            echo registratieFormulierItem("Telefoonnummer", "TelefoonErr", 15, "tel", "Telefoonnummer"); ?>
+        </div>
+        <div class="col" style="background-color: #3a3a3a;">
+            <h1 style="color: rgb(255,255,255);font-size: 15px;">Vul hier je adresgegevens in</h1>
+            <?php echo registratieFormulierItem("Adresregel 1", "Adres1Err", 50, "text", "Adres_1");
+            echo registratieFormulierItem("Adresregel 2", "Adres1Err", 50, "text", "Adres_2");
+            echo registratieFormulierItem("Postcode", "PostcodeErr", 15, "text", "Postcode");
+            echo registratieFormulierItem("Plaats", "PlaatsnaamErr", 50, "text", "Plaatsnaam");
+            echo registratieFormulierItem("Land", "LandErr", 50, "text", "Land"); ?>
+        </div>
+        <div class="col" style="background-color: #3a3a3a;">
+            <h1 style="color: rgb(255,255,255);font-size: 15px;">Vul hier je accountgegevens in</h1>
+            <?php echo registratieFormulierItem("Gebruikersnaam", "GebruikersNaamErr", 50, "text", "Gebruikersnaam");
+            echo registratieFormulierItem("Wachtwoord", "wachtwoord1Err", 50, "password", "Wachtwoord");
+            echo registratieFormulierItem("Herhaal wachtwoord", "wachtwoord2Err", 50, "password", "Herhaalwachtwoord");
+            $vraag = genereerVraag($dbh, $vraagNummer);
+            echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVraag"); ?>
+        </div>
+</div>
+        <div class ="registratiebutton">
+            <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a;" type="submit" name="registreer">Registreren</button>
+</div>
+    </form>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-animation.js"></script>
-    </body>
-<?php include_once "includes/footer.php";?>
+</body>
+
+<?php
+include_once("includes/footer.php");
