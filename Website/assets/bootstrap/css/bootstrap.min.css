@@ -1004,7 +1004,6 @@ pre code {
 
     }
     .col-md-3:hover{
-        transform:scale3d(1.5,2,2.5);
         z-index:1;
     }
 
