@@ -14,8 +14,8 @@
                     </ul>
                 </div>
                 <div class="col-sm-6">
-                    <h3>EenmaalAndermaal</h3>
-                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    <h3>Over EenmaalAndermaal</h3>
+                    <p>Deze website is gemaakt door studenten van de HAN, dit is geen echte veilingwebsite </p>
                 </div>
             </div>
             <p class="copyright">EenmaalAndermaal © 2019</p>
