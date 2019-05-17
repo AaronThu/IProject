@@ -16,6 +16,7 @@ $_SESSION['registratieGegevens'] = $registratieGegevens;
 if (empty($_SESSION['Emailadres'])) {
     $_SESSION['foutmelding'] = "Deze link is niet geldig, laat een mailtje naar je sturen";
     header($locatieFouteLink);
+    return;
 }
 
 if (isset($_POST['registreer'])) {
