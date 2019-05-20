@@ -2,6 +2,7 @@
 session_Start();
 include_once 'includes/database.php';
 include_once 'includes/functies.php';
+include_once 'beheerder/logica/databaseFuncties.php';
 $locatie = "Location: login_pagina.php";
 if (isset($_POST['inloggen'])) {
     $Gebruikersnaam = test_invoer($_POST['Gebruikersnaam']);
@@ -32,7 +33,13 @@ if (isset($_POST['inloggen'])) {
                 $_SESSION['GeboorteDatum'] = $hash[8];
                 $_SESSION['Emailadres'] = $hash[9];
                 $_SESSION['foutmelding'] = "U bent ingelogd";
-                header("Location: index.php ");
+                if (IsAdmin($Gebruikersnaam)) {
+                    header("Location: beheerder/beheerder_homepagina.php");
+                    return;
+                } else {
+                    header("Location: index.php");
+                    return;
+                }
             } else {
                 throw new Exception($wachtwoordofgebruikersnaamfout);
             }
