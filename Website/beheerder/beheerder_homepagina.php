@@ -10,8 +10,6 @@ if (!isset($_SESSION['Gebruikersnaam']) || (isset($_SESSION['Gebruikersnaam']) &
     return;
 }
 
-$var = InsertRubriek($_SESSION['Gebruikersnaam'], "Een Naam", -1, 1, true);
-var_dump($var);
 
 ?>
 
