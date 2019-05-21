@@ -123,21 +123,3 @@ h6 {
   color: #a9976a;
   word-break: break-all;
 }
-
-.navigatieblok {
-  padding: 1em;
-  width: 20%;
-  background-color: #4b4c4d;
-}
-
-.rubriekblok {
-  padding: 1em;
-  width: 30%;
-  background-color: #ffffff;
-}
-
-.wijzegingblok {
-  padding: 1em;
-  width: 50%;
-  background-color: #ffffff;
-}
