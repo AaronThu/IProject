@@ -57,6 +57,7 @@ h5 {
 
 .titel {
   color: #a9976a;
+  font-size: 2em;
 }
 
 .navbar.navbar-light.navbar-expand-md.sticky-top.d-md-flex.d-xl-flex.justify-content-center.align-items-center.align-items-md-center.justify-content-xl-center.align-items-xl-center.navigation-clean-search {
@@ -122,22 +123,4 @@ body {
 h6 {
   color: #a9976a;
   word-break: break-all;
-}
-
-.navigatieblok {
-  padding: 1em;
-  width: 20%;
-  background-color: #4b4c4d;
-}
-
-.rubriekblok {
-  padding: 1em;
-  width: 30%;
-  background-color: #ffffff;
-}
-
-.wijzegingblok {
-  padding: 1em;
-  width: 50%;
-  background-color: #ffffff;
 }
