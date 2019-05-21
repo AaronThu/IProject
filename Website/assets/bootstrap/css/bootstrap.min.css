@@ -1038,7 +1038,6 @@ pre code {
         background-size: cover;
     }
     .col-md-6:hover{
-        transform:scale3d(1.5,2,2.5);
         z-index:1;
     }
 
