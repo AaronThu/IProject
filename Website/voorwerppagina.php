@@ -10,6 +10,7 @@ $voorwerpID = test_invoer($_GET["voorwerpID"]);
 if (!is_numeric($voorwerpID)) {
     return;
 }
+$voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
 ?>
 
 <body>
@@ -41,9 +42,13 @@ if (!is_numeric($voorwerpID)) {
                     </div>
                     <div class="row">
                         <div class="col d-flex flex-column" style="height: 60%;">
-                            <p class="bieden" style="margin: 0%0%10%;">U heeft nog (timer) om mee te bieden</p>
+                            <p class="bieden" style="margin: 0%0%0%;">Tijd om te bieden:</p>
+                            <p class="Timer" data-time="<?php echo $voorwerpEigenschappen[0]['Eindmoment']?>">
                             <div>
-                                <form class="d-flex flex-row"><input class="form-control d-flex flex-row" type="text" style="margin: 0%0%20%;"><button class="btn btn-primary" type="button" style="background-color: #a9976a;height: 5%;">Bied</button></form>
+                                <form class="d-flex flex-row">
+                                    <input class="form-control d-flex flex-row" type="text" style="margin: 0%0%20%;">
+                                    <button class="btn btn-primary" type="button" style="background-color: #a9976a;height: 5%;">Bied</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -54,27 +59,27 @@ if (!is_numeric($voorwerpID)) {
     <div>
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-6 voorwerpinfo"><?php foreach (GetVoorwerpEigenschappen($voorwerpID) as $key => $value) { ?>
+                <div class="col-md-6 voorwerpinfo"><?php foreach ($voorwerpEigenschappen as $key => $value) { ?>
                     <div class="d-flex flex-row">
                         <p class="flex-wrap verkooplocatie">Verkoper: </p>
-                        <p class="verkooplocatie" style="margin: 0%20%;">Verkoper: <?php echo $value['Gebruikersnaam'];?></p>
+                        <p class="verkooplocatie" style="margin: 0%20%;"><?php echo $value['Gebruikersnaam'];?></p>
                     </div>
                     <div class="d-flex flex-row">
                         <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Locatie: </p>
-                        <p class="verkooplocatie" style="margin: 0%20%;">Locatie: <?php echo $value['Plaatsnaam'];?></p>
+                        <p class="verkooplocatie" style="margin: 0%22%;"><?php echo $value['Plaatsnaam'];?></p>
                     </div>
                     <div class="d-flex flex-row">
                         <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Betalingswijze: </p>
-                        <p class="verkooplocatie" style="margin: 0%20%;"><?php echo $value['Betalingswijze'];?></p>
+                        <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Betalingswijze'];?></p>
                     </div>
                     <div class="d-flex flex-column">
                         <p class="flex-wrap verkooplocatie" style="font-size: 100%;width: 100%;">Beschrijving:</p>
-                        <p class="verkooplocatie" style="width: 100%;"><br><?php echo $value['Beschrijving'];?><br><br><br></p>
+                        <p class="verkooplocatie" style="width: 100%;"><?php echo $value['Beschrijving'];?><br><br><br></p>
                     </div>
                     <?php } ?>
                 </div>
                 <div class="col-md-6 bieden">
-                    <p class="biedgeschiedenis" style="height: 0%;margin: 0%0%10%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) { ?>
+                    <p class="biedgeschiedenis" style="height: 0%;margin: 0%0%0%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) { ?>
                         <div class="d-flex flex-row justify-content-between">
                         <p class="d-flex flex-column justify-content-between" style="width: 10%;"><?php echo $value['Gebruikersnaam'];?></p>
                         <p class="d-flex flex-row justify-content-between" style="width: 10%;"><?php echo $value['BodTijd'];?></p>
@@ -90,7 +95,7 @@ if (!is_numeric($voorwerpID)) {
                     <div class="flex-row">
                         <p class="anderenbekekenook">Anderen bekeken ook</p>
                         <?php foreach (GetMeestBekeken() as $key => $value) { ?>
-                            <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img src="assets/img/<?php echo $value['Filenaam']; ?>" width="400" heigth="400"/></a><br><br>
+                            <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img src="assets/img/<?php echo $value['Filenaam']; ?>" width="300" heigth="300"/></a><br><br>
                         <?php } ?>
                     </div>
                 </div>
@@ -100,6 +105,7 @@ if (!is_numeric($voorwerpID)) {
 </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/timer.js"></script>
 </body>
 
 <?php
