@@ -118,7 +118,7 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
 
 function GeefLandenLijst($dbh)
 {
-    $landenQuery = $dbh->prepare("SELECT * FROM Land");
+    $landenQuery = $dbh->prepare("SELECT * FROM Landen");
     $landenQuery->execute();
     $landen = $landenQuery->fetchAll();
     return $landen;
