@@ -7,13 +7,9 @@ include_once "includes/databaseFunctions.php";
 
 if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';
-} else {
-    $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
-}
-
-if (empty($_SESSION['Gebruikersnaam'])) {
     $registratieKnop = '<a class="btn btn-light action-button" href="registreren_emailpagina.php">Registeren</a>';
 } else {
+    $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
     $registratieKnop = '<a class="btn btn-light action-button" href="#">Mijn Account</a>';
 }
 ?>
