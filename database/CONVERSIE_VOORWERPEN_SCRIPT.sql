@@ -1,41 +1,54 @@
---Insert de voorwerpen
 SET IDENTITY_INSERT dbo.Voorwerp ON;  
 GO  
 
+UPDATE Items
+SET Verkoper = (SELECT TOP 1 GebruikersID FROM Gebruiker WHERE Verkoper = Gebruikersnaam)
 
 
---IF NOT EXISTS(SELECT * FROM Voorwerp, Items WHERE Voorwerpnummer = ID)
-BEGIN
-INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingswijze, Plaatsnaam, Land, VerkopersID)
+ALTER TABLE Items
+ALTER COLUMN Verkoper     INT	NOT NULL
+GO
+
+ALTER TABLE Items
+ALTER COLUMN Prijs        NUMERIC(10,2)   NOT NULL
+GO
+
+INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Land, VerkopersID)
 	SELECT ID AS VoorwerpNummer,
 		   Titel AS Titel,
-		   Beschrijving AS beschrijving,
-		   Prijs AS Startprijs,
-		   'iDeal' AS Betalingswijze,
-		   Postcode AS Plaatsnaam,
+		   EenmaalAndermaal.dbo.StripHTML(Beschrijving) AS Beschrijving,
+		   CASE WHEN Prijs < 1.00 THEN 1.00
+		   ELSE Prijs 
+		   END
+		    AS Startprijs,
 		   Locatie AS Land,
-		   4 AS VerkopersID
-FROM Items
-END
-
---Insert de fotolocaties van de voorwerpen
---IF NOT EXISTS(SELECT * FROM Bestand, Illustraties WHERE IllustratieFile = Filenaam AND ItemId = VoorwerpNummer)
-BEGIN
-INSERT INTO Bestand
-	SELECT IllustratieFile AS FileNaam,
-		   ItemId AS VoorwerpNummer
-FROM Illustraties
-END
-
-
-
---Insert Rubrieknummers van de voorwerpen
-INSERT INTO VoorwerpInRubriek
-	SELECT ID AS Voorwerpnummer,
-	Categorie AS Rubrieknummer
+		   Verkoper AS VerkopersID
 FROM Items
 GO
 
 
+INSERT INTO Bestand
+	SELECT IllustratieFile AS FileNaam,
+		   ItemId AS VoorwerpNummer
+FROM Illustraties
+GO
+
+INSERT INTO VoorwerpInRubriek(Voorwerpnummer, Rubrieknummer)
+	SELECT ID AS Voorwerpnummer,
+		   Categorie AS Rubrieknummer
+FROM Items
+GO
+
 DELETE FROM Illustraties
 DELETE FROM Items
+
+ALTER TABLE Items
+ALTER COLUMN Verkoper     VARCHAR(200)	NOT NULL
+GO
+
+ALTER TABLE Items
+ALTER COLUMN Prijs      VARCHAR(100)   NOT NULL
+GO
+
+
+select * from Voorwerp
