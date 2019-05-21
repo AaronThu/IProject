@@ -42,4 +42,28 @@ function CountVoorwerpen() {
     $Count = $CountQuery->fetch()[0];
     return $Count;
 }
+
+function GetVoorwerpEigenschappen($id)
+{
+    global $dbh;
+    $voorwerpQuery = $dbh->prepare("SELECT Titel, Beschrijving, Startprijs, Verzendinstructies,Verkoper,Plaatsnaam,Land,Eindmoment FROM Voorwerp where Voorwerpnummer = ?");
+    $voorwerpQuery->execute([$id]);
+   return $voorwerpQuery->fetch();
+}
+
+function GetVoorwerpFoto($id){
+    global $dbh;
+    $fotoQuery = $dbh->prepare("SELECT FileNaam FROM Bestand WHERE VoorwerpNummer= ?");
+    $fotoQuery->execute([$id]);
+    $fotoPath = $fotoQuery->fetchAll();
+    return $fotoPath[0];
+}
+
+function GetBieders($id){
+    global $dbh;
+    $biedersQuery = $dbh->prepare("SELECT BodBedrag, Gebruikersnaam, BodTijd FROM Bod WHERE VoorwerpNummer= ?");
+    $biedersQuery->execute([$id]);
+    $bieders = $biedersQuery->fetchAll();
+    return $bieders;
+}
 ?>

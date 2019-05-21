@@ -2,18 +2,14 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once "includes/database.php";
-include_once "includes/databaseFunctions.php";
+include_once "database.php";
+include_once "databaseFunctions.php";
 
 if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';
-} else {
-    $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
-}
-
-if (empty($_SESSION['Gebruikersnaam'])) {
     $registratieKnop = '<a class="btn btn-light action-button" href="registreren_emailpagina.php">Registeren</a>';
 } else {
+    $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
     $registratieKnop = '<a class="btn btn-light action-button" href="#">Mijn Account</a>';
 }
 ?>
@@ -37,8 +33,8 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <link rel="stylesheet" href="../assets/css/Subrubrieken.css">
         <link rel="icon"       href="../assets/img/EenmaalAndermaal_Logo.png">
 
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     </head>
 
 <body>

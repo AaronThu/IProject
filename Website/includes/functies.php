@@ -1,30 +1,36 @@
 <?php
 
 //FORMULIEREN FUNCTIES
-function test_invoer($data) {
+function test_invoer($data)
+{
     $data = Strip_tags($data);
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-};
+}
+;
 
-function vergelijkloginwaarde($vergelijken, $waarde, $dbh) {
+function vergelijkloginwaarde($vergelijken, $waarde, $dbh)
+{
     $vergelijkloginnaam = $dbh->prepare("SELECT Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, GeboorteDatum, Emailadres FROM Gebruiker WHERE $vergelijken = :waarde");
     $vergelijkloginnaam->execute([':waarde' => $waarde]);
     $telling = $vergelijkloginnaam->rowCount();
     return $telling;
 }
 
-function kijkVoorLetters($string) {
+function kijkVoorLetters($string)
+{
     return preg_match('/[a-zA-Z]/', $string);
 }
 
-function kijkVoorCijfers($string) {
+function kijkVoorCijfers($string)
+{
     return preg_match('/\d/', $string);
 }
 
-function kijkVoorCorrecteTekens($string) {
+function kijkVoorCorrecteTekens($string)
+{
     if (preg_match("/^[a-zA-Z'. -]{2,}+$/", $string)) {
         return true;
     } else {
@@ -32,7 +38,8 @@ function kijkVoorCorrecteTekens($string) {
     }
 }
 
-function ControleerTelefoonnummer($telefoonnummer) {
+function ControleerTelefoonnummer($telefoonnummer)
+{
 
     if (preg_match("/^[0-9]{10}$/", $telefoonnummer)) {
         return true;
@@ -41,7 +48,8 @@ function ControleerTelefoonnummer($telefoonnummer) {
     }
 }
 
-function ControleerPostcode($postcode) {
+function ControleerPostcode($postcode)
+{
     if (preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
         return true;
     } else {
@@ -49,7 +57,8 @@ function ControleerPostcode($postcode) {
     }
 }
 
-function ControleerGeboortedatum($geboortedatum) {
+function ControleerGeboortedatum($geboortedatum)
+{
     $huidigetijd = time();
     $geboortedatumintijd = strtotime($geboortedatum);
     $minimalegeboortedatum = -2208988800;
@@ -61,7 +70,8 @@ function ControleerGeboortedatum($geboortedatum) {
 
 }
 
-function ControleerAdres($adres) {
+function ControleerAdres($adres)
+{
     if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,3}+$/", $adres)) {
         return true;
     } else {
@@ -69,14 +79,16 @@ function ControleerAdres($adres) {
     }
 }
 
-function genereerVraagNummer($dbh) {
+function genereerVraagNummer($dbh)
+{
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
     $rijtelling = $totaalAantalVragen->fetch();
     $nummer = mt_rand(1, count($rijtelling) - 1);
     return $nummer;
 }
 
-function genereerVraag($dbh, $vraagnummer) {
+function genereerVraag($dbh, $vraagnummer)
+{
     $registratievraag = $dbh->query("SELECT Vraag FROM Vraag WHERE Vraagnummer = $vraagnummer");
     $vraagWeergave = "";
     while ($vraag = $registratievraag->fetch()) {
@@ -85,7 +97,8 @@ function genereerVraag($dbh, $vraagnummer) {
     return $vraagWeergave;
 }
 
-function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type, $naamPOST) {
+function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type, $naamPOST)
+{
     $waardeInForm = isset($_POST[$naamPOST]) ? $_POST[$naamPOST] : '';
     if (empty($errorNaam)) {
         $error = "";
@@ -103,7 +116,16 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
     return $registratieItem;
 }
 
-function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde) {
+function GeefLandenLijst($dbh)
+{
+    $landenQuery = $dbh->prepare("SELECT * FROM Land");
+    $landenQuery->execute();
+    $landen = $landenQuery->fetchAll();
+    return $landen;
+}
+
+function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
+{
     if (empty($ingevuldeWaarde)) {
         $_SESSION['registratieFoutmeldingen'][$naamError] = "$naamItem is verplicht";
     } elseif (kijkVoorCorrecteTekens($ingevuldeWaarde) == false) {
@@ -114,7 +136,8 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde) {
 }
 
 //HOMEPAGE FUNCTIES
-function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
+function genereerArtikelen($dbh, $gegevenQuery, $columntype)
+{
     $artikelen = '';
 
     $queryvoorwerpen = $dbh->query("$gegevenQuery");
@@ -143,7 +166,8 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
     return $artikelen;
 }
 
-function genereerCatogorie($dbh, $gegevenQuery, $columntype) {
+function genereerCatogorie($dbh, $gegevenQuery, $columntype)
+{
     $catogorie = '';
 
     $querycatogorie = $dbh->query("$gegevenQuery");
@@ -159,7 +183,7 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype) {
 
         $catogorie .= '<div class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
                 <div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
-                <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto .'" alt="' . $foto . '" height=250 width=250 > 
+                <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto . '" alt="' . $foto . '" height=250 width=250 > 
                     </div>
             </div>';
 
