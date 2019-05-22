@@ -81,4 +81,12 @@ function GetMeestBekeken(){
     $meestbekeken = $MeestbekekenQuery->fetchAll();
     return $meestbekeken;
 }
+
+function GetVoorwerpen() {
+    global $dbh;
+    $VoorwerpenQuery = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer");
+    $VoorwerpenQuery->execute();
+    $Voorwerpen = $VoorwerpenQuery->fetchAll();
+    return $Voorwerpen;
+}
 ?>
