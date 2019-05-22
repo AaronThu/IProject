@@ -1,3 +1,13 @@
+/*==============================================================*/
+/* Database name:  iproject2                                    */
+/* Script:		   FUNCTIONS	                                */
+/* Created on:     21-05-2019		                            */
+/*==============================================================*/
+
+/*==============================================================*/
+/* Functie  voor het strippen van HTML code                     */
+/* Functie  voor het strippen van HTML code                     */
+/*==============================================================*/
 CREATE FUNCTION StripHTML (@HTMLText VARCHAR(MAX))
 RETURNS VARCHAR(MAX) AS
 BEGIN

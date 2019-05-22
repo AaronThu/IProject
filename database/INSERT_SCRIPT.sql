@@ -23,7 +23,7 @@ INSERT INTO RubriekFotos VALUES
 (11116,'geldfoto.png'),
 (11232,'filmfoto.jpg'),
 (11233,'instrumentenfoto.jpg'),
-(114500,'kledingfoto.jpg'),
+(11450,'kledingfoto.jpg'),
 (11700,'tuinfoto.jpg'),
 (12081,'babyfoto.jpg'),
 (12155,'verzorgingfoto.jpg'),
