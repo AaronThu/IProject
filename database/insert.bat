@@ -1,0 +1,10 @@
+sqlcmd -S localhost -d master -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseCREATE_SCRIPT.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseAlter_Script_IProject.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseCONVERSIE_RUBRIEKEN_SCRIPT.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseCONVERSIE_LANDEN_SCRIPT.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseINSERT_SCRIPT.sql.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseCREATE Tables voor conversie.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseINSERT_TEST_USERS.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseCONVERSIE_USERS.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "C:\Users\Tymo\Documents\GitHub\IProject\databaseFUNCTIONS.sql"
+pause
