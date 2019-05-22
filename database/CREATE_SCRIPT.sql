@@ -58,7 +58,7 @@ CREATE TABLE Gebruiker (
     Achternaam              VARCHAR(50)         NOT NULL,
     Adres1                  VARCHAR(50)         NOT NULL,
     Adres2                  VARCHAR(50)             NULL,
-    Postcode                VARCHAR(10)         NOT NULL,
+    Postcode                VARCHAR(10)             NULL,
     Plaatsnaam              VARCHAR(50)         NOT NULL,
     Land                    VARCHAR(50)         NOT NULL,
     Geboortedatum           DATE                NOT NULL,
@@ -68,10 +68,18 @@ CREATE TABLE Gebruiker (
     AntwoordTekst           VARCHAR(50)         NOT NULL,
     SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
     CONSTRAINT PK_GEBRUIKER PRIMARY KEY (GebruikersID),
-    CONSTRAINT AK_EMAILADRES UNIQUE (Emailadres),
+    --CONSTRAINT AK_EMAILADRES UNIQUE (Emailadres),
     CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
 )
 GO
+
+/*==============================================================*/
+/* Gebruikerstelefoon                                           */
+/*==============================================================*/
+CREATE TABLE Landen (
+	Land				  VARCHAR(50)		NOT NULL,
+	CONSTRAINT PK_LAND PRIMARY KEY (Land)
+)
 
 
 /*==============================================================*/
@@ -124,13 +132,13 @@ GO
 /*==============================================================*/
 CREATE TABLE Voorwerp (
     Voorwerpnummer      BIGINT IDENTITY     NOT NULL,
-    Titel               VARCHAR(100)         NOT NULL,
-    Beschrijving        VARCHAR(MAX)        NOT NULL,
+    Titel               VARCHAR(150)         NOT NULL,
+    Beschrijving        nVARCHAR(MAX)       NOT NULL,
     Startprijs          NUMERIC(10,2)       NOT NULL,
     Betalingswijze      VARCHAR(25)         NOT NULL DEFAULT 'iDeal',
     Betalingsinstructie VARCHAR(200)            NULL,
-    Plaatsnaam          VARCHAR(50)         NOT NULL,
-    Land                VARCHAR(50)         NOT NULL,
+    Plaatsnaam          VARCHAR(50)             NULL,
+    Land                VARCHAR(70)         NOT NULL,
     Looptijd            TINYINT             NOT NULL DEFAULT 7,
     BeginMoment         DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Verzendkosten       NUMERIC(7,2)            NULL,
@@ -177,7 +185,7 @@ CREATE TABLE Vraag (
 /*RubriekFotos                                                  */
 /*==============================================================*/
 CREATE TABLE RubriekFotos(
-Rubrieknummer      INT          NOT NULL,
+Rubrieknummer      INT         NOT NULL,
 RubriekFoto        VARCHAR(100) NOT NULL
 CONSTRAINT PK_RUBRIEKFOTOS PRIMARY KEY (Rubrieknummer)
 )

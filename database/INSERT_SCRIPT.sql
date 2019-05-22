@@ -23,7 +23,7 @@ INSERT INTO RubriekFotos VALUES
 (11116,'geldfoto.png'),
 (11232,'filmfoto.jpg'),
 (11233,'instrumentenfoto.jpg'),
-(114500,'kledingfoto.jpg'),
+(11450,'kledingfoto.jpg'),
 (11700,'tuinfoto.jpg'),
 (12081,'babyfoto.jpg'),
 (12155,'verzorgingfoto.jpg'),
@@ -48,11 +48,11 @@ INSERT Vraag VALUES ('Wat is je favoriete game?')
 INSERT Betalingswijzen VALUES('iDeal')
 
 
+/*
 /*==============================================================*/
 /* Gebruiker                                                    */
 /*==============================================================*/
-INSERT Gebruiker VALUES(1, 'Voornaam', 'Achternaam', 'Adres1', 'Adres2', 'Postcode', 'Plaatsnaam', 'Land', '14-may-2010', 'Emailadres', 'Wachtwoord', 1, 'AntwoordTekst', 'ver')
-
+INSERT Gebruiker VALUES('testgebruiker', 'Voornaam', 'Achternaam', 'Adres1', 'Adres2', 'Postcode', 'Plaatsnaam', 'Nederland', '14-may-2010', 'Emailadres', 'Wachtwoord', 1, 'AntwoordTekst', 'ver')
 
 /*==============================================================*/
 /* Verkoper                                                     */
@@ -102,3 +102,4 @@ INSERT INTO  Bestand VALUES
 ('mooiestrijkplank.jpg',14),
 ('mooikoffieding.jpg',15), 
 ('mooiepanvet.jpg',16)
+*/
