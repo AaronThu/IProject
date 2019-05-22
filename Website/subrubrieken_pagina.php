@@ -62,7 +62,7 @@ foreach ($alleRubrieken as $key => $value) {
         <div class="container">
             <div class="row">
                 <div class="col-md-4" style="background-color: #4b4c4d;">
-                <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img style="background-image: url(&quot;assets/img/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -5%; margin-top: 5%;"></div>
+                <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img style="background-image: url(&quot;http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -5%; margin-top: 5%;"></div>
                 <div class="col" style="background-color: #4b4c4d;"><a href="#" style="color: #ffffff;"><?php echo $value['Titel']; ?></a>
                     <p style="color: #ffffff;"><br><?php echo substr($value['Beschrijving'], 0, 100); ?><br><br></p>
                 </div>
