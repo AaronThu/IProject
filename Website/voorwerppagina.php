@@ -42,7 +42,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     </div>
                     <div class="row">
                         <div class="col d-flex flex-column" style="height: 60%;">
-                            <p class="bieden" style="margin: 0%0%0%;">Tijd om te bieden:</p>
+                            <p class="bieden" style="margin: 0%0%5%;">Tijd om te bieden:</p>
                             <p class="Timer" data-time="<?php echo $voorwerpEigenschappen[0]['Eindmoment']?>">
                             <div>
                                 <form class="d-flex flex-row">
