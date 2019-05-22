@@ -69,6 +69,10 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         <p class="verkooplocatie" style="margin: 0%22%;"><?php echo $value['Plaatsnaam'];?></p>
                     </div>
                     <div class="d-flex flex-row">
+                        <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Startprijs: </p>
+                        <p class="verkooplocatie" style="margin: 0%20%;"><?php echo $value['Startprijs'];?></p>
+                    </div>
+                    <div class="d-flex flex-row">
                         <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Betalingswijze: </p>
                         <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Betalingswijze'];?></p>
                     </div>
@@ -88,7 +92,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <?php } ?></p>
                     <div class="d-flex flex-row justify-content-between">
                         <p class="d-flex flex-column justify-content-between" style="width: 10%;">Naam</p>
-                        <p class="d-flex flex-row justify-content-between" style="width: 10%;">Datetime</p>
+                        <p class="d-flex flex-row justify-content-between" style="width: 10%;">Tijd</p>
                         <p class="d-flex flex-row justify-content-between" style="width: 10%;">Bedrag</p>
                     </div>
                     
