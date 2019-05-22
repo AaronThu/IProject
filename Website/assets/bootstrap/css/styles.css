@@ -105,3 +105,68 @@ h5{
         width: 75vw;
     }
 }
+
+
+.imgimg{
+background-repeat:no-repeat;
+background-size:auto;
+}
+.homepage{
+    display:flex;
+    flex-direction:row;
+}
+    .tile {
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: 1s transform;
+        transform-origin: top center;
+        float: left;
+        margin-right: 10px;
+        position: relative;
+        backface-visibility: hidden;
+        /* max-height:50%;
+        max-width:50%; */
+      }
+      
+      #hover {
+        /* background-color: black; */
+      }
+      
+      .content {
+        width: 100%;
+        height: 200%;
+        transform: scale(.5) translateZ(0px);
+        transform-origin: top left;
+      }
+      
+      .overlay {
+        position: relative;
+        top: 500;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        background-color: #3a3a3a;
+        opacity: .5;
+        touch-action: none;
+        transition: opacity 1s;
+      }
+      
+      #hover:hover {
+        transform: scale(2);
+      }
+      
+      #hover:hover .overlay {
+        opacity: 1;
+        touch-action: auto;
+        transform: scale(1)
+      }
+
+      .shiftLeft { 
+        transform: translate3d(-40px, 0, 0);
+      }
+      
+      .shiftRight { 
+        transform: translate3d(40px, 0, 0);
+      }
+      
