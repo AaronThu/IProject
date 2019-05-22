@@ -28,6 +28,9 @@ INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsi
 		   EenmaalAndermaal.dbo.StripHTML(Beschrijving) AS Beschrijving,
 			CASE WHEN Valuta = 'GBP' THEN Prijs*1.14
 				 WHEN Valuta = 'USD' THEN Prijs*0.90
+				 WHEN Valuta = 'AUD' THEN Prijs*0.62
+				 WHEN Valuta = 'CAD' THEN Prijs*0.67
+				 WHEN Valuta = 'INR' THEN Prijs*0.013
 				 WHEN Prijs < 1.00 THEN 1.00
 				 ELSE Prijs END
 				 AS Startprijs,
