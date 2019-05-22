@@ -2,6 +2,7 @@
 include_once "includes/database.php";
 include_once "includes/functies.php";
 include_once "includes/header.php";
+include_once "includes/databaseFunctions.php";
 $rubiekID = 0;
 if (!isset($_GET["rubriekID"])) {
     return;

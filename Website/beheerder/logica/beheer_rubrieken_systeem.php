@@ -1,39 +1,54 @@
 <?php
-include_once '../../includes/functies.php';
+include_once '../includes/functies.php';
 include_once 'databaseFuncties.php';
-include_once "../../includes/database.php";
+include_once "../includes/database.php";
 
-if (!isset($_SESSION['Gebruikersnaam']) || (isset($_SESSION['Gebruikersnaam']) && !IsAdmin($_SESSION['Gebruikersnaam']))) {
-    header("Location: ../index.php");
-    return;
+$sortNummer = false;
+$sortName = false;
+$parentRubriek = false;
+if (isset($_GET["Naam"])) {
+    $sortName = true;
+}
+if (isset($_GET["volgnummer"])) {
+    $sortNummer = true;
+}
+if (isset($_GET["parentRubriek"])) {
+    $parentRubriek = true;
+}
+$zoekKeys = "";
+$results = [];
+
+if (isset($_GET["SearchBar"]) && $_GET["SearchBar"] !== "") {
+    $zoekKeys = test_invoer($_GET["SearchBar"]);
+    $results = ZoekRubrieken($zoekKeys, $sortName, $sortNummer, $parentRubriek);
 }
 
 if (isset($_POST["InsertRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
-    InsertRubriek(
-        $_SESSION["Gebruikersnaam"],
-        test_invoer($_POST["RubriekName"]),
-        test_invoer($_POST["RubriekParent"]),
-        test_invoer($_POST["RubriekVolgNummer"]),
-        test_invoer($_POST["Accept"])
-    );
+    // InsertRubriek(
+    //     $_SESSION["Gebruikersnaam"],
+    //     test_invoer($_POST["RubriekName"]),
+    //     test_invoer($_POST["RubriekParent"]),
+    //     test_invoer($_POST["RubriekVolgNummer"]),
+    //     isset($_POST["Accept"]) ? true : false
+    // );
 }
 
 if (isset($_POST["UpdateRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
-    UpdateRubriek(
-        $_SESSION["Gebruikersnaam"],
-        test_invoer($_POST["RubriekID"]),
-        test_invoer($_POST["RubriekName"]),
-        test_invoer($_POST["RubriekParent"]),
-        test_invoer($_POST["RubriekVolgNummer"]),
-        $_POST["Accept"]
-    );
+    // UpdateRubriek(
+    //     $_SESSION["Gebruikersnaam"],
+    //     test_invoer($_POST["RubriekID"]),
+    //     test_invoer($_POST["RubriekName"]),
+    //     test_invoer($_POST["RubriekParent"]),
+    //     test_invoer($_POST["RubriekVolgNummer"]),
+    //     isset($_POST["Accept"]) ? true : false
+    // );
 }
 
 if (isset($_POST["DeleteRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
-    DeleteRubriek(
-        $_SESSION["Gebruikersnaam"],
-        test_invoer($_POST["RubriekID"]),
-        test_invoer($_POST["Accept"])
-    );
+    // DeleteRubriek(
+    //     $_SESSION["Gebruikersnaam"],
+    //     test_invoer($_POST["RubriekID"]),
+    //     isset($_POST["Accept"]) ? true : false
+    // );
 }
 ?>
