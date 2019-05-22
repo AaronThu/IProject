@@ -10,6 +10,7 @@ $rubiekID = test_invoer($_GET["rubriekID"]);
 if (!is_numeric($rubiekID)) {
     return;
 }
+
 ?>
     <div class="Main">
     <ul class="breadcrum">
