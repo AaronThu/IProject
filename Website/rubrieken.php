@@ -11,7 +11,7 @@ include_once "includes/databaseFunctions.php";
 foreach (GetRubrieken(-1) as $key => $value) {
     print("<div class=\"container rubriek\">");
     print("<h2 class=\"item\" style=\"width: 10em;\">$value[Rubrieknaam]</h2>");
-    print("<div class=\"item background image\"><img src=\"" . GetRubriekenFoto($value["Rubrieknummer"]) . "\"></div>");
+    print("<div class=\"item background image\" style=\"background-image: url(" . GetRubriekenFoto($value["Rubrieknummer"]) . ")\"></div>");
     print("<div class=\"item\">");
     foreach (GetRubrieken($value["Rubrieknummer"]) as $key => $value) {
         print("<a href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
