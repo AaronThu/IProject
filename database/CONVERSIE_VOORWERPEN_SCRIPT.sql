@@ -21,19 +21,36 @@ ALTER TABLE Items
 ALTER COLUMN Prijs        NUMERIC(10,2)   NOT NULL
 GO
 
+UPDATE Items
+SET Prijs = Prijs*1.14
+WHERE Valuta = 'GBP'
+
+UPDATE Items
+SET Prijs = Prijs*0.90
+WHERE Valuta = 'USD'
+
+UPDATE Items
+SET Prijs = Prijs*0.62
+WHERE Valuta = 'AUD'
+
+UPDATE Items
+SET Prijs = Prijs*0.67
+WHERE Valuta = 'CAD'
+
+UPDATE Items
+SET Prijs = Prijs*0.013
+WHERE Valuta = 'INR'
+
+UPDATE Items
+SET Prijs = 1.00
+WHERE Prijs < 1.00
+
 
 INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsinstructie, Plaatsnaam, Land, Verzendkosten, Verzendinstructies, VerkopersID)
 	SELECT ID AS VoorwerpNummer,
 		   Titel AS Titel,
-		   EenmaalAndermaal.dbo.StripHTML(Beschrijving) AS Beschrijving,
-			CASE WHEN Valuta = 'GBP' THEN Prijs*1.14
-				 WHEN Valuta = 'USD' THEN Prijs*0.90
-				 WHEN Valuta = 'AUD' THEN Prijs*0.62
-				 WHEN Valuta = 'CAD' THEN Prijs*0.67
-				 WHEN Valuta = 'INR' THEN Prijs*0.013
-				 WHEN Prijs < 1.00 THEN 1.00
-				 ELSE Prijs END
-				 AS Startprijs,
+		   Beschrijving AS Beschrijving,
+			Prijs AS Startprijs,
 			CASE WHEN LEFT(Titel, 1) BETWEEN 'a' AND 'd' THEN 'Graag via Paypal overmaken'
 				 WHEN LEFT(Titel, 1) BETWEEN 'e' AND 'h' THEN 'Maak maar over naar mijn rekeningnummer'
 				 WHEN LEFT(Titel, 1) BETWEEN 'i' AND 'o' THEN 'Handje contantje of anders via een tikkie!'
