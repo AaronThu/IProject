@@ -3423,13 +3423,12 @@ INSERT Categorieen (ID,Name,Parent) VALUES (179197,'Virtueel geld',11116)
 SET IDENTITY_INSERT dbo.Rubriek ON;  
 GO  
 
-
 /*==============================================================*/
 /* Conversie van Categorieen naar Rubriek                       */
 /*==============================================================*/
-INSERT INTO Rubriek
+INSERT INTO Rubriek(Rubrieknummer, Rubrieknaam, Parent_rubriek, volgnr)
 	SELECT ID AS Rubrieknummer,
-		   Name AS title ,
+		   Name AS Rubrieknaam ,
 		   Parent AS Parent_rubriek,
 		   1 AS Volgnr
 FROM Categorieen
