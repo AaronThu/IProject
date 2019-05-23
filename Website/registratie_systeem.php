@@ -23,7 +23,7 @@ $query->execute(
         ':Wachtwoord' => password_hash($_SESSION['registratieGegevens']['Wachtwoord'], PASSWORD_DEFAULT),
         ':Vraagnummer' => $_SESSION['registratieGegevens']['vraagNummer'],
         ':AntwoordTekst' => $_SESSION['registratieGegevens']['AntwoordOpVraag'],
-        ':SoortGebruiker' => 'kop',
+        ':SoortGebruiker' => 'koper',
     ]
 );
 
