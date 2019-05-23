@@ -1,6 +1,7 @@
+var isMaken = false;
 
 function Aanpassen(el) {
-    console.log(el.classList);
+    isMaken = false;
     Elementen = document.getElementsByClassName("maken");
     for (let i = 0; i < Elementen.length; i++) {
         Elementen[i].classList;
@@ -8,18 +9,11 @@ function Aanpassen(el) {
             Elementen[i].classList.add("noShow");
         }
     }
-
-    var Elementen = document.getElementsByClassName("zoeken");
-    for (let i = 0; i < Elementen.length; i++) {
-        Elementen[i].classList;
-        if (Elementen[i].classList.contains("noShow")) {
-            Elementen[i].classList.remove("noShow");
-        }
-    }
     Highlight(el, "knoppen", "highlight");
 }
 
 function Maken(el) {
+    isMaken = true;
     var Elementen = document.getElementsByClassName("eigenschappen");
     for (let i = 0; i < Elementen.length; i++) {
         Elementen[i].classList;
@@ -28,14 +22,6 @@ function Maken(el) {
         }
     }
 
-    var Elementen = document.getElementsByClassName("zoeken");
-    for (let i = 0; i < Elementen.length; i++) {
-        Elementen[i].classList;
-        if (!Elementen[i].classList.contains("noShow")) {
-            Elementen[i].classList.add("noShow");
-        }
-    }
-
     Elementen = document.getElementsByClassName("maken");
     for (let i = 0; i < Elementen.length; i++) {
         Elementen[i].classList;
@@ -47,23 +33,32 @@ function Maken(el) {
     Highlight(el, "knoppen", "highlight");
 }
 
-function setRubriek(element, id, IN_Name, parentID, volgNummer) {
+function setRubriek(element, id, IN_Name, parentID, parentName, volgNummer) {
     var name = IN_Name.replace(/_/g, " ");
+    var pName = parentName.replace(/_/g, " ");
     var nameElement = document.getElementById("Title");
     nameElement.innerHTML = name;
+    if (!isMaken) {
+        OpenEigenschappen();
+    }
+    Highlight(element, "zoekresultaat", "selected");
+    setValue("ID", id, true);
+    setValue("Name", name, true);
+    setValue("RubriekParent", parentID, true);
+    setValue("VolgNummer", volgNummer, true);
+    setValue("parentName", pName, true);
 
-    var parentIDElement = document.getElementById("parentID");
-    parentIDElement.innerHTML = parentID;
+}
 
-    var volgNrElement = document.getElementById("Volgnummer");
-    volgNrElement.innerHTML = volgNummer;
-
-    OpenEigenschappen();
-    Highlight(element, "zoekresultaat", "selected")
-    // console.log(id);
-    // console.log(name);
-    // console.log(parentID);
-    // console.log(volgNummer);
+function setValue(tag, val, override = true) {
+    var Elementen = document.getElementsByClassName(tag);
+    for (let i = 0; i < Elementen.length; i++) {
+        if (override) {
+            Elementen[i].value = val;
+        } else {
+            Elementen[i].value = Math.max(0, parseInt(Elementen[i].value) + val);
+        }
+    }
 }
 
 function Highlight(el, tag, style) {
@@ -74,7 +69,9 @@ function Highlight(el, tag, style) {
             Elementen[i].classList.remove(style);
         }
     }
-    el.classList.add(style);
+    if (el != undefined) {
+        el.classList.add(style);
+    }
 }
 
 function OpenEigenschappen() {
@@ -85,4 +82,9 @@ function OpenEigenschappen() {
             Elementen[i].classList.remove("noShow");
         }
     }
+}
+
+
+function CountVolgnummer(val) {
+    setValue("inputNummer", val, false);
 }

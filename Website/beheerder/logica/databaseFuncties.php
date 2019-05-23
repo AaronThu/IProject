@@ -1,22 +1,35 @@
 <?php
 
 function DeleteRubriek($userID, $rubriekID, $accept = false) {
-    if (!$accept && !IsAdmin($userID)) {
+    if (!$accept || !IsAdmin($userID)) {
         return false;
     }
-    global $dbh;
-    $Query = $dbh->prepare("DELETE FROM Rubriek WHERE Rubrieknummer = ? ");
-    // $Query->execute([$rubriekID]);
 
-    $error = $Query->errorInfo();
-    if ($error[0] != "00000") {
-        return $error;
+    global $dbh;
+    $Query = $dbh->prepare("UPDATE Rubriek SET Status = 'gesloten' WHERE Rubrieknummer = ?");
+    $Query->execute([$rubriekID]);
+
+    foreach (GetAllRubrieken($rubriekID) as $key => $value) {
+        DeleteRubriek($userID, $value["Rubrieknummer"], $accept);
     }
-    return true;
+}
+
+function HerOpenRubriek($userID, $rubriekID, $accept = false) {
+    if (!$accept || !IsAdmin($userID)) {
+        return false;
+    }
+
+    global $dbh;
+    $Query = $dbh->prepare("UPDATE Rubriek SET Status = 'open' WHERE Rubrieknummer = ?");
+    $Query->execute([$rubriekID]);
+
+    foreach (GetAllRubrieken($rubriekID) as $key => $value) {
+        HerOpenRubriek($userID, $value["Rubrieknummer"], $accept);
+    }
 }
 
 function UpdateRubriek($userID, $rubriekID, $rubriekName, $rubriekParent, $volgnummer = 1, $accept = false) {
-    if (!$accept && !IsAdmin($userID)) {
+    if (!$accept || !IsAdmin($userID)) {
         return false;
     }
     global $dbh;
@@ -32,12 +45,12 @@ function UpdateRubriek($userID, $rubriekID, $rubriekName, $rubriekParent, $volgn
 }
 
 function InsertRubriek($userID, $rubriekName, $rubriekParent, $volgnummer = 1, $accept = false) {
-    if (!$accept && !IsAdmin($userID)) {
+    if (!$accept || !IsAdmin($userID)) {
         return false;
     }
 
     global $dbh;
-    $Query = $dbh->prepare("INSERT INTO Rubriek (Rubrieknummer, Rubrieknaam, Parent_rubriek,Volgnr) VALUES(?,?,?,?)");
+    $Query = $dbh->prepare("INSERT INTO Rubriek (Rubrieknaam, Parent_rubriek,Volgnr,Status) VALUES(?,?,?,'open')");
     $Query->execute([$rubriekName, $rubriekParent, $volgnummer]);
 
     $error = $Query->errorInfo();
@@ -51,15 +64,32 @@ function InsertRubriek($userID, $rubriekName, $rubriekParent, $volgnummer = 1, $
 function IsAdmin($userID) {
 
     global $dbh;
-    $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'adm'");
+    $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'admin'");
     $Query->execute([$userID]);
     return $Query->fetchAll()[0][0] > 0;
 }
 
-function ZoekRubrieken($zoekKeys, $orderName = false, $orderVolgnummer = false, $parentRubriek = false) {
+function ZoekRubrieken($zoekKeys, $orderName = false, $orderVolgnummer = false, $parentRubriek = false, $orderAflopend = false, $zoekOpNaam = true, $zoekOpParent = false) {
 
     global $dbh;
-    $sqlQuery = "SELECT Rubrieknaam, Rubrieknummer, Parent_rubriek,(SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) as Parent_name, Volgnr FROM Rubriek AS R WHERE Rubrieknummer >= 0 AND Rubrieknaam LIKE :name OR (SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) LIKE :parent";
+    $sqlQuery = "SELECT Rubrieknaam, Rubrieknummer, Parent_rubriek,(SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) as Parent_name, Volgnr ,Status FROM Rubriek AS R WHERE ";
+
+    /*
+    Rubrieknaam LIKE :name OR (SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) LIKE :parent
+     */
+
+    if ($zoekOpNaam && $zoekOpParent) {
+        $sqlQuery .= " Rubrieknaam LIKE :name AND (SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) LIKE :parent ";
+    } else if ($zoekOpParent) {
+        $sqlQuery .= " (SELECT Rubrieknaam FROM Rubriek AS PR WHERE Rubrieknummer = R.Parent_rubriek) LIKE :parent ";
+    } else {
+        $sqlQuery .= " Rubrieknaam LIKE :name ";
+    }
+
+    if ($orderName === false && $orderVolgnummer === false && $orderVolgnummer === false && $parentRubriek == false) {
+        $sqlQuery .= " ORDER BY Rubrieknummer";
+    }
+
     if ($orderName === true) {
         $sqlQuery .= " ORDER BY Rubrieknaam";
     }
@@ -80,15 +110,36 @@ function ZoekRubrieken($zoekKeys, $orderName = false, $orderVolgnummer = false, 
         }
     }
 
+    if ($orderAflopend) {
+        $sqlQuery .= " DESC";
+    }
     $Query = $dbh->prepare($sqlQuery);
-    $Query->execute(array(
-        ':name' => "%$zoekKeys%",
-        ':parent' => "%$zoekKeys%")
-    );
+
+    if ($zoekOpNaam && $zoekOpParent) {
+        $Query->execute(array(
+            ':name' => "%$zoekKeys%",
+            ':parent' => "%$zoekKeys%")
+        );
+    } else if ($zoekOpParent) {
+        $Query->execute(array(
+            ':parent' => "%$zoekKeys%")
+        );
+    } else {
+        $Query->execute(array(
+            ':name' => "%$zoekKeys%")
+        );
+    }
 
     $error = $Query->errorInfo();
     if ($error[0] != "00000") {
         return $error;
     }
+    return $Query->fetchAll();
+}
+
+function GetAllRubrieken($parent) {
+    global $dbh;
+    $Query = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = ?");
+    $Query->execute([$parent]);
     return $Query->fetchAll();
 }

@@ -21,11 +21,17 @@ include_once '../includes/databaseFunctions.php';
                 <input type="search" name="SearchBar" id="SearchBar" value="<?php echo (isset($_GET["SearchBar"]) ? ($_GET["SearchBar"]) : "") ?>" placeholder="Zoeken" autofocus>
                 <input  type="submit" value="Zoek">
             </form>
-            <h5>Filters </h5>
+            <h5>Zoek op</h5>
+            <div class="filters">
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="NaamRubriek" id="NaamRubriek" form="Search" <?php echo (isset($_GET["NaamRubriek"]) ? "checked" : "") ?>> <label for="NaamRubriek">Naam</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="NaamParent" id="NaamParent" form="Search" <?php echo (isset($_GET["NaamParent"]) ? "checked" : "") ?>> <label for="NaamParent">Naam Parent</label></div>
+            </div>
+            <h5>Sorteren op </h5>
             <div class="filters">
                 <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="Naam" id="Naam" form="Search" <?php echo (isset($_GET["Naam"]) ? "checked" : "") ?>> <label for="Naam">Naam</label></div>
                 <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="volgnummer" id="volgnummer" form="Search" <?php echo (isset($_GET["volgnummer"]) ? "checked" : "") ?>> <label for="volgnummer">Volgnummer</label></div>
                 <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="parentRubriek" id="parentRubriek" form="Search" <?php echo (isset($_GET["parentRubriek"]) ? "checked" : "") ?>> <label for="parentRubriek">Parent Rubriek</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="Aflopend" id="Aflopend" form="Search" <?php echo (isset($_GET["Aflopend"]) ? "checked" : "") ?>> <label for="Aflopend">Aflopend</label></div>
             </div>
             <div class="zoekresultaten">
 <?php
@@ -37,8 +43,14 @@ if (!isset($results) || sizeof($results) <= 0) {
     }
 } else {
     foreach ($results as $key => $value) {
-        echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $value["Parent_rubriek"] . ',' . $value["Volgnr"] . ') class="zoekresultaat">');
+        $parent = $value["Parent_rubriek"];
+        if (!isset($parent)) {
+            $parent = $value["Rubrieknummer"];
+        }
+        $open = ($value["Status"] === "open") ? "open" : "gesloten";
+        echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $parent . ',"' . str_replace(" ", "_", $value["Parent_name"]) . '",' . $value["Volgnr"] . ') class="zoekresultaat ' . $open . '">');
         echo ("<div class=\"block\">");
+        echo ("<h5 class=\"id\">ID: $value[Rubrieknummer]</h5>");
         echo ("<h5 class=\"name\">$value[Rubrieknaam]</h5>");
         echo ("<h6 class=\"parent\">$value[Parent_name]</h6>");
         echo ("</div>");
@@ -53,47 +65,90 @@ if (!isset($results) || sizeof($results) <= 0) {
             <div>
                 <!-- INFO -->
             <h3 id="Title">Title</h3>
-            <h5 id="parentID">parentID</h5>
-            <h5>|</h5>
-            <h5 id="Volgnummer">Volgnummer</h5>
             </div>
-            <div>
+            <div class="wijzegingen">
                 <!-- FORMS -->
                 <!-- UPDATE -->
                 <h3>Update</h3>
-            <form action="" method="POST">
-                <div>
+                <form action="" method="POST">
                     <!-- ID -->
-                    <input class="Title" type="number" name="RubriekID" id="RubriekID" hidden>
-                </div>
-                <div>
+                    <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                     <!-- NAME -->
-                    <input class="Title" type="text" name="RubriekName" id="RubriekName">
-                </div>
-                <div>
+                    <label for="RubriekenName">Naam</label>
+                     <input id="RubriekenName" class="Name" type="text" name="RubriekName" value="" placeholder="Naam" id="RubriekName">
                     <!-- PARENT ID -->
-                    <input type="number" name="RubriekParent" id="RubriekParent">
-                </div>
-                <div>
+                    <label for="ParentRubriekID">Parent rubriek ID</label>
+                    <input id="ParentRubriekID" class="RubriekParent" type="number" name="RubriekParent" value="" placeholder="Parent rubriek ID" id="RubriekParent">
                     <!-- VOLG NUMMER -->
-                    <input type="number" name="RubriekVolgNummer" id="RubriekVolgNummer" hidden>
-                </div>
-                <div>
-                    <!-- VOLG NUMMER -->
-                    <input type="checkbox" name="Accept" id="Accept">
-                    <input type="submit" name="DeleteRubriek" value="DELETE">
-                </div>
-            </form>
+                    <label for="VolgNummerID">Volg Nummer</label>
+                    <div>
+                        <input type="button" onclick="CountVolgnummer(1)" value="+">
+                        <input id="VolgNummerID" class="VolgNummer inputNummer" type="number" name="RubriekVolgNummer" id="RubriekVolgNummer">
+                        <input type="button" onclick="CountVolgnummer(-1)" value="-">
+                    </div>
+                    <!-- ACCEPT -->
+                    <div>
+                        <input id="AcceptBox1" type="checkbox" name="Accept" id="Accept">
+                        <label for="AcceptBox1">Zeker weten</label>
+                        <input type="submit" name="UpdateRubriek" value="Update">
+                    </div>
+                </form>
             </div>
-            <div>
+            <div class="wijzegingen">
                 <h3>Delete</h3>
                 <!-- DELETE -->
+                <form action="" method="POST">
+                    <!-- ID -->
+                    <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
+                    <!-- ACCEPT -->
+                    <div>
+                        <input id="AcceptBox2" type="checkbox" name="Accept" id="Accept">
+                        <label for="AcceptBox2">Zeker weten</label>
+                        <input type="submit" name="DeleteRubriek" value="Delete">
+                    </div>
+                </form>
+            </div>
+            <div class="wijzegingen">
+                <h3>Her Open</h3>
+                <!-- DELETE -->
+                <form action="" method="POST">
+                    <!-- ID -->
+                    <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
+                    <!-- ACCEPT -->
+                    <div>
+                        <input id="AcceptBox4" type="checkbox" name="Accept" id="Accept">
+                        <label for="AcceptBox4">Zeker weten</label>
+                        <input type="submit" name="HerOpenRubriek" value="Her Open">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="rij maken noShow">
+            <h3>Maken</h3>
+            <div class="wijzegingen">
             <form action="" method="POST">
-                <!-- <h4>DELETE</h4>
-                <input type="text" name="RubriekID" id="RubriekID">
-                <input type="checkbox" name="Accept" id="Accept">
-                <input type="submit" name="DeleteRubriek" value="DELETE"> -->
-            </form>
+                    <!-- NAME -->
+                    <label for="RubriekenName">Naam</label>
+                     <input id="RubriekenName" class="" type="text" name="RubriekName" value="<?php echo (isset($_POST["RubriekName"]) ? ($_POST["RubriekName"]) : "") ?>" placeholder="Naam" id="RubriekName">
+                    <!-- PARENT ID -->
+                    <label for="ParentRubriekID">Select parent rubriek </label>
+                    <input id="ParentRubriekID" class="ID" type="number" name="RubriekParent" placeholder="Parent rubriek ID" hidden>
+                    <input id="ParentRubriekName" class="Name" type="text" name="RubriekParent" placeholder="Parent rubriek" disabled>
+                    <!-- VOLG NUMMER -->
+                    <label for="VolgNummerID">Volg Nummer</label>
+                    <div>
+                        <input type="button" onclick="CountVolgnummer(1)" value="+">
+                        <input id="VolgNummerID" class="inputNummer" type="number" name="RubriekVolgNummer" id="RubriekVolgNummer" value="1">
+                        <input type="button" onclick="CountVolgnummer(-1)" value="-">
+                    </div>
+                    <!-- ACCEPT -->
+                    <div>
+                        <input id="AcceptBox3" type="checkbox" name="Accept" id="Accept">
+                        <label for="AcceptBox3">Zeker weten</label>
+                        <input type="submit" name="InsertRubriek" value="Creëer">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

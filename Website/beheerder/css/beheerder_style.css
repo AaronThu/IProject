@@ -118,7 +118,7 @@ body {
     width: calc(100% - 3em);
 }
 
-.rij form input[type="submit"] {
+.rij>form input[type="submit"] {
     width: 3em;
     background-color: #a9976a;
     color: black;
@@ -130,10 +130,46 @@ body {
     color: black;
 }
 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .filters {
     display: flex;
     flex-direction: row;
     max-width: 50%;
+}
+
+.wijzegingen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.wijzegingen form {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.wijzegingen form>div {
+    margin: 0.25em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.wijzegingen form>div input[type="button"] {
+    width: 2.5em;
+    margin: 0em 1em;
+    border: black 1px solid;
+}
+
+.wijzegingen form>div input {
+    text-align: center;
 }
 
 .filters .checkBox {
@@ -156,7 +192,7 @@ body {
 .zoekresultaten {
     display: flex;
     flex-direction: column;
-    height: 62.5vh;
+    height: calc(100vh - 26.5em);
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -177,7 +213,7 @@ body {
 }
 
 .zoekresultaat .id {
-    width: 25%;
+    width: 50%;
     color: gray;
 }
 
@@ -234,6 +270,10 @@ body {
     text-align: center;
 }
 
+.gesloten {
+    background-color: #5a5a5a;
+}
+
 .selected {
     background-color: #a9976a;
     color: white;
@@ -245,6 +285,11 @@ body {
 
 .selected .volgnr {
     color: white;
+}
+
+.maken {
+    width: 40%;
+    text-align: center;
 }
 
 @media (min-width: 769px) {
