@@ -6,6 +6,7 @@ sqlcmd -S localhost -d EenmaalAndermaal -i "INSERT_SCRIPT.sql"
 sqlcmd -S localhost -d EenmaalAndermaal -i "CREATE Tables voor conversie.sql"
 sqlcmd -S localhost -d EenmaalAndermaal -i "INSERT_TEST_USERS.sql"
 sqlcmd -S localhost -d EenmaalAndermaal -i "CONVERSIE_USERS.sql"
+sqlcmd -S localhost -d EenmaalAndermaal -i "FUNCTIONS.sql"
 sqlcmd -S localhost -d EenmaalAndermaal -i "9800-Auto's, motoren en boten 1.sql" -x
 sqlcmd -S localhost -d EenmaalAndermaal -i "9800-Auto's, motoren en boten 2.sql" -x
 sqlcmd -S localhost -d EenmaalAndermaal -i "11232-Film en DVD.sql" -x

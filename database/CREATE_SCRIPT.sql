@@ -98,7 +98,7 @@ GO
 /* Rubriek                                                      */
 /*==============================================================*/
 CREATE TABLE Rubriek (
-    Rubrieknummer       INT                 NOT NULL,
+    Rubrieknummer       INT IDENTITY        NOT NULL,
     Rubrieknaam         VARCHAR(50)         NOT NULL,
     Parent_rubriek      INT                     NULL,
     Volgnr              TINYINT                 NULL,

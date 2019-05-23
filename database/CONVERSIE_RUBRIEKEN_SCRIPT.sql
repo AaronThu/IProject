@@ -3420,6 +3420,9 @@ INSERT Categorieen (ID,Name,Parent) VALUES (179171,'Miners',179197)
 INSERT Categorieen (ID,Name,Parent) VALUES (179172,'Mining-contracten',179197)
 INSERT Categorieen (ID,Name,Parent) VALUES (179197,'Virtueel geld',11116)
 
+SET IDENTITY_INSERT dbo.Rubriek ON;  
+GO  
+
 
 /*==============================================================*/
 /* Conversie van Categorieen naar Rubriek                       */
