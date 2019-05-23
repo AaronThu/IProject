@@ -21,7 +21,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                 <div class="col-md-6">
                     <div class="carousel slide" data-ride="carousel" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"><img class="w-100 d-block" src="assets/img/<?php echo GetVoorwerpFoto($voorwerpID); ?>" alt="Slide Image"></div>
+                            <div class="carousel-item active"><img class="w-100 d-block" src="http://iproject2.icasites.nl/pics/<?php echo GetVoorwerpFoto($voorwerpID); ?>" alt="Slide Image"></div>
                             <div class="carousel-item"><img class="w-100 d-block" src="assets/img/Veilinghamer.jpg" alt="Slide Image"></div>
                             <div class="carousel-item"><img class="w-100 d-block" src="assets/img/Veilinghamer.jpg" alt="Slide Image"></div>
                         </div>
@@ -99,7 +99,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <div class="flex-row">
                         <p class="anderenbekekenook">Anderen bekeken ook</p>
                         <?php foreach (GetMeestBekeken() as $key => $value) { ?>
-                            <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img src="assets/img/<?php echo $value['Filenaam']; ?>" width="300" heigth="300"/></a><br><br>
+                            <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img src="http://iproject2.icasites.nl/pics/<?php echo $value['Filenaam']; ?>" width="300" heigth="300"/></a><br><br>
                         <?php } ?>
                     </div>
                 </div>

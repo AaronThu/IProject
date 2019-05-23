@@ -136,10 +136,8 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 }
 
 //HOMEPAGE FUNCTIES
-function genereerArtikelen($dbh, $gegevenQuery, $columntype)
-{
+function genereerArtikelen($dbh, $gegevenQuery, $columntype) {     
     $artikelen = '';
-
     $queryvoorwerpen = $dbh->query("$gegevenQuery");
     while ($row = $queryvoorwerpen->fetch()) {
         $titel = $row['Titel'];
@@ -147,23 +145,17 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
         $StartPrijs = $row['Startprijs'];
         $Verkoopprijs = $row['Startprijs'];
         $voorwerpNummer = $row['Voorwerpnummer'];
-
         $queryFoto = $dbh->prepare("SELECT * FROM Bestand WHERE Voorwerpnummer = :Voorwerpnummer");
-        $queryFoto->execute([
-            ":Voorwerpnummer" => $voorwerpNummer,
-        ]);
-        $foto = $queryFoto->fetchColumn();
+        $queryFoto->execute([":Voorwerpnummer" => $voorwerpNummer,]);$foto = $queryFoto->fetchColumn();
 
-        $artikelen .= '<div class=" ' . $columntype . '" data-hover=' . "€" . $Verkoopprijs . ' >
-                <div class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' . $foto . '); background-size: cover">
-                    <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
-                    <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
-                </div>
-            </div>';
-
+        $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile" prijs-hover='. "€" .  $Verkoopprijs . ' >
+                <a href = "voorwerppagina.php?voorwerpID=' .$voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' . $foto . '); background-size: cover" >
+                <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
+                <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p></a>
+            </div>'; 
     }
-
-    return $artikelen;
+        
+    return $artikelen; 
 }
 
 function genereerCatogorie($dbh, $gegevenQuery, $columntype)
@@ -188,6 +180,6 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
             </div>';
 
     }
-
     return $catogorie;
 }
+
