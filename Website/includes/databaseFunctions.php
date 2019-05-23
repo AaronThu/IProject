@@ -54,8 +54,8 @@ function GetVoorwerpFoto($id){
     global $dbh;
     $fotoQuery = $dbh->prepare("SELECT FileNaam FROM Bestand WHERE Voorwerpnummer= ?");
     $fotoQuery->execute([$id]);
-    $fotoPath = $fotoQuery->fetch();
-    return $fotoPath[0];
+    $fotoPath = $fotoQuery->fetchAll();
+    return $fotoPath;
 }
 
 function GetBieders($id){
