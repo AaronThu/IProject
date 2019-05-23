@@ -64,13 +64,13 @@ foreach ($alleRubrieken as $key => $value) {
             <div class="row">
                 <div class="col-md-4" style="background-color: #4b4c4d;">
                 <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer'] ;?>"><img style="background-image: url(&quot;http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -5%; margin-top: 5%;"></div>
-                <div class="col" style="background-color: #4b4c4d;"><a href="#" style="color: #ffffff;"><?php echo $value['Titel']; ?></a>
+                <div class="col" style="background-color: #4b4c4d;"><a style="color: #ffffff;"><?php echo $value['Titel']; ?></a>
                     <p style="color: #ffffff;"><br><?php echo substr($value['Beschrijving'], 0, 100); ?><br><br></p>
                 </div>
                 <div class="col" style="background-color: #4b4c4d;">
                     <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3>
                     <p style="color: #ffffff;height: 109px;">U hebt nog (tijd) Om mee te bieden!</p>    
-                    <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-start align-items-xl-start" role="button" style="background-color: #a9976a;padding: 0px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="http://iproject2.icasites.nl/voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a></div>
+                    <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-center align-items-xl-center" role="button" style="background-color: #a9976a;padding: 5px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="http://iproject2.icasites.nl/voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a></div>
                 <div
                     class="col" style="background-color: #4b4c4d;">
                     <p style="width: 119px;color: #ffffff;"><?php echo $value['Plaatsnaam']; ?></p>
