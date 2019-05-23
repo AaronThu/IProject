@@ -30,14 +30,14 @@ INSERT INTO Gebruiker(Gebruikersnaam, Voornaam, Achternaam, Adres1, Plaatsnaam, 
 		   AS Achternaam,
 		   'HAN' AS Adres1,
 		   'HAN' AS Plaatsnaam,
-		   'Emailadres' AS Emailadres,
+		   'TestGebruiker' AS Emailadres,
 		   '01-01-1999' AS Geboortedatum,
 		   '123' AS Wachtwoord,
 		   1 AS Vraagnummer,
 		   'vraagAntwoord' AS AntwoordTekst,
 		   Postalcode AS Postcode,
 		   Location AS Land,
-		   'ver' AS SoortGebruiker
+		   'verkoper' AS SoortGebruiker
 FROM Users
 GO
 
@@ -51,4 +51,3 @@ INSERT INTO Verkoper(GebruikersID, Bank, Rekeningnummer, ControleOptieNaam)
 FROM Gebruiker
 
 
---select GebruikersID, Username from Gebruiker, Users WHERE Username = Gebruikersnaam GROUP BY Username, GebruikersID

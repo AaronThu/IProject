@@ -3,14 +3,10 @@
 /* Script:		   DDL                                          */
 /* Created on:     13-05-2019		                            */
 /*==============================================================*/
-create database EenmaalAndermaal
+
+USE iproject2
 GO
 
-use EenmaalAndermaal
-GO
-/*
-USE iproject2
-GO*/
 
 /*==============================================================*/
 /* VoorwerpFotoNaam                                             */
@@ -66,10 +62,9 @@ CREATE TABLE Gebruiker (
     Wachtwoord              VARCHAR(255)        NOT NULL,
     Vraagnummer             TINYINT             NOT NULL,
     AntwoordTekst           VARCHAR(50)         NOT NULL,
-    SoortGebruiker          CHAR(3)             NOT NULL DEFAULT 'kop',
+    SoortGebruiker          VARCHAR(8)             NOT NULL DEFAULT 'koper',
     CONSTRAINT PK_GEBRUIKER PRIMARY KEY (GebruikersID),
-    --CONSTRAINT AK_EMAILADRES UNIQUE (Emailadres),
-    CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('kop', 'ver', 'adm')),
+    CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('koper', 'verkoper', 'admin')),
 )
 GO
 
@@ -102,7 +97,9 @@ CREATE TABLE Rubriek (
     Rubrieknaam         VARCHAR(50)         NOT NULL,
     Parent_rubriek      INT                     NULL,
     Volgnr              TINYINT                 NULL,
-    CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer)
+	Status				VARCHAR(8)		    NOT NULL,
+    CONSTRAINT PK_RUBRIEK PRIMARY KEY (Rubrieknummer),
+	CONSTRAINT CK_STATUS_RUBRIEK CHECK(Status IN('open', 'gesloten'))
 )
 
 /*==============================================================*/

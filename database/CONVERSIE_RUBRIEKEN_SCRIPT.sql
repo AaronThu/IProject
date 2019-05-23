@@ -3426,11 +3426,12 @@ GO
 /*==============================================================*/
 /* Conversie van Categorieen naar Rubriek                       */
 /*==============================================================*/
-INSERT INTO Rubriek(Rubrieknummer, Rubrieknaam, Parent_rubriek, volgnr)
+INSERT INTO Rubriek(Rubrieknummer, Rubrieknaam, Parent_rubriek, volgnr, Status)
 	SELECT ID AS Rubrieknummer,
 		   Name AS Rubrieknaam ,
 		   Parent AS Parent_rubriek,
-		   1 AS Volgnr
+		   1 AS Volgnr,
+		   'open' AS Status
 FROM Categorieen
 
 

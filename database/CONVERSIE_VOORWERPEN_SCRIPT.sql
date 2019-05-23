@@ -49,7 +49,7 @@ WHERE Prijs < 1.00
 INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsinstructie, Plaatsnaam, Land, Verzendkosten, Verzendinstructies, VerkopersID)
 	SELECT ID AS VoorwerpNummer,
 		   Titel AS Titel,
-		   EenmaalAndermaal.dbo.StripHTML(Beschrijving) AS Beschrijving,
+		   Beschrijving AS Beschrijving,
 			Prijs AS Startprijs,
 			CASE WHEN LEFT(Titel, 1) BETWEEN 'a' AND 'd' THEN 'Graag via Paypal overmaken'
 				 WHEN LEFT(Titel, 1) BETWEEN 'e' AND 'h' THEN 'Maak maar over naar mijn rekeningnummer'
