@@ -9433,7 +9433,8 @@ a.text-dark:focus, a.text-dark:hover {
         min-width: 992px!important
     }
     .container {
-        min-width: 992px!important
+        min-width: 992px!important;
+        margin:30px;
     }
     .navbar {
         display: none
