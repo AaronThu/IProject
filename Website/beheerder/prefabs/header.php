@@ -34,8 +34,9 @@ if (!isset($_SESSION['Gebruikersnaam']) || (isset($_SESSION['Gebruikersnaam']) &
 </head>
 
 <body>
-    <a class="logo" href="beheerder_homepagina.php"><img src="../../assets/img/EenmaalAndermaal_Logo.png"/></a>
+    <a class="logo" href="beheerder_homepagina.php"><img src="../../assets/img/EenmaalAndermaal_Logo.png" /></a>
     <nav class="navbar">
-    <h4>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h4>
+        <h4>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h4>
+        <a href="../index.php">Website</a>
         <a href="../uitlog_pagina.php">Uitloggen</a>
     </nav>

@@ -78,5 +78,3 @@ if (isset($_GET["SearchBar"])) {
     $zoekKeys = test_invoer($_GET["SearchBar"]);
     $results = ZoekRubrieken($zoekKeys, $sortName, $sortNummer, $sortParentRubriek, $sortAflopend, $ZoekOpNaam, $ZoekOpParent);
 }
-
-?>
