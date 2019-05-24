@@ -95,6 +95,10 @@
   border-bottom: 3px solid #a9976a;
 }
 
+.pageNumber input[type="button"]:hover {
+  background-color: #7f7f7f;
+}
+
 .pageNumber input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
