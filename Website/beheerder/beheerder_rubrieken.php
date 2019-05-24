@@ -48,7 +48,8 @@ if (!isset($results) || sizeof($results) <= 0) {
             $parent = $value["Rubrieknummer"];
         }
         $open = ($value["Status"] === "open") ? "open" : "gesloten";
-        echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $parent . ',"' . str_replace(" ", "_", $value["Parent_name"]) . '",' . $value["Volgnr"] . ') class="zoekresultaat ' . $open . '">');
+        $openIdex = ($value["Status"] === "open") ? 1 : 0;
+        echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $parent . ',"' . str_replace(" ", "_", $value["Parent_name"]) . '",' . $value["Volgnr"] . ',' . $openIdex . ') class="zoekresultaat ' . $open . '">');
         echo ("<div class=\"block\">");
         echo ("<h5 class=\"id\">ID: $value[Rubrieknummer]</h5>");
         echo ("<h5 class=\"name\">$value[Rubrieknaam]</h5>");
@@ -98,7 +99,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                     </div>
                 </form>
             </div>
-            <div class="wijzegingen">
+            <div class="wijzegingen delete">
                 <h4>Delete Rubriek</h4>
                 <!-- DELETE -->
                 <form action="" method="POST">
@@ -112,7 +113,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                     </div>
                 </form>
             </div>
-            <div class="wijzegingen">
+            <div class="wijzegingen heropen">
                 <h4>Heropen Rubriek</h4>
                 <!-- DELETE -->
                 <form action="" method="POST">
