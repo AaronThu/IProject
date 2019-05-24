@@ -28,10 +28,10 @@ include_once '../includes/databaseFunctions.php';
             </div>
             <h5>Sorteren op </h5>
             <div class="filters">
-                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="Naam" id="Naam" form="Search" <?php echo (isset($_GET["Naam"]) ? "checked" : "") ?>> <label for="Naam">Naam</label></div>
-                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="volgnummer" id="volgnummer" form="Search" <?php echo (isset($_GET["volgnummer"]) ? "checked" : "") ?>> <label for="volgnummer">Volgnummer</label></div>
-                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="parentRubriek" id="parentRubriek" form="Search" <?php echo (isset($_GET["parentRubriek"]) ? "checked" : "") ?>> <label for="parentRubriek">Parent Rubriek</label></div>
-                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="Aflopend" id="Aflopend" form="Search" <?php echo (isset($_GET["Aflopend"]) ? "checked" : "") ?>> <label for="Aflopend">Aflopend</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="sortNaamRubriek" id="sortNaamRubriek" form="Search" <?php echo (isset($_GET["sortNaamRubriek"]) ? "checked" : "") ?>> <label for="sortNaamRubriek">Naam</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="sortVolgnummer" id="sortVolgnummer" form="Search" <?php echo (isset($_GET["sortVolgnummer"]) ? "checked" : "") ?>> <label for="sortVolgnummer">Volgnummer</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="sortParentRubriek" id="sortParentRubriek" form="Search" <?php echo (isset($_GET["sortParentRubriek"]) ? "checked" : "") ?>> <label for="sortParentRubriek">Parent Rubriek</label></div>
+                <div class="checkBox"><input type="checkbox" onChange="this.form.submit()" name="sortAflopend" id="sortAflopend" form="Search" <?php echo (isset($_GET["sortAflopend"]) ? "checked" : "") ?>> <label for="sortAflopend">Aflopend</label></div>
             </div>
             <div class="zoekresultaten">
 <?php

@@ -50,17 +50,17 @@ if (isset($_POST["HerOpenRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
     );
 }
 
-if (isset($_GET["NaamRubriek"])) {
+if (isset($_GET["sortNaamRubriek"])) {
     $sortName = true;
 }
-if (isset($_GET["volgnummer"])) {
+if (isset($_GET["sortVolgnummer"])) {
     $sortNummer = true;
 }
 if (isset($_GET["sortParentRubriek"])) {
     $sortParentRubriek = true;
 }
 
-if (isset($_GET["Aflopend"])) {
+if (isset($_GET["sortAflopend"])) {
     $sortAflopend = true;
 }
 
