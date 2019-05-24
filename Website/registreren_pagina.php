@@ -114,7 +114,7 @@ include_once "includes/header.php";
               <div class="row>
                 <div class=" col-md-12">
                 <h2 class="text-center" style="color: rgb(255,255,255);">Registreren</h2>
-                <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren accepteert u onze <a href="algemen_voorwaarden.php"> algemene voorwaarden.</p></a>
+                <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren accepteert u onze <a href="algemeen_voorwaarden.php"> algemene voorwaarden.</p></a>
             </div>
         </div>
     </div>
