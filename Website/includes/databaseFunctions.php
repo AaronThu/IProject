@@ -82,21 +82,25 @@ function GetMeestBekeken() {
     return $meestbekeken;
 }
 
-function GetVoorwerpen($id, $page = 0, $max = 40, $depth = 0, $elementCount = 0) {
+function GetVoorwerpen($id, $page = 0, $max = 40) {
     global $dbh;
-
-    $query = "SELECT TOP 40 v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE vir.Rubrieknummer = ?";
+    $all = GetAllSubRubrieken($id);
+    $isIn = '( ' . implode(",", $all) . ' )';
+    $query = "SELECT TOP 40 v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE vir.Rubrieknummer IN ";
+    $query .= $isIn;
     $VoorwerpenQuery = $dbh->prepare($query);
-    $VoorwerpenQuery->execute([$id]);
+    $VoorwerpenQuery->execute();
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
-    if ($elementCount < 40) {
-        foreach (GetRubrieken($id) as $key => $value) {
-            $Voorwerpen = array_merge($Voorwerpen, GetVoorwerpen($value["Rubrieknummer"], $page, $max, $depth + 1, sizeof($Voorwerpen)));
-        }
-    } else {
-        return [];
-    }
     return $Voorwerpen;
+}
+
+function GetAllSubRubrieken($id) {
+    $rubriekenID = [$id];
+    foreach (GetRubrieken($id) as $key => $value) {
+        $rubriekenID = array_merge($rubriekenID, GetAllSubRubrieken($value["Rubrieknummer"]));
+    }
+    return $rubriekenID;
+
 }
 
 ?>
