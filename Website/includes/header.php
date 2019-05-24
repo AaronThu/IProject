@@ -40,7 +40,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 <body>
 <!-- Start: Navigation with Button -->
 <div>
-    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 5em;">
         <div class="container">
             <div><a class="navbar-brand" href="index.php">EenmaalAndermaal</a><span>Klik Klik Klaar</span></div><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigationdd</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
