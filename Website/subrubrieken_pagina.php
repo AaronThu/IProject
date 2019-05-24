@@ -89,9 +89,9 @@ foreach ($alleRubrieken as $key => $value) {
                 </div>
                 <div class="col-md-3">
                     <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3>
-                    <p style="color: #ffffff;height: 40px;">U hebt nog (tijd) Om mee te bieden!</p>
-                    <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-center align-items-xl-center" role="button" style="background-color: #a9976a;padding: 5px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="http://iproject2.icasites.nl/voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a>
-                        <p><?php echo $value['Verzendinstructies']; ?></p>
+                    <h6 style="color: #ffffff;height: 50px;display: inline;">U hebt nog </h6><h6 class="Timer" data-time="<?php echo ($value['Eindmoment']); ?>" style="display: inline; color: #ffffff">asdeasd</h6><h6 style="color: #ffffff;height: 50px;display: inline;"> Om mee te bieden!</h6>
+                    <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-center align-items-xl-center" role="button" style="background-color: #a9976a;padding: 5px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a>
+                        <h6><?php echo $value['Verzendinstructies']; ?></h6>
                 </div>
             </div>
         </div>

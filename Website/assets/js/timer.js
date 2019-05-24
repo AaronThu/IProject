@@ -13,41 +13,44 @@ function makeTimer(element) {
     }
     element.innerHTML = "00:00:00";
     var countDownDate = sqlToJsDate(time);
-    var timer = setInterval(() => {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        var text = "Beëindigd";
-        var classList = element.parentNode.classList;
-        if (distance > 0) {
-            if (days <= 0) {
-                // minder dan 1 dag
-                text = numberFormat(hours) + ":" + numberFormat(minutes) + ":" + numberFormat(seconds);
-                if (!classList.contains("opschieten")) {
-                    classList.add("opschieten");
-                }
-            } else {
-                if (days > 1) {
-                    text = days + " dagen";
-                } else {
-                    text = days + " dag";
-                }
+    timerRun(timer, element, countDownDate)
+    var timer = setInterval(timerRun(timer, element, countDownDate), 1000);
+}
+
+function timerRun(timer, element, countDownDate) {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var text = "Beëindigd";
+    var classList = element.parentNode.classList;
+    if (distance > 0) {
+        if (days <= 0) {
+            // minder dan 1 dag
+            text = numberFormat(hours) + ":" + numberFormat(minutes) + ":" + numberFormat(seconds);
+            if (!classList.contains("opschieten")) {
+                classList.add("opschieten");
             }
         } else {
-            // gestopt
-            clearInterval(timer);
-            if (!classList.contains("opschieten")) {
-                classList.remove("opschieten");
-            }
-            if (!classList.contains("beeindigd")) {
-                classList.add("beeindigd");
+            if (days > 1) {
+                text = days + " dagen";
+            } else {
+                text = days + " dag";
             }
         }
-        element.innerHTML = text;
-    }, 1000);
+    } else {
+        // gestopt
+        clearInterval(timer);
+        if (!classList.contains("opschieten")) {
+            classList.remove("opschieten");
+        }
+        if (!classList.contains("beeindigd")) {
+            classList.add("beeindigd");
+        }
+    }
+    element.innerHTML = text;
 }
 
 function sqlToJsDate(sqlDate) {
