@@ -100,7 +100,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                 </form>
             </div>
             <div class="wijzegingen delete">
-                <h4>Delete Rubriek</h4>
+                <h4>Sluit Rubriek</h4>
                 <!-- DELETE -->
                 <form action="" method="POST">
                     <!-- ID -->
@@ -109,7 +109,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                     <div class="inputField">
                         <input id="AcceptBox2" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox2">Zeker weten</label>
-                        <input type="submit" name="DeleteRubriek" value="Delete">
+                        <input type="submit" name="DeleteRubriek" value="Sluit">
                     </div>
                 </form>
             </div>
@@ -123,7 +123,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                     <div class="inputField">
                         <input id="AcceptBox4" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox4">Zeker weten</label>
-                        <input type="submit" name="HerOpenRubriek" value="Her Open">
+                        <input type="submit" name="HerOpenRubriek" value="Heropen">
                     </div>
                 </form>
             </div>
