@@ -18,6 +18,7 @@ if (isset($_GET["page"])) {
     if (!is_numeric($page)) {
         return;
     }
+    $page = max(1, $page);
 }
 
 ?>
@@ -103,7 +104,7 @@ foreach ($alleRubrieken as $key => $value) {
         <form action="" method="get">
             <input type="number" name="rubriekID" value="<?php echo ($rubiekID); ?>"hidden>
             <input type="button" onclick="CountPage(-1)" value="<">
-            <input type="number" onChange="this.form.submit()" name="page" id="pageNumber" value = "<?php echo ($page) ?>"min="1">
+            <input type="number" onChange="this.form.submit()" name="page" id="pageNumber" value = "<?php echo ($page) ?>">
             <input type="button" onclick="CountPage(1)" value=">">
         </form>
     </div>
