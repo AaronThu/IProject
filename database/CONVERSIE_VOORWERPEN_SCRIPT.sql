@@ -45,12 +45,11 @@ UPDATE Items
 SET Prijs = 1.00
 WHERE Prijs < 1.00
 
-
-INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsinstructie, Plaatsnaam, Land, Verzendkosten, Verzendinstructies, VerkopersID)
+INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsinstructie, Plaatsnaam, Land, Verzendkosten, Verzendinstructies, VerkopersID, Looptijd)
 	SELECT ID AS VoorwerpNummer,
 		   Titel AS Titel,
-		   Beschrijving AS Beschrijving,
-			Prijs AS Startprijs,
+			   Beschrijving AS Beschrijving,
+				 Prijs AS Startprijs,
 			CASE WHEN LEFT(Titel, 1) BETWEEN 'a' AND 'd' THEN 'Graag via Paypal overmaken'
 				 WHEN LEFT(Titel, 1) BETWEEN 'e' AND 'h' THEN 'Maak maar over naar mijn rekeningnummer'
 				 WHEN LEFT(Titel, 1) BETWEEN 'i' AND 'o' THEN 'Handje contantje of anders via een tikkie!'
@@ -61,9 +60,7 @@ INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsi
 				 WHEN LEFT(Titel, 1) BETWEEN 'l' AND 'q' THEN 'Amsterdam'
 				 ELSE 'Groningen' END
 				 AS Plaatsnaam,
-				 CASE WHEN Locatie IS NULL THEN 'Nederland'
-		   ELSE Locatie END
-				 AS Land,
+				 Locatie AS Land,
 			CASE WHEN LEFT(Titel, 1) BETWEEN 'i' AND 'o' THEN 5.99
 				 WHEN LEFT(Titel, 1) BETWEEN 'a' AND 'c' THEN 2.00
 				 WHEN LEFT(Titel, 1) BETWEEN 'f' AND 'h' THEN 12.99
@@ -74,7 +71,12 @@ INSERT INTO Voorwerp(Voorwerpnummer, Titel, Beschrijving, Startprijs, Betalingsi
 				 WHEN LEFT(Titel, 1) BETWEEN 'i' AND 'o' THEN 'Ophalen bij de MCdonalds'
 				 ELSE NULL END
 				 AS Verzendinstructies,
-		   Verkoper AS VerkopersID
+		   Verkoper AS VerkopersID,
+			CASE WHEN LEFT(Titel, 1) BETWEEN 'q' AND 'w' THEN 3
+				 WHEN LEFT(Titel, 1) BETWEEN 'a' AND 'f' THEN 5
+				 WHEN LEFT(Titel, 1) BETWEEN 'i' AND 'o' THEN 7
+				 ELSE 10 END
+			    AS Looptijd
 FROM Items
 GO
 
