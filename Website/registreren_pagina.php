@@ -111,9 +111,10 @@ include_once "includes/header.php";
 <body class="d-xl-flex flex-column" style="background-color: #3a3a3a;">
     <div>
         <div class="container">
-            <div class="row>
+              <div class="row>
                 <div class=" col-md-12">
-                <h1 class="text-center" style="color: rgb(255,255,255);margin-bottom:50px;">Registreren</h1>
+                <h2 class="text-center" style="color: rgb(255,255,255);">Registreren</h2>
+                <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren accepteert u onze <a href="algemeen_voorwaarden.php"> algemene voorwaarden.</p></a>
             </div>
         </div>
     </div>
