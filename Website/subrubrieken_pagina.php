@@ -96,11 +96,7 @@ foreach ($alleRubrieken as $key => $value) {
             </div>
         </div>
         <?php }?>
-
-
-    </div>
-    </div>
-    <div class="pageNumber">
+        <div class="pageNumber">
         <form action="" method="get">
             <input type="number" name="rubriekID" value="<?php echo ($rubiekID); ?>"hidden>
             <input type="button" onclick="CountPage(-1)" value="<">
@@ -108,6 +104,10 @@ foreach ($alleRubrieken as $key => $value) {
             <input type="button" onclick="CountPage(1)" value=">">
         </form>
     </div>
+
+    </div>
+    </div>
+
     </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
