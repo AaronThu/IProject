@@ -13,7 +13,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
     $registratieKnop = '<a class="btn btn-light action-button" href="#">Mijn Account</a>';
     if (IsAdmin($_SESSION["Gebruikersnaam"])) {
-        $adminKnop = '<a class="btn btn-light action-button" href="beheerder/beheerder_homepagina.php">Admin Panel</a>';
+        $adminKnop = '<a class="btn btn-light action-button" href="beheerder/beheerder_homepagina.php">Admin Paneel</a>';
     }
 }
 ?>
