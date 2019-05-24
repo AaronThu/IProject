@@ -32,7 +32,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                 } ?>
                                 <img class="w-100 d-block"
                                      src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                     alt="<?php $value['']?>" style="max-height: 300px; background-size: contain"></div>
+                                     alt="<?php $value['FileNaam']?>" style="max-height: 300px; position: relative; overflow: hidden"></div>
                             <?php } ?>
 
                         </div>
@@ -103,9 +103,16 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                             <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Betalingswijze']; ?></p>
                         </div>
                         <div class="d-flex flex-column">
-                            <p class="flex-wrap verkooplocatie" style="font-size: 100%;width: 100%;">Beschrijving:</p>
-                            <?php $_SESSION['Beschrijving'] = $value['Beschrijving']?>
-                            <iframe class="voorwerpBeschrijving" src="voorwerp_beschrijving.php" ></iframe>
+                            <?php
+                            if(empty($value['Beschrijving'])){
+                               echo '<p>Dit product heeft geen beschrijving</p>';
+                            } else{
+                                echo '<p class="flex-wrap verkooplocatie" style="font-size: 100%;width: 100%;">Beschrijving:</p>';
+                                 echo ' <iframe class="voorwerpBeschrijving" src="voorwerp_beschrijving.php" ></iframe>';
+                                $_SESSION['Beschrijving'] = $value['Beschrijving'];
+                            }
+                            ?>
+
                         </div>
                     <?php } ?>
                 </div>
