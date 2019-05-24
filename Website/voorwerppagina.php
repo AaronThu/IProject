@@ -32,7 +32,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                 } ?>
                                 <img class="w-100 d-block"
                                      src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                     alt="Slide Image"></div>
+                                     alt="<?php $value['']?>" style="max-height: 300px; background-size: contain"></div>
                             <?php } ?>
 
                         </div>
@@ -104,8 +104,8 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         </div>
                         <div class="d-flex flex-column">
                             <p class="flex-wrap verkooplocatie" style="font-size: 100%;width: 100%;">Beschrijving:</p>
-                            <p class="verkooplocatie" style="width: 100%;"><?php echo $value['Beschrijving']; ?><br><br><br>
-                            </p>
+                            <?php $_SESSION['Beschrijving'] = $value['Beschrijving']?>
+                            <iframe class="voorwerpBeschrijving" src="voorwerp_beschrijving.php" ></iframe>
                         </div>
                     <?php } ?>
                 </div>
@@ -120,14 +120,13 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <p class="d-flex flex-row justify-content-between"
                        style="width: 10%;"><?php echo $value['BodBedrag']; ?></p>
                 </div>
-                <?php } ?></p>
-                <div class="d-flex flex-row justify-content-between">
-                    <p class="d-flex flex-column justify-content-between" style="width: 10%;">Naam</p>
-                    <p class="d-flex flex-row justify-content-between" style="width: 10%;">Tijd</p>
-                    <p class="d-flex flex-row justify-content-between" style="width: 10%;">Bedrag</p>
+                <?php } ?>
+                <div class="d-flex flex-row justify-content-between float-right" >
+                    <p class="d-flex flex-column justify-content-between biedingKolom" style="width: 10%;">Naam</p>
+                    <p class="d-flex flex-row justify-content-between biedingKolom" style="width: 10%;">Tijd</p>
+                    <p class="d-flex flex-row justify-content-between biedingKolom" style="width: 10%;">Bedrag</p>
                 </div>
-
-                <div class="flex-row">
+                <div class="float-right" style="margin-top: 10em">
                     <p class="anderenbekekenook">Anderen bekeken ook</p>
                     <?php foreach (GetMeestBekeken() as $key => $value) { ?>
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img

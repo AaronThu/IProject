@@ -124,3 +124,16 @@ h6 {
   color: #a9976a;
   word-break: break-all;
 }
+
+.voorwerpBeschrijving {
+  height:1000px;
+  width:120%;
+  border: none;
+  background-color: #4b4c4d;
+  box-shadow: 5px 5px 5px;
+  margin-bottom: 2em;
+}
+
+.biedingKolom{
+  padding-right: 5em;
+}

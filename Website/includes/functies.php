@@ -136,7 +136,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 }
 
 //HOMEPAGE FUNCTIES
-function genereerArtikelen($dbh, $gegevenQuery, $columntype) {     
+function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
     $artikelen = '';
     $queryvoorwerpen = $dbh->query("$gegevenQuery");
     while ($row = $queryvoorwerpen->fetch()) {
@@ -152,10 +152,10 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype) {
                 <a href = "voorwerppagina.php?voorwerpID=' .$voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' . $foto . '); background-size: contain;" >
                 <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
                 <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p></a>
-            </div>'; 
+            </div>';
     }
-        
-    return $artikelen; 
+
+    return $artikelen;
 }
 
 function genereerCatogorie($dbh, $gegevenQuery, $columntype)
@@ -173,7 +173,7 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
         ]);
         $foto = $queryFoto->fetchColumn(1);
 
-        $catogorie .= '<div class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
+        $catogorie .= '<div id="hover" class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
                 <div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
                 <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto . '" alt="' . $foto . '" height=250 width=250 > 
                     </div>
