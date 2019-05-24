@@ -82,11 +82,21 @@ function GetMeestBekeken() {
     return $meestbekeken;
 }
 
-function GetVoorwerpen($id) {
+function GetVoorwerpen($id, $page = 0, $max = 40, $depth = 0, $elementCount = 0) {
     global $dbh;
-    $VoorwerpenQuery = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE vir.Rubrieknummer = ?");
+
+    $query = "SELECT TOP 40 v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE vir.Rubrieknummer = ?";
+    $VoorwerpenQuery = $dbh->prepare($query);
     $VoorwerpenQuery->execute([$id]);
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
+    if ($elementCount < 40) {
+        foreach (GetRubrieken($id) as $key => $value) {
+            $Voorwerpen = array_merge($Voorwerpen, GetVoorwerpen($value["Rubrieknummer"], $page, $max, $depth + 1, sizeof($Voorwerpen)));
+        }
+    } else {
+        return [];
+    }
     return $Voorwerpen;
 }
+
 ?>
