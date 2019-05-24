@@ -130,6 +130,25 @@ body {
     color: black;
 }
 
+.inputField {
+    padding: 0.5em;
+}
+
+.inputField label {
+    text-align: left;
+    width: 50%;
+}
+
+.inputField input {
+    text-align: left;
+    width: 150%;
+}
+
+.inputField input[type="checkbox"] {
+    text-align: left;
+    width: 25%;
+}
+
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;

@@ -64,21 +64,25 @@ if (!isset($results) || sizeof($results) <= 0) {
         <div class="rij eigenschappen noShow">
             <div>
                 <!-- INFO -->
-            <h3 id="Title">Title</h3>
+            <h2 id="Title">Title</h2>
             </div>
             <div class="wijzegingen">
                 <!-- FORMS -->
                 <!-- UPDATE -->
-                <h3>Update</h3>
+                <h4>Update Rubriek</h4>
                 <form action="" method="POST">
                     <!-- ID -->
                     <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                     <!-- NAME -->
-                    <label for="RubriekenName">Naam</label>
-                     <input id="RubriekenName" class="Name" type="text" name="RubriekName" value="" placeholder="Naam" id="RubriekName">
+                    <div class="inputField">
+                        <label for="RubriekenName">Naam</label>
+                        <input id="RubriekenName" class="Name" type="text" name="RubriekName" value="" placeholder="Naam" id="RubriekName">
+                    </div>
                     <!-- PARENT ID -->
-                    <label for="ParentRubriekID">Parent rubriek ID</label>
-                    <input id="ParentRubriekID" class="RubriekParent" type="number" name="RubriekParent" value="" placeholder="Parent rubriek ID" id="RubriekParent">
+                    <div class="inputField">
+                        <label for="ParentRubriekID">Parent rubriek ID</label>
+                        <input id="ParentRubriekID" class="RubriekParent" type="number" name="RubriekParent" value="" placeholder="Parent rubriek ID" id="RubriekParent">
+                    </div>
                     <!-- VOLG NUMMER -->
                     <label for="VolgNummerID">Volg Nummer</label>
                     <div>
@@ -87,7 +91,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         <input type="button" onclick="CountVolgnummer(-1)" value="-">
                     </div>
                     <!-- ACCEPT -->
-                    <div>
+                    <div class="inputField">
                         <input id="AcceptBox1" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox1">Zeker weten</label>
                         <input type="submit" name="UpdateRubriek" value="Update">
@@ -95,13 +99,13 @@ if (!isset($results) || sizeof($results) <= 0) {
                 </form>
             </div>
             <div class="wijzegingen">
-                <h3>Delete</h3>
+                <h4>Delete Rubriek</h4>
                 <!-- DELETE -->
                 <form action="" method="POST">
                     <!-- ID -->
                     <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                     <!-- ACCEPT -->
-                    <div>
+                    <div class="inputField">
                         <input id="AcceptBox2" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox2">Zeker weten</label>
                         <input type="submit" name="DeleteRubriek" value="Delete">
@@ -109,13 +113,13 @@ if (!isset($results) || sizeof($results) <= 0) {
                 </form>
             </div>
             <div class="wijzegingen">
-                <h3>Her Open</h3>
+                <h4>Heropen Rubriek</h4>
                 <!-- DELETE -->
                 <form action="" method="POST">
                     <!-- ID -->
                     <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                     <!-- ACCEPT -->
-                    <div>
+                    <div class="inputField">
                         <input id="AcceptBox4" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox4">Zeker weten</label>
                         <input type="submit" name="HerOpenRubriek" value="Her Open">
@@ -125,16 +129,20 @@ if (!isset($results) || sizeof($results) <= 0) {
         </div>
 
         <div class="rij maken noShow">
-            <h3>Maken</h3>
+            <h4>Maken</h4>
             <div class="wijzegingen">
             <form action="" method="POST">
                     <!-- NAME -->
-                    <label for="RubriekenName">Naam</label>
-                     <input id="RubriekenName" class="" type="text" name="RubriekName" value="<?php echo (isset($_POST["RubriekName"]) ? ($_POST["RubriekName"]) : "") ?>" placeholder="Naam" id="RubriekName">
+                    <div class="inputField">
+                        <label for="RubriekenName">Naam</label>
+                        <input id="RubriekenName" class="" type="text" name="RubriekName" value="<?php echo (isset($_POST["RubriekName"]) ? ($_POST["RubriekName"]) : "") ?>" placeholder="Naam" id="RubriekName">
+                    </div>
                     <!-- PARENT ID -->
-                    <label for="ParentRubriekID">Select parent rubriek </label>
-                    <input id="ParentRubriekID" class="ID" type="number" name="RubriekParent" placeholder="Parent rubriek ID" hidden>
-                    <input id="ParentRubriekName" class="Name" type="text" name="RubriekParent" placeholder="Parent rubriek" disabled>
+                    <div class="inputField">
+                        <label for="ParentRubriekID">Select parent rubriek </label>
+                        <input id="ParentRubriekID" class="ID" type="number" name="RubriekParent" placeholder="Parent rubriek ID" hidden>
+                        <input id="ParentRubriekName" class="Name" type="text" name="RubriekParent" placeholder="Parent rubriek" disabled>
+                    </div>
                     <!-- VOLG NUMMER -->
                     <label for="VolgNummerID">Volg Nummer</label>
                     <div>
@@ -143,7 +151,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         <input type="button" onclick="CountVolgnummer(-1)" value="-">
                     </div>
                     <!-- ACCEPT -->
-                    <div>
+                    <div class="inputField">
                         <input id="AcceptBox3" type="checkbox" name="Accept" id="Accept">
                         <label for="AcceptBox3">Zeker weten</label>
                         <input type="submit" name="InsertRubriek" value="Creëer">
