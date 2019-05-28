@@ -69,12 +69,21 @@ CREATE TABLE Gebruiker (
 GO
 
 /*==============================================================*/
-/* Gebruikerstelefoon                                           */
+/* Landen                                                       */
 /*==============================================================*/
 CREATE TABLE Landen (
 	Land				  VARCHAR(50)		NOT NULL,
-	CONSTRAINT PK_LAND PRIMARY KEY (Land)
+	CONSTRAINT PK_LANDEN PRIMARY KEY (Land)
 )
+
+/*==============================================================*/
+/* Banken                                                       */
+/*==============================================================*/
+CREATE TABLE Banken (
+	Bank				  VARCHAR(50)		NOT NULL,
+	CONSTRAINT PK_BANKEN PRIMARY KEY (Bank)
+)
+
 
 
 /*==============================================================*/
@@ -111,8 +120,10 @@ CREATE TABLE Verkoper (
     Rekeningnummer      VARCHAR(20)             NULL,
     ControleOptieNaam   VARCHAR(12)         NOT NULL,
     Creditcard          VARCHAR(20)             NULL,
+	Status              VARCHAR(20)			NOT NULL,
     CONSTRAINT PK_VERKOPER PRIMARY KEY (GebruikersID),
-    CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post'))
+    CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post')),
+	CONSTRAINT CK_STATUS CHECK (Status IN ('geactiveerd', 'aanvraging', 'geblokkeerd'))
 )
 
 /*==============================================================*/
