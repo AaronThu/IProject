@@ -88,10 +88,9 @@ foreach ($alleRubrieken as $key => $value) {
                     <p style="color: #ffffff;"><?php echo strip_tags(substr($value['Beschrijving'], 0, 100)); ?>  </p>
                 </div>
                 <div class="col-md-3">
-                    <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3>
-                    <h6 style="color: #ffffff;height: 50px;display: inline;">U hebt nog </h6><h6 class="Timer" data-time="<?php echo ($value['Eindmoment']); ?>" style="display: inline; color: #ffffff">asdeasd</h6><h6 style="color: #ffffff;height: 50px;display: inline;"> Om mee te bieden!</h6>
+                    <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3><br><br>
+                    <h6 style="color: #ffffff;height: 50px;display: inline;">Tijd om te bieden: </h6><h6 class="Timer" data-time="<?php echo ($value['Eindmoment']); ?>" style="display: inline; color: #ffffff"></h6><br><br><br><br>
                     <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-center align-items-xl-center" role="button" style="background-color: #a9976a;padding: 5px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a>
-                        <h6><?php echo $value['Verzendinstructies']; ?></h6>
                 </div>
             </div>
         </div>
