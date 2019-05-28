@@ -16,13 +16,21 @@
   }
 }
 
+.navbar .container {
+  max-width: 100%;
+}
+
+.navbar .action-button {
+  margin: 0em 0.5em;
+}
+
 .navigation-clean-search .navbar-brand {
   font-weight: bold;
   color: inherit;
 }
 
 .navigation-clean-search .navbar-brand:hover {
-  color: #222;
+  color: #a9976a;
 }
 
 .navigation-clean-search .navbar-toggler {

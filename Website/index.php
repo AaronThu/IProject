@@ -39,7 +39,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                 </div>
             </div>
             <div class="row d-flex justify-content-between flex-wrap">
-                <?php echo genereerArtikelen($dbh, "SELECT TOP 12 * FROM Voorwerp ORDER BY Eindmoment asc", "col-md-3") ?>
+                <?php echo genereerArtikelen($dbh, "SELECT TOP 12 * FROM Voorwerp WHERE VeilingGesloten = 0 ORDER BY Eindmoment asc", "col-md-3") ?>
             </div>
         </div>
     </div>
