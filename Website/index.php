@@ -12,7 +12,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="titel">Uitgelichte voorwerpen</h2>
+                <h3 class="titel">Uitgelichte voorwerpen</h3>
             </div>
         </div>
         <div class="row">
@@ -23,7 +23,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="titel">Exclusieve voorwerpen</h2>
+                    <h2 class="titel">High class voorwerpen</h2>
                 </div>
             </div>
             <div class="row">
@@ -35,7 +35,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="titel">Looptijd bijna over</h2>
+                    <h2 class="titel">Laatste kans!</h2>
                 </div>
             </div>
             <div class="row d-flex justify-content-between flex-wrap">
@@ -62,7 +62,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="titel">Middenklasse voorwerpen</h2>
+                    <h2 class="titel">Doe iets leuks met je vakantiegeld!</h2>
                 </div>
             </div>
             <div class="row d-flex justify-content-between flex-wrap">
