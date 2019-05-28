@@ -16,7 +16,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
             </div>
         </div>
         <div class="row">
-            <?php echo genereerArtikelen($dbh, "SELECT TOP 4 * FROM Voorwerp ORDER BY BeginMoment", "col-md-3") ?>
+            <?php echo genereerArtikelen($dbh, "SELECT TOP 4 * FROM Voorwerp WHERE VeilingGesloten = 0 ORDER BY BeginMoment", "col-md-3") ?>
         </div>
     </div>
     <div style="margin: 30px;">
@@ -27,7 +27,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                 </div>
             </div>
             <div class="row">
-                <?php echo genereerArtikelen($dbh, "SELECT TOP 2 * FROM Voorwerp WHERE Startprijs >=5000 ORDER BY Startprijs desc", "col-md-6") ?>
+                <?php echo genereerArtikelen($dbh, "SELECT TOP 2 * FROM Voorwerp WHERE Startprijs >=5000 AND VeilingGesloten = 0 ORDER BY Startprijs desc", "col-md-6") ?>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                 </div>
             </div>
             <div class="row d-flex justify-content-between flex-wrap">
-                <?php echo genereerArtikelen($dbh, "SELECT TOP 6 * FROM Voorwerp WHERE Startprijs <5000 AND Startprijs > 1000 ORDER BY Startprijs desc ", "col-md-3") ?>
+                <?php echo genereerArtikelen($dbh, "SELECT TOP 6 * FROM Voorwerp WHERE Startprijs <5000 AND Startprijs > 1000  AND VeilingGesloten = 0 ORDER BY Startprijs desc ", "col-md-3") ?>
             </div>
         </div>
     </div>
