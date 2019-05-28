@@ -70,7 +70,7 @@ function ControleerGeboortedatum($geboortedatum)
 
 function ControleerAdres($adres)
 {
-    if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,3}+$/", $adres)) {
+    if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,5}+$/", $adres)) {
         return true;
     } else {
         return false;
