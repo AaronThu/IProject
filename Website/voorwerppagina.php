@@ -147,7 +147,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <p class="meervanVerkoper">Meer van deze verkoper</p>
                     <?php foreach (GetMeerVanVerkoper($voorwerpID) as $key => $value) { ?>
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img
-                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['Filenaam']; ?>"
+                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
                                     width="300" heigth="300"/></a><br><br>
                     <?php } ?>
                 </div>
