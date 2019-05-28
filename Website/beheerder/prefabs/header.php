@@ -30,6 +30,7 @@ if (!isset($_SESSION['Gebruikersnaam']) || (isset($_SESSION['Gebruikersnaam']) &
     <link rel="stylesheet" href="../assets/css/Breadcrum.css">
     <link rel="stylesheet" href="../assets/css/Subrubrieken.css">
     <link rel="stylesheet" href="css/beheerder_style.css">
+    <link rel="icon" href="../assets/img/EenmaalAndermaal_Logo.png">
 
 </head>
 
