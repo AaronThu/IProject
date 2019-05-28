@@ -45,7 +45,7 @@ function CountVoorwerpen() {
 
 function GetVoorwerpEigenschappen($id) {
     global $dbh;
-    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
@@ -74,12 +74,13 @@ function GetProductNaam($id) {
     return $productnaam;
 }
 
-function GetMeestBekeken() {
+function GetMeerVanVerkoper($id) {
     global $dbh;
-    $MeestbekekenQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.Filenaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer");
-    $MeestbekekenQuery->execute();
-    $meestbekeken = $MeestbekekenQuery->fetchAll();
-    return $meestbekeken;
+    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE V.VerkopersID IN 
+                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = ?) ");
+    $MeerVanVerkoperQuery->execute([$id]);
+    $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
+    return $MeerVanVerkoper;
 }
 
 function GetVoorwerpen($id, $page = 0, $max = 40) {

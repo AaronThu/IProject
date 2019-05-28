@@ -69,7 +69,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                             <p class="Timer" data-time="<?php echo $voorwerpEigenschappen[0]['Eindmoment'] ?>">
                             <div>
                                 <form class="d-flex flex-row">
-                                    <input class="form-control d-flex flex-row" type="text" style="margin: 0%0%20%;">
+                                    <input class="form-control d-flex flex-row" type="number" step="0.01" style="margin: 0%0%20%;">
                                     <button class="btn btn-primary" type="button"
                                             style="background-color: #a9976a;height: 5%;">
                                         Bied
@@ -88,7 +88,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                 <div class="col-md-6 voorwerpinfo"><?php foreach ($voorwerpEigenschappen as $key => $value) { ?>
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie">Verkoper: </p>
-                            <p class="verkooplocatie" style="margin: 0%20%;"><?php echo $value['Gebruikersnaam']; ?></p>
+                            <p class="verkooplocatie" style="margin: 0%19.5%;"><?php echo $value['Gebruikersnaam']; ?></p>
                         </div>
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Locatie: </p>
@@ -101,6 +101,14 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Betalingswijze: </p>
                             <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Betalingswijze']; ?></p>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Betalingsinstructie: </p>
+                            <p class="verkooplocatie" style="margin: 0%7.5%;"><?php echo $value['Betalingsinstructie']; ?></p>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Verzendinstructie: </p>
+                            <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Verzendinstructies']; ?></p>
                         </div>
                         <div class="d-flex flex-column">
                             <?php
@@ -134,8 +142,8 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <p class="d-flex flex-row justify-content-between biedingKolom" style="width: 10%;">Bedrag</p>
                 </div>
                 <div class="float-right" style="margin-top: 10em">
-                    <p class="anderenbekekenook">Anderen bekeken ook</p>
-                    <?php foreach (GetMeestBekeken() as $key => $value) { ?>
+                    <p class="meervanVerkoper">Meer van deze verkoper</p>
+                    <?php foreach (GetMeerVanVerkoper($voorwerpID) as $key => $value) { ?>
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img
                                     src="http://iproject2.icasites.nl/pics/<?php echo $value['Filenaam']; ?>"
                                     width="300" heigth="300"/></a><br><br>
