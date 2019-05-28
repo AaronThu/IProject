@@ -35,6 +35,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <link rel="stylesheet" href="../assets/css/Rubriek.css">
     <link rel="stylesheet" href="../assets/css/Breadcrum.css">
     <link rel="stylesheet" href="../assets/css/Subrubrieken.css">
+    <link rel="stylesheet" href="../assets/css/Sorting-Box.css">
     <link rel="icon" href="../assets/img/EenmaalAndermaal_Logo.png">
 
     <script src="../assets/js/jquery.min.js"></script>
@@ -55,18 +56,18 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                             <div class="dropdown-menu flex-column" role="menu">
                                 <h6 class="dropdown-header" role="presentation">Populair</h6>
                                 <?php
-                                foreach (GetRubriekenPopulair(3) as $key => $value) {
-                                    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
-                                }
-                                ?>
+foreach (GetRubriekenPopulair(3) as $key => $value) {
+    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+}
+?>
                                 <div class="dropdown-divider" role="presentation"></div>
                                 <h6 class="dropdown-header" role="presentation">Rubrieken</h6>
                                 <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
                                     <?php
-                                    foreach (GetRubrieken(-1) as $key => $value) {
-                                        print("<a class=\"dropdown-item\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
-                                    }
-                                    ?>
+foreach (GetRubrieken(-1) as $key => $value) {
+    print("<a class=\"dropdown-item\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+}
+?>
                                 </div>
                                 <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="rubrieken.php">Alle rubrieken</a>
                             </div>
@@ -76,10 +77,10 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                         <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
                     </form><span class="d-flex justify-content-center align-items-center navbar-text actions">
                         <?php
-                        echo $loginKnop;
-                        echo $adminKnop;
-                        echo $registratieKnop;
-                        ?>
+echo $loginKnop;
+echo $adminKnop;
+echo $registratieKnop;
+?>
                     </span>
                 </div>
             </div>
@@ -87,11 +88,11 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     </div>
     <!-- End: Navigation with Button -->
     <?php if (!empty($_SESSION['foutmelding'])) {
-        echo '<div class="foutmelding inputforms">
+    echo '<div class="foutmelding inputforms">
     <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center"> We wijzen je graag op het
         volgende:</h5>
     <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center foutmeldingTekst">';
-        echo $_SESSION['foutmelding'] . '</h5>
+    echo $_SESSION['foutmelding'] . '</h5>
 </div>';
-        $_SESSION['foutmelding'] = "";
-    } ?>
+    $_SESSION['foutmelding'] = "";
+}?>

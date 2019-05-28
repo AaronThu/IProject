@@ -82,12 +82,24 @@ function GetMeestBekeken() {
     return $meestbekeken;
 }
 
-function GetVoorwerpen($id, $page = 0, $max = 40) {
+function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 40) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
-    $isIn = '( ' . implode(",", $all) . ' )';
-    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 AND vir.Rubrieknummer IN ";
+    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 ";
+    $isIn = 'AND vir.Rubrieknummer IN ( ' . implode(",", $all) . ' )';
+    $orderBy = "";
+    foreach ($orderOn as $key => $value) {
+        if ($key === 0) {
+            $orderBy = "ORDER BY " . $value;
+        } else {
+            $orderBy .= ", " . $value;
+        }
+    }
     $query .= $isIn;
+    $query .= $orderBy;
+    if (sizeof($orderOn) > 0 && $aflopen) {
+        $query .= " DESC";
+    }
     $VoorwerpenQuery = $dbh->prepare($query);
     $VoorwerpenQuery->execute();
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
