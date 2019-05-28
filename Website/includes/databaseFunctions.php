@@ -76,8 +76,9 @@ function GetProductNaam($id) {
 
 function GetMeerVanVerkoper($id) {
     global $dbh;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE V.VerkopersID IN 
-                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = ?) ");
+    $voorwerpnummer = $id;
+    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN 
+                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
     $MeerVanVerkoperQuery->execute([$id]);
     $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
     return $MeerVanVerkoper;
