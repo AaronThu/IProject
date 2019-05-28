@@ -60,7 +60,7 @@ function GetVoorwerpFoto($id) {
 
 function GetBieders($id) {
     global $dbh;
-    $biedersQuery = $dbh->prepare("SELECT b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $biedersQuery = $dbh->prepare("SELECT TOP 3 b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ? ORDER BY BodTijd DESC");
     $biedersQuery->execute([$id]);
     $bieders = $biedersQuery->fetchAll();
     return $bieders;

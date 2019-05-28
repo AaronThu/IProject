@@ -68,13 +68,19 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                             <p class="bieden" style="margin: 0%0%5%;">Tijd om te bieden:</p>
                             <p class="Timer" data-time="<?php echo $voorwerpEigenschappen[0]['Eindmoment'] ?>">
                             <div>
-                                <form class="d-flex flex-row">
-                                    <input class="form-control d-flex flex-row" type="number" step="0.01" style="margin: 0%0%20%;">
-                                    <button class="btn btn-primary" type="button"
-                                            style="background-color: #a9976a;height: 5%;">
-                                        Bied
-                                    </button>
+                                <?php
+                                if(isset($_SESSION['GebruikersID'])) { ?>
+                                <form class="d-flex flex-row" action="bied_systeem.php?voorwerpID=<?php echo $voorwerpID; ?>" method="post">
+                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" step="0.01" name="bodbedrag">
+                                    <button class="btn btn-primary" type="submit" style="background-color: #a9976a;height: 5%;">Bied</button>
                                 </form>
+                                <?php }
+                                else { ?>
+                                <p class="d-flex flex-row">
+                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" placeholder="Log in om mee te bieden!" type="number" step="0.01"">
+                                    <button class="btn btn-primary" style="background-color: #a9976a;height: 5%;">Bied</button>
+                                </p>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -108,7 +114,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         </div>
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Verzendinstructie: </p>
-                            <p class="verkooplocatie" style="margin: 0%13%;"><?php echo $value['Verzendinstructies']; ?></p>
+                            <p class="verkooplocatie" style="margin: 0%9%;"><?php echo $value['Verzendinstructies']; ?></p>
                         </div>
                         <div class="d-flex flex-column">
                             <?php
@@ -125,22 +131,18 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                     <?php } ?>
                 </div>
                 <div class="col-md-6 bieden">
-                    <p class="biedgeschiedenis"
-                       style="height: 0%;margin: 0%0%0%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) { ?>
-                        <div class="d-flex flex-row justify-content-between">
-                    <p class="d-flex flex-column justify-content-between"
-                       style="width: 10%;"><?php echo $value['Gebruikersnaam']; ?></p>
-                    <p class="d-flex flex-row justify-content-between"
-                       style="width: 10%;"><?php echo $value['BodTijd']; ?></p>
-                    <p class="d-flex flex-row justify-content-between"
-                       style="width: 10%;"><?php echo $value['BodBedrag']; ?></p>
+                <div class="d-flex flex-row justify-content-between" >
+                    <p>Naam</p>
+                    <p>Tijd</p>
+                    <p>Bedrag</p>
+                </div>
+                    <p class="biedgeschiedenis" style="height: 0%;margin: 0%0%0%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) { ?>
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="d-flex flex-column justify-content-between" style="width: 10%;"><?php echo $value['Gebruikersnaam']; ?></p>
+                    <p class="d-flex flex-row justify-content-between" style="width: 10%;"><?php echo $value['BodTijd']; ?></p>
+                    <p class="d-flex flex-row justify-content-between" style="width: 10%;"><?php echo $value['BodBedrag']; ?></p>
                 </div>
                 <?php } ?>
-                <div class="d-flex flex-row justify-content-between float-right" >
-                    <p class="d-flex flex-column justify-content-between biedingKolom" style="width: 10%;">Naam</p>
-                    <p class="d-flex flex-row justify-content-between biedingKolom" style="width: 10%;">Tijd</p>
-                    <p class="d-flex flex-row justify-content-between biedingKolom" style="width: 10%;">Bedrag</p>
-                </div>
                 <div class="float-right" style="margin-top: 10em">
                     <p class="meervanVerkoper">Meer van deze verkoper</p>
                     <?php foreach (GetMeerVanVerkoper($voorwerpID) as $key => $value) { ?>
