@@ -1,5 +1,8 @@
 var allElements = document.getElementsByClassName("Timer");
 for (let i = 0; i < allElements.length; i++) {
+    if (allElements[i].dataset.time != undefined) {
+        allElements[i].innerHTML = getDate(sqlToJsDate(allElements[i].dataset.time));
+    }
     makeTimer(allElements[i]);
 }
 
@@ -10,7 +13,6 @@ function makeTimer(element) {
     } else {
         return
     }
-    element.innerHTML = "";
     var countDownDate = sqlToJsDate(time);
     var timer = setInterval(() => {
         var now = new Date().getTime();
@@ -49,6 +51,28 @@ function makeTimer(element) {
     }, 1000);
 }
 
+function getDate(countDownDate) {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var text = "Beëindigd";
+    if (distance > 0) {
+        if (days <= 0) {
+            // minder dan 1 dag
+            text = numberFormat(hours) + ":" + numberFormat(minutes) + ":" + numberFormat(seconds);
+        } else {
+            if (days > 1) {
+                text = days + " dagen";
+            } else {
+                text = days + " dag";
+            }
+        }
+    }
+    return text;
+}
 
 function sqlToJsDate(sqlDate) {
     var sqlDateArr1 = sqlDate.split("-");
