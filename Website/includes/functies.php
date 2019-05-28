@@ -152,11 +152,11 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
         ]);
         $foto = $queryFoto->fetchColumn();
 
-        $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile" prijs-hover=' . "€" .  $Verkoopprijs . ' >
+        $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >
         
         <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' . $foto . '); background-size: contain;" >
-        <p class="Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
-        <p class="text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
+        <p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
+        <p class="kaartje text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . $titel . '</p>
                      </a>
                      
             </div>';

@@ -45,7 +45,7 @@ function CountVoorwerpen() {
 
 function GetVoorwerpEigenschappen($id) {
     global $dbh;
-    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
@@ -60,7 +60,7 @@ function GetVoorwerpFoto($id) {
 
 function GetBieders($id) {
     global $dbh;
-    $biedersQuery = $dbh->prepare("SELECT TOP 3 b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ? ORDER BY BodTijd DESC");
+    $biedersQuery = $dbh->prepare("SELECT b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $biedersQuery->execute([$id]);
     $bieders = $biedersQuery->fetchAll();
     return $bieders;
@@ -74,34 +74,20 @@ function GetProductNaam($id) {
     return $productnaam;
 }
 
-function GetMeerVanVerkoper($id) {
+function GetMeestBekeken() {
     global $dbh;
-    $voorwerpnummer = $id;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN 
-                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
-    $MeerVanVerkoperQuery->execute([$id]);
-    $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
-    return $MeerVanVerkoper;
+    $MeestbekekenQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.Filenaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer");
+    $MeestbekekenQuery->execute();
+    $meestbekeken = $MeestbekekenQuery->fetchAll();
+    return $meestbekeken;
 }
 
-function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 40) {
+function GetVoorwerpen($id, $page = 0, $max = 40) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
-    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 ";
-    $isIn = 'AND vir.Rubrieknummer IN ( ' . implode(",", $all) . ' )';
-    $orderBy = "";
-    foreach ($orderOn as $key => $value) {
-        if ($key === 0) {
-            $orderBy = "ORDER BY " . $value;
-        } else {
-            $orderBy .= ", " . $value;
-        }
-    }
+    $isIn = '( ' . implode(",", $all) . ' )';
+    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 AND vir.Rubrieknummer IN ";
     $query .= $isIn;
-    $query .= $orderBy;
-    if (sizeof($orderOn) > 0 && $aflopen) {
-        $query .= " DESC";
-    }
     $VoorwerpenQuery = $dbh->prepare($query);
     $VoorwerpenQuery->execute();
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
@@ -115,6 +101,15 @@ function GetAllSubRubrieken($id) {
     }
     return $rubriekenID;
 
+}
+
+function GetVoorwerpenSearchBar($id){
+    global $dbh;
+    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
+    $SearchQuery = $dbh->prepare($query);
+    $SearchQuery->execute();
+    $Searching = $SearchQuery->fetchAll();
+    return $Searching;
 }
 
 ?>
