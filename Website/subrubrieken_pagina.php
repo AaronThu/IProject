@@ -4,6 +4,8 @@ include_once "includes/functies.php";
 include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 $rubiekID = 0;
+$maxPage = 1;
+$maxOnPage = 10;
 $page = 1;
 $sortOn = [];
 $aflopen = false;
@@ -28,12 +30,13 @@ $rubiekID = test_invoer($_GET["rubriekID"]);
 if (!is_numeric($rubiekID)) {
     return;
 }
+$maxPage = ceil(GetVoorwerpCount($rubiekID) / $maxOnPage);
 if (isset($_GET["page"])) {
     $page = test_invoer($_GET["page"]);
     if (!is_numeric($page)) {
         return;
     }
-    $page = max(1, $page);
+    $page = max(1, min($page, $maxPage));
 }
 ?>
     <div class="Main">
@@ -81,7 +84,7 @@ foreach ($alleRubrieken as $key => $value) {
 ?>
     </div>
     <div class="voorwerplijst">
-        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen);?>
+        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen, $page, $maxOnPage);?>
         <?php if (sizeof($voorwerpen) <= 0) {?>
             <h5 style="text-align: center;padding: 5em;height: 25em">Helaas geen voorwerpen beschikbaar</h5>
         <?php
