@@ -119,4 +119,12 @@ function GetAllSubRubrieken($id) {
 
 }
 
+function GetVoorwerpenSearchBar($id){
+    global $dbh;
+    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
+    $SearchQuery = $dbh->prepare($query);
+    $SearchQuery->execute();
+    $Searching = $SearchQuery->fetchAll();
+    return $Searching;
+}
 ?>
