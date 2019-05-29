@@ -103,7 +103,7 @@ function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 1
     if ($aflopen) {
         $orderBy .= " DESC";
     }
-    $query = "WITH VoorwerpenPagina AS (SELECT ROW_NUMBER() OVER( $orderBy ) as ROWNumber , v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, (SELECT TOP 1 b.FileNaam FROM Bestand b WHERE b.VoorwerpNummer = v.Voorwerpnummer) as FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE Rubrieknummer IN ( " . implode(",", $all) . " )) SELECT * from VoorwerpenPagina WHERE ROWNumber BETWEEN ? AND ? ";
+    $query = "WITH VoorwerpenPagina AS (SELECT ROW_NUMBER() OVER( $orderBy ) as ROWNumber , v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, (SELECT TOP 1 b.FileNaam FROM Bestand b WHERE b.VoorwerpNummer = v.Voorwerpnummer) as FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE  Veilinggesloten = 0 AND Rubrieknummer IN ( " . implode(",", $all) . " )) SELECT * from VoorwerpenPagina WHERE ROWNumber BETWEEN ? AND ? ";
     $VoorwerpenQuery = $dbh->prepare($query);
     $VoorwerpenQuery->execute([$lowerLimit, $upperLimit]);
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
@@ -137,5 +137,13 @@ function GetVoorwerpenSearchBar($id) {
     $SearchQuery->execute();
     $Searching = $SearchQuery->fetchAll();
     return $Searching;
+}
+
+function GetHoogsteBod($id) {
+    global $dbh;
+    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery->execute([$id]);
+    $HoogsteBod = $HoogsteBodQuery->fetchAll();
+    return $HoogsteBod;
 }
 ?>
