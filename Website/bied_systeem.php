@@ -24,9 +24,8 @@ $HoogsteBod = GetHoogsteBod($voorwerpID);
 $BiedenGeslaagdTekst = "Bod succesvol geplaatst";
 
 if(empty($HoogsteBod[0]['Bodbedrag'])) {
-    $HoogsteBod = 0;
+    $HoogsteBod[0]['Bodbedrag'] = $voorwerpEigenschappen[0]['Startprijs'];
 }
-
 
 if($Bodbedrag < $voorwerpEigenschappen[0]['Startprijs']) {
     $_SESSION['foutmelding'] = "Bieden mislukt - Bod is lager dan de startprijs";
@@ -36,12 +35,14 @@ else if($Bodbedrag < $HoogsteBod[0]['Bodbedrag']) {
     $_SESSION['foutmelding'] = "Bieden mislukt - Bod is lager dan het hoogste bod";
     header($locatieBiedingMislukt);
 }
-else if($Bodbedrag > $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag > $HoogsteBod[0]['Bodbedrag']) {
+else if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $HoogsteBod[0]['Bodbedrag']) {
     if($HoogsteBod[0]['Bodbedrag'] >= 1.00 && $HoogsteBod[0]['Bodbedrag'] <= 49.99) {
         $MinimaalTeBieden = 0.50;
         if($Bodbedrag - $HoogsteBod[0]['Bodbedrag'] >= $MinimaalTeBieden) {
             $query = $dbh->prepare("INSERT Bod (Voorwerpnummer, Bodbedrag, GebruikersID) VALUES ($voorwerpID, $Bodbedrag, $GebruikerID)");
             $query->execute();
+            $_SESSION['foutmelding'] = $BiedenGeslaagdTekst;
+            header($locatieBiedingMislukt);
         }
         else {
             $_SESSION['foutmelding'] = "Bied minimaal € $MinimaalTeBieden meer";
