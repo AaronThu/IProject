@@ -114,7 +114,7 @@ function GetVoorwerpCount($id) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
     $query = "SELECT COUNT (v.Voorwerpnummer) FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer
-	WHERE Rubrieknummer IN ( " . implode(",", $all) . " )";
+	WHERE Rubrieknummer IN ( " . implode(",", $all) . " ) AND v.Veilinggesloten = 0";
     $CountQuery = $dbh->prepare($query);
     $CountQuery->execute();
     $Count = $CountQuery->fetch();
