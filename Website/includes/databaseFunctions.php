@@ -138,4 +138,12 @@ function GetVoorwerpenSearchBar($id) {
     $Searching = $SearchQuery->fetchAll();
     return $Searching;
 }
+
+function GetHoogsteBod($id) {
+    global $dbh;
+    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery->execute([$id]);
+    $HoogsteBod = $HoogsteBodQuery->fetchAll();
+    return $HoogsteBod;
+}
 ?>

@@ -71,14 +71,21 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                 <?php
                                 if(isset($_SESSION['GebruikersID'])) { ?>
                                 <form class="d-flex flex-row" action="bied_systeem.php?voorwerpID=<?php echo $voorwerpID; ?>" method="post">
-                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" step="0.01" name="bodbedrag">
+                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" name="bodbedrag" 
+                                    <?php
+                                    
+                                    $step=0.50;
+                                    $placeholder="Minaal te bieden:"; ?>
+                                    step="0.50" placeholder="Minimaal te bieden:">
+                                    <?php
+                                    ?>
                                     <button class="btn btn-primary" type="submit" style="background-color: #a9976a;height: 5%;">Bied</button>
                                 </form>
                                 <?php }
                                 else { ?>
                                 <p class="d-flex flex-row">
-                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" placeholder="Log in om mee te bieden!" type="number" step="0.01"">
-                                    <button class="btn btn-primary" style="background-color: #a9976a;height: 5%;">Bied</button>
+                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" placeholder="Log in om mee te bieden!" type="number" step="0.50">
+                                    <button class="btn btn-primary" disabled="disabled" style="background-color: #a9976a;height: 5%;">Bied</button>
                                 </p>
                                 <?php } ?>
                             </div>
