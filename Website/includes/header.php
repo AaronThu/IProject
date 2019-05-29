@@ -16,6 +16,9 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         $adminKnop = '<a class="btn btn-light action-button" href="beheerder/beheerder_homepagina.php">Admin Paneel</a>';
     }
 }
+$zoekbalk = '<form class="form-inline mr-auto" target="_self" action = "zoekresultatenpagina.php">
+<div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="zoekterm"></div>
+</form>'
 ?>
 
 <!DOCTYPE html>
@@ -73,9 +76,8 @@ foreach (GetRubrieken(-1) as $key => $value) {
                             </div>
                         </li>
                     </ul>
-                    <form class="form-inline mr-auto" target="_self">
-                        <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
-                    </form><span class="d-flex justify-content-center align-items-center navbar-text actions">
+              <?php echo $zoekbalk; ?>
+                    <span class="d-flex justify-content-center align-items-center navbar-text actions">
                         <?php
 echo $loginKnop;
 echo $adminKnop;
