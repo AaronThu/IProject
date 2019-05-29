@@ -23,7 +23,6 @@ if (isset($_GET["SortTijdResterend"]) && $_GET["SortTijdResterend"] === "on") {
 if (isset($_GET["SortAflopend"]) && $_GET["SortAflopend"] === "on") {
     $aflopen = true;
 }
-var_dump($sortOn);
 
 $rubiekID = test_invoer($_GET["rubriekID"]);
 if (!is_numeric($rubiekID)) {
