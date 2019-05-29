@@ -5,7 +5,7 @@ include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 $rubiekID = 0;
 $maxPage = 1;
-$maxOnPage = 10;
+$maxOnPage = 20;
 $page = 1;
 $sortOn = [];
 $aflopen = false;
