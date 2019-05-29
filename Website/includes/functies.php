@@ -122,6 +122,14 @@ function GeefLandenLijst($dbh)
     return $landen;
 }
 
+function GeefBankenLijst($dbh)
+{
+    $bankenQuery = $dbh->prepare("SELECT * FROM Banken");
+    $bankenQuery->execute();
+    $banken = $bankenQuery->fetchAll();
+    return $banken;
+}
+
 function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 {
     if (empty($ingevuldeWaarde)) {
