@@ -23,6 +23,10 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
 $HoogsteBod = GetHoogsteBod($voorwerpID);
 $BiedenGeslaagdTekst = "Bod succesvol geplaatst";
 
+if(empty($HoogsteBod[0]['Bodbedrag'])) {
+    $HoogsteBod = 0;
+}
+
 
 if($Bodbedrag < $voorwerpEigenschappen[0]['Startprijs']) {
     $_SESSION['foutmelding'] = "Bieden mislukt - Bod is lager dan de startprijs";
