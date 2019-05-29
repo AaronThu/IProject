@@ -4,6 +4,7 @@
 /* Created on:     13-05-2019		                            */
 /*==============================================================*/
 
+
 USE iproject2
 GO
 
@@ -116,15 +117,20 @@ CREATE TABLE Rubriek (
 /*==============================================================*/
 CREATE TABLE Verkoper (
     GebruikersID        INT                 NOT NULL,
-    Bank                VARCHAR(50)             NULL,
-    Rekeningnummer      VARCHAR(20)             NULL,
+	SoortRekening		VARCHAR(20)			NOT NULL,
+    Bank                VARCHAR(50)         NOT NULL,
+    Rekeningnummer      VARCHAR(20)         NOT NULL,
+	BankRekeningHouder  VARCHAR(20)         NOT NULL,
+	EinddatumPas        DATE                NOT NULL,
     ControleOptieNaam   VARCHAR(12)         NOT NULL,
-    Creditcard          VARCHAR(20)             NULL,
 	Status              VARCHAR(20)			NOT NULL,
     CONSTRAINT PK_VERKOPER PRIMARY KEY (GebruikersID),
     CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post')),
-	CONSTRAINT CK_STATUS CHECK (Status IN ('geactiveerd', 'aanvraging', 'geblokkeerd'))
+	CONSTRAINT CK_STATUS CHECK (Status IN ('geactiveerd', 'aanvraging', 'geblokkeerd')),
+	CONSTRAINT CK_EINDDATUMPAS CHECK (EinddatumPas > GETDATE()),
+	CONSTRAINT CK_SOORTREKENING CHECK (SoortRekening IN ('creditcard', 'pinpas'))
 )
+
 
 /*==============================================================*/
 /* Betalingswijzen                                              */

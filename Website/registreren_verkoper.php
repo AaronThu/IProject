@@ -5,21 +5,25 @@ include_once "includes/functies.php";
 include_once "includes/header.php";
 
 $locatieFouteLink = "Location: registreren_emailpagina.php";
-/*
+$locatieRegistratie = "Location: registreren_verkopersysteem.php";
+
+
 if (empty($_SESSION['Emailadres'])) {
-    $_SESSION['foutmelding'] = "Je moet eerst registreren als gebruiker voordat je mag registreren als verkoper";
+    $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper";
     header($locatieFouteLink);
     return;
-}*/
+}
 
 $_SESSION['rekeningnummerErr'] = "";
 $_SESSION['rekeningHouderErr'] = "";
+$_SESSION['bankErr'] = "";
+$_SESSION['datumErr'] = "";
 
 if(isset($_POST['verkoperRegistreren'])){
 if(empty(test_invoer($_POST['rekeningnummer'])) || strlen((test_invoer($_POST['rekeningnummer']))) <= 5){
     $_SESSION['rekeningnummerErr'] = "dit rekeningnummer is niet geldig";
 } else {
-    $_SESSION['rekeningNummer'] = test_invoer($_POST['rekeningnummer']);
+    $_SESSION['Rekeningnummer'] = test_invoer($_POST['rekeningnummer']);
 }
 
 if(empty(test_invoer($_POST['naamVanGebruiker']))){
@@ -28,21 +32,32 @@ if(empty(test_invoer($_POST['naamVanGebruiker']))){
     $_SESSION['rekeningHouder'] = test_invoer($_POST['naamVanGebruiker']);
 }
 
-if(empty($_SESSION['rekeningHouderErr']) || empty($_SESSION['rekeningnummerErr'])){
+if(test_invoer($_POST['Bank']) == 'Selecteer bank'){
+    $_SESSION['bankErr'] = "U moet een bank selecteren";
+} else {
+    $_SESSION['Bank'] = test_invoer($_POST['Bank']);
+}
 
+$huidigeTijd = time();
+$datumPas = strtotime($_POST['EinddatumPas']);
+
+if(empty(test_invoer($_POST['EinddatumPas']))){
+    $_SESSION['datumErr'] = "Geef de einddatum van je pas op";
+    } elseif($datumPas < $huidigeTijd) {
+$_SESSION['datumErr'] = "De datum moet in de toekomst liggen";
+} else {
+  $_SESSION['einddatum'] =  date("m-d-Y", strtotime($_POST['EinddatumPas']));
+}
+
+
+
+if(empty($_SESSION['rekeningHouderErr']) && empty($_SESSION['rekeningnummerErr']) && empty($_SESSION['bankErr']) && empty($_SESSION['datumErr'])){
+    $_SESSION['controleOptie'] = $_POST['controleOptie'];
+    $_SESSION['SoortRekening'] = $_POST['soortRekening'];
+header($locatieRegistratie);
 }
 }
 
-
-$_SESSION['Voornaam'] = "Josse";
-$_SESSION['Achternaam'] = "Nobel";
-
-
-
-
-
-$rekeninnummerErr = "";
-$nameVanErr = "";
 ?>
 
 <html>
@@ -62,15 +77,16 @@ $nameVanErr = "";
 <div style=" margin: 50px 15em;">
     <form style="color: white" method="post" action="registreren_verkoper.php">
 
-        <h6 style="text-align: center;">Soort rekeningnummer</h1>
-        <input type="radio" name="soortRekening" value="CreditcardNummer" >Creditcard nummer<br>
-        <input type="radio" name="soortRekening" value="IBANNummer" style="margin-bottom: 2em;">IBAN nummer<br>
+        <h6 style="text-align: center;">Soort rekeningnummer</h6>
+        <input type="radio" name="soortRekening" value="creditcard" >Creditcard nummer<br>
+        <input type="radio" name="soortRekening" value="pinpas" style="margin-bottom: 2em;" checked>IBAN nummer<br>
 
         <h6 style="text-align: center;">Kies een optie waarmee wij jouw gegevens kunnen controleren</h6>
-        <input type="radio" name="controleOptie" value="Post" >Stuur een brief met code naar mijn adres<br>
+        <input type="radio" name="controleOptie" value="Post" checked>Stuur een brief met code naar mijn adres<br>
         <input type="radio" name="controleOptie" value="Creditcard" style="margin-bottom: 2em;">Via jouw creditcard gegevens<br>
 <div class="registratiepagina" style="margin-bottom: 2em;">
 
+    <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['bankErr'] ?> </h6>
     <select class="form-control inputforms" name="Bank">
         <option>Selecteer bank</option>
         <?php
@@ -84,11 +100,15 @@ $nameVanErr = "";
     </select>
     <h6 style="text-align: center;">Rekeningnummer</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['rekeningnummerErr'] ?> </h6>
-    <div class="form-group"><input class="form-control inputforms" type="text" name="rekeningnummer" placeholder="Rekeningnummer" value="<?php echo isset($_POST["rekeningnummer"]) ? $_POST["rekeningnummer"] : '';?>"></div>
+    <div class="form-group"><input class="form-control inputforms" type="text" name="rekeningnummer" placeholder="Rekeningnummer" value="<?php echo isset($_POST["rekeningnummer"]) ? $_POST["rekeningnummer"] : '';?>" maxlength="20"></div>
 
     <h6 style="text-align: center;">De volledige naam die bekend is bij de bank</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['rekeningHouderErr'] ?> </h6>
-    <div class="form-group"><input class="form-control inputforms" type="text" name="naamVanGebruiker" placeholder="" value="<?php echo isset($_POST["naamVanGebruiker"]) ? $_POST["naamVanGebruiker"] : $_SESSION['Voornaam'] . " " . $_SESSION["Achternaam"]; ?>" ></div>
+    <div class="form-group"><input class="form-control inputforms" type="text" name="naamVanGebruiker" placeholder="" value="<?php echo isset($_POST["naamVanGebruiker"]) ? $_POST["naamVanGebruiker"] : $_SESSION['Voornaam'] . " " . $_SESSION["Achternaam"]; ?>" maxlength="20"></div>
+
+    <h6 style="text-align: center;">De einddatum van jouw pas</h6>
+    <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['datumErr'] ?> </h6>
+    <div class="form-group"><input class="form-control inputforms" type="date" name="EinddatumPas" placeholder="" value="<?php echo isset($_POST["EinddatumPas"]) ? $_POST["EinddatumPas"] : '' ?>"></div>
 
 </div>
             <div class ="registratiebutton">
