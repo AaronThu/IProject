@@ -23,6 +23,8 @@ if (isset($_POST["InsertRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
     );
 }
 
+(isset($_POST["UpdateRubriek"])) ? "" : "";
+
 if (isset($_POST["UpdateRubriek"]) && isset($_SESSION["Gebruikersnaam"])) {
     UpdateRubriek(
         $_SESSION["Gebruikersnaam"],

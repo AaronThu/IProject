@@ -85,14 +85,13 @@
   text-align: center;
   text-decoration: none;
   border: none;
-  background-color: #696969;
   color: white;
   background-color: #696969;
-  border-bottom: 3px solid #a9976a;
+  border-bottom: 4px solid #a9976a;
 }
 
 .pageNumber input[type="button"] {
-  border-bottom: 3px solid #a9976a;
+  border-bottom: 4px solid #a9976a;
 }
 
 .pageNumber input[type="button"]:hover {

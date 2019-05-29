@@ -149,7 +149,11 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img
                                     src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
                                     width="300" heigth="300"/></a><br><br>
-                    <?php } ?>
+                    <?php } 
+                    if(empty($value['Filenaam']) && empty($value['Voorwerpnummer'])) {
+                        echo "<p>Deze verkoper heeft geen andere advertenties.</p>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>

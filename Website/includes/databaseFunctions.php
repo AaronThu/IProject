@@ -76,19 +76,34 @@ function GetProductNaam($id) {
 
 function GetMeerVanVerkoper($id) {
     global $dbh;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE V.VerkopersID IN 
-                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = ?) ");
+    $voorwerpnummer = $id;
+    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
+                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
     $MeerVanVerkoperQuery->execute([$id]);
     $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
     return $MeerVanVerkoper;
 }
 
-function GetVoorwerpen($id, $page = 0, $max = 40) {
+function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 40) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
-    $isIn = '( ' . implode(",", $all) . ' )';
-    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 AND vir.Rubrieknummer IN ";
+    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 ";
+    $isIn = 'AND vir.Rubrieknummer IN ( ' . implode(",", $all) . ' )';
+    $orderBy = "";
+    foreach ($orderOn as $key => $value) {
+        if ($key === 0) {
+            $orderBy = "ORDER BY " . $value;
+        } else {
+            $orderBy .= ", " . $value;
+        }
+    }
     $query .= $isIn;
+    $query .= $orderBy;
+    if (sizeof($orderOn) > 0 && $aflopen) {
+        $query .= " DESC";
+    } else if ($aflopen) {
+        $query .= " ORDER BY Rubrieknummer DESC";
+    }
     $VoorwerpenQuery = $dbh->prepare($query);
     $VoorwerpenQuery->execute();
     $Voorwerpen = $VoorwerpenQuery->fetchAll();

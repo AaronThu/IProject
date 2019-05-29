@@ -5,14 +5,29 @@ include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 $rubiekID = 0;
 $page = 1;
+$sortOn = [];
+$aflopen = false;
 if (!isset($_GET["rubriekID"])) {
     return;
 }
+
+if (isset($_GET["SortNaam"]) && $_GET["SortNaam"] === "on") {
+    array_push($sortOn, "Titel");
+}
+if (isset($_GET["SortPrijs"]) && $_GET["SortPrijs"] === "on") {
+    array_push($sortOn, "Verkoopprijs, Startprijs");
+}
+if (isset($_GET["SortTijdResterend"]) && $_GET["SortTijdResterend"] === "on") {
+    array_push($sortOn, "Eindmoment");
+}
+if (isset($_GET["SortAflopend"]) && $_GET["SortAflopend"] === "on") {
+    $aflopen = true;
+}
+
 $rubiekID = test_invoer($_GET["rubriekID"]);
 if (!is_numeric($rubiekID)) {
     return;
 }
-
 if (isset($_GET["page"])) {
     $page = test_invoer($_GET["page"]);
     if (!is_numeric($page)) {
@@ -20,7 +35,6 @@ if (isset($_GET["page"])) {
     }
     $page = max(1, $page);
 }
-
 ?>
     <div class="Main">
     <ul class="breadcrum">
@@ -38,7 +52,6 @@ while ($ID > 0) {
 ?>
  <li><a href="index.php">Home</a></li>
     </ul>
-
     <div class="lijst">
         <div class=" subrubriekenlijst">
         <?php
@@ -66,17 +79,26 @@ foreach ($alleRubrieken as $key => $value) {
     print("</div>");
 }
 ?>
-        </div>
-        <div class="voorwerplijst">
-        <div class="pageNumber">
-        <form action="" method="get">
-            <input type="number" name="rubriekID" value="<?php echo ($rubiekID); ?>"hidden>
-            <input type="button" onclick="CountPage(-1)" value="<">
-            <input type="number" onChange="this.form.submit()" name="page" id="pageNumber" value = "<?php echo ($page) ?>"min="1">
-            <input type="button" onclick="CountPage(1)" value=">">
-        </form>
     </div>
-        <?php foreach (GetVoorwerpen($rubiekID) as $key => $value) {?>
+    <div class="voorwerplijst">
+        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen);?>
+        <?php if (sizeof($voorwerpen) <= 0) {?>
+            <h5 style="text-align: center;padding: 5em;height: 25em">Helaas geen voorwerpen beschikbaar</h5>
+        <?php
+} else {
+    include 'includes/pageNavigation.php';
+    ?>
+     <!-- Sorting box -->
+        <div class="sortingContainer">
+            <div>
+                <div><h5 class="title">Sorteren op:</h5></div>
+                <div><input type="checkbox" onChange="this.form.submit()" name="SortNaam" id="SortNaam" form="PageInfo" <?php echo (isset($_GET["SortNaam"]) ? "checked" : "") ?>> <label for="SortNaam">Naam</label></div>
+                <div><input type="checkbox" onChange="this.form.submit()" name="SortPrijs" id="SortPrijs" form="PageInfo" <?php echo (isset($_GET["SortPrijs"]) ? "checked" : "") ?>> <label for="SortPrijs">Prijs</label></div>
+                <div><input type="checkbox" onChange="this.form.submit()" name="SortTijdResterend" id="SortTijdResterend" form="PageInfo" <?php echo (isset($_GET["SortTijdResterend"]) ? "checked" : "") ?>> <label for="SortTijdResterend">Tijd Resterend</label></div>
+                <div><input type="checkbox" onChange="this.form.submit()" name="SortAflopend" id="SortAflopend" form="PageInfo" <?php echo (isset($_GET["SortAflopend"]) ? "checked" : "") ?>> <label for="SortAflopend">Aflopend</label></div>
+            </div>
+        </div>
+        <?php foreach ($voorwerpen as $key => $value) {?>
         <div class="container voorwerp">
             <div class="row">
                 <div class="col-md-4">
@@ -94,19 +116,11 @@ foreach ($alleRubrieken as $key => $value) {
                 </div>
             </div>
         </div>
-        <?php }?>
-        <div class="pageNumber">
-        <form action="" method="get">
-            <input type="number" name="rubriekID" value="<?php echo ($rubiekID); ?>"hidden>
-            <input type="button" onclick="CountPage(-1)" value="<">
-            <input type="number" onChange="this.form.submit()" name="page" id="pageNumber" value = "<?php echo ($page) ?>">
-            <input type="button" onclick="CountPage(1)" value=">">
-        </form>
-    </div>
-
+        <?php }
+    include 'includes/pageNavigation.php';
+}?>
     </div>
     </div>
-
     </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
