@@ -136,7 +136,7 @@ CREATE TABLE Verkoper (
 /*==============================================================*/
 CREATE TABLE VerkopersCode (
 	GebruikersID		INT					NOT NULL,
-	VerkopersCode		INT					NOT NULL,
+	VerkopersCode		CHAR(7) 			NOT NULL,
 	StartdatumCode		DATE				NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	 CodeVerlopen AS 
             CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, 7, StartdatumCode)
@@ -145,6 +145,7 @@ CREATE TABLE VerkopersCode (
                 END,
 	CONSTRAINT PK_VERKOPERSCODE PRIMARY KEY (GebruikersID)
 )
+
 
 /*==============================================================*/
 /* Betalingswijzen                                              */
