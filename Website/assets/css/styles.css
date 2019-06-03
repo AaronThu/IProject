@@ -86,7 +86,7 @@ h5 {
 
 @media (min-width: 1025px) {
   .Main {
-    width: 75vw;
+    width: 70vw;
   }
 }
 
@@ -126,15 +126,15 @@ h6 {
 }
 
 .voorwerpBeschrijving {
-  height:1000px;
-  width:120%;
+  height: 1000px;
+  width: 120%;
   border: none;
   background-color: #4b4c4d;
   box-shadow: 5px 5px 5px;
   margin-bottom: 2em;
 }
 
-.biedingKolom{
+.biedingKolom {
   padding-right: 5em;
 }
 
@@ -143,22 +143,21 @@ h6 {
   font-size: 1.5em;
 }
 
-.kaartje{
-  font-size:20px!important;
+.kaartje {
+  font-size: 20px!important;
 }
 
-.clock{
-  margin-top:-5px;
-  max-width:20px;
-  max-height:20px;
-  background-color:white;
-  border-radius:25px;
+.clock {
+  margin-top: -5px;
+  max-width: 20px;
+  max-height: 20px;
+  background-color: white;
+  border-radius: 25px;
 }
 
-.bannerfotos{
-  width:30px;
-  height:30px;
-  margin-top:-5px;
-  margin-left:15px;
+.bannerfotos {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+  margin-left: 15px;
 }
-

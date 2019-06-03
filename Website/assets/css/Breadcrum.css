@@ -36,7 +36,7 @@
 }
 
 .highlight {
-  border-bottom: 4px solid #a9976a;
+  border-bottom: 4px solid #a9976a !important;
   color: #a9976a !important;
   /* background-color: #a9976a; */
 }

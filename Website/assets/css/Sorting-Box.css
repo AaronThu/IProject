@@ -34,6 +34,7 @@
 .sortingContainer>div>div label {
   padding: 0.5em 1em;
   background-color: #4b4c4d;
+  transition: linear 100ms background-color;
   border-bottom: 4px solid #696969;
 }
 
