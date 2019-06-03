@@ -19,7 +19,7 @@ INSERT INTO Gebruiker(Gebruikersnaam, Voornaam, Achternaam, Adres1, Plaatsnaam, 
 			   WHEN LEFT(Username,1) BETWEEN 'm' AND 'p' THEN 'Rutger'
 			   WHEN LEFT(Username,1) BETWEEN 'q' AND 't' THEN 'Tymo'
 			   WHEN LEFT(Username,1) BETWEEN 'u' AND 'x' THEN 'Josse'
-			   else 'Arnoud' END
+			   ELSE 'Arnoud' END
 				  AS Voornaam,
 		   CASE WHEN LEFT(Username,1) BETWEEN 'a' AND 'd' THEN 'Jansen'
 			   WHEN LEFT(Username,1) BETWEEN 'e' AND 'h' THEN 'Henk-Jan'
@@ -27,7 +27,7 @@ INSERT INTO Gebruiker(Gebruikersnaam, Voornaam, Achternaam, Adres1, Plaatsnaam, 
 			   WHEN LEFT(Username,1) BETWEEN 'm' AND 'p' THEN 'Henderson'
 			   WHEN LEFT(Username,1) BETWEEN 'q' AND 't' THEN 'Pieters'
 			   WHEN LEFT(Username,1) BETWEEN 'u' AND 'x' THEN 'Breedveld'
-			   else 'van Bers' END
+			   ELSE 'van Bers' END
 		   AS Achternaam,
 		   'HAN' AS Adres1,
 		   'HAN' AS Plaatsnaam,
@@ -54,4 +54,25 @@ INSERT INTO Verkoper(GebruikersID, SoortRekening,  Bank, Rekeningnummer, BankRek
 	'Post' AS ControleOptieNaam,
 	'geactiveerd' AS Status
 
+FROM Gebruiker
+
+INSERT INTO Feedback(BeoordelersID, VerkopersID, FeedbackNummer)
+	SELECT
+	CASE WHEN LEFT(Gebruikersnaam,1) BETWEEN 'a' AND 'd' THEN 5
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'e' AND 'h' THEN 200
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'i' AND 'l' THEN 245
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'm' AND 'p' THEN 756
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'q' AND 't' THEN 123
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'u' AND 'x' THEN 321
+			   ELSE 64 END
+			   AS BeoordelersID,
+			   GebruikersID AS VerkopersID,
+	CASE WHEN LEFT(Gebruikersnaam,1) BETWEEN 'a' AND 'c' THEN 5
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'd' AND 'g' THEN 3
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'i' AND 'k' THEN 1
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'm' AND 'p' THEN 5
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'q' AND 't' THEN 3
+			   WHEN LEFT(Gebruikersnaam,1) BETWEEN 'u' AND 'x' THEN 3
+			   ELSE 5 END 
+	AS FeedbackNummer
 FROM Gebruiker
