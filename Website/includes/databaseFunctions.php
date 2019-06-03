@@ -45,7 +45,7 @@ function CountVoorwerpen() {
 
 function GetVoorwerpEigenschappen($id) {
     global $dbh;
-    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
@@ -145,5 +145,12 @@ function GetHoogsteBod($id) {
     $HoogsteBodQuery->execute([$id]);
     $HoogsteBod = $HoogsteBodQuery->fetchAll();
     return $HoogsteBod;
+}
+
+function GetFeedbackVoorVerkoper($dbh, $gebruikersID){
+    $query= $dbh->prepare("SELECT AVG(FeedbackNummer) FROM Feedback WHERE VerkopersID = :VerkopersID");
+    $query->execute([':VerkopersID' => $gebruikersID]);
+    $waarde = $query->fetch();
+    return $waarde[0];
 }
 ?>

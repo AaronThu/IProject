@@ -38,7 +38,7 @@ CREATE TABLE FeedBack (
 	FeedbackIndex			INT IDENTITY		NOT NULL,
     BeoordelersID           INT                 NOT NULL,
     VerkopersID             INT                 NOT NULL,
-    FeedbackNummer          TINYINT             NOT NULL DEFAULT 'neutraal',
+    FeedbackNummer          TINYINT             NOT NULL DEFAULT 3,
     FeedbackTijd            DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PK_FEEDBACK PRIMARY KEY (FeedbackIndex),
 	CONSTRAINT CK_FEEDBACKNUMMER CHECK (FeedbackNummer BETWEEN 0 AND 5)

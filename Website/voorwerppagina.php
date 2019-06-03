@@ -1,6 +1,9 @@
 <?php
 include_once("includes/header.php");
 include_once("includes/functies.php");
+include_once("includes/databaseFunctions.php");
+include_once("includes/database.php");
+
 
 $voorwerpID = 0;
 if (!isset($_GET["voorwerpID"])) {
@@ -95,6 +98,10 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie">Verkoper: </p>
                             <p class="verkooplocatie" style="margin: 0%19.5%;"><?php echo $value['Gebruikersnaam']; ?></p>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <p class="flex-wrap verkooplocatie">Feedback: </p>
+                            <p class="verkooplocatie" style="margin: 0%19.5%;"><?php echo GetFeedbackVoorVerkoper($dbh, $value['VerkopersID']); ?></p>
                         </div>
                         <div class="d-flex flex-row">
                             <p class="flex-wrap verkooplocatie" style="font-size: 100%;">Locatie: </p>
