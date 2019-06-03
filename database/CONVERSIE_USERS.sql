@@ -1,3 +1,4 @@
+
 /*==============================================================*/
 /* Database name:  iproject2                                    */
 /* Script:		   CONVERSIE_USERS                              */
@@ -55,3 +56,4 @@ INSERT INTO Verkoper(GebruikersID, SoortRekening,  Bank, Rekeningnummer, BankRek
 FROM Gebruiker
 
 
+//
