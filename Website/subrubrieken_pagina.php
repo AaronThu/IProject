@@ -81,7 +81,7 @@ foreach ($alleRubrieken as $key => $value) {
 ?>
     </div>
     <div class="voorwerplijst">
-        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen);?>
+        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen, $page);?>
         <?php if (sizeof($voorwerpen) <= 0) {?>
             <h5 style="text-align: center;padding: 5em;height: 25em">Helaas geen voorwerpen beschikbaar</h5>
         <?php

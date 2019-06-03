@@ -84,11 +84,11 @@ function GetMeerVanVerkoper($id) {
     return $MeerVanVerkoper;
 }
 
-function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 40) {
+function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
-    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 ";
-    $isIn = 'AND vir.Rubrieknummer IN ( ' . implode(",", $all) . ' )';
+    $lowerLimit = ($page - 1) * $max;
+    $upperLimit = ($page * $max) - 1;
     $orderBy = "";
     foreach ($orderOn as $key => $value) {
         if ($key === 0) {
@@ -97,15 +97,15 @@ function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 4
             $orderBy .= ", " . $value;
         }
     }
-    $query .= $isIn;
-    $query .= $orderBy;
-    if (sizeof($orderOn) > 0 && $aflopen) {
-        $query .= " DESC";
-    } else if ($aflopen) {
-        $query .= " ORDER BY Rubrieknummer DESC";
+    if ($orderBy === "") {
+        $orderBy = "ORDER BY v.Voorwerpnummer";
     }
+    if ($aflopen) {
+        $orderBy .= " DESC";
+    }
+    $query = "WITH VoorwerpenPagina AS (SELECT ROW_NUMBER() OVER( $orderBy ) as ROWNumber , v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, (SELECT TOP 1 b.FileNaam FROM Bestand b WHERE b.VoorwerpNummer = v.Voorwerpnummer) as FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE  Veilinggesloten = 0 AND Rubrieknummer IN ( " . implode(",", $all) . " )) SELECT * from VoorwerpenPagina WHERE ROWNumber BETWEEN ? AND ? ";
     $VoorwerpenQuery = $dbh->prepare($query);
-    $VoorwerpenQuery->execute();
+    $VoorwerpenQuery->execute([$lowerLimit, $upperLimit]);
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
     return $Voorwerpen;
 }
@@ -120,7 +120,6 @@ function GetVoorwerpCount($id) {
     $Count = $CountQuery->fetch();
     return $Count[0];
 }
-
 
 function GetAllSubRubrieken($id) {
     $rubriekenID = [$id];
