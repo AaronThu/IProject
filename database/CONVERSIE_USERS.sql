@@ -54,6 +54,3 @@ INSERT INTO Verkoper(GebruikersID, SoortRekening,  Bank, Rekeningnummer, BankRek
 	'Post' AS ControleOptieNaam,
 	'geactiveerd' AS Status
 FROM Gebruiker
-
-
-//
