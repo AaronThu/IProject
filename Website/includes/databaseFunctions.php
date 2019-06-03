@@ -110,6 +110,18 @@ function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 4
     return $Voorwerpen;
 }
 
+function GetVoorwerpCount($id) {
+    global $dbh;
+    $all = GetAllSubRubrieken($id);
+    $query = "SELECT COUNT (v.Voorwerpnummer) FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer
+	WHERE Rubrieknummer IN ( " . implode(",", $all) . " ) AND v.Veilinggesloten = 0";
+    $CountQuery = $dbh->prepare($query);
+    $CountQuery->execute();
+    $Count = $CountQuery->fetch();
+    return $Count[0];
+}
+
+
 function GetAllSubRubrieken($id) {
     $rubriekenID = [$id];
     foreach (GetRubrieken($id) as $key => $value) {
