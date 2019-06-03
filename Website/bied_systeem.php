@@ -24,7 +24,7 @@ $HoogsteBod = GetHoogsteBod($voorwerpID);
 $BiedenGeslaagdTekst = "Bod succesvol geplaatst";
 
 if(empty($HoogsteBod[0]['Bodbedrag'])) {
-    $HoogsteBod[0]['Bodbedrag'] = $voorwerpEigenschappen[0]['Startprijs'];
+    $HoogsteBod[0]['Bodbedrag'] = $voorwerpEigenschappen[0]['Startprijs'] - 50;
 }
 
 if($Bodbedrag < $voorwerpEigenschappen[0]['Startprijs']) {
