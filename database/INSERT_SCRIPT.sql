@@ -47,6 +47,16 @@ INSERT Vraag VALUES ('Wat is je favoriete game?')
 /*==============================================================*/
 INSERT Betalingswijzen VALUES('iDeal')
 
+/*==============================================================*/
+/* Banken                                                       */
+/*==============================================================*/
+INSERT Banken VALUES('ABN_Amro')
+INSERT Banken VALUES('Rabobank')
+INSERT Banken VALUES('ING')
+INSERT Banken VALUES('SNS')
+INSERT Banken VALUES('Knab')
+INSERT Banken VALUES('ASN')
+INSERT Banken VALUES('Triodos')
 
 /*
 /*==============================================================*/

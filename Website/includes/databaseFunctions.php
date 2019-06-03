@@ -77,18 +77,18 @@ function GetProductNaam($id) {
 function GetMeerVanVerkoper($id) {
     global $dbh;
     $voorwerpnummer = $id;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
+    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
                                           (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
     $MeerVanVerkoperQuery->execute([$id]);
     $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
     return $MeerVanVerkoper;
 }
 
-function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10) {
+function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 0, $max = 40) {
     global $dbh;
     $all = GetAllSubRubrieken($id);
-    $lowerLimit = ($page - 1) * $max;
-    $upperLimit = ($page * $max) - 1;
+    $query = "SELECT TOP " . $max . " v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE v.VeilingGesloten = 0 ";
+    $isIn = 'AND vir.Rubrieknummer IN ( ' . implode(",", $all) . ' )';
     $orderBy = "";
     foreach ($orderOn as $key => $value) {
         if ($key === 0) {
@@ -97,15 +97,15 @@ function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 1
             $orderBy .= ", " . $value;
         }
     }
-    if ($orderBy === "") {
-        $orderBy = "ORDER BY v.Voorwerpnummer";
+    $query .= $isIn;
+    $query .= $orderBy;
+    if (sizeof($orderOn) > 0 && $aflopen) {
+        $query .= " DESC";
+    } else if ($aflopen) {
+        $query .= " ORDER BY Rubrieknummer DESC";
     }
-    if ($aflopen) {
-        $orderBy .= " DESC";
-    }
-    $query = "WITH VoorwerpenPagina AS (SELECT ROW_NUMBER() OVER( $orderBy ) as ROWNumber , v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, (SELECT TOP 1 b.FileNaam FROM Bestand b WHERE b.VoorwerpNummer = v.Voorwerpnummer) as FileNaam, vir.Rubrieknummer FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer WHERE  Veilinggesloten = 0 AND Rubrieknummer IN ( " . implode(",", $all) . " )) SELECT * from VoorwerpenPagina WHERE ROWNumber BETWEEN ? AND ? ";
     $VoorwerpenQuery = $dbh->prepare($query);
-    $VoorwerpenQuery->execute([$lowerLimit, $upperLimit]);
+    $VoorwerpenQuery->execute();
     $Voorwerpen = $VoorwerpenQuery->fetchAll();
     return $Voorwerpen;
 }
@@ -121,6 +121,7 @@ function GetVoorwerpCount($id) {
     return $Count[0];
 }
 
+
 function GetAllSubRubrieken($id) {
     $rubriekenID = [$id];
     foreach (GetRubrieken($id) as $key => $value) {
@@ -130,20 +131,4 @@ function GetAllSubRubrieken($id) {
 
 }
 
-function GetVoorwerpenSearchBar($id) {
-    global $dbh;
-    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
-    $SearchQuery = $dbh->prepare($query);
-    $SearchQuery->execute();
-    $Searching = $SearchQuery->fetchAll();
-    return $Searching;
-}
-
-function GetHoogsteBod($id) {
-    global $dbh;
-    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
-    $HoogsteBodQuery->execute([$id]);
-    $HoogsteBod = $HoogsteBodQuery->fetchAll();
-    return $HoogsteBod;
-}
 ?>

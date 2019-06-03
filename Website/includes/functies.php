@@ -10,12 +10,56 @@ function test_invoer($data)
     return $data;
 };
 
+function genereerVerkoperRegistratieCode(){
+    $verkoperRegistratieCode = "";
+
+    for($i = 0; $i < 7; $i++){
+        $verkoperRegistratieCode .= rand(0, 9);
+    }
+    return $verkoperRegistratieCode;
+}
+
+function maakBestandAanVoorRegistratie($VerkopersCode, $Voornaam, $Gebruikersnaam){
+    $bestand = fopen("$Gebruikersnaam", "w");
+    $tekst = "Beste $Voornaam,\n
+    U heeft een registratie aangevraagd om verkoper te worden op EenmaalAndermaal\n
+    voor de gebruiker $Gebruikersnaam.\n
+    Om deze registratie te voltooien moet u een code invoeren op de website.\n
+    Zodra u op de website inlogt, drukt u rechtsboven op de knop code invoeren, en vult\n
+    u de volgende code in:\n
+    CODE: $VerkopersCode";
+    fwrite($bestand, $tekst);
+    fclose($bestand);
+}
+
 function vergelijkloginwaarde($vergelijken, $waarde, $dbh)
 {
     $vergelijkloginnaam = $dbh->prepare("SELECT Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, GeboorteDatum, Emailadres FROM Gebruiker WHERE $vergelijken = :waarde");
     $vergelijkloginnaam->execute([':waarde' => $waarde]);
     $telling = $vergelijkloginnaam->rowCount();
     return $telling;
+}
+
+function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh){
+    $vergelijkCode = $dbh->prepare("SELECT GebruikersID, VerkopersCode, CodeVerlopern FROM VerkopersCode WHERE $vergelijken = :Waarde");
+    $vergelijkCode->execute([':Waarde' => $code]);
+
+    $waardes=[];
+    while ($rij = $vergelijkCode->fetch()) {
+        $waardes = ["$rij[GebruikersID]", "$rij[VerkopersCode]", "$rij[CodeVerlopern]"];
+    }
+
+    return $waardes;
+}
+
+function updateSoortGebruikerStatus($dbh, $soortGebruiker, $gebruikersID){
+    $query = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = $soortGebruiker WHERE GebruikersID = :gebruikersID");
+    $query->execute([':gebruikersID' => $gebruikersID]);
+}
+
+function updateVerkoperStatus($dbh, $gebruikersID){
+    $query = $dbh->prepare("UPDATE Verkoper SET Status = geactiveerd WHERE GebruikersID = :gebruikersID");
+    $query->execute([':gebruikersID' => $gebruikersID]);
 }
 
 function kijkVoorLetters($string)
@@ -120,6 +164,14 @@ function GeefLandenLijst($dbh)
     $landenQuery->execute();
     $landen = $landenQuery->fetchAll();
     return $landen;
+}
+
+function GeefBankenLijst($dbh)
+{
+    $bankenQuery = $dbh->prepare("SELECT * FROM Banken");
+    $bankenQuery->execute();
+    $banken = $bankenQuery->fetchAll();
+    return $banken;
 }
 
 function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)

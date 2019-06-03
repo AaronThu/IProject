@@ -4,6 +4,7 @@
 /* Created on:     13-05-2019		                            */
 /*==============================================================*/
 
+
 USE iproject2
 GO
 
@@ -69,12 +70,21 @@ CREATE TABLE Gebruiker (
 GO
 
 /*==============================================================*/
-/* Gebruikerstelefoon                                           */
+/* Landen                                                       */
 /*==============================================================*/
 CREATE TABLE Landen (
 	Land				  VARCHAR(50)		NOT NULL,
-	CONSTRAINT PK_LAND PRIMARY KEY (Land)
+	CONSTRAINT PK_LANDEN PRIMARY KEY (Land)
 )
+
+/*==============================================================*/
+/* Banken                                                       */
+/*==============================================================*/
+CREATE TABLE Banken (
+	Bank				  VARCHAR(50)		NOT NULL,
+	CONSTRAINT PK_BANKEN PRIMARY KEY (Bank)
+)
+
 
 
 /*==============================================================*/
@@ -107,12 +117,33 @@ CREATE TABLE Rubriek (
 /*==============================================================*/
 CREATE TABLE Verkoper (
     GebruikersID        INT                 NOT NULL,
-    Bank                VARCHAR(50)             NULL,
-    Rekeningnummer      VARCHAR(20)             NULL,
+	SoortRekening		VARCHAR(20)			NOT NULL,
+    Bank                VARCHAR(50)         NOT NULL,
+    Rekeningnummer      VARCHAR(20)         NOT NULL,
+	BankRekeningHouder  VARCHAR(20)         NOT NULL,
+	EinddatumPas        DATE                NOT NULL,
     ControleOptieNaam   VARCHAR(12)         NOT NULL,
-    Creditcard          VARCHAR(20)             NULL,
+	Status              VARCHAR(20)			NOT NULL,
     CONSTRAINT PK_VERKOPER PRIMARY KEY (GebruikersID),
-    CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post'))
+    CONSTRAINT CK_CONTROLEOPTIENAAM CHECK (ControleOptieNaam IN ('Creditcard', 'Post')),
+	CONSTRAINT CK_STATUS CHECK (Status IN ('geactiveerd', 'aanvraging', 'geblokkeerd')),
+	CONSTRAINT CK_EINDDATUMPAS CHECK (EinddatumPas > GETDATE()),
+	CONSTRAINT CK_SOORTREKENING CHECK (SoortRekening IN ('creditcard', 'pinpas'))
+)
+
+/*==============================================================*/
+/* VerkopersCode                                                */
+/*==============================================================*/
+CREATE TABLE VerkopersCode (
+	GebruikersID		INT					NOT NULL,
+	VerkopersCode		INT					NOT NULL,
+	StartdatumCode		DATE				NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	 CodeVerlopen AS 
+            CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, 7, StartdatumCode)
+                THEN 1
+                ELSE 0
+                END,
+	CONSTRAINT PK_VERKOPERSCODE PRIMARY KEY (GebruikersID)
 )
 
 /*==============================================================*/

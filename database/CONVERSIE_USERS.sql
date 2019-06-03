@@ -42,12 +42,13 @@ FROM Users
 GO
 
 
-INSERT INTO Verkoper(GebruikersID, Bank, Rekeningnummer, ControleOptieNaam)
+INSERT INTO Verkoper(GebruikersID, Bank, Rekeningnummer, ControleOptieNaam, Status)
 	SELECT 
 	GebruikersID AS GebruikersID,
 	'Rabobank' AS Bank,
 	12345678 AS Rekeningnummer,
-	'Post' AS ControleOptieNaam
+	'Post' AS ControleOptieNaam,
+	'geactiveerd' AS Status
 FROM Gebruiker
 
 
