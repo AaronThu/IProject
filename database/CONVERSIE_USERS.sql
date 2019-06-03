@@ -42,7 +42,7 @@ FROM Users
 GO
 
 
-INSERT INTO Verkoper(GebruikersID, Bank, Rekeningnummer, ControleOptieNaam, Status)
+INSERT INTO Verkoper(GebruikersID, SoortRekening,  Bank, Rekeningnummer, BankRekeningHouder, EinddatumPas, ControleOptieNaam, Status)
 	SELECT 
 	GebruikersID AS GebruikersID,
 	'pinpas' AS SoortRekening,
