@@ -110,9 +110,10 @@ body {
 
 .banner {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   border-color: #e4e0e0;
   background-color: #e4e0e0;
+  
 }
 
 .bannerknop {
@@ -146,3 +147,20 @@ h6 {
 .kaartje{
   font-size:20px!important;
 }
+
+.clock{
+  margin-top:-5px;
+  max-width:20px;
+  max-height:20px;
+  background-color:white;
+  border-radius:25px;
+}
+
+.bannerfotos{
+  width:30px;
+  height:30px;
+  margin-top:-5px;
+  margin-left:15px;
+}
+
+
