@@ -1,13 +1,12 @@
 <?php
 include_once "includes/database.php";
 include_once "includes/functies.php";
-include_once "includes/header.php";
-include_once "includes/databaseFunctions.php";
-
-if (empty($_SESSION['Gebruikersnaam'])) {
-    header("Location: /login_pagina.php");
+if (!isset($_SESSION['Gebruikersnaam']) || $_SESSION['Gebruikersnaam'] === "") {
+    header("Location: login_pagina.php");
     return;
 }
+include_once "includes/header.php";
+include_once "includes/databaseFunctions.php";
 
 ?>
 <div class="Main">
