@@ -131,6 +131,20 @@ CREATE TABLE Verkoper (
 	CONSTRAINT CK_SOORTREKENING CHECK (SoortRekening IN ('creditcard', 'pinpas'))
 )
 
+/*==============================================================*/
+/* VerkopersCode                                                */
+/*==============================================================*/
+CREATE TABLE VerkopersCode (
+	GebruikersID		INT					NOT NULL,
+	VerkopersCode		INT					NOT NULL,
+	StartdatumCode		DATE				NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	 CodeVerlopen AS 
+            CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, 7, StartdatumCode)
+                THEN 1
+                ELSE 0
+                END,
+	CONSTRAINT PK_VERKOPERSCODE PRIMARY KEY (GebruikersID)
+)
 
 /*==============================================================*/
 /* Betalingswijzen                                              */

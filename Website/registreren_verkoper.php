@@ -7,12 +7,12 @@ include_once "includes/header.php";
 $locatieFouteLink = "Location: registreren_emailpagina.php";
 $locatieRegistratie = "Location: registreren_verkopersysteem.php";
 
-
+/*
 if (empty($_SESSION['Emailadres'])) {
     $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper";
     header($locatieFouteLink);
     return;
-}
+}*/
 
 $_SESSION['rekeningnummerErr'] = "";
 $_SESSION['rekeningHouderErr'] = "";
@@ -55,6 +55,7 @@ if(empty($_SESSION['rekeningHouderErr']) && empty($_SESSION['rekeningnummerErr']
     $_SESSION['controleOptie'] = $_POST['controleOptie'];
     $_SESSION['SoortRekening'] = $_POST['soortRekening'];
 header($locatieRegistratie);
+return;
 }
 }
 
