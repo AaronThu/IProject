@@ -110,10 +110,9 @@ body {
 
 .banner {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   border-color: #e4e0e0;
   background-color: #e4e0e0;
-  
 }
 
 .bannerknop {
@@ -155,12 +154,3 @@ h6 {
   background-color:white;
   border-radius:25px;
 }
-
-.bannerfotos{
-  width:30px;
-  height:30px;
-  margin-top:-5px;
-  margin-left:15px;
-}
-
-

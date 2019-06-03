@@ -77,7 +77,7 @@ function GetProductNaam($id) {
 function GetMeerVanVerkoper($id) {
     global $dbh;
     $voorwerpnummer = $id;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
+    $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
                                           (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
     $MeerVanVerkoperQuery->execute([$id]);
     $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
@@ -130,4 +130,20 @@ function GetAllSubRubrieken($id) {
 
 }
 
+function GetVoorwerpenSearchBar($id) {
+    global $dbh;
+    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
+    $SearchQuery = $dbh->prepare($query);
+    $SearchQuery->execute();
+    $Searching = $SearchQuery->fetchAll();
+    return $Searching;
+}
+
+function GetHoogsteBod($id) {
+    global $dbh;
+    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery->execute([$id]);
+    $HoogsteBod = $HoogsteBodQuery->fetchAll();
+    return $HoogsteBod;
+}
 ?>

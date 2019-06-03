@@ -70,9 +70,14 @@ include_once "includes/header.php"; ?>
             en voor betaalde advertenties gelden aanvullende gebruiksvoorwaarden. Deze aanvullende gebruiksvoorwaarden
             zijn een onderdeel van de Gebruiksvoorwaarden, en zullen altijd voorgaan in het geval zij conflicteren met
             een of meerdere andere Gebruiksvoorwaarden. Dit wordt apart gemeld op het moment dat u een dienst waarop
-            deze aanvullende gebruiksvoorwaarden van toepassing zijn, afneemt. <br><br></p>
+            deze aanvullende gebruiksvoorwaarden van toepassing zijn, afneemt. Klik <a
+                    href="https://aanbieding.Eenmaalandermaal.nl/hoe-werkt-het/gebruiksvoorwaarden/">hier</a> voor de
+            gebruiksvoorwaarden van Eenmaalandermaal Aanbieding&nbsp; en <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/admarkt-voorwaarden.dot.html">hier</a>
+            voor de Admarkt gebruiksvoorwaarden.<br><br></p>
         <p><strong>3. Bescherming van uw privacy</strong></p>
-        <p>In onze Privacyverklaring
+        <p>In onze <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/privacyverklaring/">Privacyverklaring</a>
             wordt uitgelegd hoe we omgaan met uw persoonlijke gegevens en hoe we uw privacy beschermen wanneer u onze
             Website gebruikt.<br><br></p>
         <p><strong>4. Minderjarigen</strong></p>
@@ -106,9 +111,15 @@ include_once "includes/header.php"; ?>
             partners).<br> <br> <strong>6. Misbruik van de Website en de gevolgen hiervan</strong></p>
         <p>Voor uw veiligheid en om misbruik tegen te gaan worden e-mailadressen afgeschermd door Eenmaalandermaal. Uw
             reactie op een advertentie en eventuele vervolgberichten tussen koper en adverteerder worden via de servers
-            van Eenmaalandermaal verzonden. Voor meer informatie.<br> <br> Voor het melden van illegale en inbreuk makende
-            advertenties, beledigende inhoud en andere problemen verzoeken wij u om geen contact met ons op te nemen; zo kunnen wij er samen voor zorgen dat de site zo schoon en veilig mogelijk
-            blijft. Klachten omtrent oplichting kunt u niet melden. <br> <br> <a
+            van Eenmaalandermaal verzonden. Voor meer informatie <a
+                    href="https://help.Eenmaalandermaal.nl/help/beleid_regels/adverteren/adverteren_algemeen/i/e-mailadres-bescherming"
+                    target="_blank">klik hier</a>.<br> <br> Voor het melden van illegale en inbreuk makende
+            advertenties, beledigende inhoud en andere problemen verzoeken wij u gebruik te maken van het <a
+                    target="_self"
+                    href="https://help.Eenmaalandermaal.nl/help/kopen/contact_opnemen_met_adverteerder/ca_melding_verdachte_adverteerder/i/verdachte-advertentie-of-adverteerder-melden">Meld
+                aan Eenmaalandermaal-systeem</a>; zo kunnen wij er samen voor zorgen dat de site zo schoon en veilig mogelijk
+            blijft. Klachten omtrent oplichting kunt u melden via ons <a
+                    href="http://Eenmaalandermaal.force.com/pkb_Contact?l=nl_NL">Contactformulier</a>. <br> <br> <a
                     name="oneigenlijkgebruik"></a> Indien wij aanwijzingen en/of klachten van andere gebruikers
             ontvangen of om andere redenen van mening zijn dat een bepaalde Gebruiker niet handelt in overeenstemming
             met de wet en/of de Gebruiksvoorwaarden en/of de Privacyverklaring, dan kunnen wij – indien wij daartoe
@@ -124,10 +135,15 @@ include_once "includes/header.php"; ?>
         </blockquote>
         <p><strong>&nbsp;</strong></p>
 
+        <p>Voor voorbeelden van overtredingen van de Gebruiksvoorwaarden klik <a
+                    href="https://help.Eenmaalandermaal.nl/help/beleid_regels/adverteren/i/Eenmaalandermaal-gebruikersvoorwaarden">hier</a>.<br><br>
+        </p>
         <p>Eenmaalandermaal kan in het kader van de bovengenoemde maatregelen de persoonsgegevens van de betrokkenen
             verwerken. Indien daartoe aanleiding is kan Eenmaalandermaal binnen de grenzen van de wet, de persoonsgegevens
             van de betrokkenen doorgeven, bijvoorbeeld aan de politie. Hoe dit in zijn werk gaat staat verder omschreven
-            in onze privacyvoorwaarden.
+            in onze <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/privacyverklaring/">Privacyverklaring</a>.<br><br>
+        </p>
         <p><strong>7. Wij geven geen garanties</strong></p>
         <p>Wij kunnen u niet garanderen dat onze diensten altijd zullen voldoen aan uw verwachtingen. Ook kunnen wij
             niet garanderen dat de Website foutloos functioneert en/of dat een continue en/of veilige toegang tot de
@@ -161,7 +177,8 @@ include_once "includes/header.php"; ?>
             van deze diensten zal dan onder de (privacy)regels van de desbetreffende dienstverlener vallen.<strong> <br><br></strong><a
                     name="klachtenregeling"></a></p>
         <p><strong>11. Klachtenregeling</strong></p>
-        <p>Klachten over de dienstverlening van Eenmaalandermaal kunt u niet indienen.&nbsp;Klachten dienen binnen
+        <p>Klachten over de dienstverlening van Eenmaalandermaal kunt u indienen door middel van het <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/contact/">contactformulier</a>.&nbsp;Klachten dienen binnen
             bekwame tijd nadat u een gebrek in de dienstverlening heeft geconstateerd te worden ingediend, waarbij een
             termijn van 2 maanden in ieder geval tijdig zal zijn. Klachten dienen volledig en duidelijk omschreven te
             worden ingediend. Wij zullen ernaar streven binnen 14 dagen na het indienen van de klacht te reageren. In
@@ -208,8 +225,17 @@ include_once "includes/header.php"; ?>
             bevoegde rechter te kiezen.<br><br></p>
         <p><strong>13. Algemene Voorwaarden Thuiswinkel </strong></p>
         <p>Eenmaalandermaal is lid van Thuiswinkel.org, als gevolg waarvan in aanvulling op deze Gebruiksvoorwaarden, ook de
-            algemene voorwaarden van toepassing zijn op de overeenkomst tussen Eenmaalandermaal en de Gebruiker. In het geval
-            sprake is van strijdigheid tussen de inhoud van de .<br><br> <br> <a name="regels"></a></p>
+            <a href="https://Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-thuiswinkel.dot">Algemene Voorwaarden
+                Thuiswinkel</a> van toepassing zijn op de overeenkomst tussen Eenmaalandermaal en de Gebruiker. In het geval
+            sprake is van strijdigheid tussen de inhoud van de <a
+                    href="https://Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-thuiswinkel.dot">Algemene
+                Voorwaarden Thuiswinkel</a> en de Gebruiksvoorwaarden zullen indien de Gebruiker de overeenkomst met
+            Eenmaalandermaal aangaat als consument&nbsp; de inhoud van de <a
+                    href="https://Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-thuiswinkel.dot">Algemene
+                Voorwaarden Thuiswinkel</a> voorrang hebben boven de inhoud van de Gebruiksvoorwaarden. In elk ander
+            geval zullen de inhoud van de Gebruiksvoorwaarden voorrang hebben boven de inhoud van de <a
+                    href="https://Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-thuiswinkel.dot">Algemene
+                Voorwaarden Thuiswinkel</a>.<br><br> <br> <a name="regels"></a></p>
         <p class="pbrown"><strong>II Regels voor het plaatsen van advertenties</strong></p>
         <p><a name="advertentieplatform"></a> <br> <strong>1. Eenmaalandermaal is een
                 advertentieplatform</strong><strong><br><br></strong>Eenmaalandermaal is een platform waar een Adverteerder
@@ -243,7 +269,9 @@ include_once "includes/header.php"; ?>
             of dezelfde dienst te plaatsen, tenzij daarvoor een gegronde reden bestaat (bijvoorbeeld het per ongeluk
             verwijderen van de advertentie of wanneerde koop onverwachtniet is doorgegaan).<br>
             <br>
-            f. Iedere Advertentie dient in de best bijpassende rubriek te worden geplaatst. Onder deze voorwaarden staan een aantal voorbeelden hoe de best bijpassende rubriek gevonden kan worden.</p>
+            f. Iedere Advertentie dient in de best bijpassende rubriek te worden geplaatst. Onder deze <a
+                    href="https://help.Eenmaalandermaal.nl/help/beleid_regels/adverteren/adverteren_algemeen/i/meest-geschikt-rubriek-voor-een-advertentie">link</a>
+            staan een aantal voorbeelden hoe de best bijpassende rubriek gevonden kan worden.</p>
         <p><strong>&nbsp;</strong></p>
         <p>2.3 Advertentie-inhoud die niet is toegestaan: <br><br>a. De titel en de tekst van de Advertentie mogen niet
             misleidend, onnauwkeurig of onjuist zijn. De titel en de tekst dienen het product dat ter verkoop wordt
@@ -265,7 +293,9 @@ include_once "includes/header.php"; ?>
             genereren.<br><br><strong></strong>2.4 Illegale of onrechtmatige producten of diensten</p>
         <p>Het is niet toegestaan producten aan te bieden die illegaal of onrechtmatig zijn of waarvan de handel is
             verboden. Het is ook niet toegestaan om diensten aan te bieden waarvan de uitvoering illegaal of
-            onrechtmatig is. Klik hier niet voor een lijst van mogelijk illegale of onrechtmatige producten en diensten. Let op, deze lijst is niet
+            onrechtmatig is. Klik <a
+                    href="https://vernieuwd.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/verboden-of-verdachte-objecten-en-diensten.dot">hier</a>
+            voor een lijst van mogelijk illegale of onrechtmatige producten en diensten. Let op, deze lijst is niet
             volledig, maar geeft enkel een indicatie: Niet alle handel in de producten of de diensten die op deze lijst
             staan is verboden, ze kunnen onder omstandigheden wel verboden zijn, bijvoorbeeld bij gebrek aan een
             vergunning. Producten en diensten die niet op deze lijst staan kunnen onder omstandigheden ook illegaal of
@@ -316,7 +346,9 @@ include_once "includes/header.php"; ?>
             tot stand op het moment dat de betaalprocedure op de Website is doorlopen.<strong> <br><br>
             </strong>b. Eenmaalandermaal bewaart alle gegevens van iedere Advertentieovereenkomst gedurende 14 dagen na
             verwijdering van de Advertentie. Daarna zullen wij de gegevens van de Advertentieovereenkomst bewaren zoals
-            is beschreven in onze voorwaarden enzo kan de
+            is beschreven in onze <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/privacyverklaring/">Privacyverklaring</a>.
+            Door middel van het <a href="https://www.Eenmaalandermaal.nl/i/help/contact/">contactformulier</a> kan de
             Adverteerder binnen 14 dagen onder vermelding van het e-mailadres waarmee de Advertentie is geplaatst en
             onder vermelding van het advertentienummer deze gegevens opvragen. <br><br>3.3. Periode dat een Advertentie
             op de Website blijft staan<br>Advertenties waarvoor geen bijzondere regels gelden blijven tenminste 28 dagen
@@ -338,7 +370,9 @@ include_once "includes/header.php"; ?>
         <p><strong>4. Ontbindingsrecht</strong><br>
             <br>
             4.1 Op het plaatsen van een Advertentie kan in bepaalde gevallen het ontbindingsrecht zoals bedoeld in
-            artikel 6:230o BW van het Burgerlijk Wetboek van toepassing zijn. Klik niet voor meer informatie over het ontbindingsrecht. <br>
+            artikel 6:230o BW van het Burgerlijk Wetboek van toepassing zijn. Klik <a
+                    href="https://www.Eenmaalandermaal.nl/i/help/over-Eenmaalandermaal/voorwaarden-en-privacybeleid/ontbindingsrecht.dot">hier</a>
+            voor meer informatie over het ontbindingsrecht. <br>
             <br>
             4.2 Het ontbindingsrecht is in ieder geval niet van toepassing op Advertenties die op grond van het bepaalde
             in de Gebruiksvoorwaarden (waaronder op grond van Hoofdstuk I, artikel 6) (i) van de Website zijn verwijderd
@@ -380,7 +414,9 @@ include_once "includes/header.php"; ?>
                 prijs/betaalmethoden in een Advertentie</strong></p>
         <p><strong></strong><br>
             6.1. Een Adverteerder mag een Gebruiker in een Advertentie niet verplichten om bepaalde betaalmethoden te
-            gebruiken. Klik hier niet voor meer informatie over veilig betalen. <br><br>
+            gebruiken. Klik <a
+                    href="https://help.Eenmaalandermaal.nl/help/verkopen/contact_opnemen_met_bieder_koper/i/veilige-betaling-en-verzending">hier</a>
+            voor meer informatie over veilig betalen. <br><br>
             6.2. Het is een Adverteerder niet toegestaan om in het prijsveld van de Advertentie alleen een deel van de
             prijs te vermelden. In de in het prijsveld vermelde vraagprijs dienen alle voor de Gebruiker onvermijdbare
             kosten(posten) te zijn in begrepen. Dit betekent dat alle kosten die de Gebruiker noodzakelijkerwijs moet
@@ -396,15 +432,21 @@ include_once "includes/header.php"; ?>
             Melding van Inbreuk kan alleen worden gebruikt door houders van intellectuele eigendomsrechten of hun
             gemachtigden en wettelijke instanties (zie meer hierover onder 6.2). Advertenties die op andere wijze in
             strijd zijn met de Gebruiksvoorwaarden, zoals Advertenties waarin illegale producten worden aangeboden of
-            die smadelijke inhoud hebben, kunnen niet worden gemeld. <br><br>b. Misbruik van het Meld aan Eenmaalandermaal-systeem wordt gezien als
+            die smadelijke inhoud hebben, kunnen worden gemeld via het <a target="_blank"
+                                                                          href="https://help.Eenmaalandermaal.nl/help/kopen/contact_opnemen_met_adverteerder/ca_melding_verdachte_adverteerder/i/verdachte-advertentie-of-adverteerder-melden">Meld
+                aan Eenmaalandermaal-systeem</a>. <br><br>b. Misbruik van het Meld aan Eenmaalandermaal-systeem wordt gezien als
             een handeling in strijd met de Gebruiksvoorwaarden en kan ertoe leiden dat wij de onder hoofdstuk I, artikel
             6 beschreven maatregelen jegens de betrokken melder treffen. <br><br>
             7
             .2. Meldingen ingeval van inbreuk op intellectuele eigendomsrechten<br><br>a. Het “Melden van inbreuk”
             Programma van Eenmaalandermaal is bedoeld om ervoor te zorgen dat in Advertenties aangeboden producten geen
-            inbreuk maken op het auteursrecht, het merkrecht of andere intellectuele eigendomsrechten van derden.<br><br>b. Rechthebbenden
+            inbreuk maken op het auteursrecht, het merkrecht of andere intellectuele eigendomsrechten van derden. <a
+                    href="https://vernieuwd.Eenmaalandermaal.nl/i/help/veilig-en-succesvol/intellectueel-eigendom.dot">Lees
+                hier meer informatie over het Eenmaalandermaal Melding van Inbreuk Programma</a>.<br><br>b. Rechthebbenden
             kunnen melding maken van een Advertentie die inbreuk maakt op hun rechten, en een verzoek indienen voor de
-            verwijdering van deze Advertentie door&nbsp;niks in te vullen en het naar Eenmaalandermaal te sturen volgens de instructies. Als het Formulier
+            verwijdering van deze Advertentie door&nbsp;het <a
+                    href="https://statisch.Eenmaalandermaal.com/help/Formulier_Melding_van_inbreuk.pdf">Formulier Melding van
+                Inbreuk</a> in te vullen en het naar Eenmaalandermaal te sturen volgens de instructies. Als het Formulier
             Melding van Inbreuk juist en volledig is ingevuld en door Eenmaalandermaal is ontvangen, zal de betreffende
             advertentie worden verwijderd. <br><br>c. De informatie die in het Formulier Melding van Inbreuk wordt
             gevraagd heeft tot doel te verzekeren dat de partij die de Advertentie meldt, de rechthebbende zelf is of
