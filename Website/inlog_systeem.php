@@ -8,12 +8,12 @@ if (isset($_POST['inloggen'])) {
     $Gebruikersnaam = test_invoer($_POST['Gebruikersnaam']);
     $wachtwoord = test_invoer($_POST['Wachtwoord']);
     $wachtwoordofgebruikersnaamfout = "Het wachtwoord of de gebruikersnaam is fout, probeer het opnieuw";
-    $query = $dbh->prepare("SELECT Wachtwoord, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, GebruikersID, SoortGebruiker FROM Gebruiker WHERE Gebruikersnaam = :Gebruikersnaam");
+    $query = $dbh->prepare("SELECT Wachtwoord, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, GebruikersID FROM Gebruiker WHERE Gebruikersnaam = :Gebruikersnaam");
     $query->execute([':Gebruikersnaam' => $Gebruikersnaam]);
     $hash = [];
 
     while ($rij = $query->fetch()) {
-        $hash = ["$rij[Wachtwoord]", "$rij[Voornaam]", "$rij[Achternaam]", "$rij[Adres1]", "$rij[Adres2]", "$rij[Postcode]", "$rij[Plaatsnaam]", "$rij[Land]", "$rij[Geboortedatum]", "$rij[Emailadres]", "$rij[GebruikersID]", "$rij[SoortGebruiker]"];
+        $hash = ["$rij[Wachtwoord]", "$rij[Voornaam]", "$rij[Achternaam]", "$rij[Adres1]", "$rij[Adres2]", "$rij[Postcode]", "$rij[Plaatsnaam]", "$rij[Land]", "$rij[Geboortedatum]", "$rij[Emailadres]", "$rij[GebruikersID]"];
     }
     $rijtelling = $query->rowCount();
 
@@ -33,7 +33,6 @@ if (isset($_POST['inloggen'])) {
                 $_SESSION['GeboorteDatum'] = $hash[8];
                 $_SESSION['Emailadres'] = $hash[9];
                 $_SESSION['GebruikersID'] = $hash[10];
-                $_SESSION['SoortGebruiker'] = $hash[11];
                 $_SESSION['foutmelding'] = "U bent ingelogd";
                 if (IsAdmin($Gebruikersnaam)) {
                     header("Location: beheerder/beheerder_homepagina.php");

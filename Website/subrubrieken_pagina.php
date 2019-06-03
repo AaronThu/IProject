@@ -4,6 +4,8 @@ include_once "includes/functies.php";
 include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 $rubiekID = 0;
+$maxPage = 1;
+$maxOnPage = 20;
 $page = 1;
 $sortOn = [];
 $aflopen = false;
@@ -28,12 +30,13 @@ $rubiekID = test_invoer($_GET["rubriekID"]);
 if (!is_numeric($rubiekID)) {
     return;
 }
+$maxPage = ceil(GetVoorwerpCount($rubiekID) / $maxOnPage);
 if (isset($_GET["page"])) {
     $page = test_invoer($_GET["page"]);
     if (!is_numeric($page)) {
         return;
     }
-    $page = max(1, $page);
+    $page = max(1, min($page, $maxPage));
 }
 ?>
     <div class="Main">
@@ -81,7 +84,7 @@ foreach ($alleRubrieken as $key => $value) {
 ?>
     </div>
     <div class="voorwerplijst">
-        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen);?>
+        <?php $voorwerpen = GetVoorwerpen($rubiekID, $sortOn, $aflopen, $page, $maxOnPage);?>
         <?php if (sizeof($voorwerpen) <= 0) {?>
             <h5 style="text-align: center;padding: 5em;height: 25em">Helaas geen voorwerpen beschikbaar</h5>
         <?php
@@ -111,7 +114,7 @@ foreach ($alleRubrieken as $key => $value) {
                 </div>
                 <div class="col-md-3">
                     <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3><br><br>
-                    <h6 style="color: #ffffff;height: 50px;display: inline;">Tijd om te bieden: </h6><h6 class="Timer" data-time="<?php echo ($value['Eindmoment']); ?>" style="display: inline; color: #ffffff"></h6><br><br><br><br>
+                    <img class = 'clock'src = "assets/img/clock.jpg"><h6 class="Timer" data-time="<?php echo ($value['Eindmoment']); ?>" style="display: inline; color: #ffffff"></h6><br><br><br><br>
                     <a class="btn btn-light d-xl-flex justify-content-end align-items-end align-content-end align-self-end flex-wrap mr-auto justify-content-xl-center align-items-xl-center" role="button" style="background-color: #a9976a;padding: 5px;height: auto;width: Auto;margin: 0px;color: #ffffff;" href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>">Bied nu mee!</a>
                 </div>
             </div>
