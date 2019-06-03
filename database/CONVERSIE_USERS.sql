@@ -45,8 +45,11 @@ GO
 INSERT INTO Verkoper(GebruikersID, Bank, Rekeningnummer, ControleOptieNaam, Status)
 	SELECT 
 	GebruikersID AS GebruikersID,
+	'pinpas' AS SoortRekening,
 	'Rabobank' AS Bank,
 	12345678 AS Rekeningnummer,
+	'TestGebruiker' AS BankRekeningHouder,
+	'10-06-2020' AS EinddatumPas,
 	'Post' AS ControleOptieNaam,
 	'geactiveerd' AS Status
 FROM Gebruiker
