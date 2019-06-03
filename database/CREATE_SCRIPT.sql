@@ -35,13 +35,13 @@ GO
 /* Feedback                                                     */
 /*==============================================================*/
 CREATE TABLE FeedBack (
-    VoorwerpNummer          BIGINT              NOT NULL,
-    SoortGebruiker          CHAR(3)             NOT NULL,
-    FeedbackSoort           CHAR(8)             NOT NULL DEFAULT 'neutraal',
+	FeedbackIndex			INT IDENTITY		NOT NULL,
+    BeoordelersID           INT                 NOT NULL,
+    VerkopersID             INT                 NOT NULL,
+    FeedbackNummer          TINYINT             NOT NULL DEFAULT 'neutraal',
     FeedbackTijd            DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    Commentaar              VARCHAR(255)            NULL,
-    CONSTRAINT PK_FEEDBACK PRIMARY KEY (VoorwerpNummer, SoortGebruiker),
-    CONSTRAINT CK_FEEDBACKSOORT CHECK (FeedbackSoort IN ('positief, negatief, neutraal'))
+    CONSTRAINT PK_FEEDBACK PRIMARY KEY (FeedbackIndex),
+	CONSTRAINT CK_FEEDBACKNUMMER CHECK (FeedbackNummer BETWEEN 0 AND 5)
 )
 GO
 
