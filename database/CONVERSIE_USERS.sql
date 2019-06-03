@@ -55,4 +55,3 @@ INSERT INTO Verkoper(GebruikersID, SoortRekening,  Bank, Rekeningnummer, BankRek
 FROM Gebruiker
 
 
-//
