@@ -37,7 +37,7 @@ include_once "includes/header.php";
                 <div class="col-md-6 verkooppagina">
                     <p class="verkoophead"> Prijs specificaties</p>
                     <h6>Startprijs</h6>
-                    <input type="number" class="form-control inputforms" required>
+                    <input type="number" class="form-control inputforms" name=startprijs required>
            
                     <h6>Betalingswijze</h6>
                     <select class="form-control inputforms" name="betalingswijze" required>
@@ -45,7 +45,7 @@ include_once "includes/header.php";
                         <option value='Creditcard'>Creditcard</option>
                     </select>
                     <h6>Betalingsinstructies</h6>
-                    <input type="text" class="form-control inputforms">
+                    <input type="text" class="form-control inputforms" name="betalingsinstructies">
                 </div>
                 <div class="col-md-6 verkooppagina">
                     <p class="verkoophead"> Overige specificaties</p>
@@ -59,8 +59,8 @@ include_once "includes/header.php";
                     </select>
                     <h6>Locatie</h6>
                     <input type=text class="form-control inputforms" name="locatie" required>
-                    <h6> Verzendinstructie</h6>
-                    <input type="text" class="form-control inputforms">
+                    <h6> Verzendinstructies</h6>
+                    <input type="text" class="form-control inputforms" name="verzendinstructies">
                 </div>
 
                 <div class="col-md-6 verkooppagina">
@@ -83,7 +83,6 @@ include_once "includes/header.php";
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>
 
 <?php
