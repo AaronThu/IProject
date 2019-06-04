@@ -141,7 +141,7 @@ function GetVoorwerpenSearchBar($id) {
 
 function GetHoogsteBod($id) {
     global $dbh;
-    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag, GebruikersID FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
     $HoogsteBodQuery->execute([$id]);
     $HoogsteBod = $HoogsteBodQuery->fetchAll();
     return $HoogsteBod;
@@ -152,5 +152,82 @@ function GetFeedbackVoorVerkoper($dbh, $gebruikersID){
     $query->execute([':VerkopersID' => $gebruikersID]);
     $waarde = $query->fetch();
     return $waarde[0];
+}
+
+function GetNotificaties($gebruikersID, $SoortGebruiker){
+    global $dbh;
+    GetBiedingGeslotenNotificaties($gebruikersID, $SoortGebruiker);
+    $query = $dbh->prepare("SELECT * FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID");
+    $query->execute([':GebruikersID' => $gebruikersID]);
+    $gegevens = $query->fetchAll();
+    return $gegevens;
+}
+
+function GetBiedingGeslotenNotificaties($GebruikersID, $SoortGebruiker){
+    $GeslotenVoorwerpen = KijkVoorBiedingVoorbij($GebruikersID, $SoortGebruiker);
+    if(!empty($GeslotenVoorwerpen)){
+        for($i = 0; $i < count($GeslotenVoorwerpen); $i++){
+            if($SoortGebruiker == 'Verkoper' && KijkVoorOudeNotificaties($GeslotenVoorwerpen[$i]['Voorwerpnummer'], $GebruikersID, 'voorwerpVerkocht') == 0) {
+                VoegNotificatieToe($GebruikersID, $GeslotenVoorwerpen[$i]['Voorwerpnummer'], 'voorwerpVerkocht');
+            } elseif($SoortGebruiker == 'Koper' && KijkVoorOudeNotificaties($GeslotenVoorwerpen[$i]['Voorwerpnummer'], $GebruikersID, 'voorwerpGekocht') == 0) {
+                VoegNotificatieToe($GebruikersID, $GeslotenVoorwerpen[$i]['Voorwerpnummer'], 'voorwerpGekocht');
+            }
+            }
+    }
+}
+
+function VoegNotificatieToe($gebruikersID, $VoorwerpNummer, $NotificatieSoort){
+    global $dbh;
+    $query = $dbh->prepare("INSERT INTO GebruikerNotificaties(GebruikersID, Voorwerpnummer, NotificatieSoort) VALUES(:GebruikersID, :VoorwerpNummer, :NotificatieSoort)");
+    $query->execute([
+        ':GebruikersID' => $gebruikersID,
+        ':VoorwerpNummer' => $VoorwerpNummer,
+        ':NotificatieSoort' => $NotificatieSoort
+        ]);
+}
+
+function VerwijderNotificaties($GebruikersID){
+    global $dbh;
+    $query = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
+    $query->execute([':GebruikersID' => $GebruikersID]);
+}
+
+function GetVoorwerpenVoorVerkoper($VerkopersID){
+    global $dbh;
+    $query = $dbh->prepare("SELECT * FROM Voorwerp WHERE VerkopersID = :VerkopersID");
+    $query->execute([':VerkopersID' => $VerkopersID]);
+    return $query->fetchAll();
+}
+
+function KijkVoorBiedingVoorbij($ID, $SoortGebruiker){
+    global $dbh;
+    if($SoortGebruiker == 'Verkoper'){
+        $soort = "VerkopersID";
+    } else {
+        $soort = "KopersID";
+    }
+    $query = $dbh->prepare("SELECT Voorwerpnummer, KopersID FROM VOORWERP WHERE $soort = :ID AND VeilingGesloten = 0");
+    $query->execute([':ID' => $ID]);
+    $waardes = $query->fetchAll();
+    return $waardes;
+}
+
+function KijkVoorOudeNotificaties($Voorwerpnummer, $GebruikerID, $NotificatieSoort){
+    global $dbh;
+    $query = $dbh->prepare("SELECT * FROM GebruikerNotificaties WHERE NotificatieGelezen = 1 AND Voorwerpnummer = :Voorwerpnummer AND GebruikersID = :GebruikersID");
+    $query->execute([
+        ':Voorwerpnummer' => $Voorwerpnummer,
+        ':GebruikersID' => $GebruikerID
+        ]);
+    return $query->rowcount();
+}
+
+function UpdateVoorwerpKopersID($GebruikersID, $Voorwerpnummer){
+    global $dbh;
+    $query = $dbh->prepare("UPDATE Voorwerp SET KopersID = :GebruikersID WHERE Voorwerpnummer = :Voorwerpnummer");
+    $query->execute([
+    ':GebruikersID' => $GebruikersID,
+        ':Voorwerpnummer' => $Voorwerpnummer
+    ]);
 }
 ?>

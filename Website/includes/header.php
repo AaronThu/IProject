@@ -7,6 +7,9 @@ include_once "databaseFunctions.php";
 include_once 'beheerder/logica/databaseFuncties.php';
 $adminKnop = "";
 $verkoperRegistratieKnop = "";
+$notificatieknop = "";
+
+
 $zoekbalk = '<form class="form-inline mr-auto" target="_self" action = "zoekresultatenpagina.php">
 <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="zoekterm"></div>
 </form>';
@@ -17,6 +20,15 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 } else {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
     $registratieKnop = '<a class="btn btn-light action-button" href="account_pagina.php">Mijn Account</a>';
+
+    $notificaties = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker']);
+
+    $aantalNotificaties = count($notificaties);
+
+    if($aantalNotificaties > 0) {
+        $notificatieknop = '<div class="notificaties">' . $aantalNotificaties . '</div>';
+    }
+
     if (IsAdmin($_SESSION["Gebruikersnaam"])) {
         $adminKnop = '<a class="btn btn-light action-button" href="beheerder/beheerder_homepagina.php">Admin Paneel</a>';
     }
@@ -35,19 +47,19 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>EenmaalAndermaal</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="../assets/css/Navigation-with-Button-1.css">
-    <link rel="stylesheet" href="../assets/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/Rubriek.css">
-    <link rel="stylesheet" href="../assets/css/Breadcrum.css">
-    <link rel="stylesheet" href="../assets/css/Subrubrieken.css">
-    <link rel="stylesheet" href="../assets/css/Sorting-Box.css">
-    <link rel="stylesheet" href="../assets/css/Account-Pagina.css">
-    <link rel="icon" href="../assets/img/EenmaalAndermaal_Logo.png">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button-1.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/Rubriek.css">
+    <link rel="stylesheet" href="/assets/css/Breadcrum.css">
+    <link rel="stylesheet" href="/assets/css/Subrubrieken.css">
+    <link rel="stylesheet" href="/assets/css/Sorting-Box.css">
+    <link rel="stylesheet" href="/assets/css/Account-Pagina.css">
+    <link rel="icon" href="/assets/img/EenmaalAndermaal_Logo.png">
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -91,6 +103,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                         echo $verkoperRegistratieKnop;
                         echo $adminKnop;
                         echo $registratieKnop;
+                        echo $notificatieknop;
                         ?>
                     </span>
                 </div>

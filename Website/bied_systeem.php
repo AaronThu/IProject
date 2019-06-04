@@ -52,8 +52,15 @@ else if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $
     }
 
     if($Bodbedrag - $HoogsteBod[0]['Bodbedrag'] >= $MinimaalTeBieden) {
+
         $query = $dbh->prepare("INSERT Bod (Voorwerpnummer, Bodbedrag, GebruikersID) VALUES ($voorwerpID, $Bodbedrag, $GebruikerID)");
         $query->execute();
+        VoegNotificatieToe($voorwerpEigenschappen[0]['VerkopersID'], $voorwerpID, 'bodGeplaatst');
+        UpdateVoorwerpKopersID($GebruikerID, $voorwerpID);
+        if(!empty($HoogsteBod[0]['GebruikersID'])){
+            if($HoogsteBod[0]['GebruikersID'] != $GebruikerID)
+            VoegNotificatieToe($HoogsteBod[0]['GebruikersID'], $voorwerpID, 'voorwerpOverboden');
+        }
         $_SESSION['foutmelding'] = $BiedenGeslaagdTekst;
         header($locatieBiedingMislukt);
     }
