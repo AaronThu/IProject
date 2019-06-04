@@ -180,3 +180,13 @@ h6 {
 .spacing{
   margin-bottom:100px;
 }
+
+.verkooppaginarow{
+  
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-content:start;
+  margin-right: -15px;
+  margin-left: -15px;
+}
