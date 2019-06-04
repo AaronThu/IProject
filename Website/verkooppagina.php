@@ -19,19 +19,12 @@ include_once "includes/header.php";
                 <form method="post" action="index.php"> 
                 <p class = "verkoophead"> Product specificaties </p>    
                         <h6>Titel van je product</h6>
-                        <input type="text" class= "form-control inputforms" required>
+                        <input type="text" class= "form-control inputforms" name="titel" required>
                         <h6>Beschrijving van je product</h6>
-                        <input type="text" class= "form-control inputforms" required>
+                        <input type="text" class= "form-control inputforms" name="beschrijving" required>
                         <h6>Afbeelding(en) van je product</h6>
                         <input type="file" class= "form-control inputforms" name="bestand" required>
-                        <h6>Looptijd</h6>
-                        <select class = "form-control inputforms" name = "looptijd" required>
-                            <option value = "1">1 dag</option>
-                            <option value = "3">3 dagen</option>
-                            <option value = "5">5 dagen</option>
-                            <option value = "7">7 dagen</option>
-                            <option value = "9">9 dagen</option>
-                        </select>
+
                 </div>
 
                 
@@ -47,7 +40,30 @@ include_once "includes/header.php";
                         <option value = 'Creditcard'>Creditcard</option>
                     </select>
                 </div>
+                
 
+                             
+                <div class="col-md-6 verkooppagina">
+                <p class = "verkoophead"> Overige specificaties</p>
+
+                <h6> Rubriek van product </h6>
+                        <select class = "form-control inputforms" name = "rubriek" required>
+</select>
+                        <h6>Looptijd</h6>
+                        <select class = "form-control inputforms" name = "looptijd" required>
+                            <option value = "1">1 dag</option>
+                            <option value = "3">3 dagen</option>
+                            <option value = "5">5 dagen</option>
+                            <option value = "7">7 dagen</option>
+                            <option value = "9">9 dagen</option>
+                        </select>
+                        <h6> Jouw locatie</h6>
+                <select class = "form-control inputforms" name = "locatie" required>
+                    <option value ="#">#</option>
+</select>
+                </div>
+                
+                
             </div>
         </div>
         <div class="text-center" style="margin: 20px;">
@@ -56,6 +72,8 @@ include_once "includes/header.php";
     </form>
     </div>
     </div>
+    <div class= "spacing">
+</div>
     
    
     <script src="assets/js/jquery.min.js"></script>
