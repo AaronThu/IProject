@@ -141,7 +141,7 @@ function GetVoorwerpenSearchBar($id) {
 
 function GetHoogsteBod($id) {
     global $dbh;
-    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag, GebruikersID FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
     $HoogsteBodQuery->execute([$id]);
     $HoogsteBod = $HoogsteBodQuery->fetchAll();
     return $HoogsteBod;
@@ -152,5 +152,29 @@ function GetFeedbackVoorVerkoper($dbh, $gebruikersID){
     $query->execute([':VerkopersID' => $gebruikersID]);
     $waarde = $query->fetch();
     return $waarde[0];
+}
+
+function GetNotificaties($gebruikersID){
+    global $dbh;
+    $query = $dbh->prepare("SELECT * FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID");
+    $query->execute([':GebruikersID' => $gebruikersID]);
+    $gegevens = $query->fetchAll();
+    return $gegevens;
+}
+
+function VoegNotificatieToe($gebruikersID, $VoorwerpNummer, $NotificatieSoort){
+    global $dbh;
+    $query = $dbh->prepare("INSERT INTO GebruikerNotificaties(GebruikersID, Voorwerpnummer, NotificatieSoort) VALUES(:GebruikersID, :VoorwerpNummer, :NotificatieSoort)");
+    $query->execute([
+        ':GebruikersID' => $gebruikersID,
+        ':VoorwerpNummer' => $VoorwerpNummer,
+        ':NotificatieSoort' => $NotificatieSoort
+        ]);
+}
+
+function VerwijderNotificaties($GebruikersID){
+    global $dbh;
+    $query = $dbh->prepare("DELETE FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID");
+    $query->execute([':GebruikersID' => $GebruikersID]);
 }
 ?>
