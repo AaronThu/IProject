@@ -19,16 +19,17 @@ $filenaam = $_FILES['bestand']['name'];
 
 $voorwerpNummer = 0;
 
-echo $titel . "<br>";
-echo $beschrijving . "<br>";
-echo $startprijs . "<br>";
-echo $betalingswijze . "<br>";
-echo $betalingsinstructie . "<br>";
-echo $plaatsnaam . "<br>";
-echo $land . "<br>";
-echo $looptijd . "<br>";
-echo $verkopersID . "<br>";
-echo $_FILES['bestand']['name'] . "<br>";
+// echo $titel . "<br>";
+// echo $beschrijving . "<br>";
+// echo $startprijs . "<br>";
+// echo $betalingswijze . "<br>";
+// echo $betalingsinstructie . "<br>";
+// echo $plaatsnaam . "<br>";
+// echo $land . "<br>";
+// echo $looptijd . "<br>";
+// echo $verzendinstructies . "<br>";
+// echo $verkopersID . "<br>";
+// echo $_FILES['bestand']['name'] . "<br>";
 
 // upload bestanden naar server
 $uploaddir = 'upload/';
@@ -42,12 +43,12 @@ if (move_uploaded_file($_FILES['bestand']['tmp_name'], $uploadfile)) {
 
 //Vult gegevens in de database
 $query = $dbh->prepare("INSERT Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land, Looptijd, Verzendinstructies, VerkopersID) 
-VALUES ($titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $land, $looptijd, $verzendinstructies, $verkopersID)");
+VALUES ('$titel', '$beschrijving', '$startprijs', '$betalingswijze', '$betalingsinstructie', '$plaatsnaam', '$land', '$looptijd', '$verzendinstructies', '$verkopersID')");
 $query->execute();
 
 // $query2 = $dbh->prepare("INSERT Bestand VALUES($fileNaam, $voorwerpNummer)");
 // $query2->execute();
 
-// $_SESSION['foutmelding'] = "Voorwerp succesvol geplaatst";
-// header($locatieNaRegistratie);
+$_SESSION['foutmelding'] = "Voorwerp succesvol geplaatst!";
+header($locatieNaRegistratie);
 ?>
