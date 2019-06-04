@@ -1,8 +1,15 @@
 <?php
-
 include_once "includes/functies.php";
 include_once "includes/database.php";
 include_once "includes/header.php";
+
+$locatieFouteLink = "Location: index.php";
+
+if (empty($_SESSION['Gebruikersnaam'])) {
+    $_SESSION['foutmelding'] = "Maak eerst een verkopers account om voorwerpen te kunnen verkopen";
+    header($locatieFouteLink);
+    return;
+}
 ?>
 
 <body class="d-flex flex-column">
@@ -13,10 +20,9 @@ include_once "includes/header.php";
                     <h2 class="text-center">Product verkopen</h1>
                 </div>
             </div>
-            <div class="row">         
-               
+            <div class="row">          
                 <div class="col-md-6 verkooppagina">
-                <form method="post" action="index.php"> 
+                <form method="post" action="verkoop_systeem.php" enctype="multipart/form-data"> 
                 <p class = "verkoophead"> Product specificaties </p>    
                         <h6>Titel van je product</h6>
                         <input type="text" class= "form-control inputforms" name="titel" required>
@@ -24,46 +30,35 @@ include_once "includes/header.php";
                         <input type="text" class= "form-control inputforms" name="beschrijving" required>
                         <h6>Afbeelding(en) van je product</h6>
                         <input type="file" class= "form-control inputforms" name="bestand" required>
-
                 </div>
-
-                
                 <div class="col-md-6 verkooppagina">
                 <p class = "verkoophead"> Prijs specificaties</p>
                     <h6>Startprijs</h6>
-                    <input type="text" class= "form-control inputforms" required>
+                    <input type="text" class= "form-control inputforms" name="startprijs" required>
                     <h6>Betalingsinstructies</h6>
-                    <input type="text" class= "form-control inputforms">
+                    <input type="text" class= "form-control inputforms" name="betalingsinstructies">
                     <h6>Betalingswijze</h6>
                     <select class = "form-control inputforms" name="betalingswijze" required>
                         <option value = 'iDeal'>iDeal</option>
                         <option value = 'Creditcard'>Creditcard</option>
                     </select>
-                </div>
-                
-
-                             
+                </div>            
                 <div class="col-md-6 verkooppagina">
                 <p class = "verkoophead"> Overige specificaties</p>
-
-                <h6> Rubriek van product </h6>
-                        <select class = "form-control inputforms" name = "rubriek" required>
-</select>
-                        <h6>Looptijd</h6>
-                        <select class = "form-control inputforms" name = "looptijd" required>
-                            <option value = "1">1 dag</option>
-                            <option value = "3">3 dagen</option>
-                            <option value = "5">5 dagen</option>
-                            <option value = "7">7 dagen</option>
-                            <option value = "9">9 dagen</option>
-                        </select>
-                        <h6> Jouw locatie</h6>
-                <select class = "form-control inputforms" name = "locatie" required>
-                    <option value ="#">#</option>
-</select>
+                <!-- <h6> Rubriek van product </h6>
+                    <select class = "form-control inputforms" name = "rubriek" required>
+                    </select> -->
+                    <h6>Looptijd</h6>
+                    <select class = "form-control inputforms" name = "looptijd" required>
+                        <option value = "1">1 dag</option>
+                        <option value = "3">3 dagen</option>
+                        <option value = "5">5 dagen</option>
+                        <option value = "7">7 dagen</option>
+                        <option value = "9">9 dagen</option>
+                    </select>
+                    <h6>Jouw locatie</h6>
+                    <input type=text class="form-control inputforms" name="locatie" required>
                 </div>
-                
-                
             </div>
         </div>
         <div class="text-center" style="margin: 20px;">
@@ -73,15 +68,11 @@ include_once "includes/header.php";
     </div>
     </div>
     <div class= "spacing">
-</div>
-    
-   
+</div>   
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>
-
 <?php
 include_once "includes/footer.php";
 ?>
