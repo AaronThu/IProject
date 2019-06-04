@@ -186,3 +186,21 @@ h6 {
 .verkoophead{
   align-self:center;
 }
+
+.spacing{
+  margin-bottom:100px;
+}
+
+.groot{
+  height:200px;
+}
+
+.verkooppaginarow{
+  
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-content:start;
+  margin-right: -15px;
+  margin-left: -15px;
+}
