@@ -83,6 +83,7 @@ function GetBieders($id)
     return $bieders;
 }
 
+//returnt title van meegegeven voorwerp id.
 function GetProductNaam($id)
 {
     global $dbh;
@@ -92,6 +93,7 @@ function GetProductNaam($id)
     return $productnaam;
 }
 
+//returned meer items van meegegeven verkoper
 function GetMeerVanVerkoper($id)
 {
     global $dbh;
@@ -103,6 +105,7 @@ function GetMeerVanVerkoper($id)
     return $MeerVanVerkoper;
 }
 
+//
 function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10)
 {
     global $dbh;
@@ -167,6 +170,7 @@ function GetVoorwerpenSearchBar($zoekresultaat)
     return $Searching;
 }
 
+//returned hoogste bod van meegegeven voorwerp id.
 function GetHoogsteBod($id)
 {
     global $dbh;
@@ -276,6 +280,7 @@ function GetVoorwerpenVoorVerkoper($VerkopersID)
 }
 
 
+//
 function UpdateVoorwerpKopersID($GebruikersID, $Voorwerpnummer)
 {
     global $dbh;

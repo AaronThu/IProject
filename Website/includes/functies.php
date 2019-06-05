@@ -179,6 +179,7 @@ function GeefBankenLijst($dbh)
     return $banken;
 }
 
+//checkt of iets is ingevuld en checkt of fout ontstaat,zet foutmeldingen in een array
 function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 {
     if (empty($ingevuldeWaarde)) {
@@ -190,6 +191,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
     }
 }
 
+// returned of meegegeven gebruiker verkoper is.
 function IsVerkoper($userID)
 {
     global $dbh;
