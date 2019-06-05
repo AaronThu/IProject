@@ -6,7 +6,13 @@ include_once "includes/database.php";
 $locatieFouteLink = "Location: index.php";
 
 if (empty($_SESSION['Gebruikersnaam'])) {
-    $_SESSION['foutmelding'] = "Maak eerst een verkopers account om voorwerpen te kunnen verkopen";
+    $_SESSION['foutmelding'] = "Log in om voorwerpen te kunnen verkopen!";
+    header($locatieFouteLink);
+    return;
+}
+
+if (IsVerkoper($_SESSION['Gebruikersnaam'])) {
+    $_SESSION['foutmelding'] = "Maak een verkopers account om voorwerpen te kunnen verkopen!";
     header($locatieFouteLink);
     return;
 }
@@ -65,10 +71,22 @@ include_once "includes/header.php";
 
                 <div class="col-md-6 verkooppagina">
                     <p class="verkoophead"> Rubriek</p>
+                    <h6>Hoofdrubriek</h6>
                     <select class="form-control inputforms" name="parentrubriek" required>
-                        <option value="#"></option>
-                        <h6> Rubriek van product </h6>
-                        <select class="form-control inputforms" name="rubriek" required></select>
+                        <?php
+                        foreach (GetRubrieken(-1) as $key => $value) {
+                            echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <h6>Subrubriek</h6>
+                    <select class="form-control inputforms" name="rubriek" required>
+                    <?php
+                        foreach (GetRubrieken(-1) as $key => $value) {
+                            echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>
