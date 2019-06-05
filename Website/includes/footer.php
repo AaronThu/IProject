@@ -17,6 +17,7 @@
                 <div class="col-sm-6">
                     <h3>Over EenmaalAndermaal</h3>
                     <p>Deze website is gemaakt door studenten van de HAN, dit is geen echte veilingwebsite </p>
+                    <a href="https://www.han.nl/start/corporate/over-de-han/faculteiten-en-instituten/informatica-communicatie-academie/"><img src="assets/img/icalogo.png" alt="ICA logo" style="width: 100px; height: 50px"></a>
                 </div>
             </div>
             <p class="copyright">EenmaalAndermaal © 2019</p>

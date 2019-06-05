@@ -5,6 +5,7 @@
 /*==============================================================*/
 
 
+
 USE iproject2
 GO
 
@@ -78,7 +79,7 @@ CREATE TABLE GebruikerNotificaties (
 	Voorwerpnummer			BIGINT				NOT NULL,
 	NotificatieSoort		VARCHAR(25)			NOT NULL,
 	NotificatieGelezen		BIT					NOT NULL DEFAULT 0,
-	Datum					DATE				NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	Datum					DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT PK_GEBRUIKERNOTIFICATIES PRIMARY KEY (NotificatieID, GebruikersID),
 	CONSTRAINT CH_NOTIFICATIESOORT CHECK (NotificatieSoort IN ('voorwerpOverboden', 'voorwerpVerkocht', 'voorwerpGekocht', 'bodGeplaatst'))
 )
@@ -182,20 +183,18 @@ CREATE TABLE Voorwerp (
     Betalingswijze      VARCHAR(25)         NOT NULL DEFAULT 'iDeal',
     Betalingsinstructie VARCHAR(200)            NULL,
     Plaatsnaam          VARCHAR(50)             NULL,
-    Land                VARCHAR(70)         NOT NULL,
+    Land                VARCHAR(50)         NOT NULL,
     Looptijd            TINYINT             NOT NULL DEFAULT 7,
     BeginMoment         DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Verzendkosten       NUMERIC(7,2)            NULL,
     Verzendinstructies  VARCHAR(200)            NULL,
-    VerkopersID         INT			        NOT NULL,
-    KopersID            INT			            NULL,
+	VerkopersID			INT					NOT NULL,
     Eindmoment AS DATEADD(DAY, Looptijd, BeginMoment),
     VeilingGesloten AS 
             CASE WHEN CURRENT_TIMESTAMP > DATEADD (DAY, Looptijd, BeginMoment)
                 THEN 1
                 ELSE 0
                 END,
-    Verkoopprijs       NUMERIC(11,2)            NULL,
     CONSTRAINT PK_VOORWERP PRIMARY KEY (Voorwerpnummer),
     CONSTRAINT CK_TITEL CHECK (LEN(Titel) > 1  ),
 	--CONSTRAINT CK_BESCHRIJVING CHECK (LEN(TRIM(Beschrijving)) > 10),

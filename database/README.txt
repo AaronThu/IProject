@@ -3,6 +3,7 @@ Voor het invoegen van alle tables en script, run insert1.bat, gevolgt door inser
 Mocht dit niet goed werken, dan staat hieronder de volgorde waarin alle scripts moeten worden
 gedraaid\/
 1. CREATE_SCRIPT
+2. Functies_HoogsteBod en Functies_HoogsteBieder
 2. Alter_Script_IProject
 3. CONVERSIE_RUBRIEKEN_SCRIPT
 4. CONVERSIE_LANDEN_SCRIPT

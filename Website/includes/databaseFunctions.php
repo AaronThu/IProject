@@ -58,7 +58,7 @@ function CountVoorwerpen()
 function GetVoorwerpEigenschappen($id)
 {
     global $dbh;
-    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID, v.Verkoopprijs FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID, v.Verkoopprijs, v.KopersID FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
@@ -77,7 +77,7 @@ function GetVoorwerpFoto($id)
 function GetBieders($id)
 {
     global $dbh;
-    $biedersQuery = $dbh->prepare("SELECT TOP 3 b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ? ORDER BY BodTijd DESC");
+    $biedersQuery = $dbh->prepare("SELECT TOP 3 b.BodBedrag, g.Gebruikersnaam, b.BodTijd, b.GebruikersID FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ? ORDER BY BodTijd DESC");
     $biedersQuery->execute([$id]);
     $bieders = $biedersQuery->fetchAll();
     return $bieders;
@@ -174,10 +174,10 @@ function GetVoorwerpenSearchBar($zoekresultaat)
 function GetHoogsteBod($id)
 {
     global $dbh;
-    $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag, GebruikersID FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
+    $HoogsteBodQuery = $dbh->prepare("SELECT Verkoopprijs FROM Voorwerp WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
     $HoogsteBodQuery->execute([$id]);
     $HoogsteBod = $HoogsteBodQuery->fetchAll();
-    return $HoogsteBod[0]['Bodbedrag'];
+    return $HoogsteBod[0]['Verkoopprijs'];
 }
 
 function GetFeedbackVoorVerkoper($dbh, $gebruikersID)
@@ -222,7 +222,7 @@ function KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker)
         $queryNotificaties = $dbh->prepare("SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID AND NotificatieSoort = 'voorwerpVerkocht'");
     } else {
         $notificatieSoort = "voorwerpGekocht";
-        $queryVoorwerpen = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 0 AND KopersID = :GebruikersID");
+        $queryVoorwerpen = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 1 AND KopersID = :GebruikersID");
         $queryNotificaties = $dbh->prepare("SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID AND NotificatieSoort = 'voorwerpGekocht'");
     }
     $queryVoorwerpen->execute([
@@ -267,8 +267,13 @@ function VoegNotificatieToe($gebruikersID, $VoorwerpNummer, $NotificatieSoort)
 function VerwijderNotificaties($GebruikersID)
 {
     global $dbh;
-    $query = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
-    $query->execute([':GebruikersID' => $GebruikersID]);
+
+    $query2 = $dbh->prepare("DELETE FROM GebruikerNotificaties WHERE NotificatieSoort IN('bodGeplaatst', 'voorwerpOverboden') AND GebruikersID = :GebruikersID");
+    $query2->execute([':GebruikersID' => $GebruikersID]);
+
+    $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
+    $query1->execute([':GebruikersID' => $GebruikersID]);
+
 }
 
 function GetVoorwerpenVoorVerkoper($VerkopersID)
@@ -277,19 +282,6 @@ function GetVoorwerpenVoorVerkoper($VerkopersID)
     $query = $dbh->prepare("SELECT * FROM Voorwerp WHERE VerkopersID = :VerkopersID");
     $query->execute([':VerkopersID' => $VerkopersID]);
     return $query->fetchAll();
-}
-
-
-
-function UpdateVoorwerpKopersIDEnPrijs($GebruikersID, $Voorwerpnummer, $Verkoopprijs)
-{
-    global $dbh;
-    $query = $dbh->prepare("UPDATE Voorwerp SET KopersID = :GebruikersID, Verkoopprijs = :Verkoopprijs WHERE Voorwerpnummer = :Voorwerpnummer");
-    $query->execute([
-        ':GebruikersID' => $GebruikersID,
-        ':Verkoopprijs' => $Verkoopprijs,
-        ':Voorwerpnummer' => $Voorwerpnummer
-    ]);
 }
 
 function GetBiedingen($userID, $type = 'all')

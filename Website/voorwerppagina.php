@@ -17,12 +17,10 @@ if (!is_numeric($voorwerpID)) {
 $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
 
 if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
-    $BiedingsPrijs = $voorwerpEigenschappen[0]['Startprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Startprijs']);
+    $BiedingsPrijs = $voorwerpEigenschappen[0]['Startprijs'];
 } else{
-    $BiedingsPrijs = $voorwerpEigenschappen[0]['Verkoopprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Verkoopprijs']);
+   $BiedingsPrijs = $voorwerpEigenschappen[0]['Verkoopprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Verkoopprijs']);
 }
-
-
 
 ?>
 
@@ -85,14 +83,13 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
                                 if(isset($_SESSION['GebruikersID'])) { ?>
                                 <form class="d-flex flex-row" action="bied_systeem.php?voorwerpID=<?php echo $voorwerpID; ?>" method="post">
                                     <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" step=0.01 name="bodbedrag" value="<?php echo $BiedingsPrijs; ?>">
-                                    <button class="btn btn-primary" type="submit" style="background-color: #a9976a;height: 5%;">Bied</button>
+                                    <button class="btn btn-primary" type="submit" style="background-color: #a9976a;height: 5%;" autofocus>Bied</button>
                                 </form>
                                 <?php }
                                 else { ?>
                                 <p class="d-flex flex-row">
-                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" placeholder="Log in om mee te bieden!" type="number" step="0.01">
-                                    <button class="btn btn-primary" disabled="disabled" style="background-color: #a9976a;height: 5%;">Bied</button>
-                                </p>
+                                  Log eerst in om mee te bieden!
+                                </p><a class="btn btn-light action-button" style="background-color: #a9976a;height: 5%;" href="login_pagina.php">Inloggen</a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -153,18 +150,23 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
                     <p>Tijd</p>
                     <p>Bedrag</p>
                 </div>
-                    <p class="biedgeschiedenis" style="height: 0%;margin: 0%0%0%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) { ?>
+                    <p class="biedgeschiedenis" style="height: 0%;margin: 0%0%0%;"><?php foreach (GetBieders($voorwerpID) as $key => $value) {?>
                 <div class="d-flex flex-row justify-content-between">
-                    <p class="d-flex flex-column justify-content-between" style="width: 10%;"><?php echo $value['Gebruikersnaam']; ?></p>
-                    <p class="d-flex flex-row justify-content-between" style="width: 10%;"><?php echo $value['BodTijd']; ?></p>
-                    <p class="d-flex flex-row justify-content-between" style="width: 10%;"><?php echo $value['BodBedrag']; ?></p>
+                   <div class="flex-column" style="width: 160px">
+                    <p style="max-width: 160px; word-wrap: break-word"><?php
+                        if($value['GebruikersID'] == $_SESSION['GebruikersID']){
+                            echo "Eigen geplaatste bod";
+                        } else{
+                            echo $value['Gebruikersnaam'];} ?></p></div>
+                    <p class="d-flex flex-row" style="margin-left: 0em"><?php echo $value['BodTijd']  ; ?></p>
+                    <p class="d-flex flex-row"><?php echo $value['BodBedrag']; ?></p>
                 </div>
                 <?php } ?>
                 <div class="float-right" style="margin-top: 10em">
                     <p class="meervanVerkoper">Meer van deze verkoper</p>
                     <?php foreach (GetMeerVanVerkoper($voorwerpID) as $key => $value) { ?>
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img
-                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?> alt = "<?php echo $value['Voorwerpnummer'];?>"
+                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>" alt = "<?php echo $value['Voorwerpnummer'];?>"
                                     class = "meervanverkoperimg"/></a><br><br>
                     <?php } 
                     if(empty($value['Filenaam']) && empty($value['Voorwerpnummer'])) {

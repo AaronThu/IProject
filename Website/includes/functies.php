@@ -274,23 +274,16 @@ function genereerArtikel($titel, $tijd, $StartPrijs, $Verkoopprijs, $voorwerpNum
 
 function MinimaleBiedPrijs($HoogsteBod){
     $MinimaalTeBieden = 0;
-    switch ($MinimaalTeBieden) {
-
-        case $HoogsteBod <= 49.99;
-            $MinimaalTeBieden = 0.50;
-            break;
-        case $HoogsteBod <= 499.99:
-            $MinimaalTeBieden = 1.00;
-            break;
-        case $HoogsteBod <= 999.99:
-            $MinimaalTeBieden = 5.00;
-            break;
-        case $HoogsteBod <= 4999.99:
-            $MinimaalTeBieden = 10.00;
-            break;
-        case $HoogsteBod >= 5000.00:
-            $MinimaalTeBieden = 50.00;
-            break;
+    if($HoogsteBod <= 49.99) {
+        $MinimaalTeBieden = 0.50;
+    } elseif( $HoogsteBod <= 499.99) {
+        $MinimaalTeBieden = 1.00;
+    } elseif( $HoogsteBod <= 999.99) {
+        $MinimaalTeBieden = 5.00;
+    } elseif($HoogsteBod <= 4999.99) {
+        $MinimaalTeBieden = 10.00;
+    } elseif($HoogsteBod >= 5000.00) {
+        $MinimaalTeBieden = 50.00;
     }
     return $MinimaalTeBieden;
 }
