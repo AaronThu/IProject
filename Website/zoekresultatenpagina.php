@@ -12,7 +12,6 @@ $zoekterm = $_GET['zoekterm'];
                 </div>
                 <div class="col-md-5">
                     <p><?php echo $value['Titel']; ?></p>
-                    <p style="color: #ffffff;"><?php echo strip_tags(substr($value['Beschrijving'], 0, 100)); ?>  </p>
                 </div>
                 <div class="col-md-3">
                     <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3><br><br>

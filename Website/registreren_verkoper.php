@@ -2,7 +2,7 @@
 session_start();
 include_once "includes/database.php";
 include_once "includes/functies.php";
-include_once "includes/header.php";
+
 
 $locatieFouteLink = "Location: registreren_emailpagina.php";
 $locatieRegistratie = "Location: registreren_verkopersysteem.php";
@@ -59,6 +59,7 @@ return;
 }
 }
 
+include_once "includes/header.php";
 ?>
 
 <html>
