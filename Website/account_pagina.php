@@ -35,7 +35,7 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- START HOME -->
         <div class="Home <?php echo ($page === "Home" ? "" : "noShow") ?>">
             <h5 class="titel">Mijn Biedingen</h5>
-            <div class="row d-flex flex-wrap ">
+            <div class="row d-flex flex-wrap">
                 <?php
                 if (sizeof($currentBiedingen) > 0) {
                     foreach ($currentBiedingen as $key => $value) {
@@ -102,21 +102,42 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- END HOME -->
         <!-- START SETTINGS -->
         <div class="Settings <?php echo ($page === "Settings" ? "" : "noShow") ?>">
-            <form class="settings-form" action="" method="post">
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><button type="submit">Wijzig</button></div>
-            </form>
+            <div class="item">
+                <h6>Gebruikersnaam:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Voornaam:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Achternaam:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Adres:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Postcode:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Plaatsnaam:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Land:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Geboortedatum:</h6>
+                <p>asdasd</p>
+            </div>
+            <div class="item">
+                <h6>Emailadres:</h6>
+                <p>asdasd</p>
+            </div>
         </div>
         <!-- END SETTINGS -->
     </div>

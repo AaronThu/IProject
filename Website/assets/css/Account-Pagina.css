@@ -77,17 +77,22 @@ input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-
   background-color: transparent;
 }
 
-.settings-form {}
+.Settings, .Home {
+  padding: 1em 0em;
+}
 
-.settings-form .item {
+.Settings .item {
   display: flex;
   flex-direction: row;
   margin: 0.5em;
 }
 
-.settings-form .item label {
-  width: 30%;
+.Settings .item * {
   margin: auto;
   margin-left: 1em;
-  color: white;
+  width: 80%;
+}
+
+.Settings .item h6 {
+  width: 20%;
 }
