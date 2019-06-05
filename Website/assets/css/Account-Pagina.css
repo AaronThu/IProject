@@ -77,17 +77,44 @@ input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-
   background-color: transparent;
 }
 
-.settings-form {}
+.Settings, .Home {
+  padding: 1em 0em;
+}
 
-.settings-form .item {
+.Settings>div {
+  margin: 1em 0em;
+}
+
+.Settings .item {
   display: flex;
   flex-direction: row;
   margin: 0.5em;
 }
 
-.settings-form .item label {
-  width: 30%;
+.Settings .item * {
   margin: auto;
   margin-left: 1em;
+  width: 80%;
+}
+
+.Settings .item h6 {
+  width: 20%;
+}
+
+.registreerVerkoopKnop {
+  display: block;
+  padding: 2em 0em;
+}
+
+.registreerVerkoopKnop a {
   color: white;
+  background-color: #a9976a;
+  transition: 100ms linear background-color;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 2em;
+}
+
+.registreerVerkoopKnop a:hover {
+  background-color: #ffb357;
 }
