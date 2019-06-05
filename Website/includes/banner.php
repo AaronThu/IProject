@@ -1,4 +1,4 @@
-<body>
+<div>
 <a class="banner flex-sm-row flex-column" href="registreren_emailpagina.php">
 <img src="assets/img/EenmaalAndermaal_Logo.png" width="100" height="100" alt="EenmaalAndermaal Logo">
 <div style="text-align: center; margin-left: -50em">
@@ -10,4 +10,4 @@
     </div>
 </div>
 </a>
-</body>
+</div>
