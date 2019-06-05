@@ -151,10 +151,16 @@ function GetAllSubRubrieken($id)
     return $rubriekenID;
 }
 
-function GetVoorwerpenSearchBar($id)
+function GetVoorwerpenSearchBar($zoekresultaat)
 {
     global $dbh;
-    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
+    $zoekWorden = explode(" ", $zoekresultaat);
+    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer  WHERE v.VeilingGesloten = 0";
+
+    foreach($zoekWorden as $item){
+        $query .= " AND titel LIKE '%" . $item . "%'";
+    }
+
     $SearchQuery = $dbh->prepare($query);
     $SearchQuery->execute();
     $Searching = $SearchQuery->fetchAll();
