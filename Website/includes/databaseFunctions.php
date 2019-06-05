@@ -83,6 +83,7 @@ function GetBieders($id)
     return $bieders;
 }
 
+//returnt title van meegegeven voorwerp id.
 function GetProductNaam($id)
 {
     global $dbh;
@@ -92,6 +93,7 @@ function GetProductNaam($id)
     return $productnaam;
 }
 
+//returned meer items van meegegeven verkoper
 function GetMeerVanVerkoper($id)
 {
     global $dbh;
@@ -103,6 +105,7 @@ function GetMeerVanVerkoper($id)
     return $MeerVanVerkoper;
 }
 
+//
 function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10)
 {
     global $dbh;
@@ -157,7 +160,7 @@ function GetVoorwerpenSearchBar($zoekresultaat)
     $zoekWorden = explode(" ", $zoekresultaat);
     $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer  WHERE v.VeilingGesloten = 0";
 
-    foreach($zoekWorden as $item){
+    foreach ($zoekWorden as $item) {
         $query .= " AND titel LIKE '%" . $item . "%'";
     }
 
@@ -167,6 +170,7 @@ function GetVoorwerpenSearchBar($zoekresultaat)
     return $Searching;
 }
 
+//returned hoogste bod van meegegeven voorwerp id.
 function GetHoogsteBod($id)
 {
     global $dbh;
@@ -208,14 +212,15 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
 }
 
 
-    function KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker){
+function KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker)
+{
     global $dbh;
     $notificatieSoort = "voorwerpGekocht";
-    if($SoortGebruiker == "verkoper"){
+    if ($SoortGebruiker == "verkoper" || $SoortGebruiker == "admin") {
         $notificatieSoort = "voorwerpVerkocht";
         $queryVoorwerpen = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 1 AND VerkopersID = :GebruikersID");
         $queryNotificaties = $dbh->prepare("SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID AND NotificatieSoort = 'voorwerpVerkocht'");
-    } elseif($SoortGebruiker == "koper"){
+    } else {
         $notificatieSoort = "voorwerpGekocht";
         $queryVoorwerpen = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 0 AND KopersID = :GebruikersID");
         $queryNotificaties = $dbh->prepare("SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID AND NotificatieSoort = 'voorwerpGekocht'");
@@ -229,14 +234,15 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
     ]);
     $notificaties = $queryNotificaties->fetchAll();
 
-    foreach($voorwerpen as $rij){
-if(in_array($rij, $notificaties) == false){
-    VoegNotificatieToe($GebruikersID, $rij["Voorwerpnummer"], $notificatieSoort);
+    foreach ($voorwerpen as $rij) {
+        if (in_array($rij, $notificaties) == false) {
+            VoegNotificatieToe($GebruikersID, $rij["Voorwerpnummer"], $notificatieSoort);
+        }
+    }
 }
-    }
-    }
 
-function GetSoortNotificaties($GebruikersID, $NotificatieSoort){
+function GetSoortNotificaties($GebruikersID, $NotificatieSoort)
+{
     global $dbh;
     $query = $dbh->prepare("SELECT * FROM GebruikerNotificaties WHERE GebruikersID = :GebruikersID AND NotificatieSoort = :NotificatieSoort AND NotificatieGelezen = 0");
     $query->execute([
@@ -274,6 +280,7 @@ function GetVoorwerpenVoorVerkoper($VerkopersID)
 }
 
 
+
 function UpdateVoorwerpKopersIDEnPrijs($GebruikersID, $Voorwerpnummer, $Verkoopprijs)
 {
     global $dbh;
@@ -284,4 +291,22 @@ function UpdateVoorwerpKopersIDEnPrijs($GebruikersID, $Voorwerpnummer, $Verkoopp
         ':Voorwerpnummer' => $Voorwerpnummer
     ]);
 }
-    ?>
+
+function GetBiedingen($userID, $type = 'all')
+{
+    global $dbh;
+    $Query = null;
+    switch ($type) {
+        case 'old':
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Verkoopprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) AND Veilinggesloten = 1 ORDER BY v.Eindmoment");
+            break;
+        case 'new':
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Verkoopprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) AND Veilinggesloten = 0 ORDER BY v.Eindmoment");
+            break;
+        default:
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Verkoopprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) ORDER BY v.Eindmoment");
+            break;
+    }
+    $Query->execute([$userID]);
+    return $Query->fetchAll();
+}

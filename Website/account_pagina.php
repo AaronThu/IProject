@@ -35,7 +35,7 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- START HOME -->
         <div class="Home <?php echo ($page === "Home" ? "" : "noShow") ?>">
             <h5 class="titel">Mijn Biedingen</h5>
-            <div class="row d-flex flex-wrap ">
+            <div class="row d-flex flex-wrap">
                 <?php
                 if (sizeof($currentBiedingen) > 0) {
                     foreach ($currentBiedingen as $key => $value) {
@@ -57,32 +57,41 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
                 <div class="row d-flex flex-wrap ">
                     <?php
                     if (sizeof($mijnVoorwerpen) > 0) {
+                        echo ("<div class=\"row d-flex flex-wrap item head\">");
+                        echo ("<h5 class=\"col-md-3\">Titel</h5>");
+                        echo ("<h5 class=\"col-md-3\">Eindmoment</h5>");
+                        echo ("<h5 class=\"col-md-3\">Startprijs</h5>");
+                        echo ("<h5 class=\"col-md-3\">Verkoopprijs</h5>");
+                        echo ("</div>");
                         foreach ($mijnVoorwerpen as $key => $value) {
-                            genereerArtikel(
-                                $value['Titel'],
-                                $value['Eindmoment'],
-                                $value['Startprijs'],
-                                $value['Startprijs'],
-                                $value['Voorwerpnummer'],
-                                "col-md-2"
-                            );
+                            echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
+                            echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
+                            echo ("</a>");
                         }
                     } else { ?>
                         <h5 class="noResults">U bied geen voorwerpen aan</h5>
                     <?php } ?>
                 </div>
             <?php } ?>
-            <h5 class="titel">Mijn Bied Geschiedenis</h5>
-            <div class="column d-flex flex-wrap voorwerpLijst">
+            <h5 class="titel">Mijn Biedgeschiedenis</h5>
+            <div class="row d-flex flex-wrap voorwerpLijst">
                 <?php
                 if (sizeof($biedGeschiedenis) > 0) {
+                    echo ("<div class=\"row d-flex flex-wrap item head\">");
+                    echo ("<h5 class=\"col-md-3\">Titel</h5>");
+                    echo ("<h5 class=\"col-md-3\">Eindmoment</h5>");
+                    echo ("<h5 class=\"col-md-3\">Startprijs</h5>");
+                    echo ("<h5 class=\"col-md-3\">Verkoopprijs</h5>");
+                    echo ("</div>");
                     foreach ($biedGeschiedenis as $key => $value) {
-                        echo ("<a href=\"\" class=\"item\">");
-                        echo ("<h5>$value[Titel]</h5>");
-                        echo ("<h5>$value[Eindmoment]</h5>");
-                        echo ("<h5>$value[Startprijs]</h5>");
-                        echo ("<h5>$value[Startprijs]</h5>");
-                        echo ("<h5>$value[Voorwerpnummer]</h5>");
+                        echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
+                        echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
                         echo ("</a>");
                     }
                 } else { ?>
@@ -93,21 +102,60 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- END HOME -->
         <!-- START SETTINGS -->
         <div class="Settings <?php echo ($page === "Settings" ? "" : "noShow") ?>">
-            <form class="settings-form" action="" method="post">
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><button type="submit">Wijzig</button></div>
-            </form>
+            <div>
+                <div class="item">
+                    <h6>Gebruikersnaam:</h6>
+                    <p><?php echo ($_SESSION['Gebruikersnaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Emailadres:</h6>
+                    <p><?php echo ($_SESSION['Emailadres']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Voornaam:</h6>
+                    <p><?php echo ($_SESSION['Voornaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Achternaam:</h6>
+                    <p><?php echo ($_SESSION['Achternaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Adres 1:</h6>
+                    <p><?php echo ($_SESSION['Adres_1']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Adres 2:</h6>
+                    <p><?php echo ($_SESSION['Adres_2'] === "" ? "Niet opgegeven" : $_SESSION['Adres_2']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Postcode:</h6>
+                    <p><?php echo ($_SESSION['Postcode']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Plaatsnaam:</h6>
+                    <p><?php echo ($_SESSION['Plaatsnaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Land:</h6>
+                    <p><?php echo ($_SESSION['Land']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Geboortedatum:</h6>
+                    <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
+                </div>
+            </div>
+
+            <?php
+            if ($_SESSION['SoortGebruiker'] === 'koper' || (isset($_SESSION['VerkoperStatus']) && $_SESSION['VerkoperStatus'] == 'aanvraging')) {
+                echo ('<div class="registreerVerkoopKnop">');
+                if ($_SESSION['SoortGebruiker'] === 'koper') {
+                    echo ('<a href="registreren_verkoper.php">Registreer als verkoper</a>');
+                } else {
+                    echo ('<a href="registratie_verkopers_code.php">Registratiecode invullen</a>');
+                }
+                echo ('</div>');
+            }
+            ?>
         </div>
         <!-- END SETTINGS -->
     </div>

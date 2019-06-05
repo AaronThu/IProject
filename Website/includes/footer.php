@@ -1,8 +1,9 @@
 <?php
 ?>
 
-<div class="footer-dark">
     <footer>
+        
+<div class="footer-dark">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">

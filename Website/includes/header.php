@@ -39,7 +39,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang='nl'>
 
 <head>
     <meta charset="utf-8">
@@ -78,7 +78,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                                 <h6 class="dropdown-header" role="presentation">Populair</h6>
                                 <?php
                                 foreach (GetRubriekenPopulair(3) as $key => $value) {
-                                    print("<a class=\"dropdown-item\" role=\"presentation\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+                                    print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\" role=\"presentation\">$value[Rubrieknaam]</a>");
                                 }
                                 ?>
                                 <div class="dropdown-divider" role="presentation"></div>
@@ -86,7 +86,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                                 <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
                                     <?php
                                     foreach (GetRubrieken(-1) as $key => $value) {
-                                        print("<a class=\"dropdown-item\" href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\">$value[Rubrieknaam]</a>");
+                                        print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\">$value[Rubrieknaam]</a>");
                                     }
                                     ?>
                                 </div>

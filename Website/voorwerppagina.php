@@ -43,9 +43,9 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
                                     echo "<div class=\"carousel-item\">";
 
                                 } ?>
-                                <img class="w-100 d-block"
+                                <img class="w-100 d-block voorwerppaginaimg"
                                      src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                     alt="<?php $value['FileNaam']?>" style="max-height: 400px; position: relative; overflow: hidden"></div>
+                                     alt="<?php $value['FileNaam']?>"></div>
                             <?php } ?>
 
                         </div>
@@ -164,8 +164,8 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
                     <p class="meervanVerkoper">Meer van deze verkoper</p>
                     <?php foreach (GetMeerVanVerkoper($voorwerpID) as $key => $value) { ?>
                         <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img
-                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                    width="300" heigth="300"/></a><br><br>
+                                    src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?> alt = "<?php echo $value['Voorwerpnummer'];?>"
+                                    class = "meervanverkoperimg"/></a><br><br>
                     <?php } 
                     if(empty($value['Filenaam']) && empty($value['Voorwerpnummer'])) {
                         echo "<p>Deze verkoper heeft geen andere advertenties.</p>";

@@ -7,7 +7,7 @@ $locatieFouteLink = "Location: registreren_emailpagina.php";
 $locatieRegistratie = "Location: registreren_verkopersysteem.php";
 
 if (empty($_SESSION['Emailadres'])) {
-    $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper";
+    $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper.";
     header($locatieFouteLink);
     return;
 }
@@ -67,15 +67,11 @@ include_once "includes/header.php";
         <div class="row">
                 <div class=" col-md-12">
         <h2 class="text-center" style="color: rgb(255,255,255);">Registreren als verkoper</h2>
-        <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php"> algemene voorwaarden.</p></a>
-    </div>
+        <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php" target="_blank"> algemene voorwaarden.</p></a>
         </div>
-
-
-
+    </div>
 <div style=" margin: 50px 15em;">
     <form style="color: white" method="post" action="registreren_verkoper.php">
-
         <h6 style="text-align: center;">Soort rekeningnummer</h6>
         <input type="radio" name="soortRekening" value="creditcard" >Creditcard nummer<br>
         <input type="radio" name="soortRekening" value="pinpas" style="margin-bottom: 2em;" checked>IBAN nummer<br>
@@ -126,5 +122,3 @@ include_once "includes/header.php";
 <?php
 include_once "includes/footer.php";
 ?>
-
-

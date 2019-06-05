@@ -12,8 +12,7 @@ include_once("includes/functies.php");
     <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-
-<body style="height: 600px;">
+<div class = "loginpagina">
     <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">
         <form method="post" style="background-color: #4b4c4d;"action="inlog_systeem.php">
             <h2 class="sr-only">Login Form</h2>
@@ -26,7 +25,7 @@ include_once("includes/functies.php");
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
+</div>
 
 
 <?php
