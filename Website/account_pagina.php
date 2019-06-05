@@ -57,32 +57,41 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
                 <div class="row d-flex flex-wrap ">
                     <?php
                     if (sizeof($mijnVoorwerpen) > 0) {
+                        echo ("<div class=\"row d-flex flex-wrap item head\">");
+                        echo ("<h5 class=\"col-md-3\">Titel</h5>");
+                        echo ("<h5 class=\"col-md-3\">Eindmoment</h5>");
+                        echo ("<h5 class=\"col-md-3\">Startprijs</h5>");
+                        echo ("<h5 class=\"col-md-3\">Verkoopprijs</h5>");
+                        echo ("</div>");
                         foreach ($mijnVoorwerpen as $key => $value) {
-                            genereerArtikel(
-                                $value['Titel'],
-                                $value['Eindmoment'],
-                                $value['Startprijs'],
-                                $value['Startprijs'],
-                                $value['Voorwerpnummer'],
-                                "col-md-2"
-                            );
+                            echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
+                            echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
+                            echo ("</a>");
                         }
                     } else { ?>
                         <h5 class="noResults">U bied geen voorwerpen aan</h5>
                     <?php } ?>
                 </div>
             <?php } ?>
-            <h5 class="titel">Mijn Bied Geschiedenis</h5>
-            <div class="column d-flex flex-wrap voorwerpLijst">
+            <h5 class="titel">Mijn Biedgeschiedenis</h5>
+            <div class="row d-flex flex-wrap voorwerpLijst">
                 <?php
                 if (sizeof($biedGeschiedenis) > 0) {
+                    echo ("<div class=\"row d-flex flex-wrap item head\">");
+                    echo ("<h5 class=\"col-md-3\">Titel</h5>");
+                    echo ("<h5 class=\"col-md-3\">Eindmoment</h5>");
+                    echo ("<h5 class=\"col-md-3\">Startprijs</h5>");
+                    echo ("<h5 class=\"col-md-3\">Verkoopprijs</h5>");
+                    echo ("</div>");
                     foreach ($biedGeschiedenis as $key => $value) {
-                        echo ("<a href=\"\" class=\"item\">");
-                        echo ("<h5>$value[Titel]</h5>");
-                        echo ("<h5>$value[Eindmoment]</h5>");
-                        echo ("<h5>$value[Startprijs]</h5>");
-                        echo ("<h5>$value[Startprijs]</h5>");
-                        echo ("<h5>$value[Voorwerpnummer]</h5>");
+                        echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
+                        echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
+                        echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
                         echo ("</a>");
                     }
                 } else { ?>
