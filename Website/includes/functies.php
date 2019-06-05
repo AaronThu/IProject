@@ -22,7 +22,7 @@ function genereerVerkoperRegistratieCode()
 
 function maakBestandAanVoorRegistratie($VerkopersCode, $Voornaam, $Gebruikersnaam)
 {
-    $bestand = fopen("$Gebruikersnaam", "w");
+    $bestand = fopen("verkoperscode/$Gebruikersnaam", "w");
     $tekst = "Beste $Voornaam,\n
     U heeft een registratie aangevraagd om verkoper te worden op EenmaalAndermaal\n
     voor de gebruiker $Gebruikersnaam.\n

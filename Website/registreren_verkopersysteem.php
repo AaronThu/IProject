@@ -37,7 +37,7 @@ $query->execute(
     ]
 );
 
-maakBestandAanVoorRegistratie($_SESSION['Voornaam'], $verkoperRegistratieCode, $_SESSION['Gebruikersnaam']);
+maakBestandAanVoorRegistratie($verkoperRegistratieCode, $_SESSION['Voornaam'], $_SESSION['Gebruikersnaam']);
 
 } elseif( $_SESSION['controleOptie'] == 'Creditcard') {
     $status = "geactiveerd";

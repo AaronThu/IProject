@@ -23,14 +23,14 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
     </div>
     <?php if (true) { ?>
         <div class="content meldingen">
-            <h5>hier komen alle meldingen</h5>
+            <h5>Hier worden alle notificaties weergegeven.</h5>
         </div>
     <?php } ?>
     <div class="content">
         <div class="tabs">
             <!-- highlight -->
-            <a href="?CurrentPage=Home" class="tabButton <?php echo ($page === "Home" ? "highlight" : "") ?>">Home</a>
-            <a href="?CurrentPage=Settings" class="tabButton <?php echo ($page === "Settings" ? "highlight" : "") ?>">Settings</a>
+            <a href="?CurrentPage=Home" class="tabButton <?php echo ($page === "Home" ? "highlight" : "") ?>">Biedingen</a>
+            <a href="?CurrentPage=Settings" class="tabButton <?php echo ($page === "Settings" ? "highlight" : "") ?>">Gegevens</a>
         </div>
         <!-- START HOME -->
         <div class="Home <?php echo ($page === "Home" ? "" : "noShow") ?>">
@@ -142,6 +142,10 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
                 <div class="item">
                     <h6>Geboortedatum:</h6>
                     <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Type Account:</h6>
+                    <p><?php echo (ucfirst($_SESSION['SoortGebruiker'])); ?></p>
                 </div>
             </div>
 

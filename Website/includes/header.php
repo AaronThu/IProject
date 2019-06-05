@@ -6,7 +6,8 @@ include_once "database.php";
 include_once "databaseFunctions.php";
 include_once 'beheerder/logica/databaseFuncties.php';
 $adminKnop = "";
-$VoorwepAanbiedenKnop = "";
+$extraKnop = "";
+$accountKnop = "";
 $notificatieknop = "";
 
 
@@ -16,10 +17,10 @@ $zoekbalk = '<form class="form-inline mr-auto" target="_self" action = "zoekresu
 
 if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="login_pagina.php">Inloggen</a>';
-    $registratieKnop = '<a class="btn btn-light action-button" href="registreren_emailpagina.php">Registeren</a>';
+    $extraKnop = '<a class="btn btn-light action-button" href="registreren_emailpagina.php">Registeren</a>';
 } else {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
-    $registratieKnop = '<a class="btn btn-light action-button" href="account_pagina.php">Mijn Account</a>';
+    $accountKnop = '<a class="btn btn-light action-button" href="account_pagina.php">Mijn Account</a>';
 
     $aantalNotificaties = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], 'telling');
 
@@ -30,10 +31,13 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     if (IsAdmin($_SESSION["Gebruikersnaam"])) {
         $adminKnop = '<a class="btn btn-light action-button" href="beheerder/beheerder_homepagina.php">Admin Paneel</a>';
     }
+
     if ($_SESSION['SoortGebruiker'] == 'verkoper' && $_SESSION['VerkoperStatus'] == "geactiveerd") {
-        $VoorwepAanbiedenKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp verkopen</a>';
-    }elseif($_SESSION['SoortGebruiker'] == 'koper' && $_SESSION['VerkoperStatus'] != 'aanvraging'){
-        $VoorwepAanbiedenKnop = '<a class="btn btn-light action-button" href="registreren_verkoper.php">Registreren verkoper</a>';
+        $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp verkopen</a>';
+    }elseif($_SESSION['SoortGebruiker'] == 'koper' && $_SESSION['VerkoperStatus'] != 'aanvraging') {
+        $extraKnop = '<a class="btn btn-light action-button" href="registreren_verkoper.php">Registreren verkoper</a>';
+    }elseif($_SESSION['SoortGebruiker'] == 'verkoper' && $_SESSION['VerkoperStatus'] == 'geactiveerd') {
+        $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp plaatsen</a>';
     }
 }
 ?>
@@ -98,9 +102,8 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                     <span class="d-flex justify-content-center align-items-center navbar-text actions">
                         <?php
                         echo $loginKnop;
-                        echo $VoorwepAanbiedenKnop;
                         echo $adminKnop;
-                        echo $registratieKnop;
+                        echo $extraKnop;
                         echo $notificatieknop;
                         ?>
                     </span>
