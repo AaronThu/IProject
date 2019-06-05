@@ -13,7 +13,17 @@ $voorwerpID = test_invoer($_GET["voorwerpID"]);
 if (!is_numeric($voorwerpID)) {
     return;
 }
+
 $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
+
+if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
+    $BiedingsPrijs = $voorwerpEigenschappen[0]['Startprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Startprijs']);
+} else{
+    $BiedingsPrijs = $voorwerpEigenschappen[0]['Verkoopprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Verkoopprijs']);
+}
+
+
+
 ?>
 
     <body>
@@ -74,7 +84,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                 <?php
                                 if(isset($_SESSION['GebruikersID'])) { ?>
                                 <form class="d-flex flex-row" action="bied_systeem.php?voorwerpID=<?php echo $voorwerpID; ?>" method="post">
-                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" step=0.01 name="bodbedrag" $placeholder="Minaal te bieden:">
+                                    <input class="form-control d-flex flex-row" style="margin: 0%0%20%;" type="number" step=0.01 name="bodbedrag" value="<?php echo $BiedingsPrijs; ?>">
                                     <button class="btn btn-primary" type="submit" style="background-color: #a9976a;height: 5%;">Bied</button>
                                 </form>
                                 <?php }

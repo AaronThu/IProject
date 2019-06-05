@@ -266,3 +266,27 @@ function genereerArtikel($titel, $tijd, $StartPrijs, $Verkoopprijs, $voorwerpNum
     echo ('<p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>');
     echo ('<p class ="kaartje text-left" style ="background-color: rgba(75,76,77,0.75);color: #ffffff; " >' . substr($titel, 0, 25) .  '... </p></a></div>');
 }
+
+
+function MinimaleBiedPrijs($HoogsteBod){
+    $MinimaalTeBieden = 0;
+    switch ($MinimaalTeBieden) {
+
+        case $HoogsteBod <= 49.99;
+            $MinimaalTeBieden = 0.50;
+            break;
+        case $HoogsteBod <= 499.99:
+            $MinimaalTeBieden = 1.00;
+            break;
+        case $HoogsteBod <= 999.99:
+            $MinimaalTeBieden = 5.00;
+            break;
+        case $HoogsteBod <= 4999.99:
+            $MinimaalTeBieden = 10.00;
+            break;
+        case $HoogsteBod >= 5000.00:
+            $MinimaalTeBieden = 50.00;
+            break;
+    }
+    return $MinimaalTeBieden;
+}

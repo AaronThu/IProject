@@ -58,7 +58,7 @@ function CountVoorwerpen()
 function GetVoorwerpEigenschappen($id)
 {
     global $dbh;
-    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
+    $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID, v.Verkoopprijs FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
@@ -173,7 +173,7 @@ function GetHoogsteBod($id)
     $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag, GebruikersID FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
     $HoogsteBodQuery->execute([$id]);
     $HoogsteBod = $HoogsteBodQuery->fetchAll();
-    return $HoogsteBod;
+    return $HoogsteBod[0]['Bodbedrag'];
 }
 
 function GetFeedbackVoorVerkoper($dbh, $gebruikersID)
@@ -274,12 +274,13 @@ function GetVoorwerpenVoorVerkoper($VerkopersID)
 }
 
 
-function UpdateVoorwerpKopersID($GebruikersID, $Voorwerpnummer)
+function UpdateVoorwerpKopersIDEnPrijs($GebruikersID, $Voorwerpnummer, $Verkoopprijs)
 {
     global $dbh;
-    $query = $dbh->prepare("UPDATE Voorwerp SET KopersID = :GebruikersID WHERE Voorwerpnummer = :Voorwerpnummer");
+    $query = $dbh->prepare("UPDATE Voorwerp SET KopersID = :GebruikersID, Verkoopprijs = :Verkoopprijs WHERE Voorwerpnummer = :Voorwerpnummer");
     $query->execute([
         ':GebruikersID' => $GebruikersID,
+        ':Verkoopprijs' => $Verkoopprijs,
         ':Voorwerpnummer' => $Voorwerpnummer
     ]);
 }
