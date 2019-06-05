@@ -170,16 +170,6 @@ function GetVoorwerpenSearchBar($zoekresultaat)
     return $Searching;
 }
 
-//returned hoogste bod van meegegeven voorwerp id.
-function GetHoogsteBod($id)
-{
-    global $dbh;
-    $HoogsteBodQuery = $dbh->prepare("SELECT Verkoopprijs FROM Voorwerp WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
-    $HoogsteBodQuery->execute([$id]);
-    $HoogsteBod = $HoogsteBodQuery->fetchAll();
-    return $HoogsteBod[0]['Verkoopprijs'];
-}
-
 function GetFeedbackVoorVerkoper($dbh, $gebruikersID)
 {
     $query = $dbh->prepare("SELECT AVG(FeedbackNummer) FROM Feedback WHERE VerkopersID = :VerkopersID");

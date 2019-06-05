@@ -25,7 +25,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     $aantalNotificaties = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], 'telling');
 
     if($aantalNotificaties > 0) {
-        $notificatieknop = '<div class="notificaties">' . $aantalNotificaties . '</div>';
+        $notificatieknop = '<a class="button notificaties" href="account_pagina.php" style="color: white">' . $aantalNotificaties . '</a>';
     }
 
     if (IsAdmin($_SESSION["Gebruikersnaam"])) {
