@@ -39,7 +39,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang='nl'>
 
 <head>
     <meta charset="utf-8">
