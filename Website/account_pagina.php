@@ -145,7 +145,7 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
                 </div>
                 <div class="item">
                     <h6>Type Account:</h6>
-                    <p><?php echo ($_SESSION['SoortGebruiker']); ?></p>
+                    <p><?php echo (ucfirst($_SESSION['SoortGebruiker'])); ?></p>
                 </div>
             </div>
 
