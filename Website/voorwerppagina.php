@@ -33,9 +33,9 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                     echo "<div class=\"carousel-item\">";
 
                                 } ?>
-                                <img class="w-100 d-block"
+                                <img class="w-100 d-block voorwerppaginaimg"
                                      src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                     alt="<?php $value['FileNaam']?>" style="max-height: 400px; position: relative; overflow: hidden"></div>
+                                     alt="<?php $value['FileNaam']?>"></div>
                             <?php } ?>
 
                         </div>
