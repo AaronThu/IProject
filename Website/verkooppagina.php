@@ -25,7 +25,7 @@ include_once "includes/header.php";
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center">Product verkopen</h1>
+                    <h2 class="text-center" style="color: white;">Product verkopen</h1>
                 </div>
             </div>
                     <form method="post" action="verkoop_systeem.php" enctype="multipart/form-data">
