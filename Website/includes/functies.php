@@ -1,6 +1,6 @@
 <?php
 
-//FORMULIEREN FUNCTIES
+//======================================FORMULIEREN FUNCTIES============================================
 function test_invoer($data)
 {
     $data = Strip_tags($data);
@@ -66,12 +66,12 @@ function updateVerkoperStatus($dbh, $gebruikersID)
     $query = $dbh->prepare("UPDATE Verkoper SET Status = geactiveerd WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
 }
-
+//deze functie kijkt of de meegegeven string letters bevat a t/m z en hoofdletters
 function kijkVoorLetters($string)
 {
     return preg_match('/[a-zA-Z]/', $string);
 }
-
+//deze functie kijkt of de meegegeven string cijfers bevat
 function kijkVoorCijfers($string)
 {
     return preg_match('/\d/', $string);
@@ -85,7 +85,7 @@ function kijkVoorCorrecteTekens($string)
         return false;
     }
 }
-
+//checkt of meegegeven telefoonnummer een telefoon nummer is
 function ControleerTelefoonnummer($telefoonnummer)
 {
 
@@ -95,7 +95,7 @@ function ControleerTelefoonnummer($telefoonnummer)
         return false;
     }
 }
-
+// checkt of meetegeven postcode een postcode is
 function ControleerPostcode($postcode)
 {
     if (preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
@@ -104,7 +104,7 @@ function ControleerPostcode($postcode)
         return false;
     }
 }
-
+// checkt of meegegevn geboortedatum groter is dan huideige tijd
 function ControleerGeboortedatum($geboortedatum)
 {
     $huidigetijd = time();
@@ -199,7 +199,7 @@ function IsVerkoper($userID)
     return $Query->fetchAll()[0][0] > 0;
 }
 
-//HOMEPAGE FUNCTIES
+//===========================HOMEPAGE FUNCTIES======================================================================
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {
     $artikelen = '';
@@ -230,7 +230,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 
     return $artikelen;
 }
-
+// maakt een colom met catogorieen met mee gegeven querey en columtype
 function genereerCatogorie($dbh, $gegevenQuery, $columntype)
 {
     $catogorie = '';
