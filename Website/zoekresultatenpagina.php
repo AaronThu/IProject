@@ -9,10 +9,10 @@ $zoekterm = $_GET['zoekterm'];
             <div class="row">
                 <div class="col-md-4">
                     <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img style="background-image: url(&quot;http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -0.5em; margin-top: 0.5em;"></a>
+                    
                 </div>
                 <div class="col-md-5">
                     <p><?php echo $value['Titel']; ?></p>
-                    <p style="color: #ffffff;"><?php echo strip_tags(substr($value['Beschrijving'], 0, 100)); ?>  </p>
                 </div>
                 <div class="col-md-3">
                     <h3 style="color: #ffffff;width: 111px;"><?php echo "€" . $value['Startprijs']; ?>&nbsp;</h3><br><br>

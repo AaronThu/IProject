@@ -21,9 +21,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     $loginKnop = '<a class="login" href="uitlog_pagina.php">Uitloggen</a>';
     $registratieKnop = '<a class="btn btn-light action-button" href="account_pagina.php">Mijn Account</a>';
 
-    $notificaties = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker']);
-
-    $aantalNotificaties = count($notificaties);
+    $aantalNotificaties = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], 'telling');
 
     if($aantalNotificaties > 0) {
         $notificatieknop = '<div class="notificaties">' . $aantalNotificaties . '</div>';
