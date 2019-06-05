@@ -7,7 +7,6 @@ if (!isset($_SESSION['Gebruikersnaam']) || $_SESSION['Gebruikersnaam'] === "") {
 }
 include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
-var_dump($_SESSION);
 $page = "";
 if (!isset($_GET["CurrentPage"])) {
     $page = "Home";
