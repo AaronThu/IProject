@@ -208,3 +208,9 @@ h6 {
 .voorwerppaginaimg{
   max-height: 400px; position: relative; overflow: hidden;
 }
+
+
+.meervanverkoperimg{
+  width:300px;
+  height:300px;
+}
