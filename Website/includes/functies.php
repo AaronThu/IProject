@@ -55,11 +55,13 @@ function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh)
     return $waardes;
 }
 
+//veranderd het soortgebruiker naar meegegen soortgebruiker van meegegeven gebruiker id
 function updateSoortGebruikerStatus($dbh, $soortGebruiker, $gebruikersID)
 {
     $query = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = $soortGebruiker WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
 }
+
 
 function updateVerkoperStatus($dbh, $gebruikersID)
 {
