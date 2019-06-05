@@ -10,6 +10,14 @@
   justify-content: flex-end;
 }
 
+.noResults {
+  width: 100%;
+  text-align: left;
+  padding: 1em;
+  margin: 3em 0em;
+  color: lightgrey;
+}
+
 .tabs {
   list-style: none;
   text-decoration: none;
@@ -41,6 +49,13 @@
 input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.voorwerpLijst .item {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: white;
 }
 
 .settings-form {}
