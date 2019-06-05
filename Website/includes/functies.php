@@ -104,7 +104,7 @@ function ControleerPostcode($postcode)
         return false;
     }
 }
-// checkt of meegegevn geboortedatum groter is dan huideige tijd
+// checkt of meegegeven geboortedatum groter is dan huideige tijd
 function ControleerGeboortedatum($geboortedatum)
 {
     $huidigetijd = time();
@@ -116,7 +116,7 @@ function ControleerGeboortedatum($geboortedatum)
         return false;
     }
 }
-
+// checkt of meegegeven adres voldoet aan adres regels.
 function ControleerAdres($adres)
 {
     if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,5}+$/", $adres)) {
@@ -125,7 +125,7 @@ function ControleerAdres($adres)
         return false;
     }
 }
-
+// returnt een random vraagnummer
 function genereerVraagNummer($dbh)
 {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
@@ -133,7 +133,7 @@ function genereerVraagNummer($dbh)
     $nummer = mt_rand(1, count($rijtelling) - 1);
     return $nummer;
 }
-
+//returnt een vraag uit database gebaseerd op meegegeven vraagnummer
 function genereerVraag($dbh, $vraagnummer)
 {
     $registratievraag = $dbh->query("SELECT Vraag FROM Vraag WHERE Vraagnummer = $vraagnummer");
@@ -143,7 +143,7 @@ function genereerVraag($dbh, $vraagnummer)
     }
     return $vraagWeergave;
 }
-
+//
 function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type, $naamPOST)
 {
     $waardeInForm = isset($_POST[$naamPOST]) ? $_POST[$naamPOST] : '';
@@ -162,7 +162,7 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
         "value="' . $waardeInForm . '"</div> ';
     return $registratieItem;
 }
-
+//returned landen uit database
 function GeefLandenLijst($dbh)
 {
     $landenQuery = $dbh->prepare("SELECT * FROM Landen");
@@ -170,7 +170,7 @@ function GeefLandenLijst($dbh)
     $landen = $landenQuery->fetchAll();
     return $landen;
 }
-
+// returned banken uit database
 function GeefBankenLijst($dbh)
 {
     $bankenQuery = $dbh->prepare("SELECT * FROM Banken");
@@ -200,6 +200,7 @@ function IsVerkoper($userID)
 }
 
 //===========================HOMEPAGE FUNCTIES======================================================================
+// returnt artiekel op meegegeven query en columtype. (voor kaartjes op de homepagina)
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {
     $artikelen = '';
@@ -230,6 +231,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 
     return $artikelen;
 }
+
 // maakt een colom met catogorieen met mee gegeven querey en columtype
 function genereerCatogorie($dbh, $gegevenQuery, $columntype)
 {
