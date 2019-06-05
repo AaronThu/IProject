@@ -10,11 +10,8 @@ if (empty($_SESSION['controleOptie'])) {
     return;
 }
 
-
 $locatieNaRegistratie = "Location: index.php";
 $status = "";
-
-$_SESSION['Gebruikersnaam'] = 'TEST2';
 
 $queryGebruikersID = $dbh->prepare("SELECT GebruikersID FROM Gebruiker WHERE Gebruikersnaam = :gebruikersnaam");
 $queryGebruikersID->execute(
@@ -29,8 +26,8 @@ $gebruikersID = $queryGebruikersID->fetch()[0];
 
 if( $_SESSION['controleOptie'] == 'Post'){
     $status = "aanvraging";
-    $_SESSION['foutmelding'] = "Uw registratie is in aanvraging, er wordt binnen vijf werkdagen een brief met een code naar u gestuurd\n";
-    $_SESSION['foutmelding'] .= "Uw gegevens zijn tijdelijk opgeslagen totdat u uw account activeert";
+    $_SESSION['foutmelding'] = "Uw registratie is in aanvraging, er wordt binnen vijf werkdagen een brief met een code naar u gestuurd.\n";
+    $_SESSION['foutmelding'] .= "Uw gegevens zijn tijdelijk opgeslagen totdat u uw account activeert.";
 $verkoperRegistratieCode = genereerVerkoperRegistratieCode();
 $query = $dbh->prepare("INSERT INTO VerkopersCode(GebruikersID, VerkopersCode) VALUES (:GebruikersID, :VerkopersCode)");
 $query->execute(
@@ -58,7 +55,6 @@ $updateGebruiker->execute(
     ]
 );
 
-
 $query = $dbh->prepare("INSERT INTO Verkoper (GebruikersID, SoortRekening, Bank, Rekeningnummer, BankRekeningHouder, EinddatumPas, ControleOptieNaam, Status) VALUES (:GebruikersID, :SoortRekening, :Bank, :Rekeningnummer, :BankRekeningHouder, :EinddatumPas, :ControleOptieNaam, :Status)");
 
 $query->execute(
@@ -73,5 +69,5 @@ $query->execute(
         ':Status' => $status
     ]
 );
-
 header($locatieNaRegistratie);
+?>
