@@ -6,7 +6,7 @@ include_once '../includes/databaseFunctions.php';
 
 <div class="main">
     <script src="js/beheer_rubrieken.js"></script>
-    <?php include_once "prefabs/sidenav.php"?>
+    <?php include_once "prefabs/sidenav.php" ?>
     <div class="contentblok">
         <h1 class="title">Rubrieken</h1>
         <div class="row">
@@ -35,32 +35,32 @@ include_once '../includes/databaseFunctions.php';
                 </div>
                 <div class="zoekresultaten">
                     <?php
-if (!isset($results) || sizeof($results) <= 0) {
-    if (isset($_GET["SearchBar"]) && $_GET["SearchBar"] === "") {
-        echo ("<h5 class=\"noResults\">Geen resultaten gevonden</h5>");
-    } else {
-        echo ("<h5 class=\"noResults\">Zoek rubrieken</h5>");
-    }
-} else {
-    foreach ($results as $key => $value) {
-        $parent = $value["Parent_rubriek"];
-        if (!isset($parent)) {
-            $parent = -1;
-        }
-        $open = ($value["Status"] === "open") ? "open" : "gesloten";
-        $openIdex = ($value["Status"] === "open") ? 1 : 0;
-        $isChanged = (isset($_POST["UpdateRubriek"]) && ($_POST["RubriekID"] == $value["Rubrieknummer"])) ? "isChanged" : "";
-        echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $parent . ',"' . str_replace(" ", "_", $value["Parent_name"]) . '",' . $value["Volgnr"] . ',' . $openIdex . ') class="zoekresultaat ' . $open . '">');
-        echo ("<div class=\"block\">");
-        echo ("<h5 class=\"id $isChanged\">ID: $value[Rubrieknummer]</h5>");
-        echo ("<h5 class=\"name\">$value[Rubrieknaam]</h5>");
-        echo ("<h6 class=\"parent $isChanged\">$value[Parent_name]</h6>");
-        echo ("</div>");
-        echo ("<h6 class=\"volgnr $isChanged\">volg nr:$value[Volgnr]</h6>");
-        echo ("</a>");
-    }
-}
-?>
+                    if (!isset($results) || sizeof($results) <= 0) {
+                        if (isset($_GET["SearchBar"]) && $_GET["SearchBar"] === "") {
+                            echo ("<h5 class=\"noResults\">Geen resultaten gevonden</h5>");
+                        } else {
+                            echo ("<h5 class=\"noResults\">Zoek rubrieken</h5>");
+                        }
+                    } else {
+                        foreach ($results as $key => $value) {
+                            $parent = $value["Parent_rubriek"];
+                            if (!isset($parent)) {
+                                $parent = -1;
+                            }
+                            $open = ($value["Status"] === "open") ? "open" : "gesloten";
+                            $openIdex = ($value["Status"] === "open") ? 1 : 0;
+                            $isChanged = (isset($_POST["UpdateRubriek"]) && ($_POST["RubriekID"] == $value["Rubrieknummer"])) ? "isChanged" : "";
+                            echo ('<a onClick=setRubriek(this,' . $value["Rubrieknummer"] . ',' . '"' . str_replace(" ", "_", $value["Rubrieknaam"]) . '",' . $parent . ',"' . str_replace(" ", "_", $value["Parent_name"]) . '",' . $value["Volgnr"] . ',' . $openIdex . ') class="zoekresultaat ' . $open . '">');
+                            echo ("<div class=\"block\">");
+                            echo ("<h5 class=\"id $isChanged\">ID: $value[Rubrieknummer]</h5>");
+                            echo ("<h5 class=\"name\">$value[Rubrieknaam]</h5>");
+                            echo ("<h6 class=\"parent $isChanged\">$value[Parent_name]</h6>");
+                            echo ("</div>");
+                            echo ("<h6 class=\"volgnr $isChanged\">volg nr:$value[Volgnr]</h6>");
+                            echo ("</a>");
+                        }
+                    }
+                    ?>
                 </div>
             </div>
             <div class="rij eigenschappen noShow">
@@ -94,7 +94,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         </div>
                         <!-- ACCEPT -->
                         <div class="inputField">
-                            <input id="AcceptBox1" type="checkbox" name="Accept" id="Accept">
+                            <input id="AcceptBox1" type="checkbox" name="Accept" id="Accept" required>
                             <label for="AcceptBox1">Zeker weten</label>
                             <input type="submit" name="UpdateRubriek" value="Update">
                         </div>
@@ -108,7 +108,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                         <!-- ACCEPT -->
                         <div class="inputField">
-                            <input id="AcceptBox2" type="checkbox" name="Accept" id="Accept">
+                            <input id="AcceptBox2" type="checkbox" name="Accept" id="Accept" required>
                             <label for="AcceptBox2">Zeker weten</label>
                             <input type="submit" name="DeleteRubriek" value="Sluit">
                         </div>
@@ -122,7 +122,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         <input id="RubriekenID" class="ID" type="number" name="RubriekID" value="" id="RubriekID" hidden>
                         <!-- ACCEPT -->
                         <div class="inputField">
-                            <input id="AcceptBox4" type="checkbox" name="Accept" id="Accept">
+                            <input id="AcceptBox4" type="checkbox" name="Accept" id="Accept" required>
                             <label for="AcceptBox4">Zeker weten</label>
                             <input type="submit" name="HerOpenRubriek" value="Heropen">
                         </div>
@@ -154,7 +154,7 @@ if (!isset($results) || sizeof($results) <= 0) {
                         </div>
                         <!-- ACCEPT -->
                         <div class="inputField">
-                            <input id="AcceptBox3" type="checkbox" name="Accept" id="Accept">
+                            <input id="AcceptBox3" type="checkbox" name="Accept" id="Accept" required>
                             <label for="AcceptBox3">Zeker weten</label>
                             <input type="submit" name="InsertRubriek" value="Creëer">
                         </div>
