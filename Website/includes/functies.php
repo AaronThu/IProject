@@ -194,7 +194,6 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 // returned of meegegeven gebruiker verkoper is.
 function IsVerkoper($userID)
 {
-
     global $dbh;
     $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'verkoper'");
     $Query->execute([$userID]);

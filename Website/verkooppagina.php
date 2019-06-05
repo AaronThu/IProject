@@ -11,7 +11,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     return;
 }
 
-if (IsVerkoper($_SESSION['Gebruikersnaam'])) {
+if (!IsVerkoper($_SESSION['Gebruikersnaam'])) {
     $_SESSION['foutmelding'] = "Maak een verkopers account om voorwerpen te kunnen verkopen!";
     header($locatieFouteLink);
     return;
