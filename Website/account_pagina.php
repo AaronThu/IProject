@@ -35,7 +35,7 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- START HOME -->
         <div class="Home <?php echo ($page === "Home" ? "" : "noShow") ?>">
             <h5 class="titel">Mijn Biedingen</h5>
-            <div class="row d-flex flex-wrap ">
+            <div class="row d-flex flex-wrap">
                 <?php
                 if (sizeof($currentBiedingen) > 0) {
                     foreach ($currentBiedingen as $key => $value) {
@@ -102,21 +102,46 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- END HOME -->
         <!-- START SETTINGS -->
         <div class="Settings <?php echo ($page === "Settings" ? "" : "noShow") ?>">
-            <form class="settings-form" action="" method="post">
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><label>Name</label><input required class="form-control inputforms" type="text" name="Name" id="" value="<?php echo (isset($_POST["Name"]) ? ($_POST["Name"]) : "") ?>"></div>
-                <div class="item"><button type="submit">Wijzig</button></div>
-            </form>
+            <div class="item">
+                <h6>Gebruikersnaam:</h6>
+                <p><?php echo ($_SESSION['Gebruikersnaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Emailadres:</h6>
+                <p><?php echo ($_SESSION['Emailadres']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Voornaam:</h6>
+                <p><?php echo ($_SESSION['Voornaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Achternaam:</h6>
+                <p><?php echo ($_SESSION['Achternaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Adres 1:</h6>
+                <p><?php echo ($_SESSION['Adres_1']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Adres 2:</h6>
+                <p><?php echo ($_SESSION['Adres_2'] === "" ? "Niet opgegeven" : $_SESSION['Adres_2']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Postcode:</h6>
+                <p><?php echo ($_SESSION['Postcode']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Plaatsnaam:</h6>
+                <p><?php echo ($_SESSION['Plaatsnaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Land:</h6>
+                <p><?php echo ($_SESSION['Land']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Geboortedatum:</h6>
+                <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
+            </div>
         </div>
         <!-- END SETTINGS -->
     </div>
