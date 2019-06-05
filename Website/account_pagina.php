@@ -7,6 +7,7 @@ if (!isset($_SESSION['Gebruikersnaam']) || $_SESSION['Gebruikersnaam'] === "") {
 }
 include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
+var_dump($_SESSION);
 $page = "";
 if (!isset($_GET["CurrentPage"])) {
     $page = "Home";
@@ -104,39 +105,43 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <div class="Settings <?php echo ($page === "Settings" ? "" : "noShow") ?>">
             <div class="item">
                 <h6>Gebruikersnaam:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Voornaam:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Achternaam:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Adres:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Postcode:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Plaatsnaam:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Land:</h6>
-                <p>asdasd</p>
-            </div>
-            <div class="item">
-                <h6>Geboortedatum:</h6>
-                <p>asdasd</p>
+                <p><?php echo ($_SESSION['Gebruikersnaam']); ?></p>
             </div>
             <div class="item">
                 <h6>Emailadres:</h6>
-                <p>asdasd</p>
+                <p><?php echo ($_SESSION['Emailadres']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Voornaam:</h6>
+                <p><?php echo ($_SESSION['Voornaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Achternaam:</h6>
+                <p><?php echo ($_SESSION['Achternaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Adres 1:</h6>
+                <p><?php echo ($_SESSION['Adres_1']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Adres 2:</h6>
+                <p><?php echo ($_SESSION['Adres_2'] === "" ? "Niet opgegeven" : $_SESSION['Adres_2']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Postcode:</h6>
+                <p><?php echo ($_SESSION['Postcode']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Plaatsnaam:</h6>
+                <p><?php echo ($_SESSION['Plaatsnaam']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Land:</h6>
+                <p><?php echo ($_SESSION['Land']); ?></p>
+            </div>
+            <div class="item">
+                <h6>Geboortedatum:</h6>
+                <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
             </div>
         </div>
         <!-- END SETTINGS -->
