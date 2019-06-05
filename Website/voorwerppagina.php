@@ -35,7 +35,7 @@ $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
                                 } ?>
                                 <img class="w-100 d-block"
                                      src="http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>"
-                                     alt="<?php $value['FileNaam']?>" style="max-height: 300px; position: relative; overflow: hidden"></div>
+                                     alt="<?php $value['FileNaam']?>" style="max-height: 400px; position: relative; overflow: hidden"></div>
                             <?php } ?>
 
                         </div>
