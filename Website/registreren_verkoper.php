@@ -2,17 +2,15 @@
 session_start();
 include_once "includes/database.php";
 include_once "includes/functies.php";
-include_once "includes/header.php";
 
 $locatieFouteLink = "Location: registreren_emailpagina.php";
 $locatieRegistratie = "Location: registreren_verkopersysteem.php";
 
-/*
 if (empty($_SESSION['Emailadres'])) {
     $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper";
     header($locatieFouteLink);
     return;
-}*/
+}
 
 $_SESSION['rekeningnummerErr'] = "";
 $_SESSION['rekeningHouderErr'] = "";
@@ -58,6 +56,7 @@ header($locatieRegistratie);
 return;
 }
 }
+include_once "includes/header.php";
 
 ?>
 

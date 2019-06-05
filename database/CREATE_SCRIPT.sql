@@ -63,9 +63,24 @@ CREATE TABLE Gebruiker (
     Wachtwoord              VARCHAR(255)        NOT NULL,
     Vraagnummer             TINYINT             NOT NULL,
     AntwoordTekst           VARCHAR(50)         NOT NULL,
-    SoortGebruiker          VARCHAR(8)             NOT NULL DEFAULT 'koper',
+    SoortGebruiker          VARCHAR(8)          NOT NULL DEFAULT 'koper',
     CONSTRAINT PK_GEBRUIKER PRIMARY KEY (GebruikersID),
-    CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('koper', 'verkoper', 'admin')),
+    CONSTRAINT CK_SOORTGEBRUIKER CHECK (SoortGebruiker IN ('koper', 'verkoper', 'admin'))
+)
+GO
+
+/*==============================================================*/
+/* Gebruikernotificaties                                        */
+/*==============================================================*/
+CREATE TABLE GebruikerNotificaties (
+	NotificatieID			INT	IDENTITY		NOT NULL,
+	GebruikersID			INT					NOT NULL,
+	Voorwerpnummer			BIGINT				NOT NULL,
+	NotificatieSoort		VARCHAR(25)			NOT NULL,
+	NotificatieGelezen		BIT					NOT NULL DEFAULT 0,
+	Datum					DATE				NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT PK_GEBRUIKERNOTIFICATIES PRIMARY KEY (NotificatieID, GebruikersID),
+	CONSTRAINT CH_NOTIFICATIESOORT CHECK (NotificatieSoort IN ('voorwerpOverboden', 'voorwerpVerkocht', 'voorwerpGekocht', 'bodGeplaatst'))
 )
 GO
 

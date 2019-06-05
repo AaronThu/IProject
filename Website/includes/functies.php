@@ -190,6 +190,15 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
     }
 }
 
+function IsVerkoper($userID)
+{
+
+    global $dbh;
+    $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'verkoper'");
+    $Query->execute([$userID]);
+    return $Query->fetchAll()[0][0] > 0;
+}
+
 //HOMEPAGE FUNCTIES
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {

@@ -2,6 +2,16 @@
   background-color: #3a3a3a;
 }
 
+.notificaties {
+  color: white;
+  background-color: darkred;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  text-align: center;
+}
+
 .registratieformulier {
   color: rgb(255, 255, 255);
   margin: 0em 1em;
@@ -170,7 +180,7 @@ h6 {
 }
 
 .text-center{
-  color:white;
+  color:darkred;
 }
 
 .verkoophead{
@@ -179,4 +189,18 @@ h6 {
 
 .spacing{
   margin-bottom:100px;
+}
+
+.groot{
+  height:200px;
+}
+
+.verkooppaginarow{
+  
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-content:start;
+  margin-right: -15px;
+  margin-left: -15px;
 }
