@@ -102,46 +102,60 @@ $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
         <!-- END HOME -->
         <!-- START SETTINGS -->
         <div class="Settings <?php echo ($page === "Settings" ? "" : "noShow") ?>">
-            <div class="item">
-                <h6>Gebruikersnaam:</h6>
-                <p><?php echo ($_SESSION['Gebruikersnaam']); ?></p>
+            <div>
+                <div class="item">
+                    <h6>Gebruikersnaam:</h6>
+                    <p><?php echo ($_SESSION['Gebruikersnaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Emailadres:</h6>
+                    <p><?php echo ($_SESSION['Emailadres']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Voornaam:</h6>
+                    <p><?php echo ($_SESSION['Voornaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Achternaam:</h6>
+                    <p><?php echo ($_SESSION['Achternaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Adres 1:</h6>
+                    <p><?php echo ($_SESSION['Adres_1']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Adres 2:</h6>
+                    <p><?php echo ($_SESSION['Adres_2'] === "" ? "Niet opgegeven" : $_SESSION['Adres_2']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Postcode:</h6>
+                    <p><?php echo ($_SESSION['Postcode']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Plaatsnaam:</h6>
+                    <p><?php echo ($_SESSION['Plaatsnaam']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Land:</h6>
+                    <p><?php echo ($_SESSION['Land']); ?></p>
+                </div>
+                <div class="item">
+                    <h6>Geboortedatum:</h6>
+                    <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
+                </div>
             </div>
-            <div class="item">
-                <h6>Emailadres:</h6>
-                <p><?php echo ($_SESSION['Emailadres']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Voornaam:</h6>
-                <p><?php echo ($_SESSION['Voornaam']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Achternaam:</h6>
-                <p><?php echo ($_SESSION['Achternaam']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Adres 1:</h6>
-                <p><?php echo ($_SESSION['Adres_1']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Adres 2:</h6>
-                <p><?php echo ($_SESSION['Adres_2'] === "" ? "Niet opgegeven" : $_SESSION['Adres_2']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Postcode:</h6>
-                <p><?php echo ($_SESSION['Postcode']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Plaatsnaam:</h6>
-                <p><?php echo ($_SESSION['Plaatsnaam']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Land:</h6>
-                <p><?php echo ($_SESSION['Land']); ?></p>
-            </div>
-            <div class="item">
-                <h6>Geboortedatum:</h6>
-                <p><?php echo ($_SESSION['GeboorteDatum']); ?></p>
-            </div>
+
+            <?php
+            if ($_SESSION['SoortGebruiker'] === 'koper' || (isset($_SESSION['VerkoperStatus']) && $_SESSION['VerkoperStatus'] == 'aanvraging')) {
+                echo ('<div class="registreerVerkoopKnop">');
+                if ($_SESSION['SoortGebruiker'] === 'koper') {
+                    echo ('<a href="registreren_verkoper.php">Registreer als verkoper</a>');
+                } else {
+                    echo ('<a href="registratie_verkopers_code.php">Registratiecode invullen</a>');
+                }
+                echo ('</div>');
+            }
+            ?>
         </div>
         <!-- END SETTINGS -->
     </div>
