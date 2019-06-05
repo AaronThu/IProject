@@ -65,7 +65,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+
     <!-- Start: Navigation with Button -->
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 5em;">

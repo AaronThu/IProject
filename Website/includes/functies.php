@@ -1,6 +1,6 @@
 <?php
 
-//FORMULIEREN FUNCTIES
+//======================================FORMULIEREN FUNCTIES============================================
 function test_invoer($data)
 {
     $data = Strip_tags($data);
@@ -66,12 +66,12 @@ function updateVerkoperStatus($dbh, $gebruikersID)
     $query = $dbh->prepare("UPDATE Verkoper SET Status = geactiveerd WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
 }
-
+//deze functie kijkt of de meegegeven string letters bevat a t/m z en hoofdletters
 function kijkVoorLetters($string)
 {
     return preg_match('/[a-zA-Z]/', $string);
 }
-
+//deze functie kijkt of de meegegeven string cijfers bevat
 function kijkVoorCijfers($string)
 {
     return preg_match('/\d/', $string);
@@ -85,7 +85,7 @@ function kijkVoorCorrecteTekens($string)
         return false;
     }
 }
-
+//checkt of meegegeven telefoonnummer een telefoon nummer is
 function ControleerTelefoonnummer($telefoonnummer)
 {
 
@@ -95,7 +95,7 @@ function ControleerTelefoonnummer($telefoonnummer)
         return false;
     }
 }
-
+// checkt of meetegeven postcode een postcode is
 function ControleerPostcode($postcode)
 {
     if (preg_match("/^[0-9]{4}[A-Za-z]{2}$/", $postcode)) {
@@ -104,7 +104,7 @@ function ControleerPostcode($postcode)
         return false;
     }
 }
-
+// checkt of meegegeven geboortedatum groter is dan huideige tijd
 function ControleerGeboortedatum($geboortedatum)
 {
     $huidigetijd = time();
@@ -116,7 +116,7 @@ function ControleerGeboortedatum($geboortedatum)
         return false;
     }
 }
-
+// checkt of meegegeven adres voldoet aan adres regels.
 function ControleerAdres($adres)
 {
     if (preg_match("/^[a-zA-Z'. -]{2,}[0-9]{1,5}+$/", $adres)) {
@@ -125,7 +125,7 @@ function ControleerAdres($adres)
         return false;
     }
 }
-
+// returnt een random vraagnummer
 function genereerVraagNummer($dbh)
 {
     $totaalAantalVragen = $dbh->query("SELECT * FROM Vraag");
@@ -133,7 +133,7 @@ function genereerVraagNummer($dbh)
     $nummer = mt_rand(1, count($rijtelling) - 1);
     return $nummer;
 }
-
+//returnt een vraag uit database gebaseerd op meegegeven vraagnummer
 function genereerVraag($dbh, $vraagnummer)
 {
     $registratievraag = $dbh->query("SELECT Vraag FROM Vraag WHERE Vraagnummer = $vraagnummer");
@@ -143,7 +143,7 @@ function genereerVraag($dbh, $vraagnummer)
     }
     return $vraagWeergave;
 }
-
+//
 function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type, $naamPOST)
 {
     $waardeInForm = isset($_POST[$naamPOST]) ? $_POST[$naamPOST] : '';
@@ -162,7 +162,7 @@ function registratieFormulierItem($naamFormulier, $errorNaam, $maxLength, $type,
         "value="' . $waardeInForm . '"</div> ';
     return $registratieItem;
 }
-
+//returned landen uit database
 function GeefLandenLijst($dbh)
 {
     $landenQuery = $dbh->prepare("SELECT * FROM Landen");
@@ -170,7 +170,7 @@ function GeefLandenLijst($dbh)
     $landen = $landenQuery->fetchAll();
     return $landen;
 }
-
+// returned banken uit database
 function GeefBankenLijst($dbh)
 {
     $bankenQuery = $dbh->prepare("SELECT * FROM Banken");
@@ -192,14 +192,14 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 
 function IsVerkoper($userID)
 {
-
     global $dbh;
     $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'verkoper'");
     $Query->execute([$userID]);
     return $Query->fetchAll()[0][0] > 0;
 }
 
-//HOMEPAGE FUNCTIES
+//===========================HOMEPAGE FUNCTIES======================================================================
+// returnt artiekel op meegegeven query en columtype. (voor kaartjes op de homepagina)
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {
     $artikelen = '';
@@ -231,6 +231,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
     return $artikelen;
 }
 
+// maakt een colom met catogorieen met mee gegeven querey en columtype
 function genereerCatogorie($dbh, $gegevenQuery, $columntype)
 {
     $catogorie = '';
