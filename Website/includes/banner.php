@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-<title>banner</title>
-</head>
 <body>
 <a class="banner flex-sm-row flex-column" href="registreren_emailpagina.php">
 <img src="assets/img/EenmaalAndermaal_Logo.png" width="100" height="100" alt="EenmaalAndermaal Logo">
@@ -16,4 +11,3 @@
 </div>
 </a>
 </body>
-</html>
