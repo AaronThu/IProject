@@ -1,4 +1,6 @@
 <?php
+
+//returned rubrieken met meegegeven parent rubriek
 function GetRubrieken($parent)
 {
     global $dbh;
@@ -8,6 +10,7 @@ function GetRubrieken($parent)
     return $mainCategories;
 }
 
+// returned meegegeven aantal rubrieken
 function GetRubriekenPopulair($max)
 {
     global $dbh;
@@ -17,6 +20,7 @@ function GetRubriekenPopulair($max)
     return array_chunk($mainCategories, $max)[0];
 }
 
+// returned rubriek foto van meegegeven rubriek id. returned null als er geen foto is.
 function GetRubriekenFoto($id)
 {
     global $dbh;
@@ -30,6 +34,7 @@ function GetRubriekenFoto($id)
     }
 }
 
+// returned parent rubriek van meegegeven rubriek id
 function GetParentRubrieken($id)
 {
     global $dbh;
@@ -39,6 +44,7 @@ function GetParentRubrieken($id)
     return $parent;
 }
 
+//returned totaal aantal voorwerpen.
 function CountVoorwerpen()
 {
     global $dbh;
@@ -48,6 +54,7 @@ function CountVoorwerpen()
     return $Count;
 }
 
+//returned voorwerp eigenschappen( titel, beschrijving, startprijs, betaalwijzen, gebruikersnaam, plaatsnaam, land, einmoment, verzending, verzendinstrucies, betaalinstructies, verkoper.
 function GetVoorwerpEigenschappen($id)
 {
     global $dbh;
@@ -56,6 +63,7 @@ function GetVoorwerpEigenschappen($id)
     return $voorwerpQuery->fetchAll();
 }
 
+//returned voorwerp foto path van meegegeven voorwerp id.
 function GetVoorwerpFoto($id)
 {
     global $dbh;
@@ -65,6 +73,7 @@ function GetVoorwerpFoto($id)
     return $fotoPath;
 }
 
+//returned bieders van meegegeven voorwerp id
 function GetBieders($id)
 {
     global $dbh;
