@@ -10,16 +10,18 @@ function test_invoer($data)
     return $data;
 };
 
-function genereerVerkoperRegistratieCode(){
+function genereerVerkoperRegistratieCode()
+{
     $verkoperRegistratieCode = "";
 
-    for($i = 0; $i < 7; $i++){
+    for ($i = 0; $i < 7; $i++) {
         $verkoperRegistratieCode .= rand(0, 9);
     }
     return $verkoperRegistratieCode;
 }
 
-function maakBestandAanVoorRegistratie($VerkopersCode, $Voornaam, $Gebruikersnaam){
+function maakBestandAanVoorRegistratie($VerkopersCode, $Voornaam, $Gebruikersnaam)
+{
     $bestand = fopen("$Gebruikersnaam", "w");
     $tekst = "Beste $Voornaam,\n
     U heeft een registratie aangevraagd om verkoper te worden op EenmaalAndermaal\n
@@ -40,11 +42,12 @@ function vergelijkloginwaarde($vergelijken, $waarde, $dbh)
     return $telling;
 }
 
-function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh){
+function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh)
+{
     $vergelijkCode = $dbh->prepare("SELECT GebruikersID, VerkopersCode, CodeVerlopern FROM VerkopersCode WHERE $vergelijken = :Waarde");
     $vergelijkCode->execute([':Waarde' => $code]);
 
-    $waardes=[];
+    $waardes = [];
     while ($rij = $vergelijkCode->fetch()) {
         $waardes = ["$rij[GebruikersID]", "$rij[VerkopersCode]", "$rij[CodeVerlopern]"];
     }
@@ -52,12 +55,14 @@ function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh){
     return $waardes;
 }
 
-function updateSoortGebruikerStatus($dbh, $soortGebruiker, $gebruikersID){
+function updateSoortGebruikerStatus($dbh, $soortGebruiker, $gebruikersID)
+{
     $query = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = $soortGebruiker WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
 }
 
-function updateVerkoperStatus($dbh, $gebruikersID){
+function updateVerkoperStatus($dbh, $gebruikersID)
+{
     $query = $dbh->prepare("UPDATE Verkoper SET Status = geactiveerd WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
 }
@@ -233,7 +238,7 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
         $foto = $queryFoto->fetchColumn(1);
 
         $catogorie .= '<div class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
-        <a href = "subrubrieken_pagina.php?rubriekID='. $rubriekNummer . '"><div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
+        <a href = "subrubrieken_pagina.php?rubriekID=' . $rubriekNummer . '"><div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
                <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto . '" alt="' . $foto . '" height=250; width=250;> 
                </div>
                </a>   
@@ -241,4 +246,13 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
     }
 
     return $catogorie;
+}
+
+
+function genereerArtikel($titel, $tijd, $StartPrijs, $Verkoopprijs, $voorwerpNummer, $columntype)
+{
+    echo ('<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >');
+    echo ('<a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' .  GetVoorwerpFoto($voorwerpNummer)[0][0] . '); background-size: contain;" >');
+    echo ('<p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>');
+    echo ('<p class ="kaartje text-left" style ="background-color: rgba(75,76,77,0.75);color: #ffffff; " >' . substr($titel, 0, 25) .  '... </p></a></div>');
 }

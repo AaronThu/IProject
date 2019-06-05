@@ -7,7 +7,8 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 }
 
 ?>
-    <body class="background">
+
+<body class="background">
 
     <div class="container">
         <div class="row">
@@ -31,17 +32,16 @@ if (empty($_SESSION['Gebruikersnaam'])) {
             </div>
         </div>
     </div>
-    
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="titel">Laatste kans!</h2>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-between flex-wrap">
-                <?php echo genereerArtikelen($dbh, "SELECT TOP 12 * FROM Voorwerp WHERE VeilingGesloten = 0 ORDER BY Eindmoment asc", "col-md-3") ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="titel">Laatste kans!</h2>
             </div>
         </div>
+        <div class="row d-flex justify-content-between flex-wrap">
+            <?php echo genereerArtikelen($dbh, "SELECT TOP 12 * FROM Voorwerp WHERE VeilingGesloten = 0 ORDER BY Eindmoment asc", "col-md-3") ?>
+        </div>
+    </div>
     </div>
 
 
@@ -75,13 +75,13 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/timer.js"></script>
-    
 
-    </body>
+
+</body>
 
 
 
 
 
 <?php
-include_once "includes/footer.php";?>
+include_once "includes/footer.php"; ?>

@@ -22,10 +22,12 @@
 
 .tabs a {
   padding: 0.5em 1em;
+  color: inherit;
   background-color: #4b4c4d;
   transition: linear 100ms background-color;
   border-bottom: 4px solid #696969;
   margin: 0em 0.5em;
+  text-decoration: none;
 }
 
 .tabs a:hover {
@@ -39,4 +41,19 @@
 input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.settings-form {}
+
+.settings-form .item {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em;
+}
+
+.settings-form .item label {
+  width: 30%;
+  margin: auto;
+  margin-left: 1em;
+  color: white;
 }

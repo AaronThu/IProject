@@ -1,5 +1,6 @@
 <?php
-function GetRubrieken($parent) {
+function GetRubrieken($parent)
+{
     global $dbh;
     $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = ? AND Status='open' ORDER BY Volgnr, Rubrieknaam");
     $mainCategoriesQuery->execute([$parent]);
@@ -7,7 +8,8 @@ function GetRubrieken($parent) {
     return $mainCategories;
 }
 
-function GetRubriekenPopulair($max) {
+function GetRubriekenPopulair($max)
+{
     global $dbh;
     $mainCategoriesQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer FROM Rubriek WHERE Parent_Rubriek = -1 AND Status='open' ORDER BY Volgnr, Rubrieknaam");
     $mainCategoriesQuery->execute();
@@ -15,7 +17,8 @@ function GetRubriekenPopulair($max) {
     return array_chunk($mainCategories, $max)[0];
 }
 
-function GetRubriekenFoto($id) {
+function GetRubriekenFoto($id)
+{
     global $dbh;
     $fotoQuery = $dbh->prepare("SELECT RubriekFoto FROM RubriekFotos WHERE Rubrieknummer=?;");
     $fotoQuery->execute([$id]);
@@ -27,7 +30,8 @@ function GetRubriekenFoto($id) {
     }
 }
 
-function GetParentRubrieken($id) {
+function GetParentRubrieken($id)
+{
     global $dbh;
     $parentQuery = $dbh->prepare("SELECT Rubrieknaam, Rubrieknummer,Parent_Rubriek FROM Rubriek where Rubrieknummer = ? AND Status='open' ORDER BY Volgnr, Rubrieknaam");
     $parentQuery->execute([$id]);
@@ -35,7 +39,8 @@ function GetParentRubrieken($id) {
     return $parent;
 }
 
-function CountVoorwerpen() {
+function CountVoorwerpen()
+{
     global $dbh;
     $CountQuery = $dbh->prepare("SELECT count(voorwerpnummer) FROM Voorwerp");
     $CountQuery->execute();
@@ -43,14 +48,16 @@ function CountVoorwerpen() {
     return $Count;
 }
 
-function GetVoorwerpEigenschappen($id) {
+function GetVoorwerpEigenschappen($id)
+{
     global $dbh;
     $voorwerpQuery = $dbh->prepare("SELECT v.Titel, v.Beschrijving, v.Startprijs, v.Betalingswijze, g.Gebruikersnaam, v.Plaatsnaam, v.Land, v.Eindmoment, v.Verzendinstructies, v.Betalingsinstructie, v.VerkopersID FROM Voorwerp v INNER JOIN Gebruiker g ON v.VerkopersID = g.GebruikersID WHERE Voorwerpnummer = ?");
     $voorwerpQuery->execute([$id]);
     return $voorwerpQuery->fetchAll();
 }
 
-function GetVoorwerpFoto($id) {
+function GetVoorwerpFoto($id)
+{
     global $dbh;
     $fotoQuery = $dbh->prepare("SELECT FileNaam FROM Bestand WHERE Voorwerpnummer= ?");
     $fotoQuery->execute([$id]);
@@ -58,7 +65,8 @@ function GetVoorwerpFoto($id) {
     return $fotoPath;
 }
 
-function GetBieders($id) {
+function GetBieders($id)
+{
     global $dbh;
     $biedersQuery = $dbh->prepare("SELECT TOP 3 b.BodBedrag, g.Gebruikersnaam, b.BodTijd FROM Bod b INNER JOIN Gebruiker g ON b.GebruikersID = g.GebruikersID WHERE Voorwerpnummer = ? ORDER BY BodTijd DESC");
     $biedersQuery->execute([$id]);
@@ -66,7 +74,8 @@ function GetBieders($id) {
     return $bieders;
 }
 
-function GetProductNaam($id) {
+function GetProductNaam($id)
+{
     global $dbh;
     $productnaamQuery = $dbh->prepare("SELECT Titel FROM Voorwerp WHERE Voorwerpnummer = ?");
     $productnaamQuery->execute([$id]);
@@ -74,7 +83,8 @@ function GetProductNaam($id) {
     return $productnaam;
 }
 
-function GetMeerVanVerkoper($id) {
+function GetMeerVanVerkoper($id)
+{
     global $dbh;
     $voorwerpnummer = $id;
     $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
@@ -84,7 +94,8 @@ function GetMeerVanVerkoper($id) {
     return $MeerVanVerkoper;
 }
 
-function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10) {
+function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10)
+{
     global $dbh;
     $all = GetAllSubRubrieken($id);
     $lowerLimit = ($page - 1) * $max;
@@ -110,7 +121,8 @@ function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 1
     return $Voorwerpen;
 }
 
-function GetVoorwerpCount($id) {
+function GetVoorwerpCount($id)
+{
     global $dbh;
     $all = GetAllSubRubrieken($id);
     $query = "SELECT COUNT (v.Voorwerpnummer) FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.Voorwerpnummer = vir.Voorwerpnummer
@@ -121,16 +133,17 @@ function GetVoorwerpCount($id) {
     return $Count[0];
 }
 
-function GetAllSubRubrieken($id) {
+function GetAllSubRubrieken($id)
+{
     $rubriekenID = [$id];
     foreach (GetRubrieken($id) as $key => $value) {
         $rubriekenID = array_merge($rubriekenID, GetAllSubRubrieken($value["Rubrieknummer"]));
     }
     return $rubriekenID;
-
 }
 
-function GetVoorwerpenSearchBar($id) {
+function GetVoorwerpenSearchBar($id)
+{
     global $dbh;
     $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer WHERE v.VeilingGesloten = 0 and titel like '%" . $id . "%'";
     $SearchQuery = $dbh->prepare($query);
@@ -139,7 +152,8 @@ function GetVoorwerpenSearchBar($id) {
     return $Searching;
 }
 
-function GetHoogsteBod($id) {
+function GetHoogsteBod($id)
+{
     global $dbh;
     $HoogsteBodQuery = $dbh->prepare("SELECT TOP 1 Bodbedrag FROM Bod WHERE VoorwerpNummer = ? ORDER BY Bodbedrag DESC");
     $HoogsteBodQuery->execute([$id]);
@@ -147,10 +161,29 @@ function GetHoogsteBod($id) {
     return $HoogsteBod;
 }
 
-function GetFeedbackVoorVerkoper($dbh, $gebruikersID){
-    $query= $dbh->prepare("SELECT AVG(FeedbackNummer) FROM Feedback WHERE VerkopersID = :VerkopersID");
+function GetFeedbackVoorVerkoper($dbh, $gebruikersID)
+{
+    $query = $dbh->prepare("SELECT AVG(FeedbackNummer) FROM Feedback WHERE VerkopersID = :VerkopersID");
     $query->execute([':VerkopersID' => $gebruikersID]);
     $waarde = $query->fetch();
     return $waarde[0];
 }
-?>
+
+function GetBiedingen($userID, $type = 'all')
+{
+    global $dbh;
+    $Query = null;
+    switch ($type) {
+        case 'old':
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) AND Veilinggesloten = 1 ORDER BY v.Eindmoment");
+            break;
+        case 'new':
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) AND Veilinggesloten = 0 ORDER BY v.Eindmoment");
+            break;
+        default:
+            $Query = $dbh->prepare("SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE v.Voorwerpnummer IN (SELECT b.Voorwerpnummer FROM Bod b WHERE b.GebruikersID = ?) ORDER BY v.Eindmoment");
+            break;
+    }
+    $Query->execute([$userID]);
+    return $Query->fetchAll();
+}
