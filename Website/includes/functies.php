@@ -285,3 +285,41 @@ function MinimaleBiedPrijs($HoogsteBod){
     }
     return $MinimaalTeBieden;
 }
+
+function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voorwerpTitle = "")
+{
+    $foto = GetVoorwerpFoto($voorwerpNummer)[0][0];
+    $class = "";
+    $title = "";
+    switch ($soort) {
+        case 'bodGeplaatst':
+            $class = "bod-geplaatst";
+            $title = "Bod geplaats";
+            break;
+        case 'voorwerpVerkocht':
+            $class = "verkocht";
+            $title = "Voorwerp verkocht";
+            break;
+        case 'voorwerpGekocht':
+            $class = "gewonnen";
+            $title = "Voorwerp gekocht";
+            break;
+        case 'voorwerpOverboden':
+            $class = "overboden";
+            $title = "Bod overboden";
+            break;
+        case 'verloren':
+            $class = "verloren";
+            $title = "Helaas";
+            break;
+        default:
+            $class = "";
+            break;
+    }
+    echo ("<a href=\"voorwerppagina.php?voorwerpID=$voorwerpNummer\" class=\"meldingkaart $class\" style=\"background-image: url($foto);\">");
+    echo ("<h5>$title</h5>");
+    echo ("<p>$bericht</p>");
+    echo ("<p>$voorwerpTitle</p>");
+    echo ("</a>");
+}
+?>
