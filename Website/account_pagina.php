@@ -14,7 +14,7 @@ if (!isset($_GET["CurrentPage"])) {
     $page = $_GET["CurrentPage"];
 }
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
-$mijnVoorwerpen = [];
+$mijnVoorwerpen = GetMeerVanVerkoper($_SESSION['GebruikersID'],false);
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
 $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
 // var_dump($notifications);
@@ -78,10 +78,10 @@ $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebru
                         echo ("</div>");
                         foreach ($mijnVoorwerpen as $key => $value) {
                             echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
-                            echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Titel]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Eindmoment]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Startprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Verkoopprijs]</h5>");
                             echo ("</a>");
                         }
                     } else { ?>

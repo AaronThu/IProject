@@ -94,12 +94,17 @@ function GetProductNaam($id)
 }
 
 //returned meer items van meegegeven verkoper
-function GetMeerVanVerkoper($id)
+function GetMeerVanVerkoper($id, $limit = true)
 {
     global $dbh;
     $voorwerpnummer = $id;
-    $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
+    if ($limit) {
+        $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT TOP 4 v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
                                           (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
+    } else {
+        $MeerVanVerkoperQuery = $dbh->prepare("SELECT DISTINCT  v.Voorwerpnummer, b.FileNaam FROM Voorwerp v INNER JOIN Bestand b ON v.Voorwerpnummer = b.VoorwerpNummer INNER JOIN Verkoper ver ON v.VerkopersID = ver.GebruikersID WHERE v.Voorwerpnummer != $voorwerpnummer and VerkopersID IN
+                                          (SELECT VerkopersID FROM Voorwerp WHERE Voorwerpnummer = $voorwerpnummer)");
+    }
     $MeerVanVerkoperQuery->execute([$id]);
     $MeerVanVerkoper = $MeerVanVerkoperQuery->fetchAll();
     return $MeerVanVerkoper;
