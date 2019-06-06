@@ -17,18 +17,6 @@ $verkopersID = $_SESSION['GebruikersID'];
 $fileNaam = $_FILES['bestand']['name'];
 $voorwerpNummer = 0;
 
-echo $titel . "<br>";
-echo $beschrijving . "<br>";
-echo $startprijs . "<br>";
-echo $betalingswijze . "<br>";
-echo $betalingsinstructie . "<br>";
-echo $plaatsnaam . "<br>";
-echo $land . "<br>";
-echo $looptijd . "<br>";
-echo $verzendinstructies . "<br>";
-echo $verkopersID . "<br>";
-echo $_FILES['bestand']['name'] . "<br>";
-
 // upload bestanden naar server
 $uploaddir = 'voorwerpenfotos/';
 $uploadfile = $uploaddir . basename($_FILES['bestand']['name']);
