@@ -81,7 +81,7 @@ CREATE TABLE GebruikerNotificaties (
 	NotificatieGelezen		BIT					NOT NULL DEFAULT 0,
 	Datum					DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT PK_GEBRUIKERNOTIFICATIES PRIMARY KEY (NotificatieID, GebruikersID),
-	CONSTRAINT CH_NOTIFICATIESOORT CHECK (NotificatieSoort IN ('voorwerpOverboden', 'voorwerpVerkocht', 'voorwerpGekocht', 'bodGeplaatst'))
+	CONSTRAINT CH_NOTIFICATIESOORT CHECK (NotificatieSoort IN ('voorwerpOverboden', 'voorwerpVerkocht', 'voorwerpGekocht', 'bodGeplaatst', 'verloren'))
 )
 GO
 

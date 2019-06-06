@@ -187,6 +187,7 @@ function GetFeedbackVoorVerkoper($dbh, $gebruikersID)
 function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
 {
     KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker);
+    MaakNotificatiesVerlorenAan($GebruikersID);
     $notificaties = [];
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpOverboden'));
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpGekocht'));
@@ -210,7 +211,7 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
 function KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker)
 {
     global $dbh;
-    $notificatieSoort = "voorwerpGekocht";
+
     if ($SoortGebruiker == "verkoper" || $SoortGebruiker == "admin") {
         $notificatieSoort = "voorwerpVerkocht";
         $queryVoorwerpen = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 1 AND VerkopersID = :GebruikersID");
@@ -259,7 +260,7 @@ function VoegNotificatieToe($gebruikersID, $VoorwerpNummer, $NotificatieSoort)
     ]);
 }
 
-function VerwijderNotificaties($GebruikersID)
+function VerwijderAlleNotificaties($GebruikersID)
 {
     global $dbh;
 
@@ -268,6 +269,29 @@ function VerwijderNotificaties($GebruikersID)
 
     $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
     $query1->execute([':GebruikersID' => $GebruikersID]);
+}
+
+function MaakNotificatiesVerlorenAan($GebruikersID){
+    global $dbh;
+    $query = $dbh->prepare("SELECT DISTINCT(Voorwerpnummer) FROM Bod WHERE GebruikersID = :GebruikersID");
+    $query->execute([
+        ':GebruikersID' => $GebruikersID
+    ]);
+    $query->fetchAll();
+
+    foreach($query as $Voorwerpnummer){
+        $query2 = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 1 AND Voorwerpnummer = :Voorwerpnummer AND KopersID != :GebruikersID AND Voorwerpnummer NOT IN(SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE NotificatieSoort = 'verloren' AND GebruikersID = :GebruikersID2)");
+        $query2->execute([
+            ':Voorwerpnummer' => $Voorwerpnummer,
+            '::GebruikersID' => $GebruikersID,
+            ':GebruikersID2' => $GebruikersID
+        ]);
+        $rowcount = $query2->rowcount();
+
+        if(empty($rowcount)){
+            VoegNotificatieToe($GebruikersID, $Voorwerpnummer, 'verloren');
+        }
+    }
 }
 
 function GetVoorwerpenVoorVerkoper($VerkopersID)

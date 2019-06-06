@@ -102,8 +102,8 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                         echo $loginKnop;
                         echo $adminKnop;
                         echo $accountKnop;
-                        echo $extraKnop;
                         echo $notificatieknop;
+                        echo $extraKnop;
                         ?>
                     </span>
                 </div>
