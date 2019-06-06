@@ -42,6 +42,8 @@ maakBestandAanVoorRegistratie($verkoperRegistratieCode, $_SESSION['Voornaam'], $
 } elseif( $_SESSION['controleOptie'] == 'Creditcard') {
     $status = "geactiveerd";
     $_SESSION['foutmelding'] = "U bent geregistreerd als verkoper, u kunt nu voorwerpen aanbieden op de website";
+    $_SESSION['SoortGebruiker'] = 'verkoper';
+    $_SESSION['VerkoperStatus'] = 'geactiveerd';
 } else{
     $_SESSION['foutmelding'] = "Er is iets fout gegaan met het registreren, probeer het opnieuw";
     header("Location: registreren_verkoper.php");
@@ -51,11 +53,9 @@ maakBestandAanVoorRegistratie($verkoperRegistratieCode, $_SESSION['Voornaam'], $
 $updateGebruiker = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = 'verkoper' WHERE GebruikersID = :GebruikersID");
 $updateGebruiker->execute(
     [
-        ':GebrukersID' => $_SESSION['GebruikersID']
+        ':GebruikersID' => $_SESSION['GebruikersID']
     ]
 );
-$_SESSION['SoortGebruiker'] = 'verkoper';
-$_SESSION['VerkoperStatus'] = 'geactiveerd';
 
 $query = $dbh->prepare("INSERT INTO Verkoper (GebruikersID, SoortRekening, Bank, Rekeningnummer, BankRekeningHouder, EinddatumPas, ControleOptieNaam, Status) VALUES (:GebruikersID, :SoortRekening, :Bank, :Rekeningnummer, :BankRekeningHouder, :EinddatumPas, :ControleOptieNaam, :Status)");
 

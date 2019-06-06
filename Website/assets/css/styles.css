@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background: #4b4c4d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a9976a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #696969;
+}
+
 .background {
   background-color: #3a3a3a;
 }
@@ -172,49 +189,48 @@ h6 {
   margin-left: 15px;
 }
 
-.verkooppagina{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  
+.verkooppagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.text-center{
-  color:darkred;
+.text-center {
+  color: darkred;
 }
 
-.verkoophead{
-  align-self:center;
+.verkoophead {
+  align-self: center;
 }
 
-.spacing{
-  margin-bottom:100px;
+.spacing {
+  margin-bottom: 100px;
 }
 
-.groot{
-  height:200px;
+.groot {
+  height: 200px;
 }
 
-.verkooppaginarow{
-  
+.verkooppaginarow {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  align-content:start;
+  align-content: start;
   margin-right: -15px;
   margin-left: -15px;
 }
 
-.voorwerppaginaimg{
-  max-height: 400px; position: relative; overflow: hidden;
+.voorwerppaginaimg {
+  max-height: 400px;
+  position: relative;
+  overflow: hidden;
 }
 
-
-.meervanverkoperimg{
-  width:300px;
-  height:300px;
+.meervanverkoperimg {
+  width: 300px;
+  height: 300px;
 }
 
-.loginpagina{
-  height:600px;
+.loginpagina {
+  height: 600px;
 }
