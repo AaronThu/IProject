@@ -1,0 +1,11 @@
+homepaginafuncties
+registratiefuncties
+registratieverkoperfuncties
+inlogfuncties
+verkoperfuncties
+voorwerppaginafuncties
+voorwerpfunties
+databasefuncties
+rubriekenfuncties
+notificatiefuncties
+feedbackfuncties
