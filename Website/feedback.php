@@ -62,4 +62,3 @@ function verstuurFeedbackMail($VerkopersID, $BeoordelersID){
 }
 
 
-verstuurFeedbackMail($verkopersID,$beoordelersID);
