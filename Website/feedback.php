@@ -2,16 +2,14 @@
 
 session_start();
 include_once 'includes/database.php';
-include_once 'includes/functies.php';
 
+$locatieNaFeedback = "Location: index.php";
 $verkopersID = $_GET['VerkoperID'];
 $beoordelersID = $_GET['BeoordelerID'];
-$feedback = $_GET['feedbackNummer'];
+$feedback = $_GET['feedback'];
 
-
-global $dbh;
-$feedbackQuery = $dbh->prepare("INSERT INTO Feedback(BeoordelersID,VerkopersID,FeedbackNummer) values (:BeoordelersID, :VerkopersID, :FeedbackNummer)");
-$feedbackQuery->execute(
+$query = $dbh->prepare("INSERT INTO Feedback (BeoordelersID, VerkopersID, FeedbackNummer) VALUES (:BeoordelersID, :VerkopersID, :FeedbackNummer)");
+$query->execute(
     [
         ':BeoordelersID' => $beoordelersID,
         ':VerkopersID' => $verkopersID,
@@ -19,5 +17,6 @@ $feedbackQuery->execute(
     ]
 );
 
-
-
+$_SESSION['foutmelding'] = "Bedankt voor uw feedback!";
+header($locatieNaFeedback);
+?>
