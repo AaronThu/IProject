@@ -19,30 +19,21 @@ $feedbackQuery->execute(
     ]
 );
 
-function getMailBeoordeler($id)
+function getMail($typegebruikerid, $id)
 {
     global $dbh;
-    $query = "SELECT Emailadres from gebruiker g inner join Feedback f on g.GebruikersID = f.GebruikersID where f.beoordelersid =  $id";
+    $query = "SELECT Emailadres from gebruiker g inner join Feedback f on g.GebruikersID = f.GebruikersID where $typegebruikerid =  $id";
     $mailGebruikerQuery = $dbh->prepare($query);
     $mailGebruikerQuery->execute();
     $mailGebruiker = $mailGebruikerQuery->fetchall();
-    return $mailGebruiker;
+    return $mailGebruiker[0]['Emailadres'];
 }
 
-function getMailVerkoper($id)
-{
-    global $dbh;
-    $query = "SELECT Emailadres from gebruiker g inner join Feedback f on g.GebruikersID = f.GebruikersID where f.verkopersID =  $id";
-    $mailGebruikerQuery = $dbh->prepare($query);
-    $mailGebruikerQuery->execute();
-    $mailGebruiker = $mailGebruikerQuery->fetch();
-    return $mailGebruiker;
-}
 
 function verstuurFeedbackMail($VerkopersID, $BeoordelersID){
     $locatieNaVersturen = "Location: index.php";
 
-    $to = getMailBeoordeler($BeoordelersID);
+    $to = getMail('beoordelerID',$BeoordelersID);
     $subject = 'Feedback verkoper';
 
     $message = '<html lang="nl"><body>';
@@ -56,7 +47,7 @@ function verstuurFeedbackMail($VerkopersID, $BeoordelersID){
     $message .= 'http://iproject2.icasites.nl/feedback.php?BeoordelersID=' . $BeoordelersID . '&VerkoperID= ' . $VerkopersID . '&feedbacksoort=1';
     $message .= '<p>Bedankt!<br>Team EenmaalAndermaal</p>';
     $message .= "<img src='http://iproject2.icasites.nl/assets/img/EenmaalAndermaal_Logo.png' alt='' width='200' heigth='200' />";
-    $message .= 'Om contact op te nemen met de verkoper kunt u hem/haar via ' . getmailVerkoper($VerkopersID) . ' bereiken. ';
+    $message .= 'Om contact op te nemen met de verkoper kunt u hem/haar via ' . getmail('verkopersID', $VerkopersID) . ' bereiken. ';
     $message .= '</body></html>';
 
     $headers = 'MIME-Version: 1.0' . "\r\n";
@@ -65,7 +56,7 @@ function verstuurFeedbackMail($VerkopersID, $BeoordelersID){
 
 
     
-    // mail($to, $subject, $message, $headers);
+    mail($to, $subject, $message, $headers);
     $_SESSION['foutmelding'] = "Mail is succesvol verstuurd, kijk in je inbox voor de links!";
     // header($locatieNaVersturen);
 }
