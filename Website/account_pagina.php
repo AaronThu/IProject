@@ -82,7 +82,7 @@ $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebru
             </div>
             <?php if ((isset($_SESSION["SoortGebruiker"]) && $_SESSION["SoortGebruiker"] !== "koper")) { ?>
                 <h5 class="titel">Mijn Voorwerpen</h5>
-                <div class="row d-flex flex-wrap ">
+                <div class="row d-flex flex-wrap voorwerpLijst">
                     <?php
                     if (sizeof($mijnVoorwerpen) > 0) {
                         echo ("<div class=\"row d-flex flex-wrap item head\">");
