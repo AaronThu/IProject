@@ -59,4 +59,5 @@ if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $Hoogs
             header($locatieBiedingMislukt);
         }
 }
+
 ?>
