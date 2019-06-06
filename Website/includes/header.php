@@ -103,6 +103,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                         <?php
                         echo $loginKnop;
                         echo $adminKnop;
+                        echo $accountKnop;
                         echo $extraKnop;
                         echo $notificatieknop;
                         ?>
