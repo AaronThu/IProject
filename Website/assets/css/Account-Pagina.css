@@ -118,3 +118,18 @@ input[type=number]::-webkit-inner-spin-button, .pageNumber input[type=number]::-
 .registreerVerkoopKnop a:hover {
   background-color: #ffb357;
 }
+
+.meldingen {
+  height: 10em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.meldingen .meldingkaart {
+  display: inline-block;
+  width: 12em;
+  height: 7em;
+  background-color: red;
+  margin: 0.5em;
+}
