@@ -48,12 +48,14 @@ maakBestandAanVoorRegistratie($verkoperRegistratieCode, $_SESSION['Voornaam'], $
     return;
 }
 
-$updateGebruiker = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = 'verkoper' WHERE GebruikersNaam = :gebruikersnaam");
+$updateGebruiker = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = 'verkoper' WHERE GebruikersID = :GebruikersID");
 $updateGebruiker->execute(
     [
-        ':gebruikersnaam' => $_SESSION['Gebruikersnaam']
+        ':GebrukersID' => $_SESSION['GebruikersID']
     ]
 );
+$_SESSION['SoortGebruiker'] = 'verkoper';
+$_SESSION['VerkoperStatus'] = 'geactiveerd';
 
 $query = $dbh->prepare("INSERT INTO Verkoper (GebruikersID, SoortRekening, Bank, Rekeningnummer, BankRekeningHouder, EinddatumPas, ControleOptieNaam, Status) VALUES (:GebruikersID, :SoortRekening, :Bank, :Rekeningnummer, :BankRekeningHouder, :EinddatumPas, :ControleOptieNaam, :Status)");
 
