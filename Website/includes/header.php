@@ -33,11 +33,9 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     }
 
     if ($_SESSION['SoortGebruiker'] == 'verkoper' && $_SESSION['VerkoperStatus'] == "geactiveerd") {
-        $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp verkopen</a>';
+        $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp plaatsen</a>';
     }elseif($_SESSION['SoortGebruiker'] == 'koper' && $_SESSION['VerkoperStatus'] != 'aanvraging') {
         $extraKnop = '<a class="btn btn-light action-button" href="registreren_verkoper.php">Registreren verkoper</a>';
-    }elseif($_SESSION['SoortGebruiker'] == 'verkoper' && $_SESSION['VerkoperStatus'] == 'geactiveerd') {
-        $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp plaatsen</a>';
     }
 }
 ?>
@@ -103,6 +101,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                         <?php
                         echo $loginKnop;
                         echo $adminKnop;
+                        echo $accountKnop;
                         echo $extraKnop;
                         echo $notificatieknop;
                         ?>
