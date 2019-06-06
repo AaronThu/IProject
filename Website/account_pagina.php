@@ -5,7 +5,6 @@ if (!isset($_SESSION['Gebruikersnaam']) || $_SESSION['Gebruikersnaam'] === "") {
     header("Location: login_pagina.php");
     return;
 }
-include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 $page = "";
 if (!isset($_GET["CurrentPage"])) {
@@ -13,11 +12,21 @@ if (!isset($_GET["CurrentPage"])) {
 } else {
     $page = $_GET["CurrentPage"];
 }
+$notifID = null;
+if (isset($_GET["NotificatieID"])) {
+    if(is_numeric($_GET["NotificatieID"]) && is_numeric($_GET["vwNummer"])){
+        $notifID = $_GET["NotificatieID"];
+        VerwijderNotificaties($_SESSION['GebruikersID'],$notifID);
+        header("Location: voorwerppagina.php?voorwerpID=$_GET[vwNummer]");
+        return;
+    }
+}
+include_once "includes/header.php";
+
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
-$mijnVoorwerpen = [];
+$mijnVoorwerpen = GetMeerVanVerkoper($_SESSION['GebruikersID'],false);
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
 $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
-// var_dump($notifications);
 ?>
 <div class="Main">
     <div class="content title">
@@ -28,11 +37,17 @@ $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebru
             <h5 class="titel">Meldingen</h5>
             <div class="meldingen">
                 <?php 
-                // genereerMeldingkaart(110611747579,"voorwerpVerkocht","Bericht","Voorwerp title");
+                // genereerMeldingkaart("?NotificatieID=5&vwNummer=110611747579",110611747579,"voorwerpVerkocht","Bericht","Voorwerp titel");
                     foreach ($notifications as $k => $v) {
                         foreach ($v as $key => $value) {
                         $voorwerp = GetVoorwerpEigenschappen($value['Voorwerpnummer']);
-                        genereerMeldingkaart($value['Voorwerpnummer'],$value['NotificatieSoort'],"",$voorwerp['Titel']);
+                        genereerMeldingkaart(
+                            "?NotificatieID=$value[NotificatieID]&vwNummer=$value[Voorwerpnummer]",
+                            $value['Voorwerpnummer'],
+                            $value['NotificatieSoort'],
+                            "",
+                            $voorwerp['Titel']
+                    );
                         }
                     }
                 ?>
@@ -78,10 +93,10 @@ $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebru
                         echo ("</div>");
                         foreach ($mijnVoorwerpen as $key => $value) {
                             echo ("<a href=\"voorwerppagina.php?voorwerpID=$value[Voorwerpnummer]\" class=\"row d-flex flex-wrap item\">");
-                            echo ("<h5 class=\"col-md-3\">$value[Titel]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Eindmoment]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Startprijs]</h5>");
-                            echo ("<h5 class=\"col-md-3\">$value[Verkoopprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Titel]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Eindmoment]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Startprijs]</h5>");
+                            echo ("<h5 class=\"col-md-3\">[Verkoopprijs]</h5>");
                             echo ("</a>");
                         }
                     } else { ?>
