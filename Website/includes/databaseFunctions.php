@@ -263,7 +263,6 @@ function VerwijderNotificaties($GebruikersID)
 
     $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
     $query1->execute([':GebruikersID' => $GebruikersID]);
-
 }
 
 function GetVoorwerpenVoorVerkoper($VerkopersID)

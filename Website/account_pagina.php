@@ -17,38 +17,25 @@ $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
 $mijnVoorwerpen = [];
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
 $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
-var_dump($notifications);
+// var_dump($notifications);
 ?>
 <div class="Main">
     <div class="content title">
         <h5>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h5>
     </div>
-    <?php if (true) { ?>
-        <div class=" content meldingen">
-            <!-- <h5>Hier worden alle notificaties weergegeven.</h5> -->
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
-            </div>
-            <div class="meldingkaart">
-
+    <?php if (GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"telling") > 0) { ?>
+        <div class=" content">
+            <h5 class="titel">Meldingen</h5>
+            <div class="meldingen">
+                <?php 
+                // genereerMeldingkaart(110611747579,"voorwerpVerkocht","Bericht","Voorwerp title");
+                    foreach ($notifications as $k => $v) {
+                        foreach ($v as $key => $value) {
+                        $voorwerp = GetVoorwerpEigenschappen($value['Voorwerpnummer']);
+                        genereerMeldingkaart($value['Voorwerpnummer'],$value['NotificatieSoort'],"",$voorwerp['Titel']);
+                        }
+                    }
+                ?>
             </div>
         </div>
     <?php } ?>
