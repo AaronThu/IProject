@@ -110,6 +110,15 @@ function GetMeerVanVerkoper($id, $limit = true)
     return $MeerVanVerkoper;
 }
 
+function GetVerkoperVoorwerpen($id)
+{
+    global $dbh;
+    $query = "SELECT v.Voorwerpnummer, v.Titel, Beschrijving, v.Startprijs, v.Verkoopprijs, v.Eindmoment, v.Plaatsnaam, v.Verzendinstructies FROM Voorwerp v WHERE VerkopersID = ? order by Eindmoment";
+    $sqlQuery = $dbh->prepare($query);
+    $sqlQuery->execute([$id]);
+    return $sqlQuery->fetchAll();
+}
+
 //
 function GetVoorwerpen($id, $orderOn = [], $aflopen = false, $page = 1, $max = 10)
 {

@@ -24,7 +24,7 @@ if (isset($_GET["NotificatieID"])) {
 include_once "includes/header.php";
 
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
-$mijnVoorwerpen = GetMeerVanVerkoper($_SESSION['GebruikersID'],false);
+$mijnVoorwerpen = GetVerkoperVoorwerpen($_SESSION['GebruikersID']);
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
 $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
 ?>
