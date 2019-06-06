@@ -15,15 +15,41 @@ if (!isset($_GET["CurrentPage"])) {
 }
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
 $mijnVoorwerpen = [];
-$currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');;
+$currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
+$notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
+var_dump($notifications);
 ?>
 <div class="Main">
     <div class="content title">
         <h5>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h5>
     </div>
     <?php if (true) { ?>
-        <div class="content meldingen">
-            <h5>Hier worden alle notificaties weergegeven.</h5>
+        <div class=" content meldingen">
+            <!-- <h5>Hier worden alle notificaties weergegeven.</h5> -->
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
+            <div class="meldingkaart">
+
+            </div>
         </div>
     <?php } ?>
     <div class="content">
