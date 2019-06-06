@@ -224,7 +224,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 
         $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >
         
-        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' . $foto . '); background-size: contain;" >
+        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/' . $foto . '); background-size: contain;" >
         <p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
         <p class="kaartje text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . substr($titel, 0, 25) . '... </p>
                      </a>
@@ -265,62 +265,23 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
 function genereerArtikel($titel, $tijd, $StartPrijs, $Verkoopprijs, $voorwerpNummer, $columntype)
 {
     echo ('<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >');
-    echo ('<a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/pics/' .  GetVoorwerpFoto($voorwerpNummer)[0][0] . '); background-size: contain;" >');
+    echo ('<a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/' .  GetVoorwerpFoto($voorwerpNummer)[0][0] . '); background-size: contain; background-position:center; background-repeat:no-repeat;" >');
     echo ('<p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>');
     echo ('<p class ="kaartje text-left" style ="background-color: rgba(75,76,77,0.75);color: #ffffff; " >' . substr($titel, 0, 25) .  '... </p></a></div>');
 }
 
-
-function MinimaleBiedPrijs($HoogsteBod)
-{
+function MinimaleBiedPrijs($HoogsteBod){
     $MinimaalTeBieden = 0;
-    if ($HoogsteBod <= 49.99) {
+    if($HoogsteBod <= 49.99) {
         $MinimaalTeBieden = 0.50;
-    } elseif ($HoogsteBod <= 499.99) {
+    } elseif( $HoogsteBod <= 499.99) {
         $MinimaalTeBieden = 1.00;
-    } elseif ($HoogsteBod <= 999.99) {
+    } elseif( $HoogsteBod <= 999.99) {
         $MinimaalTeBieden = 5.00;
-    } elseif ($HoogsteBod <= 4999.99) {
+    } elseif($HoogsteBod <= 4999.99) {
         $MinimaalTeBieden = 10.00;
-    } elseif ($HoogsteBod >= 5000.00) {
+    } elseif($HoogsteBod >= 5000.00) {
         $MinimaalTeBieden = 50.00;
     }
     return $MinimaalTeBieden;
-}
-
-function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voorwerpTitle = "")
-{
-    $foto = GetVoorwerpFoto($voorwerpNummer)[0][0];
-    $class = "";
-    $title = "";
-    switch ($soort) {
-        case 'bodGeplaatst':
-            $class = "bod-geplaatst";
-            $title = "Bod geplaats";
-            break;
-        case 'voorwerpVerkocht':
-            $class = "verkocht";
-            $title = "Voorwerp verkocht";
-            break;
-        case 'voorwerpGekocht':
-            $class = "gewonnen";
-            $title = "Voorwerp gekocht";
-            break;
-        case 'voorwerpOverboden':
-            $class = "overboden";
-            $title = "Bod overboden";
-            break;
-        case 'verloren':
-            $class = "verloren";
-            $title = "Helaas";
-            break;
-        default:
-            $class = "";
-            break;
-    }
-    echo ("<a href=\"voorwerppagina.php?voorwerpID=$voorwerpNummer\" class=\"meldingkaart $class\" style=\"background-image: url($foto);\">");
-    echo ("<h5>$title</h5>");
-    echo ("<p>$bericht</p>");
-    echo ("<p>$voorwerpTitle</p>");
-    echo ("</a>");
 }

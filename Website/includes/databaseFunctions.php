@@ -260,15 +260,25 @@ function VoegNotificatieToe($gebruikersID, $VoorwerpNummer, $NotificatieSoort)
     ]);
 }
 
-function VerwijderAlleNotificaties($GebruikersID)
+
+function VerwijderNotificaties($GebruikersID, $notificatieID = null)
+
 {
     global $dbh;
+    if ($notificatieID !== null && is_numeric($notificatieID)) {
+        $query2 = $dbh->prepare("DELETE FROM GebruikerNotificaties WHERE NotificatieSoort IN('bodGeplaatst', 'voorwerpOverboden') AND GebruikersID = :GebruikersID AND NotificatieID = :NotificatieID");
+        $query2->execute([':GebruikersID' => $GebruikersID, ':NotificatieID' => $notificatieID]);
 
-    $query2 = $dbh->prepare("DELETE FROM GebruikerNotificaties WHERE NotificatieSoort IN('bodGeplaatst', 'voorwerpOverboden') AND GebruikersID = :GebruikersID");
-    $query2->execute([':GebruikersID' => $GebruikersID]);
+        $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID AND NotificatieID = :NotificatieID");
+        $query1->execute([':GebruikersID' => $GebruikersID, ':NotificatieID' => $notificatieID]);
+    } else {
 
-    $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
-    $query1->execute([':GebruikersID' => $GebruikersID]);
+        $query2 = $dbh->prepare("DELETE FROM GebruikerNotificaties WHERE NotificatieSoort IN('bodGeplaatst', 'voorwerpOverboden') AND GebruikersID = :GebruikersID");
+        $query2->execute([':GebruikersID' => $GebruikersID]);
+
+        $query1 = $dbh->prepare("UPDATE GebruikerNotificaties SET NotificatieGelezen = 1 WHERE GebruikersID = :GebruikersID");
+        $query1->execute([':GebruikersID' => $GebruikersID]);
+    }
 }
 
 function MaakNotificatiesVerlorenAan($GebruikersID){

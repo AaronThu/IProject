@@ -86,6 +86,9 @@ INSERT INTO Bestand
 FROM Illustraties
 GO
 
+UPDATE Bestand SET FileNaam = CONCAT('pics/', FileNaam)
+GO
+
 INSERT INTO VoorwerpInRubriek(Voorwerpnummer, Rubrieknummer)
 	SELECT ID AS Voorwerpnummer,
 		   Categorie AS Rubrieknummer

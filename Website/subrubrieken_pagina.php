@@ -105,7 +105,7 @@ foreach ($alleRubrieken as $key => $value) {
         <div class="container voorwerp">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img style="background-image: url(&quot;http://iproject2.icasites.nl/pics/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -0.5em; margin-top: 0.5em;">
+                    <a href="voorwerppagina.php?voorwerpID=<?php echo $value['Voorwerpnummer']; ?>"><img style="background-image: url(&quot;http://iproject2.icasites.nl/<?php echo $value['FileNaam']; ?>&quot;);width: 250px;height: 166px; background-size: cover; margin-left: -0.5em; margin-top: 0.5em;">
                     </a>
                 </div>
                 <div class="col-md-5">
