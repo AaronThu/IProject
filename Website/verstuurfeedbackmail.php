@@ -10,7 +10,7 @@ $add = $mailadres;
 $to = $mailadres;
 $subject = 'Feedback verkoper';
 
-$message = '<html lang="nl"><body>';
+$message  = '<html lang="nl"><body>';
 $message .= '<p>Bedankt voor uw aankoop! <br> Klik hieronder op een van de links om jouw feedback over de verkoper te geven!</p>';
 $message .= '<p>  --------------------------------------------------------------<br>(Deze link is maar 4 uur geldig)</p>';
 $message .= '<p>Positieve ervaring:</p>';
