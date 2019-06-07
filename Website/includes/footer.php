@@ -22,11 +22,11 @@
             </div>
             <p class="copyright">EenmaalAndermaal © 2019</p>
         </div>
-    </footer>
 </div>
-<div></div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    </footer>
+
 </body>
 
 </html>

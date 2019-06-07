@@ -32,14 +32,12 @@ if(isset($_POST['verkoperRegistratieCode'])){
 
 ?>
 
-<html>
-<body>
 
 <div class="container" style="margin-bottom: 10em;">
     <div class="row">
         <div class=" col-md-12">
             <h2 class="text-center" style="color: rgb(255,255,255);">Registratiecode voor verkoper</h2>
-            <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php"> algemene voorwaarden.</p></a>
+            <p class = "text-center" style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php"> algemene voorwaarden.</a></p>
         </div>
     </div>
 
@@ -47,7 +45,7 @@ if(isset($_POST['verkoperRegistratieCode'])){
     <div class="registratiepagina" style="margin: 2em 20%;">
     <h6 style="text-align: center;">Vul de code in die is opgestuurd</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $codeErr ?> </h6>
-    <div class="form-group"><input class="form-control inputforms" type="number" name="RegistratieCode" placeholder="RegistratieCode" value='' maxlength="7"></div>
+        <div class="form-group"><input class="form-control inputforms" type="number" name="RegistratieCode" placeholder="RegistratieCode" value=''></div>
     </div>
 
 
@@ -57,7 +55,6 @@ if(isset($_POST['verkoperRegistratieCode'])){
     </form>
 </div>
 </body>
-</html>
 
 <?php
 include_once "includes/footer.php";

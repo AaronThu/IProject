@@ -108,7 +108,7 @@ if (isset($_POST['registreer'])) {
 include_once "includes/header.php";
 ?>
 
-<body class="d-xl-flex flex-column" style="background-color: #3a3a3a;">
+<div class="d-xl-flex flex-column" style="background-color: #3a3a3a;">
     <div>
         <div class="container">
               <div class="row>
@@ -165,6 +165,7 @@ echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVr
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</div>
 </body>
 
 <?php

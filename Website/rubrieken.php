@@ -3,9 +3,8 @@ include_once "includes/database.php";
 include_once "includes/header.php";
 include_once "includes/databaseFunctions.php";
 ?>
-    <html>
 
-    <body class="background">
+    <div class="background">
         <div class="Main">
     <?php
 foreach (GetRubrieken(-1) as $key => $value) {
@@ -24,8 +23,6 @@ foreach (GetRubrieken(-1) as $key => $value) {
     <script src=" assets/js/jquery.min.js"> </script>
     <script src="assets/bootstrap/js/bootstrap.min.js">
     </script>
-    </body>
-
-    </html>
-
+    </div>
+</body>
 <?php include_once "includes/footer.php";?>

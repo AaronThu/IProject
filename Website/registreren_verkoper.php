@@ -59,15 +59,12 @@ if(isset($_POST['verkoperRegistreren'])) {
 include_once "includes/header.php";
 ?>
 
-<html>
-
-
-<body>
+<div class="background">
     <div class="container" style="margin-bottom: 10em;">
         <div class="row">
                 <div class=" col-md-12">
         <h2 class="text-center" style="color: rgb(255,255,255);">Registreren als verkoper</h2>
-        <p class = "text-center"style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php" target="_blank"> algemene voorwaarden.</p></a>
+                    <p class = "text-center" style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php" target="_blank"> algemene voorwaarden.</a></p>
         </div>
     </div>
 <div style=" margin: 50px 15em;">
@@ -86,7 +83,7 @@ include_once "includes/header.php";
         <option>Selecteer bank</option>
         <?php
         foreach (GeefBankenLijst($dbh) as $key => $value) {
-            if($value[Bank] == $_POST["Bank"]){
+            if($value["Bank"] == $_POST["Bank"]){
                 print("<option selected>$value[Bank]</option>");
             }else {
                 print("<option> $value[Bank]</option>");
@@ -103,7 +100,7 @@ include_once "includes/header.php";
 
     <h6 style="text-align: center;">De einddatum van jouw pas</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['datumErr'] ?> </h6>
-    <div class="form-group"><input class="form-control inputforms" type="date" name="EinddatumPas" placeholder="" value="<?php echo isset($_POST["EinddatumPas"]) ? $_POST["EinddatumPas"] : '' ?>"></div>
+    <div class="form-group"><input class="form-control inputforms" type="date" name="EinddatumPas" value="<?php echo isset($_POST["EinddatumPas"]) ? $_POST["EinddatumPas"] : '' ?>"></div>
 
 </div>
             <div class ="registratiebutton">
@@ -116,8 +113,8 @@ include_once "includes/header.php";
 
 </div>
 
+</div>
 </body>
-</html>
 
 <?php
 include_once "includes/footer.php";

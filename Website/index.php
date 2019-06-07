@@ -8,7 +8,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 
 ?>
 
-<body class="background">
+<div class="background">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -76,6 +76,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <script src="assets/js/timer.js"></script>
 
 
+</div>
 </body>
 
 

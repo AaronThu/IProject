@@ -2,7 +2,7 @@
 include_once "includes/header.php"; ?>
 
 
-<div
+
 <div class="main-content">
 
     <div class="help-content separated">
@@ -52,7 +52,7 @@ include_once "includes/header.php"; ?>
                 <li><a href="#betaald"><p>Betaalde Advertenties</p></a></li>
             </ol>
             <br> <a class="button secondary medium" href="#bepaalde"><span> Lees meer </span></a></div>
-        <p><br clear="all"> <a name="gebruiksvoorwaarden"></a></p>
+        <p><br> <a id="gebruiksvoorwaarden"></a></p>
         <p class="pyeller"><strong>I Algemene Gebruiksvoorwaarden <br><br></strong><strong><br> 1. Welkom bij
                 Eenmaalandermaal! </strong></p>
         <p><strong>&nbsp;</strong></p>
@@ -109,7 +109,7 @@ include_once "includes/header.php"; ?>
             van Eenmaalandermaal verzonden. Voor meer informatie.<br> <br> Voor het melden van illegale en inbreuk makende
             advertenties, beledigende inhoud en andere problemen verzoeken wij u om geen contact met ons op te nemen; zo kunnen wij er samen voor zorgen dat de site zo schoon en veilig mogelijk
             blijft. Klachten omtrent oplichting kunt u niet melden. <br> <br> <a
-                    name="oneigenlijkgebruik"></a> Indien wij aanwijzingen en/of klachten van andere gebruikers
+                    id="oneigenlijkgebruik"></a> Indien wij aanwijzingen en/of klachten van andere gebruikers
             ontvangen of om andere redenen van mening zijn dat een bepaalde Gebruiker niet handelt in overeenstemming
             met de wet en/of de Gebruiksvoorwaarden en/of de Privacyverklaring, dan kunnen wij – indien wij daartoe
             aanleiding zien – om veiligheidsredenen en ter bescherming van onze gebruikers onder meer de onderstaande
@@ -158,8 +158,8 @@ include_once "includes/header.php"; ?>
             websites gelden de (privacy)regels van die betreffende website. Indien u vragen over deze regels van
             websites van derden heeft, dan verwijzen wij u graag naar hun desbetreffende websites. Dit geldt ook voor
             het gebruiken van de diensten van externe dienstverleners, zoals van betaaldiensten van derden. Het gebruik
-            van deze diensten zal dan onder de (privacy)regels van de desbetreffende dienstverlener vallen.<strong> <br><br></strong><a
-                    name="klachtenregeling"></a></p>
+            van deze  zal dan onder de (privacy)regels van de desbetreffende dienstverlener vallen.<strong> <br><br></strong><a
+                    id="klachtenregeling"></a></p>
         <p><strong>11. Klachtenregeling</strong></p>
         <p>Klachten over de dienstverlening van Eenmaalandermaal kunt u niet indienen.&nbsp;Klachten dienen binnen
             bekwame tijd nadat u een gebrek in de dienstverlening heeft geconstateerd te worden ingediend, waarbij een
@@ -209,15 +209,15 @@ include_once "includes/header.php"; ?>
         <p><strong>13. Algemene Voorwaarden Thuiswinkel </strong></p>
         <p>Eenmaalandermaal is lid van Thuiswinkel.org, als gevolg waarvan in aanvulling op deze Gebruiksvoorwaarden, ook de
             algemene voorwaarden van toepassing zijn op de overeenkomst tussen Eenmaalandermaal en de Gebruiker. In het geval
-            sprake is van strijdigheid tussen de inhoud van de .<br><br> <br> <a name="regels"></a></p>
+            sprake is van strijdigheid tussen de inhoud van de .<br><br> <br> <a id="regels"></a></p>
         <p class="pbrown"><strong>II Regels voor het plaatsen van advertenties</strong></p>
-        <p><a name="advertentieplatform"></a> <br> <strong>1. Eenmaalandermaal is een
+        <p><a id="advertentieplatform"></a> <br> <strong>1. Eenmaalandermaal is een
                 advertentieplatform</strong><strong><br><br></strong>Eenmaalandermaal is een platform waar een Adverteerder
             Advertenties kan plaatsen en een Gebruiker deze Advertenties kan bekijken.<br><br>Eenmaalandermaal is geen partij
             bij de overeenkomst die tussen een Adverteerder en een Gebruiker tot stand komt. Adverteerders en Gebruikers
             dienen onderlinge geschillen zelf op te lossen.</p>
         <p><strong>&nbsp;</strong></p>
-        <p><br> <a name="algregels"></a></p>
+        <p><br> <a id="algregels"></a></p>
         <p><strong>2. Algemene regels voor het plaatsen van een advertentie op de Website</strong></p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <p>2.1&nbsp; Advertenties die door een Adverteerder op de Website worden geplaatst, dienen aan onderstaande
@@ -297,7 +297,7 @@ include_once "includes/header.php"; ?>
             bij het andere vergelijkbare product worden genoemd. <br><br>e. Het is niet toegestaan een disclaimer in de
             Advertentie op te nemen met betrekking tot de echtheid van het product dat in de Advertentie wordt
             aangeboden. Adverteerders dienen zich ervan te vergewissen dat hun producten echt zijn en verhandeld mogen
-            worden, alvorens ze aan te bieden op Eenmaalandermaal. <br> <a name="plaatsen"></a><br><strong>3. Het plaatsen
+            worden, alvorens ze aan te bieden op Eenmaalandermaal. <br> <a id="plaatsen"></a><br><strong>3. Het plaatsen
                 van een Advertentie<br></strong><br>3.1. Mijn Eenmaalandermaal</p>
         <p>Een Adverteerder plaatst zijn Advertentie via de knop 'plaats advertentie' op de Website. Voordat een
             Adverteerder een Advertentie kan plaatsen dient hij eerst in te loggen.</p>
@@ -333,7 +333,7 @@ include_once "includes/header.php"; ?>
             webpagina's.<br><br></p>
         <p>
             <br><br>
-            <a name="ontbindingsrecht"></a>
+            <a id="ontbindingsrecht"></a>
         </p>
         <p><strong>4. Ontbindingsrecht</strong><br>
             <br>
@@ -366,7 +366,7 @@ include_once "includes/header.php"; ?>
             <div></div>
         </div>
         <p><strong><br>
-                <a name="biedingen"></a></strong><strong>5. Biedingen zijn niet bindend<br></strong></p>
+                <a id="biedingen"></a></strong><strong>5. Biedingen zijn niet bindend<br></strong></p>
         <p><br>
             5.1. Tenzij in deze Gebruiksvoorwaarden anders is geregeld, is een bod op een product of dienst in een
             Advertentie niet bindend. Een Adverteerder is niet verplicht een dergelijk (redelijk) bod te accepteren.
@@ -376,7 +376,7 @@ include_once "includes/header.php"; ?>
             verwijderd, zullen de bijbehorende biedingen ook worden verwijderd.<br><br></p>
         <p>5.3. Het is niet toegestaan biedingen bij Advertenties te plaatsen met het enkele doel om het biedingsproces
             te verstoren.<br><br>
-            <a name="betaalmethoden"></a> <strong></strong><strong>6. Regels voor het aanbieden van de
+            <a id="betaalmethoden"></a> <strong></strong><strong>6. Regels voor het aanbieden van de
                 prijs/betaalmethoden in een Advertentie</strong></p>
         <p><strong></strong><br>
             6.1. Een Adverteerder mag een Gebruiker in een Advertentie niet verplichten om bepaalde betaalmethoden te
@@ -390,7 +390,7 @@ include_once "includes/header.php"; ?>
             6.3. Adverteerders die als ondernemer hun goederen en diensten aan particulieren aanbieden, zijn op basis
             van artikel 38 van de Wet op de omzetbelasting verplicht prijzen inclusief btw aan te geven in een
             Advertentie.<br><br>
-            <a name="illegale"></a><strong>7. Melden van illegale of inbreukmakende Advertenties aan
+            <a id="illegale"></a><strong>7. Melden van illegale of inbreukmakende Advertenties aan
                 Eenmaalandermaal</strong><strong><br><br>
             </strong>7.1. Meldingen van Advertenties in strijd met de Gebruiksvoorwaarden<br><br>a. Het Formulier
             Melding van Inbreuk kan alleen worden gebruikt door houders van intellectuele eigendomsrechten of hun
@@ -412,7 +412,7 @@ include_once "includes/header.php"; ?>
             Advertentie die moet worden verwijderd te identificeren. <br><br>d. Zodra Eenmaalandermaal voor de eerste maal
             een volledig en juist ingevulde Formulier Melding van Inbreuk heeft ontvangen, kunnen latere meldingen
             eenvoudig via e-mail naar Eenmaalandermaal verstuurd worden. <br><br>
-            <a name="garanties"></a><strong>8. Wij geven geen garanties</strong> <strong><br><br>
+            <a id="garanties"></a><strong>8. Wij geven geen garanties</strong> <strong><br><br>
             </strong>8.1. Adverteerders en Gebruikers dienen zelf voldoende onderzoek te verrichten en zich voldoende te
             laten informeren voordat zij een Advertentie op de Website plaatsen. Wij voeren geen controle uit op de
             kwaliteit van de inhoud van de Advertentie, de veiligheid of de rechtmatigheid van de geadverteerde
@@ -421,7 +421,7 @@ include_once "includes/header.php"; ?>
             af te nemen. Eenmaalandermaal geeft daarover geen garantie. <br><br>
             8.2. Eenmaalandermaal kan u ook niet garanderen&nbsp; dat de producten of diensten die door Adverteerders op de
             Website worden aangeboden voldoen aan uw verwachtingen.&nbsp;<strong> <br><br>
-            </strong> <a name="Vrijwaring"></a> <strong>9. Vrijwaring dienst Advertenties en beperking aansprakelijkheid
+            </strong> <a id="Vrijwaring"></a> <strong>9. Vrijwaring dienst Advertenties en beperking aansprakelijkheid
                 Eenmaalandermaal<br><br>
             </strong>9.1. Iedere Gebruiker vrijwaart Eenmaalandermaal voor aanspraken van derden met betrekking tot schade
             geleden door;</p>
@@ -434,7 +434,7 @@ include_once "includes/header.php"; ?>
         <p><br>
             9.2.&nbsp; De voorwaarden voor de beperking van de aansprakelijkheid van Eenmaalandermaal zijn opgenomen
             hoofdstuk I, artikel 8.<strong><br><br>
-            </strong> <a name="wijzigingen"></a><strong>10. Wijzigingen<br><br>
+            </strong> <a id="wijzigingen"></a><strong>10. Wijzigingen<br><br>
             </strong>10.1. Eenmaalandermaal kan de Website of delen daarvan, waaronder de advertentieduur,
             verlengingsmogelijkheden, de indeling van de groepen en rubrieken, de indeling van de Website en zoekopties,
             te allen tijde en naar eigen inzicht wijzigen. Wij zullen ernaar streven om een dergelijke wijziging aan te
@@ -443,7 +443,7 @@ include_once "includes/header.php"; ?>
             looptijd van een Advertentieovereenkomst een prijsverhoging plaatsvindt die meer bedraagt dan het CBS
             consumentenprijsindex cijfer, dan heeft de Adverteerder het recht deze Advertentieovereenkomst te
             beëindigen.<strong> <br><br><br>
-            </strong> <a name="gepubliceerd"></a> <strong>11. De Advertentie kan ook elders worden gepubliceerd<br><br>
+            </strong> <a id="gepubliceerd"></a> <strong>11. De Advertentie kan ook elders worden gepubliceerd<br><br>
             </strong>11.1. Eenmaalandermaal kan de Advertentie en de inhoud daarvan gebruiken voor eigen
             publiciteitsdoeleinden. Dit houdt onder andere in dat een Advertentie of een gedeelte daarvan door ons via
             andere distributiekanalen kan worden getoond, zoals op websites die deel uitmaken van de eBay groep (zoals
@@ -463,19 +463,19 @@ include_once "includes/header.php"; ?>
             11.5. De Website bevat verwijzingen (bijvoorbeeld door middel van een hyperlink of banner) naar de websites
             van derden. Deze verwijzingen kunnen ook worden geplaatst in of naast een Advertentie. Eenmaalandermaal heeft
             geen enkele zeggenschap of invloed op de inhoud en het beleid van deze websites. Op deze websites gelden de
-            (privacy)regels van die betreffende website.<br><br> <br> <a name="bepaalde"></a></p>
+            (privacy)regels van die betreffende website.<br><br> <br> <a id="bepaalde"></a></p>
         <p class="plbrown"><strong>III Aanvullende regels voor bepaalde categorieën<br><br></strong><strong><br> <a
-                        name="diensten"></a>A. Diensten en Vakmensen<br><br>
+                        id="diensten"></a>A. Diensten en Vakmensen<br><br>
             </strong></p>
 
-        <strong><h5>1. Voor wie is de groep Diensten en Vakmensen bedoeld </h5> <br></strong>
+        <h5>1. Voor wie is de groep Diensten en Vakmensen bedoeld </h5> <br>
         <p><br>
             Eenmaalandermaal Diensten en Vakmensen is bedoeld voor professionele vakmensen en dienstverleners. Indien u als
             vakman of dienstverlener een Advertentie plaats, bevestigt u dat u handelt voor doeleinden die binnen uw
             bedrijfs- of beroepsactiviteit vallen.<br><br></p>
 
 
-        <strong><h5>2. Regels voor het plaatsen van beoordelingen </h5><br></strong>
+        <h5>2. Regels voor het plaatsen van beoordelingen </h5><br>
         <p></p>
         <p><br>
             2.1. Het plaatsen van een beoordeling en een reactie</p>
@@ -499,7 +499,7 @@ include_once "includes/header.php"; ?>
             2.3. Indien u van mening bent dat een beoordeling wegens één van de onder het vorige punt omschreven
             omstandigheden verwijderd moet worden, dan kunt u daar een melding van maken via Eenmaalandermaal
             contactformulier.<br>
-            <br><a name="autos"></a><br><strong>B. Auto's <br><br></strong><strong>1.&nbsp; Regels voor het plaatsen van
+            <br><a id="autos"></a><br><strong>B. Auto's <br><br></strong><strong>1.&nbsp; Regels voor het plaatsen van
                 Advertenties</strong><strong><br><br></strong>1.1.&nbsp; In iedere Advertentie mag maar één auto worden
             aangeboden. Het is dus niet toegestaan meerdere auto’s in één Advertentie aan te bieden en/of na verkoop van
             de auto de Advertentie te hergebruiken voor een andere auto.<br><br>1.2. Indien de auto die in de
@@ -519,7 +519,7 @@ include_once "includes/header.php"; ?>
             voor autoverzekeringen en overige auto-gerelateerde diensten.<br><br>1.4.2. Het is in Advertenties niet
             toegestaan om reclame te maken of door te verwijzen naar andere websites met rubrieksadvertenties voor
             auto's.<br><strong><br></strong></p>
-        <p><a name="betaald"></a></p>
+        <p><a id="betaald"></a></p>
         <p><strong></strong><b>C. Betaalde Advertenties<br><br></b><strong>1. Betalingen</strong><br><br>1.1.&nbsp; Bij
             het kiezen van de rubriek of opvalmogelijkheid wordt, indien van toepassing, de bijbehorende prijs kenbaar
             gemaakt. <br><br>1.2. De verplichting tot betaling van de prijs geldt vanaf het moment van plaatsing van de
@@ -546,10 +546,7 @@ include_once "includes/header.php"; ?>
 
     </div>
 </div>
-</div>
-
-
-
+</body>
 
 
 <?php

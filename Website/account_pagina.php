@@ -1,11 +1,13 @@
 <?php
 include_once "includes/database.php";
 include_once "includes/functies.php";
+include_once "includes/databaseFunctions.php";
+
 if (!isset($_SESSION['Gebruikersnaam']) || $_SESSION['Gebruikersnaam'] === "") {
     header("Location: login_pagina.php");
     return;
 }
-include_once "includes/databaseFunctions.php";
+
 $page = "";
 if (!isset($_GET["CurrentPage"])) {
     $page = "Home";
@@ -21,13 +23,15 @@ if (isset($_GET["NotificatieID"])) {
         return;
     }
 }
-include_once "includes/header.php";
+
 
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
 $mijnVoorwerpen = GetVerkoperVoorwerpen($_SESSION['GebruikersID']);
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
 $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
+include_once "includes/header.php";
 ?>
+
 <div class="Main">
     <div class="content title">
         <h5>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h5>
@@ -196,5 +200,7 @@ $notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebru
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/timer.js"></script>
+</body>
+
 <?php
 include_once "includes/footer.php"; ?>

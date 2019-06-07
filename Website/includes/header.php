@@ -59,13 +59,14 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <link rel="stylesheet" href="/assets/css/Sorting-Box.css">
     <link rel="stylesheet" href="/assets/css/Account-Pagina.css">
     <link rel="icon" href="/assets/img/EenmaalAndermaal_Logo.png">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Dark.css">
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 
-<!-- Start: Navigation with Button -->
+<body>
 <div>
     <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 5em;">
         <div class="container">
@@ -119,3 +120,4 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 </div>';
     $_SESSION['foutmelding'] = "";
 } ?>
+

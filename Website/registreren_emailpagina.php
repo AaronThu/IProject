@@ -24,9 +24,9 @@ if (isset($_POST['verstuurmail'])) {
 include_once "includes/header.php";
 ?>
 <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
-<body style="height: 600px;">
+<div style="height: 600px;">
     <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">
-        <form method="post" style="background-color: #4b4c4d;"action="">
+        <form method="post" style="background-color: #4b4c4d;" action="#">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
                 <h2 style="color: rgb(255,255,255);">Registreren</h2>
@@ -34,12 +34,14 @@ include_once "includes/header.php";
             </div>
 
             <div class="form-group"><p>E-mailadres</p><input class="form-control" type="email" name="Emailadres" placeholder="E-mailadres"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="verstuurmail"style="background-color: #ffb357;">Registreren</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="verstuurmail" style="background-color: #ffb357;">Registreren</button></div>
             <p> U ontvangt een verificatielink.</p>
             <p class = "disclaimer"> Uw e-mailadres wordt niet opgeslagen in onze database.</p>
+        </form>
 
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</div>
 </body>
 <?php include_once "includes/footer.php";?>
