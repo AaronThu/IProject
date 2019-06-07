@@ -287,9 +287,8 @@ function MinimaleBiedPrijs($HoogsteBod)
     return $MinimaalTeBieden;
 }
 
-function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voorwerpTitle = "")
+function genereerMeldingkaart($link = "", $voorwerpNummer, $soort = "", $bericht = "", $voorwerpTitle = "")
 {
-    $foto = GetVoorwerpFoto($voorwerpNummer)[0][0];
     $class = "";
     $title = "";
     switch ($soort) {
@@ -317,7 +316,7 @@ function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voor
             $class = "";
             break;
     }
-    echo ("<a href=\"voorwerppagina.php?voorwerpID=$voorwerpNummer\" class=\"meldingkaart $class\" style=\"background-image: url($foto);\">");
+    echo ("<a href=\"$link\" class=\"meldingkaart $class\">");
     echo ("<h5>$title</h5>");
     echo ("<p>$bericht</p>");
     echo ("<p>$voorwerpTitle</p>");
