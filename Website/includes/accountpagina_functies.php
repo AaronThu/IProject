@@ -6,7 +6,7 @@ function genereerMeldingkaart($link = "", $voorwerpNummer, $soort = "", $bericht
     switch ($soort) {
         case 'bodGeplaatst':
             $class = "bod-geplaatst";
-            $title = "Bod geplaats";
+            $title = "Bod geplaatst";
             break;
         case 'voorwerpVerkocht':
             $class = "verkocht";
@@ -60,4 +60,3 @@ function GetVoorwerpenVoorVerkoper($VerkopersID)
     $query->execute([':VerkopersID' => $VerkopersID]);
     return $query->fetchAll();
 }
-
