@@ -2,7 +2,7 @@
 session_Start();
 
 include_once 'includes/database.php';
-include_once 'includes/functies.php';
+include_once "includes/functies.php";
 
 $locatieNaRegistratie = "Location: registreren_klaar.php";
 //Vult gegevens in de database

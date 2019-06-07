@@ -2,8 +2,7 @@
 session_start();
 
 include_once 'includes/database.php';
-include_once 'includes/functies.php';
-
+include_once "includes/functies.php";
 $titel = $_POST['titel'];
 $beschrijving = $_POST['beschrijving'];
 $startprijs = $_POST['startprijs'];

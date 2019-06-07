@@ -2,8 +2,7 @@
 session_start();
 
 include_once 'includes/database.php';
-include_once 'includes/functies.php';
-include_once 'includes/databaseFunctions.php';
+include_once "includes/functies.php";
 
 $voorwerpID = 0;
 if (!isset($_GET["voorwerpID"])) {

@@ -1,6 +1,6 @@
 <?php
 session_Start();
-include_once 'includes/functies.php';
+include_once "includes/functies.php";
 include_once 'includes/database.php';
 $headerEmailPagina = "Location: verstuurmail.php";
 $_SESSION['Emailadres'] = "";
