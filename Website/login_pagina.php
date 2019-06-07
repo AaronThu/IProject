@@ -1,7 +1,7 @@
 <?php
 include_once("includes/database.php");
 include_once("includes/header.php");
-include_once("includes/functies.php");
+include_once "includes/functies.php";
 ?>
 <div class = "loginpagina">
     <div class="login-dark" style="background-color: #3a3a3a;height: 601px;">

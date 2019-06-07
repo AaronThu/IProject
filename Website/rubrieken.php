@@ -1,7 +1,7 @@
 <?php
 include_once "includes/database.php";
 include_once "includes/header.php";
-include_once "includes/databaseFunctions.php";
+include_once "includes/functies.php";
 ?>
 
     <div class="background">

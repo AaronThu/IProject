@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/functies.php';
+include_once "includes/functies.php";
 session_start();
 $locatieNaVersturen = "Location: index.php";
 

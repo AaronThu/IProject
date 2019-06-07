@@ -1,8 +1,7 @@
 <?php
 session_start();
 include_once('includes/database.php');
-include_once('includes/functies.php');
-
+include_once "includes/functies.php";
 $tijdLinkGeldig = 14400;
 $locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpagina.php";
 
