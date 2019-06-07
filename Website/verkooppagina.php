@@ -16,7 +16,6 @@ if (!IsVerkoper($_SESSION['Gebruikersnaam'])) {
     header($locatieFouteLink);
     return;
 }
-var_dump($_POST);
 include_once "includes/header.php";
 ?>
 
