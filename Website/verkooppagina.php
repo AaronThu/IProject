@@ -40,55 +40,34 @@ include_once "includes/header.php";
                         <h6>Beschrijving van je product</h6>
                         <textarea rows=4 cols=50 class="form-control inputforms" name="beschrijving" required></textarea>
 
-                </div>
-                <div class="col-md-6 verkooppagina">
-                    <p class="verkoophead"> Prijs specificaties</p>
-                    <h6>Startprijs</h6>
-                    <input type="number" class="form-control inputforms" name=startprijs required>
-           
-                    <h6>Betalingswijze</h6>
-                    <select class="form-control inputforms" name="betalingswijze">
-                        <option value='iDeal' selected>iDeal</option>
-                        <option value='Creditcard'>Creditcard</option>
-                    </select>
-                    <h6>Betalingsinstructies</h6>
-                    <input type="text" class="form-control inputforms" name="betalingsinstructies">
-                </div>
-                <div class="col-md-6 verkooppagina">
-                    <p class="verkoophead"> Overige specificaties</p>
-                    <h6>Looptijd</h6>
-                    <select class="form-control inputforms" name="looptijd">
-                        <option value="1">1 dag</option>
-                        <option value="3">3 dagen</option>
-                        <option value="5">5 dagen</option>
-                        <option value="7" selected>7 dagen</option>
-                        <option value="9">9 dagen</option>
-                    </select>
-                    <h6>Locatie</h6>
-                    <input type=text class="form-control inputforms" name="locatie" required>
-                    <h6> Verzendinstructies</h6>
-                    <input type="text" class="form-control inputforms" name="verzendinstructies">
-                </div>
+                    </div>
+                    <div class="col-md-6 verkooppagina">
+                        <p class="verkoophead"> Prijs specificaties</p>
+                        <h6>Startprijs</h6>
+                        <input type="number" class="form-control inputforms" name=startprijs required>
 
-                <div class="col-md-6 verkooppagina">
-                    <p class="verkoophead"> Rubriek</p>
-                    <h6>Hoofdrubriek</h6>
-                    <select class="form-control inputforms" name="parentrubriek">
-                        <?php
-                        foreach (GetRubrieken(-1) as $key => $value) {
-                            echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <h6>Subrubriek</h6>
-                    <select class="form-control inputforms" name="rubriek">
-                    <?php
-                        foreach (GetRubrieken(-1) as $key => $value) {
-                            echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
-                        }
-                        ?>
-                    </select>
-
+                        <h6>Betalingswijze</h6>
+                        <select class="form-control inputforms" name="betalingswijze">
+                            <option value='iDeal' selected>iDeal</option>
+                            <option value='Creditcard'>Creditcard</option>
+                        </select>
+                        <h6>Betalingsinstructies</h6>
+                        <input type="text" class="form-control inputforms" name="betalingsinstructies">
+                    </div>
+                    <div class="col-md-6 verkooppagina">
+                        <p class="verkoophead"> Overige specificaties</p>
+                        <h6>Looptijd</h6>
+                        <select class="form-control inputforms" name="looptijd">
+                            <option value="1">1 dag</option>
+                            <option value="3">3 dagen</option>
+                            <option value="5">5 dagen</option>
+                            <option value="7" selected>7 dagen</option>
+                            <option value="9">9 dagen</option>
+                        </select>
+                        <h6>Locatie</h6>
+                        <input type=text class="form-control inputforms" name="locatie" required>
+                        <h6> Verzendinstructies</h6>
+                        <input type="text" class="form-control inputforms" name="verzendinstructies">
                     </div>
                     <div class="col-md-6 verkooppagina">
                         <p class="verkoophead"> Prijs specificaties</p>
@@ -130,13 +109,13 @@ include_once "includes/header.php";
             <button class="btn btn-primary" type="submit" style="background-color: #a9976a;" name="veilen">Start veiling</button>
         </div>
     </div>
-    </div>
-    <div class="spacing">
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/rubriekenDropdown.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<div class="spacing">
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/rubriekenDropdown.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 
