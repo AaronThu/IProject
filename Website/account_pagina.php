@@ -43,10 +43,9 @@ include_once "includes/header.php";
             <h5 class="titel">Meldingen</h5>
             <div class="meldingen">
                 <?php
-                // genereerMeldingkaart("?NotificatieID=5&vwNummer=110611747579",110611747579,"voorwerpVerkocht","Bericht","Voorwerp titel");
                 foreach ($notifications as $k => $v) {
                     foreach ($v as $key => $value) {
-                        $voorwerp = GetVoorwerpEigenschappen($value['Voorwerpnummer']);
+                        $voorwerp = GetVoorwerpEigenschappen($value['Voorwerpnummer'])[0];
                         genereerMeldingkaart(
                             "?NotificatieID=$value[NotificatieID]&vwNummer=$value[Voorwerpnummer]",
                             $value['Voorwerpnummer'],

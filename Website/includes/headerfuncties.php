@@ -138,7 +138,7 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
     $notificaties = [];
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpOverboden'));
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpGekocht'));
-    if ($SoortGebruiker == 'verkoper') {
+    if ($SoortGebruiker != 'koper') {
         array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpVerkocht'));
         array_push($notificaties, GetSoortNotificaties($GebruikersID, 'bodGeplaatst'));
     }
@@ -153,6 +153,7 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
         return $notificaties;
     }
 }
+
 function KijkVoorVerlopenVoorwerpen($GebruikersID, $SoortGebruiker)
 {
     global $dbh;
