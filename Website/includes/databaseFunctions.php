@@ -168,7 +168,7 @@ function GetAllSubRubrieken($id)
     return $rubriekenID;
 }
 
-function GetVoorwerpenSearchBar($zoekresultaat)
+function GetVoorwerpenSearchBar($zoekresultaat, $orderOn = [], $aflopen = false)
 {
     global $dbh;
     $zoekWorden = explode(" ", $zoekresultaat);
@@ -178,6 +178,21 @@ function GetVoorwerpenSearchBar($zoekresultaat)
         $query .= " AND titel LIKE '%" . $item . "%'";
     }
 
+    $orderBy = "";
+    foreach ($orderOn as $key => $value) {
+        if ($key === 0) {
+            $orderBy = "ORDER BY " . $value;
+        } else {
+            $orderBy .= ", " . $value;
+        }
+    }
+    if ($orderBy === "") {
+        $orderBy = "ORDER BY v.Voorwerpnummer";
+    }
+    if ($aflopen) {
+        $orderBy .= " DESC";
+    }
+    $query .= $orderBy;
     $SearchQuery = $dbh->prepare($query);
     $SearchQuery->execute();
     $Searching = $SearchQuery->fetchAll();
@@ -290,7 +305,8 @@ function VerwijderNotificaties($GebruikersID, $notificatieID = null)
     }
 }
 
-function MaakNotificatiesVerlorenAan($GebruikersID){
+function MaakNotificatiesVerlorenAan($GebruikersID)
+{
     global $dbh;
     $query = $dbh->prepare("SELECT DISTINCT(Voorwerpnummer) FROM Bod WHERE GebruikersID = :GebruikersID");
     $query->execute([
@@ -298,7 +314,7 @@ function MaakNotificatiesVerlorenAan($GebruikersID){
     ]);
     $query->fetchAll();
 
-    foreach($query as $Voorwerpnummer){
+    foreach ($query as $Voorwerpnummer) {
         $query2 = $dbh->prepare("SELECT Voorwerpnummer FROM Voorwerp WHERE VeilingGesloten = 1 AND Voorwerpnummer = :Voorwerpnummer AND KopersID != :GebruikersID AND Voorwerpnummer NOT IN(SELECT Voorwerpnummer FROM GebruikerNotificaties WHERE NotificatieSoort = 'verloren' AND GebruikersID = :GebruikersID2)");
         $query2->execute([
             ':Voorwerpnummer' => $Voorwerpnummer,
@@ -307,7 +323,7 @@ function MaakNotificatiesVerlorenAan($GebruikersID){
         ]);
         $rowcount = $query2->rowcount();
 
-        if(empty($rowcount)){
+        if (empty($rowcount)) {
             VoegNotificatieToe($GebruikersID, $Voorwerpnummer, 'verloren');
         }
     }
