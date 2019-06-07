@@ -1,7 +1,7 @@
 <?php
 include_once 'prefabs/header.php';
 include_once 'logica/beheer_rubrieken_systeem.php';
-include_once '../includes/databaseFunctions.php';
+include_once "../includes/rubriekenfuncties.php";
 ?>
 
 <div class="main">
