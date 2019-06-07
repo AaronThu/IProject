@@ -4,7 +4,8 @@ function SelectNext(element, baseClass, depth, postName) {
     }
     var index = element.selectedIndex;
     var option = element.options;
-
+    ClearName(baseClass)
+    element.setAttribute("name", postName);
     SelectDropdown(baseClass, option[index].value, depth, postName);
 }
 
@@ -17,16 +18,22 @@ function SelectDropdown(baseClass, id, depth, postName) {
             if (rubrieknummer != undefined && rubrieknummer == id && elementDepth <= depth + 1) {
                 if (allElements[i].classList.contains("noShow")) {
                     allElements[i].classList.remove("noShow");
-                    allElements[i].setAttribute("name", postName);
+                    console.log(rubrieknummer);
                 }
             } else {
                 if (elementDepth > depth) {
                     if (!allElements[i].classList.contains("noShow")) {
                         allElements[i].classList.add("noShow");
                     }
-                    allElements[i].setAttribute("name", "");
                 }
             }
         }
+    }
+}
+
+function ClearName(baseClass) {
+    var allElements = document.getElementsByClassName(baseClass);
+    for (let i = 0; i < allElements.length; i++) {
+        allElements[i].setAttribute("name", "");
     }
 }

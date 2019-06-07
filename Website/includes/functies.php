@@ -324,19 +324,19 @@ function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voor
     echo ("</a>");
 }
 
-function genereerRubriekenDropdown($id, $depth = 0)
+function genereerRubriekenDropdown($id, $POSTName = "", $depth = 0)
 {
     $rubrieken = GetRubrieken($id);
     if (sizeof($rubrieken) <= 0) {
         return;
     }
-    echo ("<select onchange=\"SelectNext(this,'rubriekDropdown',$depth,'parentrubriek')\" data-depth=$depth data-Rubrieknummer=$id class=\"form-control inputforms rubriekDropdown " . (($depth > 0) ? "noShow" : "") . "\" name=\"\">");
-    echo ("<option value=\"-2\">Selecteer Subrubriek</option>");
+    echo ("<select onchange=\"SelectNext(this,'rubriekDropdown',$depth,'$POSTName')\" data-depth=$depth data-Rubrieknummer=$id class=\"form-control inputforms rubriekDropdown " . (($depth > 0) ? "noShow" : "") . "\" name=\"\">");
+    echo ("<option value=\"-2\">Selecteer " . (($depth > 0) ? "Subrubriek" : "Hoofdrubriek") . "</option>");
     foreach ($rubrieken as $key => $value) {
         echo ("<option value='$value[Rubrieknummer]'>$value[Rubrieknaam]</option>");
     }
     echo ("</select>");
     foreach ($rubrieken as $key => $value) {
-        genereerRubriekenDropdown($value["Rubrieknummer"], $depth + 1);
+        genereerRubriekenDropdown($value["Rubrieknummer"], $POSTName, $depth + 1);
     }
 }

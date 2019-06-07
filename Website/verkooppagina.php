@@ -16,6 +16,7 @@ if (!IsVerkoper($_SESSION['Gebruikersnaam'])) {
     header($locatieFouteLink);
     return;
 }
+var_dump($_POST);
 include_once "includes/header.php";
 ?>
 
@@ -71,7 +72,7 @@ include_once "includes/header.php";
 
                     <div class="col-md-6 verkooppagina">
                         <p class="verkoophead"> Selecteer rubriek</p>
-                        <?php genereerRubriekenDropdown(-1) ?>
+                        <?php genereerRubriekenDropdown(-1, "parentrubriek") ?>
                     </div>
                 </div>
         </div>
