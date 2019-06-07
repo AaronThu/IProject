@@ -38,9 +38,12 @@ include_once "includes/header.php";
     <div class="content title">
         <h5>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h5>
     </div>
-    <?php if (GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], "telling") > 0) { ?>
+    <?php if (GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], "telling") > 0) {        ?>
         <div class=" content">
-            <h5 class="titel">Meldingen</h5>
+            <h5 class="titel">Meldingen <a href="?VerwijderAlleNotificaties=on">
+                    <h6>Verwijder alle notificaties</h6>
+                </a></h5>
+
             <div class="meldingen">
                 <?php
                 foreach ($notifications as $k => $v) {
