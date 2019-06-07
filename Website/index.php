@@ -75,8 +75,6 @@ if (empty($_SESSION['Gebruikersnaam'])) {
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/timer.js"></script>
 
-
-</div>
 </body>
 
 

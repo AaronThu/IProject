@@ -23,9 +23,9 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
         ]);
         $foto = $queryFoto->fetchColumn();
 
-        $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >
+        $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile kaartje prijs-hover=' . "€" .  $Verkoopprijs . ' ">
         
-        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/' . $foto . '); ;background-size:'.$backgroundsize.';background-repeat: no-repeat;background-position: center;" >
+        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start" style="height: 149px;background-image: url(http://iproject2.icasites.nl/' . $foto . '); ;background-size:'.$backgroundsize.';background-repeat: no-repeat;background-position: center;" >
         <p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
         <p class="kaartje text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . substr($titel, 0, 25) . '... </p>
                      </a>
@@ -52,9 +52,9 @@ function genereerCatogorie($dbh, $gegevenQuery, $columntype)
         ]);
         $foto = $queryFoto->fetchColumn(1);
 
-        $catogorie .= '<div class=" ' . $columntype . '" data-hover=' . $rubriekNaam . ' >
+        $catogorie .= '<div class=" ' . $columntype . '" data-hover="' . $rubriekNaam . '">
         <a href = "subrubrieken_pagina.php?rubriekID=' . $rubriekNummer . '"><div class="d-flex flex-column justify-content-between align-content-start" style="height: 250px;">
-               <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto . '" alt="' . $foto . '" height=250; width=250;> 
+               <img style="border-radius: 50%;" src="assets/img/Rubrieken/' . $foto . '" alt="' . $foto . '" height=250 width=250> 
                </div>
                </a>   
             </div>';
