@@ -9,6 +9,7 @@ include_once 'prefabs/header.php';
 
 include_once "../includes/database.php";
 include_once "../includes/functies.php";
+include_once "/logica/databaseFuncties";
 
 $locatieNaVersturen = "Location: index.php";
 $MailGegevens = GetMailadresKoper();
@@ -51,26 +52,8 @@ else {
         );
     }
 }
-
-function GetMailadresKoper()
-{
-    global $dbh;
-    $query = $dbh->prepare("SELECT g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer, v.Titel FROM Gebruiker g INNER JOIN Voorwerp v ON g.GebruikersID = v.KopersID WHERE v.VeilingGesloten = 1 AND MailVerstuurd = 0;");   
-    $query->execute();
-    $mailAdres = $query->fetchAll();
-    return $mailAdres;
-}
-
-function GetMailadresVerkoper()
-{
-    global $dbh;
-    $query = $dbh->prepare("SELECT g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer FROM Gebruiker g INNER JOIN Voorwerp v ON g.GebruikersID = v.VerkopersID WHERE v.VeilingGesloten = 1 AND MailVerstuurd = 0;");   
-    $query->execute();
-    $mailAdres = $query->fetchAll();
-    return $mailAdres;
-}
 ?>
-    </div>
+</div>
 </div>
 <?php
 include_once 'prefabs/footer.php';

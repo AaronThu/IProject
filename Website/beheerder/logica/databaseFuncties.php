@@ -152,3 +152,22 @@ function GetAllRubrieken($parent) {
     $Query->execute([$parent]);
     return $Query->fetchAll();
 }
+
+function GetMailadresKoper()
+{
+    global $dbh;
+    $query = $dbh->prepare("SELECT g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer, v.Titel FROM Gebruiker g INNER JOIN Voorwerp v ON g.GebruikersID = v.KopersID WHERE v.VeilingGesloten = 1 AND MailVerstuurd = 0;");   
+    $query->execute();
+    $mailAdres = $query->fetchAll();
+    return $mailAdres;
+}
+
+function GetMailadresVerkoper()
+{
+    global $dbh;
+    $query = $dbh->prepare("SELECT g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer FROM Gebruiker g INNER JOIN Voorwerp v ON g.GebruikersID = v.VerkopersID WHERE v.VeilingGesloten = 1 AND MailVerstuurd = 0;");   
+    $query->execute();
+    $mailAdres = $query->fetchAll();
+    return $mailAdres;
+}
+?>
