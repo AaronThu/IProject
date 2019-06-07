@@ -2,7 +2,13 @@
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {
     $artikelen = '';
-
+    $backgroundsize;
+    if($columntype == "col-md-6"){
+        $backgroundsize = "cover";
+    }
+    else{
+        $backgroundsize="contain";
+    }
     $queryvoorwerpen = $dbh->query("$gegevenQuery");
     while ($row = $queryvoorwerpen->fetch()) {
         $titel = $row['Titel'];
@@ -19,7 +25,7 @@ function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 
         $artikelen .= '<div id = "hover" class=" ' . $columntype . ' tile kaartje" prijs-hover=' . "€" .  $Verkoopprijs . ' >
         
-        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/' . $foto . '); ;background-size: contain;background-repeat: no-repeat;background-position: center;" >
+        <a href = "voorwerppagina.php?voorwerpID=' . $voorwerpNummer . '" class="d-flex flex-column justify-content-between align-content-start"style="height: 149px;background-image: url(http://iproject2.icasites.nl/' . $foto . '); ;background-size:'.$backgroundsize.';background-repeat: no-repeat;background-position: center;" >
         <p class="kaartje Timer d-flex align-items-start align-content-start align-self-start" data-time="' . $tijd . '" style="background-color: rgba(75,76,77,0.75);color: #ffffff;"></p>
         <p class="kaartje text-left" style="background-color: rgba(75,76,77,0.75);color: #ffffff;">' . substr($titel, 0, 25) . '... </p>
                      </a>
