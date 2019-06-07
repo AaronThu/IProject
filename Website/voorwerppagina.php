@@ -24,7 +24,6 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
 
 ?>
 
-    <body>
     <div class="voorwerppagina" style="background-color:#3a3a3a;">
         <div>
             <div class="container">

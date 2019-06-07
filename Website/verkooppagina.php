@@ -129,7 +129,6 @@ include_once "includes/header.php";
         <div class="text-center" style="margin: 20px;">
             <button class="btn btn-primary" type="submit" style="background-color: #a9976a;" name="veilen">Start veiling</button>
         </div>
-        </form>
     </div>
     </div>
     <div class="spacing">

@@ -1,17 +1,12 @@
-<?php
-?>
-
-    <footer>
-        
-<div class="footer-dark">
+    <footer class="footer-dark">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="#">Veilingen</a></li>
-                        <li><a href="#">Over Ons</a></li>
                         <li><a href="rubrieken.php">Rubrieken</a></li>
+                        <li><a href="algemene_voorwaarden.php">Algemene voorwaarden</a></li>
+                        <li><a href="http://www.iconcepts.com.ng/about-us/">Over onze opdrachtgever</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6">
@@ -22,11 +17,8 @@
             </div>
             <p class="copyright">EenmaalAndermaal © 2019</p>
         </div>
-</div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </footer>
-
-</body>
 
 </html>
