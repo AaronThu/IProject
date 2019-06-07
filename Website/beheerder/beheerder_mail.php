@@ -29,9 +29,9 @@ else {
         $message .= '<p>Positieve ervaring:</p>';
         $message .= '<a href=http://iproject2.icasites.nl/feedback.php?feedback=5&VerkopersID=' . $value['VerkopersID'] . '&BeoordelersID=' . $value['KopersID'] . '><img src=' . $fotoLocatie . '5star.jpg alt="5 sterren" width="100" height="20"></a>';
         $message .= '<p>Redelijke ervaring:</p>';
-        $message .= '<a href=http://iproject2.icasites.nl/feedback.php?feedback=5&VerkopersID=' . $value['VerkopersID'] . '&BeoordelersID=' . $value['KopersID'] . '><img src=' . $fotoLocatie . '3star.jpg alt="5 sterren" width="100" height="20"></a>';
+        $message .= '<a href=http://iproject2.icasites.nl/feedback.php?feedback=3&VerkopersID=' . $value['VerkopersID'] . '&BeoordelersID=' . $value['KopersID'] . '><img src=' . $fotoLocatie . '3star.jpg alt="3 sterren" width="100" height="20"></a>';
         $message .= '<p>Negatieve ervaring:</p>';
-        $message .= '<a href=http://iproject2.icasites.nl/feedback.php?feedback=5&VerkopersID=' . $value['VerkopersID'] . '&BeoordelersID=' . $value['KopersID'] . '><img src=' . $fotoLocatie . '1star.jpg alt="5 sterren" width="100" height="20"></a>';
+        $message .= '<a href=http://iproject2.icasites.nl/feedback.php?feedback=1&VerkopersID=' . $value['VerkopersID'] . '&BeoordelersID=' . $value['KopersID'] . '><img src=' . $fotoLocatie . '1star.jpg alt="1 sterren" width="100" height="20"></a>';
         $message .= '<p>Om contact op te nemen met de verkoper kunt u hem/haar via ' . GetMailadresVerkoper()[0]['Emailadres'] . ' bereiken. </p>';
         $message .= '<p>Bedankt!<br>Team EenmaalAndermaal</p>';
         $message .= '<img src=' . $fotoLocatie . 'EenmaalAndermaal_Logo.png alt=EenmaalAndermaal Logo width=200 heigth=200/>';
