@@ -20,12 +20,12 @@ if (!IsVerkoper($_SESSION['Gebruikersnaam'])) {
 include_once "includes/header.php";
 ?>
 
-<body class="d-flex flex-column">
+<div class="d-flex flex-column">
     <div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center" style="color: white;">Product verkopen</h1>
+                    <h2 class="text-center" style="color: white;">Product verkopen</h2>
                 </div>
             </div>
                     <form method="post" action="verkoop_systeem.php" enctype="multipart/form-data">
@@ -46,8 +46,8 @@ include_once "includes/header.php";
                     <input type="number" class="form-control inputforms" name=startprijs required>
            
                     <h6>Betalingswijze</h6>
-                    <select class="form-control inputforms" name="betalingswijze" required>
-                        <option value='iDeal'>iDeal</option>
+                    <select class="form-control inputforms" name="betalingswijze">
+                        <option value='iDeal' selected>iDeal</option>
                         <option value='Creditcard'>Creditcard</option>
                     </select>
                     <h6>Betalingsinstructies</h6>
@@ -56,11 +56,11 @@ include_once "includes/header.php";
                 <div class="col-md-6 verkooppagina">
                     <p class="verkoophead"> Overige specificaties</p>
                     <h6>Looptijd</h6>
-                    <select class="form-control inputforms" name="looptijd" required>
+                    <select class="form-control inputforms" name="looptijd">
                         <option value="1">1 dag</option>
                         <option value="3">3 dagen</option>
                         <option value="5">5 dagen</option>
-                        <option value="7">7 dagen</option>
+                        <option value="7" selected>7 dagen</option>
                         <option value="9">9 dagen</option>
                     </select>
                     <h6>Locatie</h6>
@@ -72,7 +72,7 @@ include_once "includes/header.php";
                 <div class="col-md-6 verkooppagina">
                     <p class="verkoophead"> Rubriek</p>
                     <h6>Hoofdrubriek</h6>
-                    <select class="form-control inputforms" name="parentrubriek" required>
+                    <select class="form-control inputforms" name="parentrubriek">
                         <?php
                         foreach (GetRubrieken(-1) as $key => $value) {
                             echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
@@ -80,7 +80,7 @@ include_once "includes/header.php";
                         ?>
                     </select>
                     <h6>Subrubriek</h6>
-                    <select class="form-control inputforms" name="rubriek" required>
+                    <select class="form-control inputforms" name="rubriek">
                     <?php
                         foreach (GetRubrieken(-1) as $key => $value) {
                             echo '<option value=' . $value['Rubrieknaam'] . '>' . $value['Rubrieknaam'] . '</option>';
@@ -100,8 +100,9 @@ include_once "includes/header.php";
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
-</html>
+
 
 <?php
 include_once "includes/footer.php";

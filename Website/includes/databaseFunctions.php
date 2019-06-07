@@ -215,7 +215,7 @@ function GetNotificaties($GebruikersID, $SoortGebruiker, $BenodigdeGegevens)
     $notificaties = [];
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpOverboden'));
     array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpGekocht'));
-    if ($SoortGebruiker == 'Verkoper') {
+    if ($SoortGebruiker == 'verkoper') {
         array_push($notificaties, GetSoortNotificaties($GebruikersID, 'voorwerpVerkocht'));
         array_push($notificaties, GetSoortNotificaties($GebruikersID, 'bodGeplaatst'));
     }
