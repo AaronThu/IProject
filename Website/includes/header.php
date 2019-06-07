@@ -3,7 +3,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include_once "database.php";
-include_once "databaseFunctions.php";
 include_once 'beheerder/logica/databaseFuncties.php';
 $adminKnop = "";
 $extraKnop = "";
@@ -67,57 +66,56 @@ if (empty($_SESSION['Gebruikersnaam'])) {
 
 
 <body>
-<div>
-    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 5em;">
-        <div class="container">
-            <div><a class="navbar-brand" href="index.php">EenmaalAndermaal</a><span>Klik Klik Klaar</span></div><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigationdd</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav d-flex justify-content-center align-items-center mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Veilingen</a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Rubrieken</a>
-                        <div class="dropdown-menu flex-column" role="menu">
-                            <h6 class="dropdown-header" role="presentation">Populair</h6>
-                            <?php
-                            foreach (GetRubriekenPopulair(3) as $key => $value) {
-                                print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\" role=\"presentation\">$value[Rubrieknaam]</a>");
-                            }
-                            ?>
-                            <div class="dropdown-divider" role="presentation"></div>
-                            <h6 class="dropdown-header" role="presentation">Rubrieken</h6>
-                            <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 5em;">
+            <div class="container">
+                <div><a class="navbar-brand" href="index.php">EenmaalAndermaal</a><span>Klik Klik Klaar</span></div><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigationdd</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav d-flex justify-content-center align-items-center mr-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Veilingen</a></li>
+                        <li class="nav-item" role="presentation"></li>
+                        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Rubrieken</a>
+                            <div class="dropdown-menu flex-column" role="menu">
+                                <h6 class="dropdown-header" role="presentation">Populair</h6>
                                 <?php
-                                foreach (GetRubrieken(-1) as $key => $value) {
-                                    print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\">$value[Rubrieknaam]</a>");
+                                foreach (GetRubriekenPopulair(3) as $key => $value) {
+                                    print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\" role=\"presentation\">$value[Rubrieknaam]</a>");
                                 }
                                 ?>
+                                <div class="dropdown-divider" role="presentation"></div>
+                                <h6 class="dropdown-header" role="presentation">Rubrieken</h6>
+                                <div class="container flex-nowrap flex-sm-nowrap flex-md-wrap flex-lg-wrap flex-xl-wrap">
+                                    <?php
+                                    foreach (GetRubrieken(-1) as $key => $value) {
+                                        print("<a  href=\"/subrubrieken_pagina.php?rubriekID=$value[Rubrieknummer]\" class=\"dropdown-item\">$value[Rubrieknaam]</a>");
+                                    }
+                                    ?>
+                                </div>
+                                <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="rubrieken.php">Alle rubrieken</a>
                             </div>
-                            <div class="dropdown-divider" role="presentation"></div><a class="dropdown-item" role="presentation" href="rubrieken.php">Alle rubrieken</a>
-                        </div>
-                    </li>
-                </ul>
-                <?php echo $zoekbalk; ?>
-                <span class="d-flex justify-content-center align-items-center navbar-text actions">
-                    <?php
-                    echo $loginKnop;
-                    echo $adminKnop;
-                    echo $accountKnop;
-                    echo $notificatieknop;
-                    echo $extraKnop;
-                    ?>
-                </span>
+                        </li>
+                    </ul>
+                    <?php echo $zoekbalk; ?>
+                    <span class="d-flex justify-content-center align-items-center navbar-text actions">
+                        <?php
+                        echo $loginKnop;
+                        echo $adminKnop;
+                        echo $accountKnop;
+                        echo $notificatieknop;
+                        echo $extraKnop;
+                        ?>
+                    </span>
+                </div>
             </div>
-        </div>
-    </nav>
-</div>
-<!-- End: Navigation with Button -->
-<?php if (!empty($_SESSION['foutmelding'])) {
-    echo '<div class="foutmelding inputforms">
+        </nav>
+    </div>
+    <!-- End: Navigation with Button -->
+    <?php if (!empty($_SESSION['foutmelding'])) {
+        echo '<div class="foutmelding inputforms">
     <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center"> We wijzen je graag op het
         volgende:</h5>
     <h5 class="text-center text-sm-center text-md-center text-lg-center text-xl-center foutmeldingTekst">';
-    echo $_SESSION['foutmelding'] . '</h5>
+        echo $_SESSION['foutmelding'] . '</h5>
 </div>';
-    $_SESSION['foutmelding'] = "";
-} ?>
-
+        $_SESSION['foutmelding'] = "";
+    } ?>
