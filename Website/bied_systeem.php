@@ -38,6 +38,10 @@ if($Bodbedrag < $voorwerpEigenschappen[0]['Startprijs']){
     $_SESSION['foutmelding'] = "Bieden mislukt - u mag niet op uw eigen geplaatste producten bieden";
     header($locatieBiedingMislukt);
     return;
+} elseif($Bodbedrag > 999999999.99){
+    $_SESSION['foutmelding'] = "Bieden mislukt - u mag maximaal €999999999.99 bieden";
+    header($locatieBiedingMislukt);
+    return;
 }
 
 if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $HoogsteBod) {

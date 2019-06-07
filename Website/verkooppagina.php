@@ -28,7 +28,7 @@ include_once "includes/header.php";
                 </div>
             </div>
             <!-- verkoop_systeem.php -->
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="verkoop_systeem.php" enctype="multipart/form-data">
                 <div class="verkooppaginarow">
                     <div class="col-md-6 verkooppagina">
                         <p class="verkoophead"> Product specificaties </p>
