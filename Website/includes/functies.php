@@ -197,7 +197,7 @@ function testInputVoorFouten($naamItem, $naamError, $ingevuldeWaarde)
 function IsVerkoper($userID)
 {
     global $dbh;
-    $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND SoortGebruiker = 'verkoper'");
+    $Query = $dbh->prepare("SELECT count(Gebruikersnaam) FROM Gebruiker WHERE Gebruikersnaam = ? AND (SoortGebruiker = 'verkoper' OR SoortGebruiker = 'admin')");
     $Query->execute([$userID]);
     return $Query->fetchAll()[0][0] > 0;
 }
@@ -270,17 +270,18 @@ function genereerArtikel($titel, $tijd, $StartPrijs, $Verkoopprijs, $voorwerpNum
     echo ('<p class ="kaartje text-left" style ="background-color: rgba(75,76,77,0.75);color: #ffffff; " >' . substr($titel, 0, 25) .  '... </p></a></div>');
 }
 
-function MinimaleBiedPrijs($HoogsteBod){
+function MinimaleBiedPrijs($HoogsteBod)
+{
     $MinimaalTeBieden = 0;
-    if($HoogsteBod <= 49.99) {
+    if ($HoogsteBod <= 49.99) {
         $MinimaalTeBieden = 0.50;
-    } elseif( $HoogsteBod <= 499.99) {
+    } elseif ($HoogsteBod <= 499.99) {
         $MinimaalTeBieden = 1.00;
-    } elseif( $HoogsteBod <= 999.99) {
+    } elseif ($HoogsteBod <= 999.99) {
         $MinimaalTeBieden = 5.00;
-    } elseif($HoogsteBod <= 4999.99) {
+    } elseif ($HoogsteBod <= 4999.99) {
         $MinimaalTeBieden = 10.00;
-    } elseif($HoogsteBod >= 5000.00) {
+    } elseif ($HoogsteBod >= 5000.00) {
         $MinimaalTeBieden = 50.00;
     }
     return $MinimaalTeBieden;
@@ -322,4 +323,20 @@ function genereerMeldingkaart($voorwerpNummer, $soort = "", $bericht = "", $voor
     echo ("<p>$voorwerpTitle</p>");
     echo ("</a>");
 }
-?>
+
+function genereerRubriekenDropdown($id, $POSTName = "", $depth = 0)
+{
+    $rubrieken = GetRubrieken($id);
+    if (sizeof($rubrieken) <= 0) {
+        return;
+    }
+    echo ("<select onchange=\"SelectNext(this,'rubriekDropdown',$depth,'$POSTName')\" data-depth=$depth data-Rubrieknummer=$id class=\"form-control inputforms rubriekDropdown " . (($depth > 0) ? "noShow" : "") . "\" name=\"\">");
+    echo ("<option value=\"-2\">Selecteer " . (($depth > 0) ? "Subrubriek" : "Hoofdrubriek") . "</option>");
+    foreach ($rubrieken as $key => $value) {
+        echo ("<option value='$value[Rubrieknummer]'>$value[Rubrieknaam]</option>");
+    }
+    echo ("</select>");
+    foreach ($rubrieken as $key => $value) {
+        genereerRubriekenDropdown($value["Rubrieknummer"], $POSTName, $depth + 1);
+    }
+}

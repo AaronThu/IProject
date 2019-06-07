@@ -14,7 +14,6 @@ $formName = "Zoekbalk"
 
     <!-- Sorting box -->
     <?php
-
     include("includes/sortingBar.php");
     ?>
 
