@@ -18,7 +18,6 @@ function SelectDropdown(baseClass, id, depth, postName) {
             if (rubrieknummer != undefined && rubrieknummer == id && elementDepth <= depth + 1) {
                 if (allElements[i].classList.contains("noShow")) {
                     allElements[i].classList.remove("noShow");
-                    console.log(rubrieknummer);
                 }
             } else {
                 if (elementDepth > depth) {
