@@ -16,19 +16,22 @@ if (!isset($_GET["CurrentPage"])) {
 }
 $notifID = null;
 if (isset($_GET["NotificatieID"])) {
-    if(is_numeric($_GET["NotificatieID"]) && is_numeric($_GET["vwNummer"])){
+    if (is_numeric($_GET["NotificatieID"]) && is_numeric($_GET["vwNummer"])) {
         $notifID = $_GET["NotificatieID"];
-        VerwijderNotificaties($_SESSION['GebruikersID'],$notifID);
+        VerwijderNotificaties($_SESSION['GebruikersID'], $notifID);
         header("Location: voorwerppagina.php?voorwerpID=$_GET[vwNummer]");
         return;
     }
 }
 
+if (isset($_GET["VerwijderAlleNotificaties"])) {
+    VerwijderNotificaties($_SESSION["GebruikersID"]);
+}
 
 $biedGeschiedenis = GetBiedingen($_SESSION['GebruikersID'], 'old');
 $mijnVoorwerpen = GetVerkoperVoorwerpen($_SESSION['GebruikersID']);
 $currentBiedingen = GetBiedingen($_SESSION['GebruikersID'], 'new');
-$notifications = GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"gegevens");
+$notifications = GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], "gegevens");
 include_once "includes/header.php";
 ?>
 
@@ -36,14 +39,14 @@ include_once "includes/header.php";
     <div class="content title">
         <h5>Welkom <?php echo ($_SESSION["Gebruikersnaam"]); ?></h5>
     </div>
-    <?php if (GetNotificaties($_SESSION['GebruikersID'],$_SESSION['SoortGebruiker'],"telling") > 0) { ?>
+    <?php if (GetNotificaties($_SESSION['GebruikersID'], $_SESSION['SoortGebruiker'], "telling") > 0) { ?>
         <div class=" content">
             <h5 class="titel">Meldingen</h5>
             <div class="meldingen">
-                <?php 
+                <?php
                 // genereerMeldingkaart("?NotificatieID=5&vwNummer=110611747579",110611747579,"voorwerpVerkocht","Bericht","Voorwerp titel");
-                    foreach ($notifications as $k => $v) {
-                        foreach ($v as $key => $value) {
+                foreach ($notifications as $k => $v) {
+                    foreach ($v as $key => $value) {
                         $voorwerp = GetVoorwerpEigenschappen($value['Voorwerpnummer']);
                         genereerMeldingkaart(
                             "?NotificatieID=$value[NotificatieID]&vwNummer=$value[Voorwerpnummer]",
@@ -51,9 +54,9 @@ include_once "includes/header.php";
                             $value['NotificatieSoort'],
                             "",
                             $voorwerp['Titel']
-                    );
-                        }
+                        );
                     }
+                }
                 ?>
             </div>
         </div>
