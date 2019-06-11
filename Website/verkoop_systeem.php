@@ -12,6 +12,7 @@ $plaatsnaam = $_POST['locatie'];
 $land = 'Nederland';
 $looptijd = $_POST['looptijd'];
 $verzendinstructies = $_POST['verzendinstructies'];
+$Rubrieknummer = $_POST['parentrubriek'];
 $verkopersID = $_SESSION['GebruikersID'];
 $fileNaam = $_FILES['bestand']['name'];
 $voorwerpNummer = 0;
@@ -64,7 +65,15 @@ $query3->execute(
         ':VoorwerpNummer' => $voorwerpNummer,
     ]
 );
-echo $voorwerpNummer;
+
+$query4 = $dbh->prepare("INSERT VoorwerpInRubriek VALUES (:Voorwerpnummer, :Rubrieknummer)");
+$query4->execute(
+    [
+        ':Voorwerpnummer' => $voorwerpNummer,
+        ':Rubrieknummer' => $Rubrieknummer,
+    ]
+);
+
 $locatieNaRegistratie = "Location: voorwerppagina.php?voorwerpID=$voorwerpNummer";
 $_SESSION['foutmelding'] = "Voorwerp succesvol geplaatst!";
 header($locatieNaRegistratie);
