@@ -145,14 +145,17 @@ function maakBestandAanVoorRegistratie($VerkopersCode, $Voornaam, $Gebruikersnaa
     fwrite($bestand, $tekst);
     fclose($bestand);
 }
-function vergelijkVerkopersRegistratieCode($vergelijken, $code, $dbh)
+function vergelijkVerkopersRegistratieCode($GebruikersID, $code, $dbh)
 {
-    $vergelijkCode = $dbh->prepare("SELECT GebruikersID, VerkopersCode, CodeVerlopern FROM VerkopersCode WHERE $vergelijken = :Waarde");
-    $vergelijkCode->execute([':Waarde' => $code]);
+    $vergelijkCode = $dbh->prepare("SELECT GebruikersID, VerkopersCode, CodeVerlopen FROM VerkopersCode WHERE GebruikersID = :GebruikersID AND VerkopersCode = :VerkopersCode");
+    $vergelijkCode->execute([
+        ':GebruikersID' => $GebruikersID,
+        ':VerkopersCode' => $code
+        ]);
 
     $waardes = [];
     while ($rij = $vergelijkCode->fetch()) {
-        $waardes = ["$rij[GebruikersID]", "$rij[VerkopersCode]", "$rij[CodeVerlopern]"];
+        $waardes = ["$rij[GebruikersID]", "$rij[VerkopersCode]", "$rij[CodeVerlopen]"];
     }
 
     return $waardes;
@@ -168,9 +171,11 @@ function updateSoortGebruikerStatus($dbh, $soortGebruiker, $gebruikersID)
 
 function updateVerkoperStatus($dbh, $gebruikersID)
 {
-    $query = $dbh->prepare("UPDATE Verkoper SET Status = geactiveerd WHERE GebruikersID = :gebruikersID");
+    $query = $dbh->prepare("UPDATE Verkoper SET Status = 'geactiveerd' WHERE GebruikersID = :gebruikersID");
     $query->execute([':gebruikersID' => $gebruikersID]);
+    return "hoi";
 }
+
 //deze functie kijkt of de meegegeven string letters bevat a t/m z en hoofdletters
 
 // returned banken uit database
