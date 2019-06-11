@@ -76,7 +76,6 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                 <div><a class="navbar-brand" href="index.php">EenmaalAndermaal</a><span>Klik Klik Klaar</span></div><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigationdd</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav d-flex justify-content-center align-items-center mr-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Veilingen</a></li>
                         <li class="nav-item" role="presentation"></li>
                         <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Rubrieken</a>
                             <div class="dropdown-menu flex-column" role="menu">
