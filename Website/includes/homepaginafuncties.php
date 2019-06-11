@@ -2,7 +2,7 @@
 function genereerArtikelen($dbh, $gegevenQuery, $columntype)
 {
     $artikelen = '';
-    $backgroundsize;
+    $backgroundsize = '';
     if ($columntype == "col-md-6") {
         $backgroundsize = "cover";
     } else {
