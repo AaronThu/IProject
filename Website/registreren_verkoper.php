@@ -104,7 +104,7 @@ include_once "includes/header.php";
 
 </div>
             <div class ="registratiebutton">
-                <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a;" type="submit" name="verkoperRegistreren">Registreren als verkoper</button>
+                <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a; color: white" type="submit" name="verkoperRegistreren">Registreren als verkoper</button>
             </div>
 
     </form>

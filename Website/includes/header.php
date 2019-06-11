@@ -36,6 +36,8 @@ if (empty($_SESSION['Gebruikersnaam'])) {
         $extraKnop = '<a class="btn btn-light action-button" href="verkooppagina.php">Voorwerp plaatsen</a>';
     } elseif ($_SESSION['SoortGebruiker'] == 'koper' && $_SESSION['VerkoperStatus'] != 'aanvraging') {
         $extraKnop = '<a class="btn btn-light action-button" href="registreren_verkoper.php">Registreren verkoper</a>';
+    } elseif($_SESSION['SoortGebruiker'] == 'verkoper' && $_SESSION['VerkoperStatus'] == 'aanvraging'){
+        $extraKnop = '<a class="btn btn-light action-button" href="registratie_verkopers_code.php">invullen verkoperscode</a>';
     }
 }
 ?>

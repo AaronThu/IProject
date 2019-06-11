@@ -159,7 +159,7 @@ echo registratieFormulierItem("$vraag", "AntwoordErr", 50, "text", "AntwoordOpVr
         </div>
 </div>
         <div class ="registratiebutton">
-            <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a;" type="submit" name="registreer">Registreren</button>
+            <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a; color: white" type="submit" name="registreer">Registreren</button>
 </div>
     </form>
 
