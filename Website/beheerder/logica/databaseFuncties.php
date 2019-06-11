@@ -156,7 +156,8 @@ function GetAllRubrieken($parent) {
 function GetMailadresKoper()
 {
     global $dbh;
-    $query = $dbh->prepare("SELECT g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer, v.Titel FROM Gebruiker g INNER JOIN Voorwerp v ON g.GebruikersID = v.KopersID WHERE v.VeilingGesloten = 1 AND MailVerstuurd = 0;");   
+    $query = $dbh->prepare("SELECT distinct g.Emailadres, v.VerkopersID, v.KopersID, v.Voorwerpnummer, v.Titel  from Gebruiker g INNER JOIN Bod b ON g.GebruikersID = b.GebruikersID INNER JOIN Voorwerp v ON b.GebruikersID = v.KopersID
+                            WHERE v.VeilingGesloten = 1 and MailVerstuurd = 0");   
     $query->execute();
     $mailAdres = $query->fetchAll();
     return $mailAdres;
