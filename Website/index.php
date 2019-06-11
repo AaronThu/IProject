@@ -16,7 +16,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
             </div>
         </div>
         <div class="row">
-            <?php echo genereerArtikelen($dbh, "SELECT TOP 4 * FROM voorwerp WHERE voorwerpnummer IN (SELECT Voorwerpnummer FROM bod GROUP BY Voorwerpnummer HAVING count(bodbedrag)>1)", "col-md-3") ?>
+            <?php echo genereerArtikelen($dbh, "SELECT TOP 4 * FROM Voorwerp WHERE VeilingGesloten = 0 AND  Voorwerpnummer IN (SELECT Voorwerpnummer FROM bod GROUP BY Voorwerpnummer HAVING count(BodBedrag)>1)", "col-md-3") ?>
         </div>
     </div>
     <div style="margin: 30px;">
