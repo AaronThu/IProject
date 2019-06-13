@@ -3,10 +3,10 @@ session_start();
 include_once "includes/database.php";
 include_once "includes/functies.php";
 
-
 $codeErr = "";
 $locatieGoedeCode = "Location: index.php";
 
+// Controlleerd de code van de verkoper
 if(isset($_POST['verstuurCode'])){
     if(empty(test_invoer($_POST['RegistratieCode']))){
      $codeErr = "Vul de registratiecode in die is opgestuurd";
@@ -18,7 +18,6 @@ if(isset($_POST['verstuurCode'])){
             $codeErr = "Deze code is niet meer geldig, laat een nieuwe code naar je sturen";
         } elseif ($waardes[1] == test_invoer($_POST['RegistratieCode'])) {
             print $_SESSION['GebruikersID'];
-            //updateSoortGebruikerStatus($dbh, "verkoper", $_SESSION['GebruikersID']);
             updateVerkoperStatus($dbh, $_SESSION['GebruikersID']);
             $_SESSION['foutmelding'] = "U bent geregistreerd als verkoper, u kunt nu een voorwerp aanbieden";
             $_SESSION['VerkoperStatus'] = "geactiveerd";
@@ -29,11 +28,9 @@ if(isset($_POST['verstuurCode'])){
         }
     }
 }
-
 include_once "includes/header.php";
 ?>
-
-
+<!-- Formulier om code in te vullen -->
 <div class="container" style="margin-bottom: 10em;">
     <div class="row">
         <div class=" col-md-12">
@@ -41,22 +38,18 @@ include_once "includes/header.php";
             <p class = "text-center" style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php"> algemene voorwaarden.</a></p>
         </div>
     </div>
-
     <form style="color: white" method="post" action="registratie_verkopers_code.php">
     <div class="registratiepagina" style="margin: 2em 20%;">
     <h6 style="text-align: center;">Vul de code in die is opgestuurd</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $codeErr ?> </h6>
         <div class="form-group"><input class="form-control inputforms" type="number" name="RegistratieCode" placeholder="RegistratieCode" value=''></div>
     </div>
-
-
     <div class ="registratiebutton">
         <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a; color: white" type="submit" name="verstuurCode">Registreren als verkoper</button>
     </div>
     </form>
 </div>
 </body>
-
 <?php
 include_once "includes/footer.php";
 ?>

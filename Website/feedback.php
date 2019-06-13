@@ -4,6 +4,7 @@ session_start();
 include_once 'includes/database.php';
 include_once "includes/functies.php";
 
+// Kijkt of GET een waarde bevat
 if (!isset($_GET["feedback"])) {
     return;
 }
@@ -14,6 +15,7 @@ if (!isset($_GET["BeoordelersID"])) {
     return;
 }
 
+// Test of GET numeriek is en vult variabele
 $feedback = test_invoer($_GET["feedback"]);
 if (!is_numeric($feedback)) {
     return;
@@ -29,6 +31,7 @@ if (!is_numeric($beoordelersID)) {
 
 $locatieNaFeedback = "Location: index.php";
 
+// Insert feedback in de database
 $query = $dbh->prepare("INSERT Feedback (BeoordelersID, VerkopersID, FeedbackNummer) VALUES (:BeoordelersID, :VerkopersID, :FeedbackNummer)");
 $query->execute(
     [
@@ -38,6 +41,7 @@ $query->execute(
     ]
 );
 
+// Doorsturen naar homepagina
 $_SESSION['foutmelding'] = "Bedankt voor uw feedback!";
 header($locatieNaFeedback);
 ?>

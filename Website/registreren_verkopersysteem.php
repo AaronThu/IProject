@@ -3,7 +3,7 @@ session_start();
 include_once "includes/database.php";
 include_once "includes/functies.php";
 
-
+// Controlleerd of gebruiker is ingelogd
 if (empty($_SESSION['controleOptie'])) {
     $_SESSION['foutmelding'] = "Je moet eerst registreren/inloggen als gebruiker voordat je mag registreren als verkoper";
     header("Location: index.php");
@@ -13,6 +13,7 @@ if (empty($_SESSION['controleOptie'])) {
 $locatieNaRegistratie = "Location: index.php";
 $status = "";
 
+// Haalt gebuikersnaam uit de database
 $queryGebruikersID = $dbh->prepare("SELECT GebruikersID FROM Gebruiker WHERE Gebruikersnaam = :gebruikersnaam");
 $queryGebruikersID->execute(
     [
@@ -22,8 +23,7 @@ $queryGebruikersID->execute(
 
 $gebruikersID = $queryGebruikersID->fetch()[0];
 
-
-
+// Controlleerd de controle optie + gegevens in database zetten
 if( $_SESSION['controleOptie'] == 'Post'){
     $status = "aanvraging";
     $_SESSION['foutmelding'] = "Uw registratie is in aanvraging, er wordt binnen vijf werkdagen een brief met een code naar u gestuurd.\n";
@@ -50,6 +50,7 @@ maakBestandAanVoorRegistratie($verkoperRegistratieCode, $_SESSION['Voornaam'], $
     return;
 }
 
+// Update de database (maakt gebruiker verkoper)
 $updateGebruiker = $dbh->prepare("UPDATE Gebruiker SET SoortGebruiker = 'verkoper' WHERE GebruikersID = :GebruikersID");
 $updateGebruiker->execute(
     [
@@ -57,6 +58,7 @@ $updateGebruiker->execute(
     ]
 );
 
+// Vult de verkoper gegevens in de database in
 $query = $dbh->prepare("INSERT INTO Verkoper (GebruikersID, SoortRekening, Bank, Rekeningnummer, BankRekeningHouder, EinddatumPas, ControleOptieNaam, Status) VALUES (:GebruikersID, :SoortRekening, :Bank, :Rekeningnummer, :BankRekeningHouder, :EinddatumPas, :ControleOptieNaam, :Status)");
 
 $query->execute(

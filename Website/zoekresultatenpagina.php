@@ -3,6 +3,8 @@ include_once("includes/header.php");
 $zoekterm = "";
 $results = [];
 include_once("includes/sortingBar_Logic.php");
+
+// Controlleerd of GET een waarde bevat
 if (isset($_GET["zoekterm"])) {
     $zoekterm = $_GET['zoekterm'];
     $results = GetVoorwerpenSearchBar($zoekterm, $sortOn, $aflopen);
@@ -10,12 +12,11 @@ if (isset($_GET["zoekterm"])) {
 $formName = "Zoekbalk"
 ?>
 <div class="Main">
-
     <!-- Sorting box -->
-    <?php
-    include("includes/sortingBar.php");
-    ?>
-
+   <?php
+include("includes/sortingBar.php");
+?>
+<!-- Laat zoekresultaten zien -->
     <?php foreach ($results as $key => $value) { ?>
         <div class="container">
             <div class="container voorwerp">
@@ -44,4 +45,6 @@ $formName = "Zoekbalk"
     <script src="assets/js/timer.js"></script>
     <script src="assets/js/pagenation.js"></script>
 </div>
-<?php include_once("includes/footer.php"); ?>
+<?php
+include_once("includes/footer.php");
+?>

@@ -22,6 +22,7 @@ $HoogsteBod = $voorwerpEigenschappen[0]['Verkoopprijs'];
 $biederHoogsteBod = $voorwerpEigenschappen[0]['KopersID'];
 $BiedenGeslaagdTekst = "Bod succesvol geplaatst";
 
+// Bied systeem
 if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])) {
     $HoogsteBod = $voorwerpEigenschappen[0]['Startprijs'] - MinimaleBiedPrijs($voorwerpEigenschappen[0]['Startprijs']);
 }
@@ -48,11 +49,10 @@ if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $Hoogs
     $MinimaalTeBieden = MinimaleBiedPrijs($HoogsteBod);
 
     if ($Bodbedrag - $HoogsteBod >= $MinimaalTeBieden) {
-
         $query = $dbh->prepare("INSERT Bod (Voorwerpnummer, Bodbedrag, GebruikersID) VALUES ($voorwerpID, $Bodbedrag, $GebruikerID)");
         $query->execute();
         VoegNotificatieToe($voorwerpEigenschappen[0]['VerkopersID'], $voorwerpID, 'bodGeplaatst');
-      if (!empty($biederHoogsteBod) && $biederHoogsteBod != $GebruikerID) {
+        if (!empty($biederHoogsteBod) && $biederHoogsteBod != $GebruikerID) {
             VoegNotificatieToe($biederHoogsteBod, $voorwerpID, 'voorwerpOverboden');
         }
         $_SESSION['foutmelding'] = $BiedenGeslaagdTekst;
@@ -62,5 +62,4 @@ if($Bodbedrag >= $voorwerpEigenschappen[0]['Startprijs'] && $Bodbedrag >= $Hoogs
             header($locatieBiedingMislukt);
         }
 }
-
 ?>

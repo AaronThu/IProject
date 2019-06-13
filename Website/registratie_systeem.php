@@ -5,7 +5,7 @@ include_once 'includes/database.php';
 include_once "includes/functies.php";
 
 $locatieNaRegistratie = "Location: registreren_klaar.php";
-//Vult gegevens in de database
+// Vult registratie gegevens in de database
 $query = $dbh->prepare("INSERT INTO Gebruiker (Gebruikersnaam, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, Wachtwoord, Vraagnummer, AntwoordTekst, SoortGebruiker) VALUES (:Gebruikersnaam, :Voornaam, :Achternaam, :Adres1, :Adres2, :Postcode, :Plaatsnaam, :Land, :Geboortedatum, :Emailadres, :Wachtwoord, :Vraagnummer, :AntwoordTekst, :SoortGebruiker)");
 
 $query->execute(
@@ -27,7 +27,7 @@ $query->execute(
     ]
 );
 
-$query2 = $dbh->prepare("INSERT INTO Gebruikerstelefoon(Volgnr, Gebruikersnaam, Telefoonnummer) VALUES(:Volgnr, :Gebruikersnaam, :Telefoonnummer)");
+$query2 = $dbh->prepare("INSERT INTO Gebruikerstelefoon(Volgnr, Gebruikersnaam, Telefoonnummer) VALUES (:Volgnr, :Gebruikersnaam, :Telefoonnummer)");
 
 $query2->execute(
     [
@@ -38,7 +38,4 @@ $query2->execute(
 );
 $_SESSION['foutmelding'] = "U bent geregistreerd, u kunt nu inloggen";
 header($locatieNaRegistratie);
-
 ?>
-
-

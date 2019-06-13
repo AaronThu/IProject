@@ -3,11 +3,13 @@ include_once("includes/header.php");
 include_once "includes/functies.php";
 include_once("includes/database.php");
 
-
+// Controlleerd of GET een waarde bevat
 $voorwerpID = 0;
 if (!isset($_GET["voorwerpID"])) {
     return;
 }
+
+// Test of GET numeriek is en vult variabele
 $voorwerpID = test_invoer($_GET["voorwerpID"]);
 if (!is_numeric($voorwerpID)) {
     return;
@@ -15,14 +17,14 @@ if (!is_numeric($voorwerpID)) {
 
 $voorwerpEigenschappen = GetVoorwerpEigenschappen($voorwerpID);
 
+// Geeft een waarde aan $BiedingsPrijs
 if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
     $BiedingsPrijs = $voorwerpEigenschappen[0]['Startprijs'];
 } else{
    $BiedingsPrijs = $voorwerpEigenschappen[0]['Verkoopprijs'] + MinimaleBiedPrijs($voorwerpEigenschappen[0]['Verkoopprijs']);
 }
-
 ?>
-
+<!-- Pagina met gegevens van het voorwerp -->
     <div class="voorwerppagina" style="background-color:#3a3a3a;">
         <div>
             <div class="container">
@@ -61,8 +63,6 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
 
                                 }
                             } ?>
-
-
                         </ol>
                     </div>
                 </div>
@@ -138,7 +138,6 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
                                 $_SESSION['Beschrijving'] = $value['Beschrijving'];
                             }
                             ?>
-
                         </div>
                     <?php } ?>
                 </div>
@@ -181,8 +180,6 @@ if(empty($voorwerpEigenschappen[0]['Verkoopprijs'])){
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/timer.js"></script>
     </body>
-
 <?php
-
 include_once("includes/footer.php");
 ?>

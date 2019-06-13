@@ -2,7 +2,6 @@
 include('includes/database.php');
 
 if(isset($_POST['view'])){
-// $con = mysqli_connect("localhost", "root", "", "notif");
     if($_POST["view"] != '')
     {
         $update_query = "UPDATE comments SET comment_status = 1 WHERE comment_status=0";
@@ -25,7 +24,7 @@ if(isset($_POST['view'])){
   ';
         }
     }
-    else{
+    else {
         $output .= '<li><a href="#" class="text-bold text-italic">No Noti Found</a></li>';
     }
     $status_query = "SELECT * FROM comments WHERE comment_status=0";

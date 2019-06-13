@@ -5,7 +5,7 @@ include_once "includes/functies.php";
 $tijdLinkGeldig = 14400;
 $locatieFouteLink = "Location: http://iproject2.icasites.nl/registreren_emailpagina.php";
 
-
+// Check mailgegevens
 if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])) {
     $masterPW = "test";
     $meegevenHash = $_GET['hash'];
@@ -31,4 +31,3 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
     header($locatieFouteLink);
 }
 ?>
-//test

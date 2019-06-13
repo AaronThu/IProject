@@ -1,13 +1,9 @@
 <?php
-include_once "includes/header.php"; ?>
-
-
-
+include_once "includes/header.php"; 
+?>
+<!-- Start algemene voorwaarden -->
 <div class="main-content">
-
     <div class="help-content separated">
-
-
         <div class="anchorbox3 left bgyeller">
             <h2 class="section-heading ">I. Algemene Gebruiksvoorwaarden</h2>
             <p>Het is voor iedereen mogelijk om eenvoudig en snel gebruik te maken van Eenmaalandermaal. Wij hebben daarvoor
@@ -123,7 +119,6 @@ include_once "includes/header.php"; ?>
                 verwijderen zonder restitutie van het door Gebruiker betaald bedrag.</p>
         </blockquote>
         <p><strong>&nbsp;</strong></p>
-
         <p>Eenmaalandermaal kan in het kader van de bovengenoemde maatregelen de persoonsgegevens van de betrokkenen
             verwerken. Indien daartoe aanleiding is kan Eenmaalandermaal binnen de grenzen van de wet, de persoonsgegevens
             van de betrokkenen doorgeven, bijvoorbeeld aan de politie. Hoe dit in zijn werk gaat staat verder omschreven
@@ -173,7 +168,6 @@ include_once "includes/header.php"; ?>
         <p>Eenmaalandermaal B.V. (<strong>“Eenmaalandermaal”</strong>) is gevestigd aan de Wibautstraat 224, 1097 DN te Amsterdam.
             Eenmaalandermaal heeft telefoonnummer 020-2150838, BTW nummer 803.603.307.B.01 en is ingeschreven bij de Kamer
             van Koophandel onder nummer 28058712.
-
         </p>
         <p><strong> </strong></p>
         <p>Eenmaalandermaal kan de Gebruiksvoorwaarden of delen daarvan te alle tijde wijzigen. Eenmaalandermaal zal ernaar
@@ -453,7 +447,6 @@ include_once "includes/header.php"; ?>
             daarvan te gebruiken, te verveelvoudigen, te verspreiden en openbaar te maken (en aan derden toe te staan om
             te gebruiken en verveelvoudigen) voor marketing-, promotie- en/of advertentiedoeleinden. Je garandeert dat
             je bevoegd bent deze licentie te verstrekken.
-
             <br><br>
             11.3. Wij kunnen voor publiciteitsdoeleinden derde partijen toegang verschaffen tot een Advertentie om het
             hun mogelijk te maken deze en andere Advertenties te promoten op websites van derden, via e-mail en door
@@ -467,14 +460,11 @@ include_once "includes/header.php"; ?>
         <p class="plbrown"><strong>III Aanvullende regels voor bepaalde categorieën<br><br></strong><strong><br> <a
                         id="diensten"></a>A. Diensten en Vakmensen<br><br>
             </strong></p>
-
         <h5>1. Voor wie is de groep Diensten en Vakmensen bedoeld </h5> <br>
         <p><br>
             Eenmaalandermaal Diensten en Vakmensen is bedoeld voor professionele vakmensen en dienstverleners. Indien u als
             vakman of dienstverlener een Advertentie plaats, bevestigt u dat u handelt voor doeleinden die binnen uw
             bedrijfs- of beroepsactiviteit vallen.<br><br></p>
-
-
         <h5>2. Regels voor het plaatsen van beoordelingen </h5><br>
         <p></p>
         <p><br>
@@ -542,12 +532,10 @@ include_once "includes/header.php"; ?>
             per e-mail te willen ontvangen, gaat expliciet met elektronische facturering akkoord. De maandelijkse
             factuur betreft alle betalingen die online via onze Website zijn gedaan, tijdens de maand voorafgaand aan de
             factuurdatum.<strong> </strong></p>
-
-
     </div>
 </div>
 </body>
-
-
+<!-- Eind algemene voorwaarden -->
 <?php
-include_once "includes/footer.php"; ?>
+include_once "includes/footer.php";
+?>

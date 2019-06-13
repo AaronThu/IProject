@@ -17,7 +17,7 @@ $verkopersID = $_SESSION['GebruikersID'];
 $fileNaam = $_FILES['bestand']['name'];
 $voorwerpNummer = 0;
 
-// upload bestanden naar server
+// Upload bestanden naar server
 $uploaddir = 'voorwerpenfotos/';
 $uploadfile = $uploaddir . basename($_FILES['bestand']['name']);
 
@@ -27,7 +27,7 @@ if (move_uploaded_file($_FILES['bestand']['tmp_name'], $uploadfile)) {
     echo "Uploaden mislukt\n";
 }
 
-//Vult gegevens in de database
+// Vult gegevens in de database
 $query = $dbh->prepare("INSERT Voorwerp (Titel, Beschrijving, Startprijs, Betalingswijze, Betalingsinstructie, Plaatsnaam, Land, Looptijd, Verzendinstructies, VerkopersID) 
 VALUES (:Titel, :Beschrijving, :Startprijs, :Betalingswijze, :Betalingsinstructie, :Plaatsnaam, :Land, :Looptijd, :Verzendinstructies, :VerkopersID)");
 $query->execute(
@@ -58,6 +58,7 @@ while ($rij = $query2->fetch()) {
     $voorwerpNummer = $rij['Voorwerpnummer'];
 }
 
+// Vult het bestand pad in de database
 $query3 = $dbh->prepare("INSERT Bestand VALUES(:FileNaam, :VoorwerpNummer)");
 $query3->execute(
     [
@@ -66,6 +67,7 @@ $query3->execute(
     ]
 );
 
+// Vult het rubriek in de database
 $query4 = $dbh->prepare("INSERT VoorwerpInRubriek VALUES (:Voorwerpnummer, :Rubrieknummer)");
 $query4->execute(
     [
@@ -74,6 +76,7 @@ $query4->execute(
     ]
 );
 
+// Stuurt door naar de productpagina
 $locatieNaRegistratie = "Location: voorwerppagina.php?voorwerpID=$voorwerpNummer";
 $_SESSION['foutmelding'] = "Voorwerp succesvol geplaatst!";
 header($locatieNaRegistratie);

@@ -9,10 +9,11 @@ $maxOnPage = 20;
 $page = 1;
 $sortOn = [];
 $aflopen = false;
+
+// Controlleerd of GET een waarde bevat
 if (!isset($_GET["rubriekID"])) {
     return;
 }
-
 if (isset($_GET["SortNaam"]) && $_GET["SortNaam"] === "on") {
     array_push($sortOn, "Titel");
 }
@@ -39,9 +40,11 @@ if (isset($_GET["page"])) {
     $page = max(1, min($page, $maxPage));
 }
 ?>
-    <div class="Main">
-    <ul class="breadcrum">
-        <?php
+<div class="Main">
+<ul class="breadcrum">
+
+<!-- Laat alle rubrieken + subrubrieken zien -->
+<?php
 $ID = $rubiekID;
 while ($ID > 0) {
     $Rub = GetParentRubrieken($ID);
@@ -131,4 +134,5 @@ foreach ($alleRubrieken as $key => $value) {
     <script src="assets/js/timer.js"></script>
     <script src="assets/js/pagenation.js"></script>
 <?php
-include_once "includes/footer.php";?>
+include_once "includes/footer.php";
+?>

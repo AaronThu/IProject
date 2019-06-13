@@ -17,6 +17,7 @@ $_SESSION['rekeningHouderErr'] = "";
 $_SESSION['bankErr'] = "";
 $_SESSION['datumErr'] = "";
 
+// Controlleerd of de gebruiker de juiste gegevens heeft ingevuld
 if(isset($_POST['verkoperRegistreren'])) {
     if (empty(test_invoer($_POST['rekeningnummer'])) || strlen((test_invoer($_POST['rekeningnummer']))) <= 5) {
         $_SESSION['rekeningnummerErr'] = "dit rekeningnummer is niet geldig";
@@ -59,12 +60,13 @@ if(isset($_POST['verkoperRegistreren'])) {
 include_once "includes/header.php";
 ?>
 
+<!-- Formulier om gegevens in te vullen -->
 <div class="background">
     <div class="container" style="margin-bottom: 10em;">
         <div class="row">
-                <div class=" col-md-12">
-        <h2 class="text-center" style="color: rgb(255,255,255);">Registreren als verkoper</h2>
-                    <p class = "text-center" style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php" target="_blank"> algemene voorwaarden.</a></p>
+            <div class=" col-md-12">
+            <h2 class="text-center" style="color: rgb(255,255,255);">Registreren als verkoper</h2>
+            <p class = "text-center" style="color: rgb(255,255,255);margin-bottom:50px;"> Door te registreren als verkoper accepteert u onze <a href="algemene_voorwaarden.php" target="_blank"> algemene voorwaarden.</a></p>
         </div>
     </div>
 <div style=" margin: 50px 15em;">
@@ -101,21 +103,15 @@ include_once "includes/header.php";
     <h6 style="text-align: center;">De einddatum van jouw pas</h6>
     <h6 class="text-left foutmeldingTekst"> <?php echo $_SESSION['datumErr'] ?> </h6>
     <div class="form-group"><input class="form-control inputforms" type="date" name="EinddatumPas" value="<?php echo isset($_POST["EinddatumPas"]) ? $_POST["EinddatumPas"] : '' ?>"></div>
-
 </div>
-            <div class ="registratiebutton">
-                <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a; color: white" type="submit" name="verkoperRegistreren">Registreren als verkoper</button>
-            </div>
-
+    <div class ="registratiebutton">
+    <button class="btn btn-primary text-center Registratieknop" style="background-color: #a9976a; color: white" type="submit" name="verkoperRegistreren">Registreren als verkoper</button>
+    </div>
     </form>
 </div>
-
-
 </div>
-
 </div>
 </body>
-
 <?php
 include_once "includes/footer.php";
 ?>

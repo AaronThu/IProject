@@ -3,6 +3,7 @@ include_once "includes/functies.php";
 session_start();
 $locatieNaVersturen = "Location: index.php";
 
+// Gegevens voor het versturen van de mail
 $mailadres = $_SESSION['Emailadres'];
 $masterPW = "test";
 $hash = hash('sha256', $mailadres . $masterPW);
@@ -23,11 +24,10 @@ $headers = 'MIME-Version: 1.0' . "\r\n";
 $headers .= $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $headers .= 'From:noreply@EenmaalAndermaal.com' . "\r\n";
 
+// Verstuur mail naar gebruiker
 mail($to, $subject, $message, $headers);
 
+// Doorsturen naar homepagina
 $_SESSION['foutmelding'] = "Mail is succesvol verstuurd, kijk in je inbox voor de link!";
 header($locatieNaVersturen);
 ?>
-
-
-

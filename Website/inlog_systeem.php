@@ -4,16 +4,16 @@ include_once 'includes/database.php';
 include_once 'includes/functies.php';
 include_once 'beheerder/logica/databaseFuncties.php';
 $locatie = "Location: login_pagina.php";
+
+//Controlleerd of de gebruiker mag inloggen
 if (isset($_POST['inloggen'])) {
     $Gebruikersnaam = test_invoer($_POST['Gebruikersnaam']);
     $wachtwoord = test_invoer($_POST['Wachtwoord']);
     $wachtwoordofgebruikersnaamfout = "Het wachtwoord of de gebruikersnaam is fout, probeer het opnieuw";
 
-
     $query = $dbh->prepare("SELECT Wachtwoord, Voornaam, Achternaam, Adres1, Adres2, Postcode, Plaatsnaam, Land, Geboortedatum, Emailadres, GebruikersID, SoortGebruiker FROM Gebruiker WHERE Gebruikersnaam = :Gebruikersnaam");
     $query->execute([':Gebruikersnaam' => $Gebruikersnaam]);
     $hash = [];
-
 
     while ($rij = $query->fetch()) {
         $hash = ["$rij[Wachtwoord]", "$rij[Voornaam]", "$rij[Achternaam]", "$rij[Adres1]", "$rij[Adres2]", "$rij[Postcode]", "$rij[Plaatsnaam]", "$rij[Land]", "$rij[Geboortedatum]", "$rij[Emailadres]", "$rij[GebruikersID]", "$rij[SoortGebruiker]"];
@@ -42,8 +42,8 @@ if (isset($_POST['inloggen'])) {
                 $queryVerkoperStatus = $dbh->prepare("SELECT Status FROM Verkoper WHERE GebruikersID = :GebruikersID");
                 $queryVerkoperStatus->execute([':GebruikersID' => $_SESSION['GebruikersID']]);
                 $verkoperStatus = $queryVerkoperStatus->fetchAll();
-
                 $_SESSION['VerkoperStatus'] = $verkoperStatus[0]['Status'];
+
                 if (IsAdmin($Gebruikersnaam)) {
                     header("Location: beheerder/beheerder_homepagina.php");
                     return;
@@ -63,3 +63,4 @@ if (isset($_POST['inloggen'])) {
     $_SESSION['foutmelding'] = "Er is iets fout gegaan bij het inloggen, probeer het opnieuw";
     header($locatie);
 }
+?>

@@ -17,7 +17,6 @@ include_once "includes/functies.php";
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </div>
-
-
 <?php
 include_once("includes/footer.php");
+?>
