@@ -50,7 +50,7 @@ if (empty($_SESSION['Gebruikersnaam'])) {
                 </div>
             </div>
             <div class="row d-flex justify-content-between flex-wrap">
-                <?php echo genereerCatogorie($dbh, "SELECT TOP 4 * FROM Rubriek WHERE Parent_Rubriek = -1 ", "col-md-3") ?>
+                <?php echo genereerCatogorie($dbh, "SELECT * FROM Rubriek WHERE Rubrieknummer = 9800 OR Rubrieknummer = 12081 OR Rubrieknummer = 11232 OR Rubrieknummer = 12576", "col-md-3") ?>
             </div>
         </div>
     </div>
